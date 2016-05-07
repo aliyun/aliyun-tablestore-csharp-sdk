@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB5EFCA2-53A9-42B5-861E-3FD6F865036B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aliyun.OTS</RootNamespace>
+    <AssemblyName>Aliyun.TableStore</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.ProtocolBuffers, Version=2.4.1.555, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.ProtocolBuffers.2.4.1.555\lib\net40\Google.ProtocolBuffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.ProtocolBuffers.Serialization, Version=2.4.1.555, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.ProtocolBuffers.2.4.1.555\lib\net40\Google.ProtocolBuffers.Serialization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\lib\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\lib\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aliyun\OTS\DataModel\AttributeColumns.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\CapacityUnit.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\ColumnValue.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Condition.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\ColumnCondition.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\ColumnConditionType.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\CompositeCondition.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\RelationalCondition.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\MultiRowQueryCriteria.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\RangeRowQueryCriteria.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\RowQueryCriteria.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\SingleRowQueryCriteria.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\PrimaryKey.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\PrimaryKeySchema.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\ReservedThroughputDetails.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\RowChanges.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\RowExistenceExpectation.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\TableMeta.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\UpdateOfAttribute.cs" />
+    <Compile Include="Aliyun\OTS\Handler\Context.cs" />
+    <Compile Include="Aliyun\OTS\Handler\ErrorHandler.cs" />
+    <Compile Include="Aliyun\OTS\Handler\HttpHandler.cs" />
+    <Compile Include="Aliyun\OTS\Handler\HttpHeaderHandler.cs" />
+    <Compile Include="Aliyun\OTS\Handler\OTSHandler.cs" />
+    <Compile Include="Aliyun\OTS\Handler\PipelineHandler.cs" />
+    <Compile Include="Aliyun\OTS\Handler\ProtoBufferDecoder.cs" />
+    <Compile Include="Aliyun\OTS\Handler\ProtoBufferEncoder.cs" />
+    <Compile Include="Aliyun\OTS\Handler\RetryHandler.cs" />
+    <Compile Include="Aliyun\OTS\OTSClient.cs" />
+    <Compile Include="Aliyun\OTS\OTSClientConfig.cs" />
+    <Compile Include="Aliyun\OTS\OTSClientException.cs" />
+    <Compile Include="Aliyun\OTS\OTSClientTestHelper.cs" />
+    <Compile Include="Aliyun\OTS\OTSConnectionPool.cs" />
+    <Compile Include="Aliyun\OTS\OTSDefaultLogHandler.cs" />
+    <Compile Include="Aliyun\OTS\OTSException.cs" />
+    <Compile Include="Aliyun\OTS\OTSServerException.cs" />
+    <Compile Include="Aliyun\OTS\ProtoBuffer\OtsProtocol2.cs" />
+    <Compile Include="Aliyun\OTS\Request\BatchGetRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\BatchWriteRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\CreateTableRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\DeleteRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\DeleteTableRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\DescribeTableRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\GetIteratorRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\GetRangeRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\GetRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\ListTableRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\OTSRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\PutRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\UpdateRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\UpdateTableRequest.cs" />
+    <Compile Include="Aliyun\OTS\Response\BatchGetRowErrorResponseItem.cs" />
+    <Compile Include="Aliyun\OTS\Response\BatchGetRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\BatchGetRowResponseItem.cs" />
+    <Compile Include="Aliyun\OTS\Response\BatchGetRowSuccessResponseItem.cs" />
+    <Compile Include="Aliyun\OTS\Response\BatchWriteRowErrorResponseItem.cs" />
+    <Compile Include="Aliyun\OTS\Response\BatchWriteRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\BatchWriteRowResponseItem.cs" />
+    <Compile Include="Aliyun\OTS\Response\BatchWriteRowSuccessResponseItem.cs" />
+    <Compile Include="Aliyun\OTS\Response\CreateTableResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\DeleteRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\DeleteTableResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\DescribeTableResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\GetRangeResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\GetRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\ListTableResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\OTSResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\PutRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\UpdateRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\UpdateTableResponse.cs" />
+    <Compile Include="Aliyun\OTS\Retry\PredefinedRetryPolicies.cs" />
+    <Compile Include="Aliyun\OTS\Retry\RetryPolicy.cs" />
+    <Compile Include="Aliyun\OTS\Retry\RetryUtil.cs" />
+    <Compile Include="Aliyun\OTS\Util\OtsUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
