@@ -4,6 +4,7 @@ using Aliyun.OTS.DataModel;
 using Aliyun.OTS.Request;
 using Aliyun.OTS.Response;
 using Aliyun.OTS.DataModel.ConditionalUpdate;
+using System.Threading.Tasks;
 
 namespace Aliyun.OTS.Samples
 {
@@ -54,6 +55,49 @@ namespace Aliyun.OTS.Samples
 
             otsClient.PutRow(request);
             Console.WriteLine("Put row succeed.");
+        }
+
+        public static void PutRowAsync()
+        {
+            Console.WriteLine("Start put row async...");
+            PrepareTable();
+            OTSClient TabeStoreClient = Config.GetClient();
+
+            try
+            {
+                var putRowTaskList = new List<Task<PutRowResponse>>();
+                for (int i = 0; i < 100; i++)
+                {
+                    // 定义行的主键，必须与创建表时的TableMeta中定义的一致
+                    var primaryKey = new PrimaryKey();
+                    primaryKey.Add("pk0", new ColumnValue(i));
+                    primaryKey.Add("pk1", new ColumnValue("abc"));
+
+                    // 定义要写入改行的属性列
+                    var attribute = new AttributeColumns();
+                    attribute.Add("col0", new ColumnValue(i));
+                    attribute.Add("col1", new ColumnValue("a"));
+                    attribute.Add("col2", new ColumnValue(true));
+
+                    var request = new PutRowRequest(TableName, new Condition(RowExistenceExpectation.IGNORE),
+                                                    primaryKey, attribute);
+
+                    putRowTaskList.Add(TabeStoreClient.PutRowAsync(request));
+                }
+
+                foreach (var task in putRowTaskList)
+                {
+                    task.Wait();
+                    Console.WriteLine("consumed read:{0}, write:{1}", task.Result.ConsumedCapacityUnit.Read,
+                                       task.Result.ConsumedCapacityUnit.Write);
+                }
+
+                Console.WriteLine("Put row async succeeded.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Put row async failed. exception:{0}", ex.Message);
+            }
         }
 
         public static void UpdateRow()
@@ -137,13 +181,20 @@ namespace Aliyun.OTS.Samples
             var rowQueryCriteria = new SingleRowQueryCriteria(TableName);
             rowQueryCriteria.RowPrimaryKey = primaryKey;
 
-            // 只返回col0的值等于5的行
-            var condition = new RelationalCondition("col0",
+            // 只返回col0的值等于5的行或者col1不等于ff的行
+            var filter1 = new RelationalCondition("col0",
                     RelationalCondition.CompareOperator.EQUAL,
                     new ColumnValue(5));
 
-            rowQueryCriteria.Filter = condition;
+            var filter2 = new RelationalCondition("col1", RelationalCondition.CompareOperator.NOT_EQUAL, new ColumnValue("ff"));
+
+            var filter = new CompositeCondition(CompositeCondition.LogicOperator.OR);
+            filter.AddCondition(filter1);
+            filter.AddCondition(filter2);
+
+            rowQueryCriteria.Filter = filter;
             rowQueryCriteria.AddColumnsToGet("col0");
+            rowQueryCriteria.AddColumnsToGet("col1");
 
             GetRowRequest request = new GetRowRequest(rowQueryCriteria); 
 

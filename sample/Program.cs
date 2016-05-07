@@ -15,6 +15,7 @@ namespace Aliyun.OTS.Samples
                 CreateTableSample.TableOperations();
 
                 //SingleRowReadWriteSample.PutRow();
+                //SingleRowReadWriteSample.PutRowAsync();
 
                 //SingleRowReadWriteSample.UpdateRow();
 
@@ -35,9 +36,13 @@ namespace Aliyun.OTS.Samples
                 //ConditionUpdateSample.ConditionDeleteRow();
                 //ConditionUpdateSample.ConditionBatchWriteRow();
             }
-            catch (OTSException ex)
+            catch (OTSClientException ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine("Failed with client exception:{0}", ex.Message);
+            }
+            catch (OTSServerException ex)
+            {
+                Console.WriteLine("Failed with server exception:{0}, {1}", ex.Message, ex.RequestID);
             }
             catch (Exception ex)
             {

@@ -350,7 +350,6 @@ namespace Aliyun.OTS.Samples
                 // 注意：batch操作可能部分成功部分失败，需要为每行检查状态
                 if (row.IsOK)
                 {
-                    Console.WriteLine("Update succeed.");
                     succeedRows++;
                 }
                 else
