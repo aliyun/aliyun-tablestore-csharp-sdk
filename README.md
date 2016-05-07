@@ -1,4 +1,7 @@
-# Aliyun TableStore SDK for C# 
+﻿# Aliyun TableStore SDK for C# 
+
+[![Software License](https://img.shields.io/badge/license-apache2-brightgreen.svg)](LICENSE)
+[![GitHub version](https://badge.fury.io/gh/aliyun%2Faliyun-tablestore-csharp-sdk.svg)](https://badge.fury.io/gh/aliyun%2Faliyun-tablestore-csharp-sdk)
 
 ## 关于
  - 此C# SDK基于[阿里云表格存储服务](http://www.aliyun.com/product/ots/) API构建。
@@ -16,7 +19,7 @@
  - 如果要运行sample，需要将aliyun-tablestore-sdk-sample项目设为`启动项目`，并添加您自己的AccessKeyId，AccessKeySecret，InstanceName等后即可运行。
 
 ## 贡献代码
- - 我们非常欢迎大家为TableStore C# SDK以及其他阿里云SDK贡献代码
+ - 我们非常欢迎大家为TableStore C# SDK以及其他TableStore SDK贡献代码
 
 ## 联系我们
 - [阿里云TableStore官方网站](http://www.aliyun.com/product/ots)
