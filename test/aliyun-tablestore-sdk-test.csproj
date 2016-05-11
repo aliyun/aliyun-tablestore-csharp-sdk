@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -92,13 +92,13 @@
     <Compile Include="UnitTest\TableOperationTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\sdk\aliyun-tablestore-sdk.csproj">
-      <Project>{6202b9d0-d976-4b71-b448-4cdaa836e087}</Project>
-      <Name>aliyun-tablestore-sdk</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\sdk\aliyun-tablestore-sdk.csproj">
+      <Project>{AB5EFCA2-53A9-42B5-861E-3FD6F865036B}</Project>
+      <Name>aliyun-tablestore-sdk</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
