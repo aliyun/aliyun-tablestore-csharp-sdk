@@ -56,12 +56,12 @@ namespace Aliyun.OTS.Samples
             }
 
             // 删除表
-            {
-                Console.WriteLine("Start delete table...");
-                DeleteTableRequest request = new DeleteTableRequest(TableName);
-                otsClient.DeleteTable(request);
-                Console.WriteLine("Table is deleted.");
-            }
+            //{
+                //Console.WriteLine("Start delete table...");
+                //DeleteTableRequest request = new DeleteTableRequest(TableName);
+                //otsClient.DeleteTable(request);
+                //Console.WriteLine("Table is deleted.");
+            //}
         }
     }
 }
