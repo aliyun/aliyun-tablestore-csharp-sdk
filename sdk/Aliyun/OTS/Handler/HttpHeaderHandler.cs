@@ -200,7 +200,13 @@ namespace Aliyun.OTS.Handler
         public override void HandleAfter(Context context)
         {
             InnerHandler.HandleAfter(context);
-            
+
+            // Disable reponse validation
+            if (context.ClientConfig.SkipResponseValidation)
+            {
+                return;
+            }
+
             try
             {
                 CheckOtherHeaders(context);

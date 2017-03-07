@@ -83,6 +83,11 @@ namespace Aliyun.OTS
         public OTSLogHandler OTSDebugLogHandler { get; set; }
 
         /// <summary>
+        /// 跳过返回校验
+        /// </summary>
+        public bool SkipResponseValidation { get; set; }
+
+        /// <summary>
         /// OTSClientConfig的构造函数。
         /// </summary>
         /// <param name="endPoint">OTS服务的地址</param>
@@ -110,7 +115,7 @@ namespace Aliyun.OTS
             ConnectionLimit = DefaultConnectionLimit;
             APIVersion = DefaultAPIVersion;
             RetryPolicy = RetryPolicy.DefaultRetryPolicy;
-            
+           
             OTSErrorLogHandler = OTSDefaultLogHandler.DefaultErrorLogHandler;
             OTSDebugLogHandler = OTSDefaultLogHandler.DefaultDebugLogHandler;
         }
