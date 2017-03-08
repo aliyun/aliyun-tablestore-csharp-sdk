@@ -18,6 +18,8 @@ using Aliyun.OTS.Response;
 using Aliyun.OTS.Handler;
 using Aliyun.OTS.DataModel.ConditionalUpdate;
 using System;
+using System.Net;
+using System.Net.Http;
 
 namespace Aliyun.OTS
 {
@@ -47,7 +49,8 @@ namespace Aliyun.OTS
     {
         #region Fields & Properties
 
-        private OTSConnectionPool ConnectionPool;
+        private HttpClient client;
+
         private OTSHandler OTSHandler;
         private OTSClientConfig ClientConfig;
 
@@ -78,11 +81,9 @@ namespace Aliyun.OTS
             ClientConfig = config;
             OTSHandler = new OTSHandler();
 
-            ConnectionPool = new OTSConnectionPool(
-                ClientConfig.EndPoint, 
-                ClientConfig.ConnectionLimit
-            );
-            
+            client = new HttpClient();
+            client.BaseAddress = new Uri(ClientConfig.EndPoint);
+            ServicePointManager.DefaultConnectionLimit = config.ConnectionLimit;  
             OTSClientTestHelper.Reset();
         }
 
@@ -674,13 +675,13 @@ namespace Aliyun.OTS
             otsContext.APIName = apiName;
             otsContext.OTSRequest = request;
             otsContext.OTSReponse = new TResponse();
-            otsContext.HttpClient = ConnectionPool.TakeHttpClient();
+            otsContext.HttpClient = client;
 
             OTSHandler.HandleBefore(otsContext);
 
             return otsContext.HttpTask.ContinueWith((t) =>
             {
-                ConnectionPool.ReturnHttpClient(otsContext.HttpClient);
+                // ConnectionPool.ReturnHttpClient(otsContext.HttpClient);
                 OTSHandler.HandleAfter(otsContext);
                 return (TResponse)otsContext.OTSReponse;
             });
