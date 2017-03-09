@@ -16,8 +16,8 @@ namespace Aliyun.OTS.Response
 {
     public class BatchWriteRowSuccessResponseItem : BatchWriteRowResponseItem
     {
-        public BatchWriteRowSuccessResponseItem(CapacityUnit consumedCapacityUnit)
-            : base(consumedCapacityUnit)
+        public BatchWriteRowSuccessResponseItem(CapacityUnit consumedCapacityUnit, string tableName, int index)
+            : base(consumedCapacityUnit, tableName, index)
         {
         }
     }

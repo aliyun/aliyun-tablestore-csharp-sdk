@@ -375,6 +375,8 @@ namespace Aliyun.OTS.UnitTest
                 Assert.AreEqual(expectItem.IsOK, actualItem.IsOK);
                 Assert.AreEqual(expectItem.ErrorCode, actualItem.ErrorCode);
                 Assert.AreEqual(expectItem.ErrorMessage, actualItem.ErrorMessage);
+                Assert.AreEqual(expectItem.TableName, actualItem.TableName);
+                Assert.AreEqual(expectItem.Index, actualItem.Index);
                 AssertCapacityUnit(expectItem.Consumed, expectItem.Consumed);
             }
         }
