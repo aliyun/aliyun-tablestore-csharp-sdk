@@ -92,7 +92,7 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             var item = GetNewBatchWriteRowResponseForOneTable();
             
             for (int i = 0; i < 4; i ++) {
-                item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
+                item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), TestTableName, i));
             }
             expectResponse.TableRespones.Add(TestTableName, item);
             
@@ -145,7 +145,7 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             var item = GetNewBatchWriteRowResponseForOneTable();
             
             for (int i = 0; i < 4; i ++) {
-                item.UpdateResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
+                item.UpdateResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), TestTableName, i));
             }
             expectResponse.TableRespones.Add(TestTableName, item);
             
@@ -192,7 +192,7 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             var item = GetNewBatchWriteRowResponseForOneTable();
             
             for (int i = 0; i < 4; i ++) {
-                item.DeleteResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
+                item.DeleteResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), TestTableName, i));
             }
             expectResponse.TableRespones.Add(TestTableName, item);
             
@@ -249,9 +249,9 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             var item = GetNewBatchWriteRowResponseForOneTable();
             
             for (int i = 0; i < 4; i ++) {
-                item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
-                item.UpdateResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
-                item.DeleteResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
+                item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), TestTableName, i));
+                item.UpdateResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), TestTableName, i));
+                item.DeleteResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), TestTableName, i));
             }
             expectResponse.TableRespones.Add(TestTableName, item);
             
@@ -374,15 +374,33 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             var response = OTSClient.BatchWriteRow(request);
             
             var expectResponse = new BatchWriteRowResponse();
-            var item = GetNewBatchWriteRowResponseForOneTable();
-            
+            var item1 = GetNewBatchWriteRowResponseForOneTable();
+            var item2 = GetNewBatchWriteRowResponseForOneTable();
+            var item3 = GetNewBatchWriteRowResponseForOneTable();
+            var item4 = GetNewBatchWriteRowResponseForOneTable();
+
             for (int i = 0; i < 4; i ++) {
-                item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
+                item1.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), "Table1", i));
             }
-            expectResponse.TableRespones.Add("Table1", item);
-            expectResponse.TableRespones.Add("Table2", item);
-            expectResponse.TableRespones.Add("Table3", item);
-            expectResponse.TableRespones.Add("Table4", item);
+
+            for (int i = 0; i < 4; i++)
+            {
+                item2.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), "Table2", i));
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                item3.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), "Table3", i));
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                item4.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), "Table4", i));
+            }
+            expectResponse.TableRespones.Add("Table1", item1);
+            expectResponse.TableRespones.Add("Table2", item2);
+            expectResponse.TableRespones.Add("Table3", item3);
+            expectResponse.TableRespones.Add("Table4", item4);
             
             AssertBatchWriteRowResponse(expectResponse, response);
             
@@ -468,13 +486,13 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             for (int t = 1; t < 5; t ++) {
                 var item = GetNewBatchWriteRowResponseForOneTable();
                 for (int i = 0; i < 4; i ++) {
-                    item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
+                    item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), "Table" + t, i));
                 }
                 expectResponse.TableRespones.Add("Table" + t, item);
             }
             
-            expectResponse.TableRespones["Table1"].PutResponses[0] = 
-                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.");
+            expectResponse.TableRespones["Table1"].PutResponses[0] =
+                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.", "Table1", 0);
             
             AssertBatchWriteRowResponse(expectResponse, response);
             
@@ -525,15 +543,15 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             for (int t = 1; t < 5; t ++) {
                 var item = GetNewBatchWriteRowResponseForOneTable();
                 for (int i = 0; i < 4; i ++) {
-                    item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
+                    item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), "Table" + t, i));
                 }
                 expectResponse.TableRespones.Add("Table" + t, item);
             }
             
-            expectResponse.TableRespones["Table1"].PutResponses[0] = 
-                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.");
-            expectResponse.TableRespones["Table1"].PutResponses[3] = 
-                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.");
+            expectResponse.TableRespones["Table1"].PutResponses[0] =
+                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.", "Table1", 0);
+            expectResponse.TableRespones["Table1"].PutResponses[3] =
+                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.", "Table1", 3);
             AssertBatchWriteRowResponse(expectResponse, response);
             
             for (int i = 0; i < 4; i ++) {
@@ -582,15 +600,15 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             for (int t = 1; t < 5; t ++) {
                 var item = GetNewBatchWriteRowResponseForOneTable();
                 for (int i = 0; i < 4; i ++) {
-                    item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1)));
+                    item.PutResponses.Add(new BatchWriteRowResponseItem(new CapacityUnit(0, 1), "Table" + t, i));
                 }
                 expectResponse.TableRespones.Add("Table" + t, item);
             }
             
-            expectResponse.TableRespones["Table1"].PutResponses[0] = 
-                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.");
-            expectResponse.TableRespones["Table2"].PutResponses[3] = 
-                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.");
+            expectResponse.TableRespones["Table1"].PutResponses[0] =
+                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.", "Table1", 0);
+            expectResponse.TableRespones["Table2"].PutResponses[3] =
+                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.", "Table1", 3);
             AssertBatchWriteRowResponse(expectResponse, response);
             
             for (int i = 0; i < 4; i ++) {

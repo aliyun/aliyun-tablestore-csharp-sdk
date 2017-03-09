@@ -264,20 +264,21 @@ namespace Aliyun.OTS.Handler
         }
         
         private IList<Response.BatchWriteRowResponseItem>
-            ParseBatchWriteRowResponseItems(IList<PB.RowInBatchWriteRowResponse> responseItems)
+            ParseBatchWriteRowResponseItems(string tableName, IList<PB.RowInBatchWriteRowResponse> responseItems)
         {
             var ret = new List<Response.BatchWriteRowResponseItem>();
+            int index = 0;
             foreach (var responseItem in responseItems)
             {
                 if (responseItem.IsOk)
                 {
                     ret.Add(new Response.BatchWriteRowResponseItem(
-                        ParseCapacityUnit(responseItem.Consumed.CapacityUnit)));                    
+                        ParseCapacityUnit(responseItem.Consumed.CapacityUnit), tableName, index++));                    
                 }
                 else
                 {
                     ret.Add(new Response.BatchWriteRowResponseItem(
-                        responseItem.Error.Code, responseItem.Error.Message
+                        responseItem.Error.Code, responseItem.Error.Message, tableName, index++
                    ));
                 }
             }
@@ -289,9 +290,9 @@ namespace Aliyun.OTS.Handler
             ParseTableInBatchWriteRowResponse(PB.TableInBatchWriteRowResponse table)
         {
             var ret = new Response.BatchWriteRowResponseForOneTable();
-            ret.PutResponses = ParseBatchWriteRowResponseItems(table.PutRowsList);
-            ret.DeleteResponses = ParseBatchWriteRowResponseItems(table.DeleteRowsList);
-            ret.UpdateResponses = ParseBatchWriteRowResponseItems(table.UpdateRowsList);
+            ret.PutResponses = ParseBatchWriteRowResponseItems(table.TableName, table.PutRowsList);
+            ret.DeleteResponses = ParseBatchWriteRowResponseItems(table.TableName, table.DeleteRowsList);
+            ret.UpdateResponses = ParseBatchWriteRowResponseItems(table.TableName, table.UpdateRowsList);
             return ret;
         }
         

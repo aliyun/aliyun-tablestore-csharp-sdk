@@ -14,8 +14,8 @@ namespace Aliyun.OTS.Response
 {
     public class BatchWriteRowErrorResponseItem : BatchWriteRowResponseItem
     {
-        public BatchWriteRowErrorResponseItem(string errorCode, string errorMessage)
-            : base(errorCode, errorMessage)
+        public BatchWriteRowErrorResponseItem(string errorCode, string errorMessage, string tableName, int index)
+            : base(errorCode, errorMessage, tableName, index)
         {
         }
     }

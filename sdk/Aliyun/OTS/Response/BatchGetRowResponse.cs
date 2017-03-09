@@ -10,6 +10,7 @@
  */
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aliyun.OTS.Response
 {
@@ -32,6 +33,21 @@ namespace Aliyun.OTS.Response
         public void Add(string tableName, IList<BatchGetRowResponseItem> rowDataInTable)
         {
             RowDataGroupByTable.Add(tableName, rowDataInTable);
+        }
+
+        public bool IsAllSucceed
+        {
+            get { return !GetFailedRows().Any(); }
+        }
+
+        public IEnumerable<BatchGetRowResponseItem> GetFailedRows()
+        {
+            var result = new List<BatchGetRowResponseItem>();
+            foreach (var tableResult in RowDataGroupByTable)
+            {
+                result.AddRange(tableResult.Value.Where(_ => !_.IsOK));
+            }
+            return result;
         }
     }
 }
