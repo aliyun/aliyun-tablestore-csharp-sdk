@@ -10,6 +10,7 @@
  */
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aliyun.OTS.Response
 {
@@ -30,6 +31,22 @@ namespace Aliyun.OTS.Response
         /// </summary>
         public IDictionary<string, BatchWriteRowResponseForOneTable> TableRespones { get; private set; }
         
+        public bool IsAllSucceed {
+            get { return !GetFailedRows().Any(); }
+        }
+
+        public IEnumerable<BatchWriteRowResponseItem> GetFailedRows() 
+        {
+            var result = new List<BatchWriteRowResponseItem>();
+            foreach (var tableResult in TableRespones)
+            {
+                result.AddRange(tableResult.Value.PutResponses.Where(_ => !_.IsOK));
+                result.AddRange(tableResult.Value.UpdateResponses.Where(_ => !_.IsOK));
+                result.AddRange(tableResult.Value.DeleteResponses.Where(_ => !_.IsOK));
+            }
+            return result;
+        }
+
         public BatchWriteRowResponse()
         {
             TableRespones = new Dictionary<string, BatchWriteRowResponseForOneTable>();

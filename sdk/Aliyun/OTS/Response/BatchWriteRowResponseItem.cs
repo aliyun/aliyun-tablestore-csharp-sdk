@@ -33,23 +33,37 @@ namespace Aliyun.OTS.Response
         /// 错误消息
         /// </summary>
         public string ErrorMessage = null;
-        
+
+        /// <summary>
+        /// 表名
+        /// </summary>
+        public string TableName;
+
+        /// <summary>
+        /// 更新编号
+        /// </summary>
+        public int Index = 0;
+
         /// <summary>
         /// 本次操作消耗的读写能力单元
         /// </summary>
         public CapacityUnit Consumed { get; set; }
         
-        public BatchWriteRowResponseItem(string errorCode, string errorMessage)
+        public BatchWriteRowResponseItem(string errorCode, string errorMessage, string tableName, int index)
         {
             IsOK = false;
             ErrorCode = errorCode;
             ErrorMessage = errorMessage;
+            TableName = tableName;
+            Index = index;
         }
         
-        public BatchWriteRowResponseItem(CapacityUnit consumed)
+        public BatchWriteRowResponseItem(CapacityUnit consumed, string tableName, int index)
         {
             IsOK = true;
             Consumed = consumed;
+            TableName = tableName;
+            Index = index;
         }
     }
 }
