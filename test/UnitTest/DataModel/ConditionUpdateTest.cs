@@ -24,19 +24,22 @@ namespace Aliyun.OTS.UnitTest.DataModel
     // oldV = read
     // newV = oldV + 1
     // update v = newV if v == oldV
-    class MyThread : OTSUnitTestBase
+    //class MyThread : OTSUnitTestBase
+    class MyThread
     {
         private volatile int count = 0;
         private int round;
         private String tableName;
         private Thread thread;
+        private OTSClient ots;
         Int64 pk;
-        public MyThread(String name, Int64 index)
+        public MyThread(String name, Int64 index, OTSClient ots)
         {
             tableName = name;
             pk = index;
             round = 100;
             thread = new Thread(new ThreadStart(Run));
+            this.ots = ots;
         }
         public void Start()
         {
@@ -53,14 +56,14 @@ namespace Aliyun.OTS.UnitTest.DataModel
                 var primaryKey = new PrimaryKey();
                 primaryKey.Add("PK0", new ColumnValue(pk));
                 var request = new GetRowRequest(tableName, primaryKey);
-                var response = OTSClient.GetRow(request);
+                var response = this.ots.GetRow(request);
                 var attr = response.Attribute["Col1"];
                 long oldIntValue = attr.IntegerValue;
                 ColumnValue oldValue = new ColumnValue(oldIntValue);
                 ColumnValue newValue = new ColumnValue(oldIntValue + 1);
                 RelationalCondition cc = new RelationalCondition("Col1", RelationalCondition.CompareOperator.EQUAL, oldValue);
                 Condition cond = new Condition(RowExistenceExpectation.IGNORE);
-      
+
                 cond.ColumnCondition = cc;
                 UpdateOfAttribute updateOfAttributeForPut = new UpdateOfAttribute();
                 updateOfAttributeForPut.AddAttributeColumnToPut("Col1", newValue);
@@ -68,7 +71,7 @@ namespace Aliyun.OTS.UnitTest.DataModel
                 bool success = true;
                 try
                 {
-                    OTSClient.UpdateRow(updateReq);
+                    this.ots.UpdateRow(updateReq);
                 }
                 catch (OTSServerException)
                 {
@@ -109,7 +112,7 @@ namespace Aliyun.OTS.UnitTest.DataModel
             attribute.Add(colName, colValue);
             Condition cond = new Condition(RowExistenceExpectation.IGNORE);
             cond.ColumnCondition = cc;
-            var request = new PutRowRequest(tableName,cond,primaryKey,attribute);
+            var request = new PutRowRequest(tableName, cond, primaryKey, attribute);
 
             bool success = true;
             try
@@ -168,7 +171,7 @@ namespace Aliyun.OTS.UnitTest.DataModel
             {
                 OTSClient.DeleteRow(request);
             }
-            catch(OTSServerException e)
+            catch (OTSServerException e)
             {
                 Console.WriteLine("DeleteRow fail:{0}", e.ErrorMessage);
                 success = false;
@@ -186,15 +189,15 @@ namespace Aliyun.OTS.UnitTest.DataModel
 
             // put row with condition: col1 != value1
             success = PutRow(tableName, 1, "Col2", new ColumnValue("Value2"),
-                new RelationalCondition("Col1", 
-                    RelationalCondition.CompareOperator.NOT_EQUAL, 
+                new RelationalCondition("Col1",
+                    RelationalCondition.CompareOperator.NOT_EQUAL,
                     new ColumnValue("Value1")));
             Assert.IsFalse(success);
 
             // put row with condition col1 == value1
             success = PutRow(tableName, 1, "Col2", new ColumnValue("Value2"),
-                new RelationalCondition("Col1", 
-                    RelationalCondition.CompareOperator.EQUAL, 
+                new RelationalCondition("Col1",
+                    RelationalCondition.CompareOperator.EQUAL,
                     new ColumnValue("Value1")));
             Assert.IsTrue(success);
 
@@ -386,18 +389,19 @@ namespace Aliyun.OTS.UnitTest.DataModel
 
             int threadNum = 100;
             List<MyThread> threadList = new List<MyThread>();
-            for(int j = 0; j < threadNum; ++j)
+            for (int j = 0; j < threadNum; ++j)
             {
-                MyThread mythread = new MyThread(tableName, 5);
+                MyThread mythread = new MyThread(tableName, 5, OTSClient);
                 threadList.Add(mythread);
                 mythread.Start();
             }
-            foreach(var tmpThread in threadList)
+            foreach (var tmpThread in threadList)
             {
                 tmpThread.Join();
             }
             int total = 0;
-            foreach (var tmp in threadList) {
+            foreach (var tmp in threadList)
+            {
                 total += tmp.getValue();
             }
             long v = ReadRow(tableName, 5);

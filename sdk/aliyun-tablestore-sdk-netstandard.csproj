@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net45;</TargetFrameworks>
+    <Version>1.0.0</Version>
+    <Authors>Aliyun, ZJCX</Authors>
+    <Company>Aliyun, ZJCX</Company>
+    <Description>Aliyun.TableStore（支持.net 4.5和.net standard 2.0）</Description>
+    <Copyright>Copyright (c) 2018</Copyright>
+    <PackageLicenseUrl />
+    <PackageProjectUrl />
+    <RepositoryUrl />
+    <PackageReleaseNotes>增加对.net standard 2.0的支持。</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <RepositoryType />
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>Aliyun.TableStore.NetStandard</PackageId>
+    <Product>Aliyun.TableStore.NetStandard</Product>
+    <AssemblyName>ZJCX.Aliyun.TableStore</AssemblyName>
+    <RootNamespace>Aliyun.OTS</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\ZJCX.Aliyun.TableStore.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\ZJCX.Aliyun.TableStore.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs">
+    </Compile>
+	<Compile Remove="packages.config">
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Bosima.Google.ProtocolBuffers" Version="1.0.0" />
+    <PackageReference Include="Bosima.Google.ProtocolBuffers.Serialization" Version="1.0.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.3" />
+  </ItemGroup>
+</Project>

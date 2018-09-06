@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;net45;</TargetFrameworks>
+    <Version>1.0.0</Version>
+    <Authors>Aliyun, ZJCX</Authors>
+    <Company>Aliyun, ZJCX</Company>
+    <Description>Aliyun.TableStore.Test（支持.net 4.0和.net standard 2.0）</Description>
+    <Copyright>Copyright (c) 2018</Copyright>
+    <PackageLicenseUrl />
+    <PackageProjectUrl />
+    <RepositoryUrl />
+    <PackageReleaseNotes>增加对.net standard 2.0的支持。</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <RepositoryType />
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>Aliyun.TableStore.Test</PackageId>
+    <Product>Aliyun.TableStore.Test</Product>
+    <AssemblyName>Aliyun.TableStore.Test</AssemblyName>
+    <RootNamespace>Aliyun.OTS.Test</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs">
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+  </ItemGroup>
+  <ItemGroup>
+        <ProjectReference Include="..\sdk\aliyun-tablestore-sdk-netstandard.csproj">
+      <Project>{AB5EFCA2-53A9-42B5-861E-3FD6F865036B}</Project>
+      <Name>aliyun-tablestore-sdk-netstandard</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

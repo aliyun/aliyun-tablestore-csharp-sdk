@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Aliyun.OTS.Request;
 using Aliyun.OTS.DataModel;
+using System.Threading;
 
 namespace Aliyun.OTS.UnitTest
 {
@@ -53,7 +54,8 @@ namespace Aliyun.OTS.UnitTest
         {
             CreateTable();
             var otsClient = OTSClient;
-            
+
+            Thread.Sleep(120 * 1000);
             var reservedThroughput = new CapacityUnit(0, 0);
             var request = new UpdateTableRequest("SampleTable", reservedThroughput);
             var response = otsClient.UpdateTable(request);

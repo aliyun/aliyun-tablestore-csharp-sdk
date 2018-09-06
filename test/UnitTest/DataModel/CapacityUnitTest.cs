@@ -116,15 +116,15 @@ namespace Aliyun.OTS.UnitTest.DataModel
         {
             SetTestConext(reservedThroughput: new CapacityUnit(0, 0));
             TestSingleAPI("CreateTable");
-            
+
             WaitForTableReady();
             TestSingleAPI("DescribeTable");
-            
-            WaitBeforeUpdateTable();
+
+            Thread.Sleep(120 * 1000);
             SetTestConext(reservedThroughput: new CapacityUnit(read: 1));
             TestSingleAPI("UpdateTable");
             
-            SetTestConext(reservedThroughput: new CapacityUnit(0, 0));
+            SetTestConext(reservedThroughput: new CapacityUnit(1, 0));
             TestSingleAPI("DescribeTable");
         }
 
@@ -139,12 +139,12 @@ namespace Aliyun.OTS.UnitTest.DataModel
             
             WaitForTableReady();
             TestSingleAPI("DescribeTable");
-            
-            WaitBeforeUpdateTable();
+
+            Thread.Sleep(120 * 1000);
             SetTestConext(reservedThroughput: new CapacityUnit(write: 1));
             TestSingleAPI("UpdateTable");
             
-            SetTestConext(reservedThroughput: new CapacityUnit(0, 0));
+            SetTestConext(reservedThroughput: new CapacityUnit(0, 1));
             TestSingleAPI("DescribeTable");
         }
 

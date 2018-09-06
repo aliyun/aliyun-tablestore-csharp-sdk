@@ -30,7 +30,7 @@ using Aliyun.OTS.Request;
 
 namespace Aliyun.OTS.UnitTest.DataModel
 {
-    
+
     [TestFixture]
     class ColumnValueTest : OTSUnitTestBase
     {
@@ -38,20 +38,20 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试StringValue为10个字节的情况。
         // </summary>
         [Test]
-        public void TestNormalStringValue() 
+        public void TestNormalStringValue()
         {
             var targetString = new string('X', 10);
-            
+
             var primaryKey = new PrimaryKey();
             primaryKey.Add("PK0", new ColumnValue(targetString));
             primaryKey.Add("PK1", new ColumnValue("ABC"));
             primaryKey.Add("PK2", new ColumnValue(123));
             primaryKey.Add("PK3", new ColumnValue(456));
-            
+
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(targetString));
-            
-            SetTestConext(primaryKey:primaryKey, attribute:attribute);
+
+            SetTestConext(primaryKey: primaryKey, attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -59,20 +59,20 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试StringValue包含Unicode字符的情况。
         // </summary>
         [Test]
-        public void TestUnicodeStringValue() 
+        public void TestUnicodeStringValue()
         {
             string targetString = "中文字符";
-            
+
             var primaryKey = new PrimaryKey();
             primaryKey.Add("PK0", new ColumnValue(targetString));
             primaryKey.Add("PK1", new ColumnValue("ABC"));
             primaryKey.Add("PK2", new ColumnValue(123));
             primaryKey.Add("PK3", new ColumnValue(456));
-            
+
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(targetString));
-            
-            SetTestConext(primaryKey:primaryKey, attribute:attribute);
+
+            SetTestConext(primaryKey: primaryKey, attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -80,20 +80,20 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试空字符串的情况。
         // </summary>
         [Test]
-        public void TestEmptyStringValue() 
+        public void TestEmptyStringValue()
         {
             string targetString = "";
-            
+
             var primaryKey = new PrimaryKey();
             primaryKey.Add("PK0", new ColumnValue(targetString));
             primaryKey.Add("PK1", new ColumnValue("ABC"));
             primaryKey.Add("PK2", new ColumnValue(123));
             primaryKey.Add("PK3", new ColumnValue(456));
-            
+
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(targetString));
-            
-            SetTestConext(primaryKey:primaryKey, attribute:attribute);
+
+            SetTestConext(primaryKey: primaryKey, attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -101,49 +101,49 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试字符串长度为1MB的情况，期望返回错误消息。
         // </summary>
         [Test]
-        public void TestStringValueTooLong() 
+        public void TestStringValueTooLong()
         {
             string targetString = new string('X', 1024 * 1024);
-            
+
             var primaryKey = new PrimaryKey();
             primaryKey.Add("PK0", new ColumnValue(targetString));
             primaryKey.Add("PK1", new ColumnValue("ABC"));
             primaryKey.Add("PK2", new ColumnValue(123));
             primaryKey.Add("PK3", new ColumnValue(456));
-            
+
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(targetString));
-            
+
             SetTestConext(
-                primaryKey:primaryKey, 
-                attribute:attribute,
-                startPrimaryKey:primaryKey,
-                endPrimaryKey:primaryKey,
-                allFailedMessage:"The length of primary key column: 'PK0' exceeded the MaxLength:1024 with CurrentLength:1048576.");
+                primaryKey: primaryKey,
+                attribute: attribute,
+                startPrimaryKey: primaryKey,
+                endPrimaryKey: primaryKey,
+                allFailedMessage: "The length of primary key column: 'PK0' exceeded the MaxLength:1024 with CurrentLength:1048576.");
             TestAllDataAPI(false);
         }
 
         byte[] generateBinaryString(long length)
         {
             byte[] ret = new byte[length];
-            
-            for (long i = 0; i < length; i ++)
+
+            for (long i = 0; i < length; i++)
             {
                 ret[i] = (byte)(i & 0xFF);
             }
-            
+
             return ret;
         }
-        
+
         // <summary>
         // 测试BinaryValue为10个字节的情况。
         // </summary>
         [Test]
-        public void TestNormalBinaryValue() 
+        public void TestNormalBinaryValue()
         {
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(generateBinaryString(10)));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -151,26 +151,26 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试BinaryValue为空的情况。
         // </summary>
         [Test]
-        public void TestEmptyBinaryValue() 
+        public void TestEmptyBinaryValue()
         {
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(generateBinaryString(0)));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
-        
+
         // <summary>
-        // 测试BinaryValue为1MB的情况，期望返回错误消息。
+        // 测试BinaryValue为3MB的情况，期望返回错误消息。
         // </summary>
         [Test]
-        public void TestBinaryValueTooLong() 
+        public void TestBinaryValueTooLong()
         {
             CreateTestTableWith4PK();
             var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(generateBinaryString(1024 * 1024)));
-            
-            SetTestConext(attribute:attribute,
-               allFailedMessage:"The length of attribute column: 'Col0' exceeded the MaxLength:65536 with CurrentLength:1048576.");
+            attribute.Add("Col0", new ColumnValue(generateBinaryString(1024 * 1024 * 3)));
+
+            SetTestConext(attribute: attribute,
+               allFailedMessage: "The length of attribute column: 'Col0' exceeded the MaxLength:2097152 with CurrentLength:3145728.");
             TestAllDataAPIWithColumnValue(false);
         }
 
@@ -178,19 +178,19 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试IntegerValue值为10的情况。
         // </summary>
         [Test]
-        public void TestNormalIntegerValue() 
+        public void TestNormalIntegerValue()
         {
             var primaryKey = new PrimaryKey();
             primaryKey.Add("PK0", new ColumnValue("ABC"));
             primaryKey.Add("PK1", new ColumnValue("DEF"));
             primaryKey.Add("PK2", new ColumnValue(10));
             primaryKey.Add("PK3", new ColumnValue(456));
-            SetTestConext(primaryKey:primaryKey);
+            SetTestConext(primaryKey: primaryKey);
             TestAllDataAPI();
-            
+
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(10));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -198,32 +198,32 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试IntegerValue的值为8位有符号整数的最小值或最大值的情况
         // </summary>
         [Test]
-        public void TestIntegerValueInBoundary() 
+        public void TestIntegerValueInBoundary()
         {
             var primaryKey = new PrimaryKey();
             primaryKey.Add("PK0", new ColumnValue("ABC"));
             primaryKey.Add("PK1", new ColumnValue("DEF"));
             primaryKey.Add("PK2", new ColumnValue(Int64.MaxValue));
             primaryKey.Add("PK3", new ColumnValue(456));
-            SetTestConext(primaryKey:primaryKey);
+            SetTestConext(primaryKey: primaryKey);
             TestAllDataAPI();
-            
+
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(Int64.MaxValue));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
-            
+
             primaryKey = new PrimaryKey();
             primaryKey.Add("PK0", new ColumnValue("ABC"));
             primaryKey.Add("PK1", new ColumnValue("DEF"));
             primaryKey.Add("PK2", new ColumnValue(Int64.MinValue));
             primaryKey.Add("PK3", new ColumnValue(456));
-            SetTestConext(primaryKey:primaryKey);
+            SetTestConext(primaryKey: primaryKey);
             TestAllDataAPI();
-            
+
             attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(Int64.MinValue));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -231,7 +231,7 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试IntegerValue的值为8位有符号整数的最小值-1，或者最大值+1的情况（某些SDK无法进行这样的赋值，则认为该CASE自动PASS），期望抛出ClientError。
         // </summary>
         [Test]
-        public void TestIntegerValueOutOfBoundary() 
+        public void TestIntegerValueOutOfBoundary()
         {
             // Int64.MaxValue + 1 和  Int64.MinValue - 1 都会导致编译时溢出
         }
@@ -244,12 +244,12 @@ namespace Aliyun.OTS.UnitTest.DataModel
         {
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(3.1415926));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
-            
+
             attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(3.1415926));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -257,16 +257,16 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试DoubleValue的值为8位有符号浮点数的最小值或最大值的情况
         // </summary>
         [Test]
-        public void TestDoubleValueInBoundary() 
-        {            
+        public void TestDoubleValueInBoundary()
+        {
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(double.MaxValue));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
-            
+
             attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(double.MinValue));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -274,29 +274,29 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试DoubleValue的值为8位有符号浮点数的超出最小值，或者超出最大值的情况（某些SDK无法进行这样的赋值，则认为该CASE自动PASS），期望抛出ClientError。
         // </summary>
         [Test]
-        public void TestDoubleValueOutOfBoundary() 
+        public void TestDoubleValueOutOfBoundary()
         {
             CreateTestTableWith4PK();
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(double.MaxValue * 1.1));
-            SetTestConext(attribute:attribute, allFailedMessage:"The input parameter is invalid.");
-            TestAllDataAPIWithColumnValue(createTable:false);
-            
+            SetTestConext(attribute: attribute, allFailedMessage: "Infinity can't be set to double value.");
+            TestAllDataAPIWithColumnValue(createTable: false);
+
             attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(double.MinValue * 1.1));
-            SetTestConext(attribute:attribute, allFailedMessage:"The input parameter is invalid.");
-            TestAllDataAPIWithColumnValue(createTable:false);
+            SetTestConext(attribute: attribute, allFailedMessage: "Infinity can't be set to double value.");
+            TestAllDataAPIWithColumnValue(createTable: false);
         }
 
         // <summary>
         // 测试布尔值为True的情况。
         // </summary>
         [Test]
-        public void TestBooleanValueTrue() 
+        public void TestBooleanValueTrue()
         {
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(true));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -304,11 +304,11 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试布尔值为False的情况。
         // </summary>
         [Test]
-        public void TestBooleanValueFalse() 
-        {            
+        public void TestBooleanValueFalse()
+        {
             var attribute = new AttributeColumns();
             attribute.Add("Col0", new ColumnValue(false));
-            SetTestConext(attribute:attribute);
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -316,25 +316,25 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试值类型非法（为INF_MAX或者INF_MIN）的情况，期望抛出ClientError。某些SDK无法进行这样的赋值，则认为该CASE自动PASS。
         // </summary>
         [Test]
-        public void TestInvalidValueType() 
-        {            
+        public void TestInvalidValueType()
+        {
             CreateTestTableWith4PK();
             var attribute = new AttributeColumns();
             attribute.Add("Col0", ColumnValue.INF_MAX);
-            SetTestConext(attribute:attribute, allFailedMessage:"INF_MAX is an invalid type for the attribute column.");
-            TestAllDataAPIWithColumnValue(createTable:false);
-            
+            SetTestConext(attribute: attribute, allFailedMessage: "INF_MAX is an invalid type for the attribute column.");
+            TestAllDataAPIWithColumnValue(createTable: false);
+
             attribute = new AttributeColumns();
             attribute.Add("Col0", ColumnValue.INF_MIN);
-            SetTestConext(attribute:attribute, allFailedMessage:"INF_MIN is an invalid type for the attribute column.");
-            TestAllDataAPIWithColumnValue(createTable:false);
+            SetTestConext(attribute: attribute, allFailedMessage: "INF_MIN is an invalid type for the attribute column.");
+            TestAllDataAPIWithColumnValue(createTable: false);
         }
 
         // <summary>
         // 测试Column类型与值类型不一致的情况，期望抛出ClientError。某些SDK无法进行这样的赋值，则认为该CASE自动PASS。
         // </summary>
         [Test]
-        public void TestColumnTypeAndValueMismatch() 
+        public void TestColumnTypeAndValueMismatch()
         {
             // C# SDK 无法构造ColumnValue值和类型不一致
         }
