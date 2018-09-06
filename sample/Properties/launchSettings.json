@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "aliyun-tablestore-sdk-sample-netstandard": {
+      "commandName": "Project"
+    }
+  }
+}

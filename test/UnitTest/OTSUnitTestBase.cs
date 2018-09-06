@@ -51,21 +51,29 @@ namespace Aliyun.OTS.UnitTest
     
     class LogToFileHandler : OTSDefaultLogHandler
     {
+        private static readonly object logLocker = new object();
+
         public static new void DefaultErrorLogHandler(string message)
         {
-            var dateString = GetDateTimeString();
-            using (StreamWriter w = File.AppendText("C:\\log.txt"))
+            lock (logLocker)
             {
-                w.Write("OTSClient ERROR {0} {1}", dateString, message);
+                var dateString = GetDateTimeString();
+                using (StreamWriter w = File.AppendText("C:\\Development\\log.txt"))
+                {
+                    w.Write("OTSClient ERROR {0} {1}", dateString, message);
+                }
             }
         }
 
         public static new void DefaultDebugLogHandler(string message)
         {
-            var dateString = GetDateTimeString();
-            using (StreamWriter w = File.AppendText("C:\\log.txt"))
+            lock (logLocker)
             {
-                w.Write("OTSClient DEBUG {0} {1}", dateString, message);
+                var dateString = GetDateTimeString();
+                using (StreamWriter w = File.AppendText("C:\\Development\\log.txt"))
+                {
+                    w.Write("OTSClient DEBUG {0} {1}", dateString, message);
+                }
             }
         }
     }
@@ -108,6 +116,7 @@ namespace Aliyun.OTS.UnitTest
             Console.WriteLine("TestAccessKeyID: {0}", TestAccessKeyID);
             Console.WriteLine("TestAccessKeySecret: {0}", TestAccessKeySecret);
             Console.WriteLine("TestInstanceName: {0}", TestInstanceName);
+            clientConfig.ConnectionLimit = 300;
             clientConfig.OTSDebugLogHandler = LogToFileHandler.DefaultDebugLogHandler;
             clientConfig.OTSErrorLogHandler = LogToFileHandler.DefaultErrorLogHandler;
             OTSClient = new OTSClient(clientConfig);

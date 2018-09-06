@@ -608,7 +608,7 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             expectResponse.TableRespones["Table1"].PutResponses[0] =
                 new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.", "Table1", 0);
             expectResponse.TableRespones["Table2"].PutResponses[3] =
-                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.", "Table1", 3);
+                new BatchWriteRowResponseItem("OTSConditionCheckFail", "Condition check failed.", "Table2", 3);
             AssertBatchWriteRowResponse(expectResponse, response);
             
             for (int i = 0; i < 4; i ++) {
@@ -1054,8 +1054,8 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
                 AssertOTSServerException(new OTSServerException(
                     "/GetRange", 
                     HttpStatusCode.BadRequest,
-                    "OTSParameterInvalid", 
-                    "The input parameter is invalid."
+                    "OTSParameterInvalid",
+                    "Begin key must less than end key in FORWARD"
                 ), exception);
             }
         }
@@ -1093,8 +1093,8 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
                 AssertOTSServerException(new OTSServerException(
                     "/GetRange", 
                     HttpStatusCode.BadRequest,
-                    "OTSParameterInvalid", 
-                    "The input parameter is invalid."
+                    "OTSParameterInvalid",
+                    "Begin key must less than end key in FORWARD"
                 ), exception);
             }
         }

@@ -34,7 +34,7 @@ namespace Aliyun.OTS.UnitTest
     {
         
         // <summary>
-        // 先启动1000个PutRow请求并等待结束，再启动1000个GetRow请求并等待结束。
+        // 先启动100个PutRow请求并等待结束，再启动100个GetRow请求并等待结束。
         // </summary>
         [Test]
         public void TestAsyncOperations() 
@@ -53,7 +53,7 @@ namespace Aliyun.OTS.UnitTest
             CreateTestTableWith4PK(new CapacityUnit(0, 0));
             
             var putRowTaskList = new List<Task<PutRowResponse>>();
-            for (int i = 0; i < 1000; i ++)
+            for (int i = 0; i < 100; i ++)
             {
                 var request = new PutRowRequest(TestTableName, new Condition(RowExistenceExpectation.IGNORE), 
                                                 GetPredefinedPrimaryKeyWith4PK(i),
@@ -68,13 +68,13 @@ namespace Aliyun.OTS.UnitTest
             }
             
             var getRowTaskList = new List<Task<GetRowResponse>>();
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 100; i++) {
                 var request = new GetRowRequest(TestTableName, 
                                                 GetPredefinedPrimaryKeyWith4PK(i));
                 getRowTaskList.Add(OTSClient.GetRowAsync(request));
             }
             
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 100; i++) {
                 var task = getRowTaskList[i];
                 task.Wait();
                 var response = task.Result;

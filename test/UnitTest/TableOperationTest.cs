@@ -66,8 +66,8 @@ namespace Aliyun.OTS.UnitTest
             var request1 = new CreateTableRequest(tableMeta, reservedThroughput);
             var response1 = OTSClient.CreateTable(request1);
             
-            WaitBeforeUpdateTable();
-            
+            //WaitBeforeUpdateTable();
+            Thread.Sleep(120*1000);
             var request2 = new UpdateTableRequest(
                 "update_table_and_then_describe", 
                 new CapacityUnit(1, 1)
@@ -75,8 +75,8 @@ namespace Aliyun.OTS.UnitTest
             var response2 = OTSClient.UpdateTable(request2);
             
             Assert.AreEqual(0, response2.ReservedThroughputDetails.NumberOfDecreasesToday);
-            Assert.AreEqual(100, response2.ReservedThroughputDetails.CapacityUnit.Read);
-            Assert.AreEqual(100, response2.ReservedThroughputDetails.CapacityUnit.Write);
+            Assert.AreEqual(1, response2.ReservedThroughputDetails.CapacityUnit.Read);
+            Assert.AreEqual(1, response2.ReservedThroughputDetails.CapacityUnit.Write);
             
         }
     }

@@ -134,9 +134,9 @@ namespace Aliyun.OTS.UnitTest
                 Assert.AreEqual("OTSInvalidPK", rows[1].ErrorCode);
                 Assert.AreEqual("OTSInvalidPK", rows[2].ErrorCode);
 
-                Assert.AreEqual("Primary key schema mismatch.", rows[0].ErrorMessage);
-                Assert.AreEqual("Primary key schema mismatch.", rows[1].ErrorMessage);
-                Assert.AreEqual("Primary key schema mismatch.", rows[2].ErrorMessage);
+                Assert.AreEqual("Validate PK size fail. Input: 2, Meta: 1.", rows[0].ErrorMessage);
+                Assert.AreEqual("Validate PK size fail. Input: 2, Meta: 1.", rows[1].ErrorMessage);
+                Assert.AreEqual("Validate PK size fail. Input: 2, Meta: 1.", rows[2].ErrorMessage);
                
             }
         }
