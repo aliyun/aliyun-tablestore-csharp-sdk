@@ -2,22 +2,22 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45;</TargetFrameworks>
-    <Version>1.0.0</Version>
-    <Authors>Aliyun, ZJCX</Authors>
-    <Company>Aliyun, ZJCX</Company>
-    <Description>Aliyun.TableStore（支持.net 4.5和.net standard 2.0）</Description>
-    <Copyright>Copyright (c) 2018</Copyright>
+    <Version>4.0.0</Version>
+    <Authors>Aliyun</Authors>
+    <Company>Alibaba Cloud Computing</Company>
+    <Description>Aliyun Table Store SDK for .NET</Description>
+    <Copyright>Copyright (c) 2009-2018 aliyun.com</Copyright>
     <PackageLicenseUrl />
     <PackageProjectUrl />
     <RepositoryUrl />
-    <PackageReleaseNotes>增加对.net standard 2.0的支持。</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <PackageReleaseNotes>Support .net  4.5 and .net standard 2.0.</PackageReleaseNotes>
+    <AssemblyVersion>4.0.0</AssemblyVersion>
+    <FileVersion>4.0.0</FileVersion>
     <RepositoryType />
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageId>Aliyun.TableStore.NetStandard</PackageId>
-    <Product>Aliyun.TableStore.NetStandard</Product>
-    <AssemblyName>ZJCX.Aliyun.TableStore</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Aliyun.TableStore</PackageId>
+    <Product>Aliyun.TableStore</Product>
+    <AssemblyName>Aliyun.TableStore</AssemblyName>
     <RootNamespace>Aliyun.OTS</RootNamespace>
   </PropertyGroup>
 
@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\ZJCX.Aliyun.TableStore.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\Aliyun.TableStore.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">

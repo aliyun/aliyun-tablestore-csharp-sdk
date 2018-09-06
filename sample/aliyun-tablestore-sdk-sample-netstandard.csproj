@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;net45;</TargetFrameworks>
-    <Version>1.0.0</Version>
-    <Authors>Aliyun, ZJCX</Authors>
-    <Company>Aliyun, ZJCX</Company>
-    <Description>Aliyun.TableStore.Sample（支持.net 4.0和.net standard 2.0）</Description>
-    <Copyright>Copyright (c) 2018</Copyright>
+    <Version>4.0.0</Version>
+    <Authors>Aliyun</Authors>
+    <Company>Alibaba Cloud Computing</Company>
+    <Description>Aliyun TableStore SDK Samples for .NET.</Description>
+    <Copyright>Copyright (c) 2009-2016 aliyun.com</Copyright>
     <PackageLicenseUrl />
     <PackageProjectUrl />
     <RepositoryUrl />
-    <PackageReleaseNotes>增加对.net standard 2.0的支持。</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <PackageReleaseNotes>Support .net 4.5 and .net standard 2.0.</PackageReleaseNotes>
+    <AssemblyVersion>4.0.0</AssemblyVersion>
+    <FileVersion>4.0.0</FileVersion>
     <RepositoryType />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageId>Aliyun.TableStore.Sample</PackageId>
