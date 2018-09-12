@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aliyun.OTS;
-
-namespace Aliyun.OTS.Samples
+﻿namespace Aliyun.OTS.Samples
 {
-    internal class Config
+    internal static class Config
     {
         public static string AccessKeyId = "<your access key id>";
 
@@ -26,9 +19,11 @@ namespace Aliyun.OTS.Samples
                 return OtsClient;
             }
 
-            OTSClientConfig config = new OTSClientConfig(Endpoint, AccessKeyId, AccessKeySecret, InstanceName);
-            config.OTSDebugLogHandler = null;
-            config.OTSErrorLogHandler = null;
+            OTSClientConfig config = new OTSClientConfig(Endpoint, AccessKeyId, AccessKeySecret, InstanceName)
+            {
+                OTSDebugLogHandler = null,
+                OTSErrorLogHandler = null
+            };
             OtsClient = new OTSClient(config);
             return OtsClient;
         }

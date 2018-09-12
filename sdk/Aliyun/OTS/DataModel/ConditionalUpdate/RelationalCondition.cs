@@ -1,18 +1,15 @@
-using System;
+using Google.ProtocolBuffers;
+using Aliyun.OTS.DataModel.Filter;
 
 namespace Aliyun.OTS.DataModel.ConditionalUpdate
 {
-    public class RelationalCondition : ColumnCondition
+    public class RelationalCondition : IColumnCondition
     {
-        public enum CompareOperator
-        {
-            EQUAL, NOT_EQUAL, GREATER_THAN, GREATER_EQUAL, LESS_THAN, LESS_EQUAL
-        }
-
         public CompareOperator Operator { get; set; }
         public string ColumnName { get;set;}
         public ColumnValue ColumnValue { get; set; }
         public bool PassIfMissing {get;set;}
+        public bool LatestVersionsOnly { get; set; }
 
         public RelationalCondition(string columnName, CompareOperator oper, ColumnValue columnValue)
         {
@@ -20,11 +17,30 @@ namespace Aliyun.OTS.DataModel.ConditionalUpdate
             ColumnName = columnName;
             ColumnValue = columnValue;
             PassIfMissing = true;
+            LatestVersionsOnly = true;
         }
 
-        public new ColumnConditionType GetType()
+        public ColumnConditionType GetConditionType()
         {
             return ColumnConditionType.RELATIONAL_CONDITION;
+        }
+
+        public ByteString Serialize()
+        {
+
+            return ToFilter().Serialize();
+        }
+
+        public IFilter ToFilter()
+        {
+
+            SingleColumnValueFilter singleColumnValueFilter = new SingleColumnValueFilter(ColumnName, Operator, ColumnValue)
+            {
+                LatestVersionsOnly = LatestVersionsOnly,
+                PassIfMissing = PassIfMissing
+            };
+
+            return singleColumnValueFilter;
         }
     }
 }

@@ -9,23 +9,9 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
 using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
-using Aliyun.OTS.Request;
 
 namespace Aliyun.OTS.UnitTest.DataModel
 {
@@ -38,10 +24,12 @@ namespace Aliyun.OTS.UnitTest.DataModel
         [Test]
         public void TestIntegerPKInSchema() 
         {
-            var primaryKeySchema = new PrimaryKeySchema();
-            primaryKeySchema.Add("PK0", ColumnValueType.Integer);
-            primaryKeySchema.Add("PK1", ColumnValueType.Integer);
-            
+            var primaryKeySchema = new PrimaryKeySchema
+            {
+                { "PK0", ColumnValueType.Integer },
+                { "PK1", ColumnValueType.Integer }
+            };
+
             SetTestConext(pkSchema:primaryKeySchema);
             
             TestSingleAPI("CreateTable");
@@ -54,10 +42,12 @@ namespace Aliyun.OTS.UnitTest.DataModel
         [Test]
         public void TestStringPKInSchema() 
         {
-            var primaryKeySchema = new PrimaryKeySchema();
-            primaryKeySchema.Add("PK0", ColumnValueType.String);
-            primaryKeySchema.Add("PK1", ColumnValueType.String);
-            
+            var primaryKeySchema = new PrimaryKeySchema
+            {
+                { "PK0", ColumnValueType.String },
+                { "PK1", ColumnValueType.String }
+            };
+
             SetTestConext(pkSchema:primaryKeySchema);
             
             TestSingleAPI("CreateTable");
@@ -71,27 +61,32 @@ namespace Aliyun.OTS.UnitTest.DataModel
         public void TestInvalidPKInSchema() 
         {
             // TODO Error Injection to test DescribeTable
-            
-            var primaryKeySchema = new PrimaryKeySchema();
-            primaryKeySchema.Add("PK0", ColumnValueType.Double);
-            primaryKeySchema.Add("PK1", ColumnValueType.Double);
-            
+
+            var primaryKeySchema = new PrimaryKeySchema
+            {
+                { "PK0", ColumnValueType.Double },
+                { "PK1", ColumnValueType.Double }
+            };
+
             SetTestConext(pkSchema:primaryKeySchema, allFailedMessage:"DOUBLE is an invalid type for the primary key.");
             TestSingleAPI("CreateTable");
-            
-            primaryKeySchema = new PrimaryKeySchema();
-            primaryKeySchema.Add("PK0", ColumnValueType.Boolean);
-            primaryKeySchema.Add("PK1", ColumnValueType.Boolean);
-            
+
+            primaryKeySchema = new PrimaryKeySchema
+            {
+                { "PK0", ColumnValueType.Boolean },
+                { "PK1", ColumnValueType.Boolean }
+            };
+
             SetTestConext(pkSchema:primaryKeySchema, allFailedMessage:"BOOLEAN is an invalid type for the primary key.");
             TestSingleAPI("CreateTable");
-            
-            //primaryKeySchema = new PrimaryKeySchema();
-            //primaryKeySchema.Add("PK0", ColumnValueType.Binary);
-            //primaryKeySchema.Add("PK1", ColumnValueType.Binary);
-            
-            //SetTestConext(pkSchema:primaryKeySchema, allFailedMessage:"BINARY is an invalid type for the primary key.");
-            //TestSingleAPI("CreateTable");
+
+            primaryKeySchema = new PrimaryKeySchema
+            {
+                { "PK0", ColumnValueType.Binary },
+                { "PK1", ColumnValueType.Binary }
+            };
+            SetTestConext(pkSchema:primaryKeySchema, allFailedMessage:"BINARY is an invalid type for the primary key.");
+            TestSingleAPI("CreateTable");
             
             // INF_MIN INF_MAX 类型的 ColumnValueType 在C# SDK里没有
         }

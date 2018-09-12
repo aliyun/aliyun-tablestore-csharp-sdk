@@ -1,6 +1,6 @@
 ﻿namespace Aliyun.OTS.Test
 {
-    internal class Config
+    internal static class Config
     {
         public static string AccessKeyId = "<your access key id>";
 

@@ -20,7 +20,7 @@ namespace Aliyun.OTS.Handler
     {
         public static int MAX_TIME_DEVIATION_IN_MINUTES = 15;
 
-        private static string[] HeaderNames = new string[]{
+        private static readonly string[] HeaderNames = {
             "x-ots-contentmd5",
             "x-ots-requestid",
             "x-ots-date",
@@ -35,7 +35,7 @@ namespace Aliyun.OTS.Handler
 
             foreach (var item in headers)
             {
-                if (item.Key.StartsWith("x-ots-"))
+                if (item.Key.StartsWith("x-ots-", StringComparison.Ordinal))
                 {
                     items.Add(String.Format("{0}:{1}", item.Key, item.Value));
                 }
@@ -69,7 +69,7 @@ namespace Aliyun.OTS.Handler
 
         public override void HandleBefore(Context context)
         {
-            
+
             var headers = new Dictionary<string, string>();
 
             // Step 1, compute Content MD5
@@ -79,7 +79,7 @@ namespace Aliyun.OTS.Handler
             headers.Add("x-ots-contentmd5", contentMD5);
 
             // Step 2, make date time string
-            var dateString = DateTime.UtcNow.ToString("R");
+            var dateString = Util.OtsUtils.FormatDateTimeStr(DateTime.UtcNow);
             headers.Add("x-ots-date", dateString);
 
             // Step 3, other headers
@@ -94,7 +94,7 @@ namespace Aliyun.OTS.Handler
             headers.Add("x-ots-signature", signature);
 
             context.HttpRequestHeaders = headers;
-            
+
             InnerHandler.HandleBefore(context);
         }
 
@@ -171,7 +171,7 @@ namespace Aliyun.OTS.Handler
             string authorization = context.HttpResponseHeaders["authorization"];
 
             // Step 2, check if authorization is valid
-            if (!authorization.StartsWith("OTS "))
+            if (!authorization.StartsWith("OTS ", StringComparison.Ordinal))
             {
                 throw new OTSClientException("Invalid Authorization in response.");
             }
@@ -218,7 +218,7 @@ namespace Aliyun.OTS.Handler
                     CheckAuthorization(context);
                 }
             }
-            catch(OTSClientException e)
+            catch (OTSClientException e)
             {
                 // re-throw the exception with additonal information
                 throw new OTSClientException(

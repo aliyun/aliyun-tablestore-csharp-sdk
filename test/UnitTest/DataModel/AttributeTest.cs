@@ -9,23 +9,10 @@
  *
  */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
 using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
-using Aliyun.OTS.Request;
 
 namespace Aliyun.OTS.UnitTest.DataModel
 {
@@ -36,14 +23,16 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试0个属性列时的情况，期望返回错误消息：The number of primary key columns must be in range: [1, 4].
         // </summary>
         [Test]
-        public void TestNoColumnInAttribute() 
+        public void TestNoColumnInAttribute()
         {
-            var expectedFailure = new Dictionary<string, string>();
-            expectedFailure.Add("UpdateRow_Put", "No column specified while updating row.");
-            expectedFailure.Add("UpdateRow_Delete", "No column specified while updating row.");
-            expectedFailure.Add("BatchWriteRow_Update", "No attribute column specified to update row #0 in table: 'SampleTestName'.");
-            
-            SetTestConext(attribute:new AttributeColumns(), expectedFailure:expectedFailure);
+            var expectedFailure = new Dictionary<string, string>
+            {
+                { "UpdateRow_Put", "Attribute column is missing." },
+                { "UpdateRow_Delete", "Attribute column is missing." },
+                { "BatchWriteRow_Update", "Invalid update row request: missing cells in request." }
+            };
+
+            SetTestConext(attribute: new AttributeColumns(), expectedFailure: expectedFailure);
             TestAllDataAPI();
         }
 
@@ -51,11 +40,14 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // 测试1个属性列时的情况。
         // </summary>
         [Test]
-        public void TestOneColumnInAttribute() 
+        public void TestOneColumnInAttribute()
         {
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(3.14));
-            SetTestConext(attribute:attribute);
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(3.14) }
+            };
+
+            SetTestConext(attribute: attribute);
             TestAllDataAPI();
         }
 
@@ -65,11 +57,13 @@ namespace Aliyun.OTS.UnitTest.DataModel
         [Test]
         public void TestFourColumnInAttribute() 
         {
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(3.14));
-            attribute.Add("Col1", new ColumnValue(3.14));
-            attribute.Add("Col2", new ColumnValue(3.14));
-            attribute.Add("Col3", new ColumnValue(3.14));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(3.14) },
+                { "Col1", new ColumnValue(3.14) },
+                { "Col2", new ColumnValue(3.14) },
+                { "Col3", new ColumnValue(3.14) }
+            };
             SetTestConext(attribute:attribute);
             TestAllDataAPI();
         }
@@ -85,14 +79,16 @@ namespace Aliyun.OTS.UnitTest.DataModel
             for (int i = 0; i < 1025; i ++) {
                 attribute.Add("Col" + i, new ColumnValue(3.14));
             }
-            
-            var expectedFailure = new Dictionary<string, string>();
-            expectedFailure.Add("PutRow", "The number of columns from the request exceeded the limit.");
-            expectedFailure.Add("UpdateRow_Put", "The number of columns from the request exceeded the limit.");
-            expectedFailure.Add("UpdateRow_Delete", "The number of columns from the request exceeded the limit.");
-            expectedFailure.Add("BatchWriteRow_Put", "The number of columns from the request exceeded the limit of putting row #0 in table: 'SampleTestName'.");
-            expectedFailure.Add("BatchWriteRow_Update", "The number of columns from the request exceeded the limit of updating row #0 in table: 'SampleTestName'.");
-            
+
+            var expectedFailure = new Dictionary<string, string>
+            {
+                { "PutRow", "The number of attribute columns exceeds the limit, limit count: 1024, column count: 1025." },
+                { "UpdateRow_Put", "The number of attribute columns exceeds the limit, limit count: 1024, column count: 1025." },
+                { "UpdateRow_Delete", "The number of attribute columns exceeds the limit, limit count: 1024, column count: 1025." },
+                { "BatchWriteRow_Put", "The number of attribute columns exceeds the limit, limit count: 1024, column count: 1025." },
+                { "BatchWriteRow_Update", "The number of attribute columns exceeds the limit, limit count: 1024, column count: 1025." }
+            };
+
             SetTestConext(attribute:attribute, expectedFailure:expectedFailure);
             TestAllDataAPIWithAttribute(true);
         }

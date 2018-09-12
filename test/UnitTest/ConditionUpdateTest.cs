@@ -22,9 +22,12 @@ namespace Aliyun.OTS.UnitTest
             {
                 client.DeleteTable(new DeleteTableRequest(tableItem));
             }
-            var primaryKeySchema = new PrimaryKeySchema();
-            primaryKeySchema.Add(COLUMN_GID_NAME, ColumnValueType.Integer);
-            primaryKeySchema.Add(COLUMN_UID_NAME, ColumnValueType.Integer);
+            var primaryKeySchema = new PrimaryKeySchema
+            {
+                { COLUMN_GID_NAME, ColumnValueType.Integer },
+                { COLUMN_UID_NAME, ColumnValueType.Integer }
+            };
+
             var tableMeta = new TableMeta(tableName, primaryKeySchema);
             var reservedThroughput = new CapacityUnit(0, 0);
             var request = new CreateTableRequest(tableMeta, reservedThroughput);
@@ -35,18 +38,22 @@ namespace Aliyun.OTS.UnitTest
 
         private void PutRow(OTSClient client, String tableName)
         {
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add(COLUMN_GID_NAME, new ColumnValue(1));
-            primaryKey.Add(COLUMN_UID_NAME, new ColumnValue(101));
+            var primaryKey = new PrimaryKey
+            {
+                { COLUMN_GID_NAME, new ColumnValue(1) },
+                { COLUMN_UID_NAME, new ColumnValue(101) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add(COLUMN_NAME_NAME, new ColumnValue("张三"));
-            attribute.Add(COLUMN_MOBILE_NAME, new ColumnValue(111111111));
-            attribute.Add(COLUMN_ADDRESS_NAME, new ColumnValue("中国A地"));
-            attribute.Add(COLUMN_AGE_NAME, new ColumnValue(20));
+            var attribute = new AttributeColumns
+            {
+                { COLUMN_NAME_NAME, new ColumnValue("张三") },
+                { COLUMN_MOBILE_NAME, new ColumnValue(111111111) },
+                { COLUMN_ADDRESS_NAME, new ColumnValue("中国A地") },
+                { COLUMN_AGE_NAME, new ColumnValue(20) }
+            };
 
             Condition cond = new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST);
-            var request = new PutRowRequest(tableName, cond, primaryKey, attribute);
+            var request = new PutRowRequest(tableName, cond);
             try
             {
                 client.PutRow(request);
@@ -57,11 +64,13 @@ namespace Aliyun.OTS.UnitTest
                 Console.WriteLine("PutRow fail: {0}", e.ErrorMessage);
             }
         }
-        private void UpdateRow(OTSClient client, String tableName, ColumnCondition cond)
+        private void UpdateRow(OTSClient client, String tableName, IColumnCondition cond)
         {
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add(COLUMN_GID_NAME, new ColumnValue(1));
-            primaryKey.Add(COLUMN_UID_NAME, new ColumnValue(101));
+            var primaryKey = new PrimaryKey
+            {
+                { COLUMN_GID_NAME, new ColumnValue(1) },
+                { COLUMN_UID_NAME, new ColumnValue(101) }
+            };
 
             UpdateOfAttribute updateOfAttributeForPut = new UpdateOfAttribute();
             updateOfAttributeForPut.AddAttributeColumnToPut(COLUMN_NAME_NAME, new ColumnValue("张三"));
@@ -69,8 +78,10 @@ namespace Aliyun.OTS.UnitTest
             updateOfAttributeForPut.AddAttributeColumnToDelete(COLUMN_MOBILE_NAME);
             updateOfAttributeForPut.AddAttributeColumnToDelete(COLUMN_AGE_NAME);
 
-            Condition condition = new Condition(RowExistenceExpectation.IGNORE);
-            condition.ColumnCondition = cond;
+            Condition condition = new Condition(RowExistenceExpectation.IGNORE)
+            {
+                ColumnCondition = cond
+            };
 
             var request = new UpdateRowRequest(tableName, condition, primaryKey, updateOfAttributeForPut);
             try
@@ -92,9 +103,12 @@ namespace Aliyun.OTS.UnitTest
         }
         private void DeleteRow(OTSClient client, String tableName)
         {
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add(COLUMN_GID_NAME, new ColumnValue(1));
-            primaryKey.Add(COLUMN_UID_NAME, new ColumnValue(101));
+            var primaryKey = new PrimaryKey
+            {
+                { COLUMN_GID_NAME, new ColumnValue(1) },
+                { COLUMN_UID_NAME, new ColumnValue(101) }
+            };
+
             Condition condition = new Condition(RowExistenceExpectation.IGNORE);
             DeleteRowRequest req = new DeleteRowRequest(tableName, condition, primaryKey);
             client.DeleteRow(req);
@@ -108,9 +122,12 @@ namespace Aliyun.OTS.UnitTest
         }
         private void GetRow(OTSClient client, String tableName)
         {
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add(COLUMN_GID_NAME, new ColumnValue(1));
-            primaryKey.Add(COLUMN_UID_NAME, new ColumnValue(101));
+            var primaryKey = new PrimaryKey
+            {
+                { COLUMN_GID_NAME, new ColumnValue(1) },
+                { COLUMN_UID_NAME, new ColumnValue(101) }
+            };
+
             var request = new GetRowRequest(tableName, primaryKey);
             var response = OTSClient.GetRow(request);
             String name = response.Attribute[COLUMN_NAME_NAME].StringValue;
@@ -135,17 +152,17 @@ namespace Aliyun.OTS.UnitTest
 
                 // 设置update condition：年龄< 20岁
                 // UpdateRow应该失败
-                ColumnCondition cond = new RelationalCondition(COLUMN_AGE_NAME, RelationalCondition.CompareOperator.LESS_THAN, new ColumnValue(20));
+                IColumnCondition cond = new RelationalCondition(COLUMN_AGE_NAME, CompareOperator.LESS_THAN, new ColumnValue(20));
                 UpdateRow(otsClient, tableName, cond);
 
                 //设置update condition: 年龄 >= 20岁 并且 地址是“中国A地“
                 //UpdateRow应该成功
-                cond = new CompositeCondition(CompositeCondition.LogicOperator.AND)
+                cond = new CompositeCondition(Aliyun.OTS.DataModel.LogicOperator.AND)
                     .AddCondition(new RelationalCondition(
-                            COLUMN_AGE_NAME, RelationalCondition.CompareOperator.GREATER_THAN,
+                            COLUMN_AGE_NAME, CompareOperator.GREATER_THAN,
                             new ColumnValue(20)))
                     .AddCondition(new RelationalCondition(
-                            COLUMN_ADDRESS_NAME, RelationalCondition.CompareOperator.EQUAL,
+                            COLUMN_ADDRESS_NAME, CompareOperator.EQUAL,
                             new ColumnValue("中国A地")));
                 UpdateRow(otsClient, tableName, cond);
                 GetRow(otsClient, tableName);

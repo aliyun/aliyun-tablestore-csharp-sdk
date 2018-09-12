@@ -9,7 +9,7 @@
  *
  */
 
-using Aliyun.OTS.Aliyun.OTS.Util;
+using Aliyun.OTS.Util;
 using Aliyun.OTS.Retry;
 using System;
 
@@ -21,12 +21,12 @@ namespace Aliyun.OTS
     public class OTSClientConfig
     {
         private static int DefaultConnectionLimit = 300;
-        private static readonly string DefaultAPIVersion = "2014-08-08";
+        private static readonly string DefaultAPIVersion = "2015-12-31";
         private const string UserAgentPrefix = "aliyun-tablestore-sdk-dotnet/";
         private static readonly string _userAgent = GetDefaultUserAgent();
 
         /// <summary>
-        /// OTS服务的地址（例如 'http://instance.cn-hangzhou.ots.aliyun.com:80'），必须以'http://'开头。
+        /// OTS服务的地址（例如 'http://instance.cn-hangzhou.ots.aliyun.com:80'），必须以'http://'或'https://'开头。
         /// </summary>
         public string EndPoint { get; set; }
         
@@ -46,7 +46,7 @@ namespace Aliyun.OTS
         public string InstanceName { get; set; }
         
         /// <summary>
-        /// OTS协议的版本，默认为"2014-08-08"。无需改动。
+        /// OTS协议的版本，默认为"2015-12-31"。无需改动。
         /// </summary>
         public string APIVersion { get; set; }
         
@@ -97,16 +97,24 @@ namespace Aliyun.OTS
         public OTSClientConfig(string endPoint, string accessKeyID, string accessKeySecret, string instanceName)
         {
             if (string.IsNullOrEmpty(endPoint))
+            {
                 throw new ArgumentNullException("endPoint");
+            }
 
             if (string.IsNullOrEmpty(accessKeyID))
+            {
                 throw new ArgumentNullException("accessKeyID");
+            }
 
             if (string.IsNullOrEmpty(accessKeySecret))
+            {
                 throw new ArgumentNullException("AccessKeySecret");
+            }
 
             if (string.IsNullOrEmpty(instanceName))
+            {
                 throw new ArgumentNullException("instanceName");
+            }
 
             EndPoint = endPoint.Trim();
             AccessKeyID = accessKeyID.Trim();

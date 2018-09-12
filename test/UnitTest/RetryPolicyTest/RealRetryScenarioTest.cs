@@ -9,27 +9,13 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
 using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
-using Aliyun.OTS.Request;
 
 namespace Aliyun.OTS.UnitTest.RetryPolicyTest
 {
-    
+
     [TestFixture]
     class RealRetryScenarioTest : OTSUnitTestBase
     {
@@ -39,24 +25,33 @@ namespace Aliyun.OTS.UnitTest.RetryPolicyTest
         [Test]
         public void TestRetryWithOTSNotEnoughCapacityUnit() 
         {
-            var schema = new PrimaryKeySchema();
-            schema.Add("PK0", ColumnValueType.String);
-            schema.Add("PK1", ColumnValueType.Integer);
+            var schema = new PrimaryKeySchema
+            {
+                { "PK0", ColumnValueType.String },
+                { "PK1", ColumnValueType.Integer }
+            };
+
             CreateTestTable(TestTableName, schema, new CapacityUnit(0, 0));
-            
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add("PK0", new ColumnValue("ABC"));
-            primaryKey.Add("PK1", new ColumnValue(123));
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue("ABC"));
-            
+
+            var primaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("ABC") },
+                { "PK1", new ColumnValue(123) }
+            };
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue("ABC") }
+            };
+
             PutSingleRow(TestTableName, primaryKey, attribute);
             
             for (int i = 0; i < 20; i ++)
             {
                 CheckSingleRow(TestTableName, primaryKey, attribute, new CapacityUnit(1, 0));
             }
+
+            DeleteTable(TestTableName);
         }
 
     }

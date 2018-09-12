@@ -67,7 +67,7 @@ namespace Aliyun.OTS.Samples
             try
             {
                 request.Condition.ColumnCondition = new RelationalCondition("col0",
-                                                    RelationalCondition.CompareOperator.NOT_EQUAL,
+                                                    CompareOperator.NOT_EQUAL,
                                                     new ColumnValue(5));
                 otsClient.PutRow(request);
 
@@ -82,7 +82,7 @@ namespace Aliyun.OTS.Samples
             {
                 // 新增条件：col0列的值等于5
                 request.Condition.ColumnCondition = new RelationalCondition("col0",
-                                                    RelationalCondition.CompareOperator.EQUAL,
+                                                    CompareOperator.EQUAL,
                                                     new ColumnValue(5));
                 otsClient.PutRow(request);
 
@@ -137,11 +137,11 @@ namespace Aliyun.OTS.Samples
             {
                 // 构造condition
                 var cond1 = new RelationalCondition("col0",
-                                                    RelationalCondition.CompareOperator.NOT_EQUAL,
+                                                    CompareOperator.NOT_EQUAL,
                                                     new ColumnValue(5));
-                var cond2 = new RelationalCondition("col1", RelationalCondition.CompareOperator.EQUAL,
+                var cond2 = new RelationalCondition("col1", CompareOperator.EQUAL,
                                                     new ColumnValue("a"));
-                var columenCondition = new CompositeCondition(CompositeCondition.LogicOperator.AND);
+                var columenCondition = new CompositeCondition(LogicOperator.AND);
                 columenCondition.AddCondition(cond1);
                 columenCondition.AddCondition(cond2);
 
@@ -203,7 +203,7 @@ namespace Aliyun.OTS.Samples
                 // 构造条件语句：col2列的值等于true
                 var condition = new Condition(RowExistenceExpectation.EXPECT_EXIST);
                 condition.ColumnCondition = new RelationalCondition("col2",
-                                            RelationalCondition.CompareOperator.EQUAL,
+                                            CompareOperator.EQUAL,
                                             new ColumnValue(true));
 
                 // 构造删除请求
@@ -260,7 +260,7 @@ namespace Aliyun.OTS.Samples
                 // 构造条件语句：col0列的值不等于5
                 var condition = new Condition(RowExistenceExpectation.IGNORE);
                 condition.ColumnCondition = new RelationalCondition("col0",
-                                            RelationalCondition.CompareOperator.NOT_EQUAL,
+                                            CompareOperator.NOT_EQUAL,
                                             new ColumnValue(5));
 
                 // 构造col2列的值
@@ -268,7 +268,7 @@ namespace Aliyun.OTS.Samples
                 attr1.Add("col2", new ColumnValue(false));
 
                 // 构造批量写请求
-                var rowChange = new RowChanges();
+                var rowChange = new RowChanges(tableName);
                 rowChange.AddPut(condition, primaryKey, attr1);
 
                 var batchWriteRequest = new BatchWriteRowRequest();

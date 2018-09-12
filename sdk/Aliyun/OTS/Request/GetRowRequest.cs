@@ -41,13 +41,22 @@ namespace Aliyun.OTS.Request
         /// <param name="primaryKey">主键</param>
         /// <param name="columnsToGet">获取的列名称列表，如果为空，则获取所有列</param>
         /// <param name="condition">过滤条件</param>
-        public GetRowRequest(string tableName, 
-                             PrimaryKey primaryKey, 
+        public GetRowRequest(string tableName,
+                             PrimaryKey primaryKey,
                              HashSet<string> columnsToGet = null,
-                             ColumnCondition condition = null)
+                             IColumnCondition condition = null,
+                             TimeRange timeRange = null,
+                             int? maxVersion = null,
+                             bool? cacheBlocks = null,
+                             string startColumn = null,
+                             string endColumn = null,
+                             byte[] token = null
+                            )
         {
-            QueryCriteria = new SingleRowQueryCriteria(tableName);
-            QueryCriteria.RowPrimaryKey = primaryKey;
+            QueryCriteria = new SingleRowQueryCriteria(tableName)
+            {
+                RowPrimaryKey = primaryKey
+            };
 
             if (columnsToGet != null)
             {
@@ -56,8 +65,19 @@ namespace Aliyun.OTS.Request
 
             if (condition != null)
             {
-                QueryCriteria.Filter = condition;
+                QueryCriteria.Filter = condition.ToFilter();
             }
+
+            if (timeRange != null)
+            {
+                QueryCriteria.TimeRange = timeRange;
+            }
+
+            QueryCriteria.MaxVersions = maxVersion;
+            QueryCriteria.CacheBlocks = cacheBlocks;
+            QueryCriteria.StartColumn = startColumn;
+            QueryCriteria.EndColumn = endColumn;
+            QueryCriteria.Token = token;
         }
 
         /// <summary>

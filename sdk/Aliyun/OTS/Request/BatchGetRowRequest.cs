@@ -29,14 +29,15 @@ namespace Aliyun.OTS.Request
     /// </summary>
     public class BatchGetRowRequest : OTSRequest
     {
-        private IDictionary<string, MultiRowQueryCriteria> rowQueryCriteriaDict = 
-            new Dictionary<string, MultiRowQueryCriteria>();
+        private readonly IDictionary<string, MultiRowQueryCriteria> rowQueryCriteriaDict;
 
         /// <summary>
         /// 构造一个新的<see cref="BatchGetRowRequest"/>
         /// </summary>
         public BatchGetRowRequest() 
-        { }
+        {
+            rowQueryCriteriaDict = new Dictionary<string, MultiRowQueryCriteria>();
+        }
 
         /// <summary>
         /// 添加一个表的多行读条件
@@ -60,7 +61,7 @@ namespace Aliyun.OTS.Request
         public void Add(string tableName, 
                         List<PrimaryKey> primaryKeys, 
                         HashSet<string> columnsToGet = null,
-                        ColumnCondition condition = null)
+                        IColumnCondition condition = null)
         {
             var rowQueryCriteria = new MultiRowQueryCriteria(tableName);
             rowQueryCriteria.SetRowKeys(primaryKeys);
@@ -72,7 +73,7 @@ namespace Aliyun.OTS.Request
 
             if (condition != null)
             {
-                rowQueryCriteria.Filter = condition;
+                rowQueryCriteria.Filter = condition.ToFilter();
             }
 
             rowQueryCriteriaDict[tableName] = rowQueryCriteria;
@@ -89,6 +90,7 @@ namespace Aliyun.OTS.Request
             {
                 return rowQueryCriteriaDict[tableName];
             }
+
             return null;
         }
 
@@ -113,19 +115,18 @@ namespace Aliyun.OTS.Request
 
                 foreach (KeyValuePair<string, MultiRowQueryCriteria> criteria in rowQueryCriteriaDict)
                 {
-                    var item = new BatchGetRowRequestItem();
-                    item.TableName = criteria.Value.TableName;
-                    item.PrimaryKeys = criteria.Value.GetRowKeys();
-                    item.ColumnsToGet = criteria.Value.GetColumnsToGet();
+                    var item = new BatchGetRowRequestItem
+                    {
+                        TableName = criteria.Value.TableName,
+                        PrimaryKeys = criteria.Value.GetRowKeys(),
+                        ColumnsToGet = criteria.Value.GetColumnsToGet()
+                    };
 
                     itemList.Add(item);
                 }
 
                 return itemList;
             }
-
-            private set
-            { }
         }
     }
 }

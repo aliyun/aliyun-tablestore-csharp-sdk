@@ -10,22 +10,9 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
 using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
-using Aliyun.OTS.Request;
 
 namespace Aliyun.OTS.UnitTest.DataModel
 {
@@ -43,9 +30,11 @@ namespace Aliyun.OTS.UnitTest.DataModel
         {
             CreateTestTableWith4PK();
             WaitForTableReady();
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(new String('X', 9 * 1024)));
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(new String('X', 9 * 1024)) }
+            };
             PutSingleRow(TestTableName, PrimaryKeyWith4Columns, attribute);
             
             SetTestConext(attribute:attribute, 
@@ -62,10 +51,12 @@ namespace Aliyun.OTS.UnitTest.DataModel
         // </summary>
         [Test]
         public void Test3WriteCUConsumed() 
-        {            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(new String('X', 9 * 1024)));
-            
+        {
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(new String('X', 9 * 1024)) }
+            };
+
             SetTestConext(attribute:attribute, 
                           getRowConsumed:new CapacityUnit(3, 0), 
                           getRangeConsumed:new CapacityUnit(3, 0),
@@ -120,9 +111,9 @@ namespace Aliyun.OTS.UnitTest.DataModel
             WaitForTableReady();
             TestSingleAPI("DescribeTable");
             
-            WaitBeforeUpdateTable();
-            SetTestConext(reservedThroughput: new CapacityUnit(read: 1));
-            TestSingleAPI("UpdateTable");
+           // WaitBeforeUpdateTable();
+           // SetTestConext(reservedThroughput: new CapacityUnit(read: 1));
+           // TestSingleAPI("UpdateTable");
             
             SetTestConext(reservedThroughput: new CapacityUnit(0, 0));
             TestSingleAPI("DescribeTable");
@@ -140,9 +131,9 @@ namespace Aliyun.OTS.UnitTest.DataModel
             WaitForTableReady();
             TestSingleAPI("DescribeTable");
             
-            WaitBeforeUpdateTable();
-            SetTestConext(reservedThroughput: new CapacityUnit(write: 1));
-            TestSingleAPI("UpdateTable");
+           // WaitBeforeUpdateTable();
+           // SetTestConext(reservedThroughput: new CapacityUnit(write: 1));
+           // TestSingleAPI("UpdateTable");
             
             SetTestConext(reservedThroughput: new CapacityUnit(0, 0));
             TestSingleAPI("DescribeTable");

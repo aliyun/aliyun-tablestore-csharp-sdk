@@ -52,7 +52,7 @@ namespace Aliyun.OTS
         private HttpClient client;
 
         private OTSHandler OTSHandler;
-        private OTSClientConfig ClientConfig;
+        private readonly OTSClientConfig ClientConfig;
 
         #endregion
 
@@ -61,7 +61,7 @@ namespace Aliyun.OTS
         /// <summary>
         /// OTSClient的构造函数。
         /// </summary>
-        /// <param name="endPoint">OTS服务的地址（例如 'http://instance.cn-hangzhou.ots.aliyun.com:80'），必须以'http://'开头。</param>
+        /// <param name="endPoint">OTS服务的地址（例如 'http://instance.cn-hangzhou.ots.aliyun.com:80'），必须以'http://'或者'https://'开头。</param>
         /// <param name="accessKeyID">OTS的Access Key ID，通过官方网站申请。</param>
         /// <param name="accessKeySecret">OTS的Access Key Secret，通过官方网站申请。</param>
         /// <param name="instanceName">OTS实例名，通过官方网站控制台创建。</param>
@@ -81,8 +81,11 @@ namespace Aliyun.OTS
             ClientConfig = config;
             OTSHandler = new OTSHandler();
 
-            client = new HttpClient();
-            client.BaseAddress = new Uri(ClientConfig.EndPoint);
+            client = new HttpClient
+            {
+                BaseAddress = new Uri(ClientConfig.EndPoint)
+            };
+
             ServicePointManager.DefaultConnectionLimit = config.ConnectionLimit;  
             OTSClientTestHelper.Reset();
         }
@@ -515,8 +518,8 @@ namespace Aliyun.OTS
         /// 根据范围条件获取多行数据，返回用来迭代每一行数据的迭代器。
         /// </summary>
         /// <param name="request"><see cref="GetIteratorRequest"/></param>
-        /// <returns>返回<see cref="RowDataFromGetRange"/>的迭代器。</returns>
-        public IEnumerable<RowDataFromGetRange> GetRangeIterator(GetIteratorRequest request)
+        /// <returns>返回<see cref="Row"/>的迭代器。</returns>
+        public IEnumerable<Row> GetRangeIterator(GetIteratorRequest request)
         {
             int? leftCount = request.QueryCriteria.Limit;
 
@@ -562,7 +565,7 @@ namespace Aliyun.OTS
         /// <param name="consumedCapacityUnitCounter">用户传入的CapacityUnit消耗计数器。</param>
         /// <param name="columnsToGet">可选参数，表示要获取的列的名称列表；默认获取所有列。</param>
         /// <param name="count">可选参数，表示最多获取多少行；默认获取范围内的所有行。</param>
-        /// <returns>返回<see cref="RowDataFromGetRange"/>的迭代器。</returns>
+        /// <returns>返回<see cref="Row"/>的迭代器。</returns>
         /// <example>
         /// <code>
         /// var startPrimaryKey = new PrimaryKey();
@@ -588,7 +591,7 @@ namespace Aliyun.OTS
         /// </code>
         /// </example>
         [Obsolete("GetRangeIterator(string ...) is deprecated, please use GetRangeIterator(GetIteratorRequest request) instead.")]
-        public IEnumerable<RowDataFromGetRange> GetRangeIterator(
+        public IEnumerable<Row> GetRangeIterator(
             string tableName, 
             GetRangeDirection direction,
             PrimaryKey inclusiveStartPrimaryKey, 
@@ -596,7 +599,7 @@ namespace Aliyun.OTS
             CapacityUnit consumedCapacityUnitCounter, 
             HashSet<string> columnsToGet = null, 
             int? count = null,
-            ColumnCondition condition = null)
+            IColumnCondition condition = null)
         {
             int? leftCount = count;
             
@@ -657,10 +660,12 @@ namespace Aliyun.OTS
 
         #region Private Function
 
-        protected void ThrowIfNullRequest<TRequestType>(TRequestType request)
+        private void ThrowIfNullRequest<TRequestType>(TRequestType request)
         {
             if (request == null)
+            {
                 throw new ArgumentNullException("request");
+            }
         }
 
 
@@ -670,12 +675,14 @@ namespace Aliyun.OTS
         {
             ThrowIfNullRequest(request);
 
-            Context otsContext = new Context();
-            otsContext.ClientConfig = ClientConfig;
-            otsContext.APIName = apiName;
-            otsContext.OTSRequest = request;
-            otsContext.OTSReponse = new TResponse();
-            otsContext.HttpClient = client;
+            Context otsContext = new Context
+            {
+                ClientConfig = ClientConfig,
+                APIName = apiName,
+                OTSRequest = request,
+                OTSReponse = new TResponse(),
+                HttpClient = client
+            };
 
             OTSHandler.HandleBefore(otsContext);
 
@@ -693,12 +700,13 @@ namespace Aliyun.OTS
             {
                 task.Wait();
             }
-            catch (System.AggregateException e)
+            catch (AggregateException e)
             {
                 if (ClientConfig.OTSErrorLogHandler != null)
                 {
-                    ClientConfig.OTSErrorLogHandler("Exception:\n" + e.GetBaseException().StackTrace + "\n");
+                    ClientConfig.OTSErrorLogHandler.Invoke("Exception:\n" + e.GetBaseException().StackTrace + "\n");
                 }
+             
                 throw e.GetBaseException();
             }
 

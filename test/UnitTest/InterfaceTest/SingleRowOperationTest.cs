@@ -31,13 +31,15 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         public void TestGetRowWithDefaultColumnsToGet() 
         {
             CreateTestTableWith4PK();
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(1));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
-            attribute.Add("Col3", new ColumnValue(4));
-            
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(1) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) },
+                { "Col3", new ColumnValue(4) }
+            };
+
             PutSingleRow(TestTableName, PrimaryKeyWith4Columns, attribute);
             CheckSingleRow(TestTableName, PrimaryKeyWith4Columns, attribute, new CapacityUnit(1, 0));
         }
@@ -49,13 +51,15 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         public void TestGetRowWith0ColumsToGet() 
         {
             CreateTestTableWith4PK();
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(1));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
-            attribute.Add("Col3", new ColumnValue(4));
-            
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(1) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) },
+                { "Col3", new ColumnValue(4) }
+            };
+
             PutSingleRow(TestTableName, PrimaryKeyWith4Columns, attribute);
             
             var columnsToGet = new HashSet<string>();
@@ -69,18 +73,21 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         public void TestGetRowWith4ColumnsToGet() 
         {
             CreateTestTableWith4PK();
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(1));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
-            attribute.Add("Col3", new ColumnValue(4));
-            
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(1) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) },
+                { "Col3", new ColumnValue(4) }
+            };
+
             PutSingleRow(TestTableName, PrimaryKeyWith4Columns, attribute);
             
-            var columnsToGet = new HashSet<string>() {"PK0", "PK1", "Col0", "Col1"};
+            var columnsToGet = new HashSet<string> {"PK0", "PK1", "Col0", "Col1"};
             
             CheckSingleRow(TestTableName, PrimaryKeyWith4Columns, attribute, new CapacityUnit(1, 0), columnsToGet);
+            DeleteTable();
         }
 
         /// <summary>
@@ -104,7 +111,7 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
                     "/GetRow", 
                     HttpStatusCode.BadRequest,
                     "OTSParameterInvalid", 
-                    "The number of columns from the request exceeded the limit."
+                    "The number of columns from the request exceeds the limit, limit count: 1024, column count: 1025."
                 ), exception);
             }
         }
@@ -116,13 +123,15 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         public void TestGetRowWithDuplicateColumnsToGet() 
         {
             CreateTestTableWith4PK();
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(1));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
-            attribute.Add("Col3", new ColumnValue(4));
-            
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(1) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) },
+                { "Col3", new ColumnValue(4) }
+            };
+
             PutSingleRow(TestTableName, PrimaryKeyWith4Columns, attribute);
             
             var columnsToGet = new HashSet<string>() {"PK0", "PK1", "Col0", "Col1"};
@@ -139,21 +148,25 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("a"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("a") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
             var columnsToGet = new HashSet<string>();
-            var filter = new RelationalCondition("Col0", RelationalCondition.CompareOperator.GREATER_THAN, new ColumnValue(5));
+            var filter = new RelationalCondition("Col0", CompareOperator.GREATER_THAN, new ColumnValue(5));
 
             CheckSingleRow(TestTableName, pk, attribute, new CapacityUnit(1, 0), columnsToGet, condition : filter);
         }
@@ -166,22 +179,28 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("a"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("a") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
-            var columnsToGet = new HashSet<string>();
-            columnsToGet.Add("Col1");
-            var filter = new RelationalCondition("Col0", RelationalCondition.CompareOperator.GREATER_THAN, new ColumnValue(5));
+            var columnsToGet = new HashSet<string>
+            {
+                "Col1"
+            };
+            var filter = new RelationalCondition("Col0", CompareOperator.GREATER_THAN, new ColumnValue(5));
 
             CheckSingleRow(TestTableName, pk, attribute, new CapacityUnit(1, 0), columnsToGet, condition: filter);
         }
@@ -194,21 +213,25 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("a"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("a") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
             var columnsToGet = new HashSet<string>();
-            var filter = new RelationalCondition("Col0", RelationalCondition.CompareOperator.LESS_THAN, new ColumnValue(5));
+            var filter = new RelationalCondition("Col0", CompareOperator.LESS_THAN, new ColumnValue(5));
 
             CheckSingleRow(TestTableName, pk, attribute, new CapacityUnit(1, 0), columnsToGet, isEmpty: true, condition: filter);
         }
@@ -221,23 +244,30 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("aff"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("aff") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
-            var columnsToGet = new HashSet<string>();
-            columnsToGet.Add("Col0");
-            columnsToGet.Add("Col1");
-            var filter = new RelationalCondition("Col0", RelationalCondition.CompareOperator.LESS_THAN, new ColumnValue(5));
+            var columnsToGet = new HashSet<string>
+            {
+                "Col0",
+                "Col1"
+            };
+
+            var filter = new RelationalCondition("Col0", CompareOperator.LESS_THAN, new ColumnValue(5));
 
             CheckSingleRow(TestTableName, pk, attribute, new CapacityUnit(1, 0), columnsToGet, isEmpty:true, condition: filter);
         }
@@ -250,23 +280,27 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("a"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("a") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
             var columnsToGet = new HashSet<string>();
-            var filter1 = new RelationalCondition("Col0", RelationalCondition.CompareOperator.GREATER_THAN, new ColumnValue(5));
-            var filter2 = new RelationalCondition("Col1", RelationalCondition.CompareOperator.EQUAL, new ColumnValue(2));
-            var filter = new CompositeCondition(CompositeCondition.LogicOperator.AND);
+            var filter1 = new RelationalCondition("Col0", CompareOperator.GREATER_THAN, new ColumnValue(5));
+            var filter2 = new RelationalCondition("Col1", CompareOperator.EQUAL, new ColumnValue(2));
+            var filter = new CompositeCondition(LogicOperator.AND);
             filter.AddCondition(filter1);
             filter.AddCondition(filter2);
 
@@ -281,27 +315,31 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("a"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("a") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
             var columnsToGet = new HashSet<string>();
-            var filter1 = new RelationalCondition("Col0", RelationalCondition.CompareOperator.GREATER_THAN, new ColumnValue(5));
-            var filter2 = new RelationalCondition("Col1", RelationalCondition.CompareOperator.NOT_EQUAL, new ColumnValue(2));
-            var filter = new CompositeCondition(CompositeCondition.LogicOperator.AND);
+            var filter1 = new RelationalCondition("Col0", CompareOperator.GREATER_THAN, new ColumnValue(5));
+            var filter2 = new RelationalCondition("Col1", CompareOperator.NOT_EQUAL, new ColumnValue(2));
+            var filter = new CompositeCondition(LogicOperator.AND);
             filter.AddCondition(filter1);
             filter.AddCondition(filter2);
 
-            CheckSingleRow(TestTableName, pk, attribute, new CapacityUnit(1, 0), columnsToGet, isEmpty:true, condition: filter);
+            CheckSingleRow(TestTableName, pk, attribute, new CapacityUnit(1, 0), columnsToGet, true, filter);
         }
 
         /// <summary>
@@ -312,23 +350,27 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("a"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("a") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
             var columnsToGet = new HashSet<string>();
-            var filter1 = new RelationalCondition("Col0", RelationalCondition.CompareOperator.GREATER_THAN, new ColumnValue(5));
-            var filter2 = new RelationalCondition("Col1", RelationalCondition.CompareOperator.NOT_EQUAL, new ColumnValue(2));
-            var filter = new CompositeCondition(CompositeCondition.LogicOperator.OR);
+            var filter1 = new RelationalCondition("Col0", CompareOperator.GREATER_THAN, new ColumnValue(5));
+            var filter2 = new RelationalCondition("Col1", CompareOperator.NOT_EQUAL, new ColumnValue(2));
+            var filter = new CompositeCondition(Aliyun.OTS.DataModel.LogicOperator.OR);
             filter.AddCondition(filter1);
             filter.AddCondition(filter2);
 
@@ -343,23 +385,27 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("a"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("a") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
             var columnsToGet = new HashSet<string>();
-            var filter1 = new RelationalCondition("Col0", RelationalCondition.CompareOperator.GREATER_THAN, new ColumnValue(5));
-            var filter2 = new RelationalCondition("Col1", RelationalCondition.CompareOperator.EQUAL, new ColumnValue(2));
-            var filter = new CompositeCondition(CompositeCondition.LogicOperator.OR);
+            var filter1 = new RelationalCondition("Col0", CompareOperator.GREATER_THAN, new ColumnValue(5));
+            var filter2 = new RelationalCondition("Col1", CompareOperator.EQUAL, new ColumnValue(2));
+            var filter = new CompositeCondition(Aliyun.OTS.DataModel.LogicOperator.OR);
             filter.AddCondition(filter1);
             filter.AddCondition(filter2);
 
@@ -374,23 +420,27 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         {
             CreateTestTableWith4PK();
 
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("a"));
-            pk.Add("PK1", new ColumnValue("a"));
-            pk.Add("PK2", new ColumnValue(10));
-            pk.Add("PK3", new ColumnValue(20));
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("a") },
+                { "PK1", new ColumnValue("a") },
+                { "PK2", new ColumnValue(10) },
+                { "PK3", new ColumnValue(20) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue(10));
-            attribute.Add("Col1", new ColumnValue(2));
-            attribute.Add("Col2", new ColumnValue(3));
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(10) },
+                { "Col1", new ColumnValue(2) },
+                { "Col2", new ColumnValue(3) }
+            };
 
             PutSingleRow(TestTableName, pk, attribute);
 
             var columnsToGet = new HashSet<string>();
-            var filter1 = new RelationalCondition("Col0", RelationalCondition.CompareOperator.LESS_EQUAL, new ColumnValue(5));
-            var filter2 = new RelationalCondition("Col1", RelationalCondition.CompareOperator.NOT_EQUAL, new ColumnValue(2));
-            var filter = new CompositeCondition(CompositeCondition.LogicOperator.OR);
+            var filter1 = new RelationalCondition("Col0", CompareOperator.LESS_EQUAL, new ColumnValue(5));
+            var filter2 = new RelationalCondition("Col1", CompareOperator.NOT_EQUAL, new ColumnValue(2));
+            var filter = new CompositeCondition(Aliyun.OTS.DataModel.LogicOperator.OR);
             filter.AddCondition(filter1);
             filter.AddCondition(filter2);
 
@@ -407,41 +457,47 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         public void TestPutOnlyInUpdateRow() 
         {
             CreateTestTableWith2PK();
-            
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("123"));
-            pk.Add("PK1", new ColumnValue(123));
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue("0"));
-            attribute.Add("Col1", new ColumnValue("1"));
-            attribute.Add("Col2", new ColumnValue("2"));
-            attribute.Add("Col3", new ColumnValue("3"));
-            attribute.Add("Col4", new ColumnValue("4"));
-            
+
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("123") },
+                { "PK1", new ColumnValue(123) }
+            };
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue("0") },
+                { "Col1", new ColumnValue("1") },
+                { "Col2", new ColumnValue("2") },
+                { "Col3", new ColumnValue("3") },
+                { "Col4", new ColumnValue("4") }
+            };
+
             PutSingleRow(TestTableName, pk, attribute);
             
             var updateOfAttribute = new UpdateOfAttribute();
-            
+
             updateOfAttribute.AddAttributeColumnToPut("Col3", new ColumnValue("5"));
             updateOfAttribute.AddAttributeColumnToPut("Col4", new ColumnValue("6"));
             updateOfAttribute.AddAttributeColumnToPut("Col5", new ColumnValue("7"));
             updateOfAttribute.AddAttributeColumnToPut("Col6", new ColumnValue("8"));
-            
+
             var request = new UpdateRowRequest(
                 TestTableName, new Condition(RowExistenceExpectation.IGNORE), pk, updateOfAttribute);
             var response = OTSClient.UpdateRow(request);
             AssertCapacityUnit(new CapacityUnit(0, 1), response.ConsumedCapacityUnit);
-            
-            var expectAttribute = new AttributeColumns();
-            expectAttribute.Add("Col0", new ColumnValue("0"));
-            expectAttribute.Add("Col1", new ColumnValue("1"));
-            expectAttribute.Add("Col2", new ColumnValue("2"));
-            expectAttribute.Add("Col3", new ColumnValue("5"));
-            expectAttribute.Add("Col4", new ColumnValue("6"));
-            expectAttribute.Add("Col5", new ColumnValue("7"));
-            expectAttribute.Add("Col6", new ColumnValue("8"));
-            
+
+            var expectAttribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue("0") },
+                { "Col1", new ColumnValue("1") },
+                { "Col2", new ColumnValue("2") },
+                { "Col3", new ColumnValue("5") },
+                { "Col4", new ColumnValue("6") },
+                { "Col5", new ColumnValue("7") },
+                { "Col6", new ColumnValue("8") }
+            };
+
             CheckSingleRow(TestTableName, pk, expectAttribute);
         }
 
@@ -449,40 +505,46 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         // UpdateRow包含4个属性列的delete操作的情况。
         // </summary>
         [Test]
-        public void TestDeleteOnlyInUpdateRow() 
+        public void TestDeleteOnlyInUpdateRow()
         {
             CreateTestTableWith2PK();
-            
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("123"));
-            pk.Add("PK1", new ColumnValue(123));
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue("0"));
-            attribute.Add("Col1", new ColumnValue("1"));
-            attribute.Add("Col2", new ColumnValue("2"));
-            attribute.Add("Col3", new ColumnValue("3"));
-            attribute.Add("Col4", new ColumnValue("4"));
-            
+
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("123") },
+                { "PK1", new ColumnValue(123) }
+            };
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue("0") },
+                { "Col1", new ColumnValue("1") },
+                { "Col2", new ColumnValue("2") },
+                { "Col3", new ColumnValue("3") },
+                { "Col4", new ColumnValue("4") }
+            };
+
             PutSingleRow(TestTableName, pk, attribute);
-            
+
             var updateOfAttribute = new UpdateOfAttribute();
-            
+
             updateOfAttribute.AddAttributeColumnToDelete("Col1");
             updateOfAttribute.AddAttributeColumnToDelete("Col2");
             updateOfAttribute.AddAttributeColumnToDelete("Col7");
             updateOfAttribute.AddAttributeColumnToDelete("Col8");
-            
+
             var request = new UpdateRowRequest(
                 TestTableName, new Condition(RowExistenceExpectation.IGNORE), pk, updateOfAttribute);
             var response = OTSClient.UpdateRow(request);
             AssertCapacityUnit(new CapacityUnit(0, 1), response.ConsumedCapacityUnit);
-            
-            var expectAttribute = new AttributeColumns();
-            expectAttribute.Add("Col0", new ColumnValue("0"));
-            expectAttribute.Add("Col3", new ColumnValue("3"));
-            expectAttribute.Add("Col4", new ColumnValue("4"));
-            
+
+            var expectAttribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue("0") },
+                { "Col3", new ColumnValue("3") },
+                { "Col4", new ColumnValue("4") }
+            };
+
             CheckSingleRow(TestTableName, pk, expectAttribute);
         }
 
@@ -490,87 +552,107 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         // UpdateRow没有包含任何操作的情况，期望返回服务端错误？
         // </summary>
         [Test]
-        public void TestEmptyUpdateRow() 
+        public void TestEmptyUpdateRow()
         {
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add("PK0", new ColumnValue(0));
+            var primaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(0) }
+            };
             var updateOfAttribute = new UpdateOfAttribute();
-            
+
             var request = new UpdateRowRequest(TestTableName, new Condition(RowExistenceExpectation.IGNORE), primaryKey, updateOfAttribute);
-                
-            try {
+
+            try
+            {
                 OTSClient.UpdateRow(request);
                 Assert.Fail();
-            } catch (OTSServerException e) {
+            }
+            catch (OTSServerException e)
+            {
                 AssertOTSServerException(e, new OTSServerException(
-                    "/UpdateRow", 
+                    "/UpdateRow",
                     HttpStatusCode.BadRequest,
-                    "OTSParameterInvalid", 
-                    "No column specified while updating row."
+                    "OTSParameterInvalid",
+                    "Attribute column is missing."
                 ));
             }
-            
+
         }
 
         // <summary>
         // UpdateRow中包含4个put操作和4个delete操作的情况。
         // </summary>
         [Test]
-        public void Test4PutAnd4DeleteInUpdateRow() 
-        { 
+        public void Test4PutAnd4DeleteInUpdateRow()
+        {
             CreateTestTableWith2PK();
-            
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("123"));
-            pk.Add("PK1", new ColumnValue(123));
-            
-            var attribute = new AttributeColumns();
-            attribute.Add("Col0", new ColumnValue("0"));
-            attribute.Add("Col1", new ColumnValue("1"));
-            attribute.Add("Col2", new ColumnValue("2"));
-            attribute.Add("Col3", new ColumnValue("3"));
-            attribute.Add("Col4", new ColumnValue("4"));
-            
+
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("123") },
+                { "PK1", new ColumnValue(123) }
+            };
+
+            var attribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue("0") },
+                { "Col1", new ColumnValue("1") },
+                { "Col2", new ColumnValue("2") },
+                { "Col3", new ColumnValue("3") },
+                { "Col4", new ColumnValue("4") }
+            };
+
             PutSingleRow(TestTableName, pk, attribute);
-            
+
             var updateOfAttribute = new UpdateOfAttribute();
-            
+
             updateOfAttribute.AddAttributeColumnToPut("Col3", new ColumnValue("5"));
             updateOfAttribute.AddAttributeColumnToPut("Col4", new ColumnValue("6"));
             updateOfAttribute.AddAttributeColumnToPut("Col5", new ColumnValue("7"));
             updateOfAttribute.AddAttributeColumnToPut("Col6", new ColumnValue("8"));
-            
+
             updateOfAttribute.AddAttributeColumnToDelete("Col1");
             updateOfAttribute.AddAttributeColumnToDelete("Col2");
             updateOfAttribute.AddAttributeColumnToDelete("Col7");
             updateOfAttribute.AddAttributeColumnToDelete("Col8");
-            
+
             var request = new UpdateRowRequest(
                 TestTableName, new Condition(RowExistenceExpectation.IGNORE), pk, updateOfAttribute);
             var response = OTSClient.UpdateRow(request);
             AssertCapacityUnit(new CapacityUnit(0, 1), response.ConsumedCapacityUnit);
-            
-            var expectAttribute = new AttributeColumns();
-            expectAttribute.Add("Col0", new ColumnValue("0"));
-            expectAttribute.Add("Col3", new ColumnValue("5"));
-            expectAttribute.Add("Col4", new ColumnValue("6"));
-            expectAttribute.Add("Col5", new ColumnValue("7"));
-            expectAttribute.Add("Col6", new ColumnValue("8"));
-            
+
+            var expectAttribute = new AttributeColumns
+            {
+                { "Col0", new ColumnValue("0") },
+                { "Col3", new ColumnValue("5") },
+                { "Col4", new ColumnValue("6") },
+                { "Col5", new ColumnValue("7") },
+                { "Col6", new ColumnValue("8") }
+            };
+
             CheckSingleRow(TestTableName, pk, expectAttribute);
         }
 
         // <summary>
-        // UpdateRow中包含2个delete操作列名相同的情况，期望返回服务端错误？
+        // UpdateRow中包含2个delete操作列名相同的情况，不返回错误信息
         // </summary>
         [Test]
         public void TestDuplicateDeleteInUpdateRow() 
         {
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("123"));
-            pk.Add("PK1", new ColumnValue(123));
-            
-            
+            CreateTable();
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("123") },
+                { "PK1", new ColumnValue(123) }
+            };
+
+            var attributes = new AttributeColumns
+            {
+                { "Col0", new ColumnValue(123) }
+            };
+
+            PutSingleRow(TestTableName, pk, attributes);
+
             var updateOfAttribute = new UpdateOfAttribute();
             
             updateOfAttribute.AddAttributeColumnToDelete("Col0");
@@ -581,7 +663,7 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
             
             try {
                 var response = OTSClient.UpdateRow(request);
-                Assert.Fail();
+                Assert.Pass();
             } catch (OTSServerException e) {
                 AssertOTSServerException(e, new OTSServerException(
                     "/UpdateRow", 
@@ -589,6 +671,9 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
                     "OTSParameterInvalid", 
                     "Duplicated attribute column name: 'Col0' while updating row."
                 ));
+            }finally
+            {
+                DeleteTable();
             }
         }
 
@@ -598,11 +683,13 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
         [Test]
         public void Test1000PutAnd1000DeleteInUpdateRow() 
         {
-            var pk = new PrimaryKey();
-            pk.Add("PK0", new ColumnValue("123"));
-            pk.Add("PK1", new ColumnValue(123));
-            
-            
+            var pk = new PrimaryKey
+            {
+                { "PK0", new ColumnValue("123") },
+                { "PK1", new ColumnValue(123) }
+            };
+
+
             var updateOfAttribute = new UpdateOfAttribute();
             
             for (int i = 0; i < 1000; i ++) {
@@ -620,7 +707,7 @@ namespace Aliyun.OTS.UnitTest.InterfaceTest
                     "/UpdateRow", 
                     HttpStatusCode.BadRequest,
                     "OTSParameterInvalid", 
-                    "The number of columns from the request exceeded the limit."
+                    "The number of attribute columns exceeds the limit, limit count: 1024, column count: 2000."
                 ));
             }
         }

@@ -10,7 +10,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
 using NUnit.Framework;
@@ -26,11 +25,11 @@ namespace Aliyun.OTS.UnitTest.DataModel
     // update v = newV if v == oldV
     class MyThread : OTSUnitTestBase
     {
-        private volatile int count = 0;
-        private int round;
-        private String tableName;
+        private volatile int count;
+        private readonly int round;
+        private readonly String tableName;
         private Thread thread;
-        Int64 pk;
+        readonly Int64 pk;
         public MyThread(String name, Int64 index)
         {
             tableName = name;
@@ -50,18 +49,22 @@ namespace Aliyun.OTS.UnitTest.DataModel
         {
             for (int i = 0; i < round; ++i)
             {
-                var primaryKey = new PrimaryKey();
-                primaryKey.Add("PK0", new ColumnValue(pk));
+                Console.WriteLine("Thread:" + i);
+                var primaryKey = new PrimaryKey
+                {
+                    { "PK0", new ColumnValue(pk) }
+                };
                 var request = new GetRowRequest(tableName, primaryKey);
                 var response = OTSClient.GetRow(request);
                 var attr = response.Attribute["Col1"];
                 long oldIntValue = attr.IntegerValue;
                 ColumnValue oldValue = new ColumnValue(oldIntValue);
                 ColumnValue newValue = new ColumnValue(oldIntValue + 1);
-                RelationalCondition cc = new RelationalCondition("Col1", RelationalCondition.CompareOperator.EQUAL, oldValue);
-                Condition cond = new Condition(RowExistenceExpectation.IGNORE);
-      
-                cond.ColumnCondition = cc;
+                RelationalCondition cc = new RelationalCondition("Col1", CompareOperator.EQUAL, oldValue);
+                Condition cond = new Condition(RowExistenceExpectation.IGNORE)
+                {
+                    ColumnCondition = cc
+                };
                 UpdateOfAttribute updateOfAttributeForPut = new UpdateOfAttribute();
                 updateOfAttributeForPut.AddAttributeColumnToPut("Col1", newValue);
                 UpdateRowRequest updateReq = new UpdateRowRequest(tableName, cond, primaryKey, updateOfAttributeForPut);
@@ -80,7 +83,7 @@ namespace Aliyun.OTS.UnitTest.DataModel
                 }
             }
         }
-        public int getValue() { return count; }
+        public int GetValue() { return count; }
     }
 
     [TestFixture]
@@ -92,24 +95,38 @@ namespace Aliyun.OTS.UnitTest.DataModel
             {
                 OTSClient.DeleteTable(new DeleteTableRequest(tableItem));
             }
-            var primaryKeySchema = new PrimaryKeySchema();
-            primaryKeySchema.Add("PK0", ColumnValueType.Integer);
+            var primaryKeySchema = new PrimaryKeySchema
+            {
+                { "PK0", ColumnValueType.Integer }
+            };
             var tableMeta = new TableMeta(tableName, primaryKeySchema);
             var reservedThroughput = new CapacityUnit(0, 0);
             var request = new CreateTableRequest(tableMeta, reservedThroughput);
             var response = OTSClient.CreateTable(request);
             WaitForTableReady();
         }
-        private bool PutRow(string tableName, Int64 pk, string colName, ColumnValue colValue, ColumnCondition cc)
+        private bool PutRow(string tableName, Int64 pk, string colName, ColumnValue colValue, IColumnCondition cc)
         {
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add("PK0", new ColumnValue(pk));
+            var primaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(pk) }
+            };
 
-            var attribute = new AttributeColumns();
-            attribute.Add(colName, colValue);
-            Condition cond = new Condition(RowExistenceExpectation.IGNORE);
-            cond.ColumnCondition = cc;
-            var request = new PutRowRequest(tableName,cond,primaryKey,attribute);
+            var attribute = new AttributeColumns
+            {
+                { colName, colValue }
+            };
+            Condition cond = new Condition(RowExistenceExpectation.IGNORE)
+            {
+                ColumnCondition = cc
+            };
+
+            var request = new PutRowRequest(tableName, cond)
+            {
+                RowPutChange = new RowPutChange(tableName, primaryKey)
+            };
+
+            request.RowPutChange.AddColumns(attribute);
 
             bool success = true;
             try
@@ -126,21 +143,27 @@ namespace Aliyun.OTS.UnitTest.DataModel
 
         public long ReadRow(String tableName, Int64 pk)
         {
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add("PK0", new ColumnValue(pk));
+            var primaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(pk) }
+            };
             var request = new GetRowRequest(tableName, primaryKey);
             var response = OTSClient.GetRow(request);
             var attr = response.Attribute["Col1"];
             long value = attr.IntegerValue;
             return value;
         }
-        public bool UpdateRow(String tableName, Int64 pk, String colName, ColumnValue colValue, ColumnCondition cond)
+        public bool UpdateRow(String tableName, Int64 pk, String colName, ColumnValue colValue, IColumnCondition cond)
         {
             bool success = true;
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add("PK0", new ColumnValue(pk));
-            Condition rowCond = new Condition(RowExistenceExpectation.IGNORE);
-            rowCond.ColumnCondition = cond;
+            var primaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(pk) }
+            };
+            Condition rowCond = new Condition(RowExistenceExpectation.IGNORE)
+            {
+                ColumnCondition = cond
+            };
             UpdateOfAttribute updateOfAttributeForPut = new UpdateOfAttribute();
             updateOfAttributeForPut.AddAttributeColumnToPut(colName, colValue);
             var request = new UpdateRowRequest(tableName, rowCond, primaryKey, updateOfAttributeForPut);
@@ -156,19 +179,23 @@ namespace Aliyun.OTS.UnitTest.DataModel
             return success;
         }
 
-        private bool DeleteRow(String tableName, Int64 pk, ColumnCondition cond)
+        private bool DeleteRow(String tableName, Int64 pk, IColumnCondition cond)
         {
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add("PK0", new ColumnValue(pk));
-            Condition c = new Condition(RowExistenceExpectation.IGNORE);
-            c.ColumnCondition = cond;
+            var primaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(pk) }
+            };
+            Condition c = new Condition(RowExistenceExpectation.IGNORE)
+            {
+                ColumnCondition = cond
+            };
             var request = new DeleteRowRequest(tableName, c, primaryKey);
             bool success = true;
             try
             {
                 OTSClient.DeleteRow(request);
             }
-            catch(OTSServerException e)
+            catch (OTSServerException e)
             {
                 Console.WriteLine("DeleteRow fail:{0}", e.ErrorMessage);
                 success = false;
@@ -186,43 +213,43 @@ namespace Aliyun.OTS.UnitTest.DataModel
 
             // put row with condition: col1 != value1
             success = PutRow(tableName, 1, "Col2", new ColumnValue("Value2"),
-                new RelationalCondition("Col1", 
-                    RelationalCondition.CompareOperator.NOT_EQUAL, 
+                new RelationalCondition("Col1",
+                    CompareOperator.NOT_EQUAL,
                     new ColumnValue("Value1")));
             Assert.IsFalse(success);
 
             // put row with condition col1 == value1
             success = PutRow(tableName, 1, "Col2", new ColumnValue("Value2"),
-                new RelationalCondition("Col1", 
-                    RelationalCondition.CompareOperator.EQUAL, 
+                new RelationalCondition("Col1",
+                    CompareOperator.EQUAL,
                     new ColumnValue("Value1")));
             Assert.IsTrue(success);
 
             // update row with condition: col2 < value1
             success = UpdateRow(tableName, 1, "Col3", new ColumnValue("Value3"),
                 new RelationalCondition("Col2",
-                    RelationalCondition.CompareOperator.LESS_THAN,
+                    CompareOperator.LESS_THAN,
                     new ColumnValue("Value1")));
             Assert.IsFalse(success);
 
             // update row with condition: col2 >= value2
             success = UpdateRow(tableName, 1, "Col3", new ColumnValue("Value3"),
                 new RelationalCondition("Col2",
-                    RelationalCondition.CompareOperator.GREATER_EQUAL,
+                    CompareOperator.GREATER_EQUAL,
                     new ColumnValue("Value2")));
             Assert.IsTrue(success);
 
             // delete row with condition: col3 <= value2
             success = DeleteRow(tableName, 1,
                     new RelationalCondition("Col3",
-                            RelationalCondition.CompareOperator.LESS_EQUAL,
+                            CompareOperator.LESS_EQUAL,
                             new ColumnValue("Value2")));
             Assert.IsFalse(success);
 
             // delete row with condition: col3 > value2
             success = DeleteRow(tableName, 1,
                     new RelationalCondition("Col3",
-                            RelationalCondition.CompareOperator.GREATER_THAN,
+                            CompareOperator.GREATER_THAN,
                             new ColumnValue("Value2")));
             Assert.IsTrue(success);
         }
@@ -239,16 +266,18 @@ namespace Aliyun.OTS.UnitTest.DataModel
             // with passIfMissing == true, this should succeed
             success = PutRow(tableName, 2, "Col2", new ColumnValue("Value2"),
                     new RelationalCondition("ColX",
-                            RelationalCondition.CompareOperator.NOT_EQUAL,
+                            CompareOperator.NOT_EQUAL,
                             new ColumnValue("ValueY")));
             Assert.IsTrue(success);
 
             // put row with condition: colX != valueY
             // with passIfMissing == false, this should fail
             RelationalCondition cond = new RelationalCondition("ColX",
-                    RelationalCondition.CompareOperator.NOT_EQUAL,
-                    new ColumnValue("ValueY"));
-            cond.PassIfMissing = false;
+                    CompareOperator.NOT_EQUAL,
+                    new ColumnValue("ValueY"))
+            {
+                PassIfMissing = false
+            };
             success = PutRow(tableName, 2, "Col2", new ColumnValue("Value2"), cond);
             Assert.IsFalse(success);
         }
@@ -267,43 +296,43 @@ namespace Aliyun.OTS.UnitTest.DataModel
 
             // update with condition:
             // col1 == value2 OR col2 == value1
-            CompositeCondition cond = new CompositeCondition(CompositeCondition.LogicOperator.OR);
+            CompositeCondition cond = new CompositeCondition(LogicOperator.OR);
             cond.AddCondition(new RelationalCondition(
                     "Col1",
-                    RelationalCondition.CompareOperator.EQUAL,
+                    CompareOperator.EQUAL,
                     new ColumnValue("Value2")))
                 .AddCondition(new RelationalCondition(
                     "Col2",
-                    RelationalCondition.CompareOperator.EQUAL,
+                    CompareOperator.EQUAL,
                     new ColumnValue("Value1")));
             success = UpdateRow(tableName, 3, "Col3", new ColumnValue("Value3"), cond);
             Assert.IsFalse(success);
 
             // update with condition
             // Not col1 == value2
-            cond = new CompositeCondition(CompositeCondition.LogicOperator.NOT);
+            cond = new CompositeCondition(LogicOperator.NOT);
             cond.AddCondition(new RelationalCondition(
                 "Col1",
-                RelationalCondition.CompareOperator.EQUAL,
+                CompareOperator.EQUAL,
                 new ColumnValue("Value2")));
             success = UpdateRow(tableName, 3, "Col3", new ColumnValue("Value3"), cond);
             Assert.IsTrue(success);
 
             // delete with condition
             // col1 == valueX  OR  (col2 == value2 AND col3 == value3)
-            cond = new CompositeCondition(CompositeCondition.LogicOperator.OR);
+            cond = new CompositeCondition(LogicOperator.OR);
             cond.AddCondition(new RelationalCondition(
                 "Col1",
-                RelationalCondition.CompareOperator.EQUAL,
+                CompareOperator.EQUAL,
                 new ColumnValue("ValueX")));
-            CompositeCondition cond2 = new CompositeCondition(CompositeCondition.LogicOperator.AND);
+            CompositeCondition cond2 = new CompositeCondition(LogicOperator.AND);
             cond2.AddCondition(new RelationalCondition(
                 "Col2",
-                RelationalCondition.CompareOperator.EQUAL,
+                CompareOperator.EQUAL,
                 new ColumnValue("Value2")))
                 .AddCondition(new RelationalCondition(
                     "Col3",
-                    RelationalCondition.CompareOperator.EQUAL,
+                    CompareOperator.EQUAL,
                     new ColumnValue("Value3")));
             cond.AddCondition(cond2);
             success = DeleteRow(tableName, 3, cond);
@@ -316,65 +345,66 @@ namespace Aliyun.OTS.UnitTest.DataModel
             String tableName = "condition_update_test_table";
             CreateTable(tableName);
             // column condition count <= 10
-            CompositeCondition cond = new CompositeCondition(CompositeCondition.LogicOperator.OR);
+            CompositeCondition cond = new CompositeCondition(LogicOperator.OR);
             cond.AddCondition(new RelationalCondition(
-                        "ColX1", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX1", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                        "ColX2", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX2", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                        "ColX3", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX3", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                        "ColX4", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX4", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                        "ColX5", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX5", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                        "ColX6", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX6", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                        "ColX7", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX7", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                        "ColX8", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX8", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                        "ColX9", RelationalCondition.CompareOperator.EQUAL,
+                        "ColX9", CompareOperator.EQUAL,
                         new ColumnValue("ValueX")));
             bool success = PutRow(tableName, 4, "Col1", new ColumnValue("Value1"), cond);
             Assert.IsTrue(success);
 
             cond.AddCondition(new RelationalCondition(
-                "ColX10", RelationalCondition.CompareOperator.EQUAL,
+                "ColX10", CompareOperator.EQUAL,
                 new ColumnValue("ValueX")));
             success = PutRow(tableName, 4, "Col1", new ColumnValue("Value1"), cond);
             Assert.IsFalse(success);
 
             // invalid column name in column condition
-            cond = new CompositeCondition(CompositeCondition.LogicOperator.AND);
+            cond = new CompositeCondition(LogicOperator.AND);
             cond.AddCondition(new RelationalCondition(
-                    "#Col", RelationalCondition.CompareOperator.EQUAL,
+                    "#Col", CompareOperator.EQUAL,
                     new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                    "ColX9", RelationalCondition.CompareOperator.EQUAL,
+                    "ColX9", CompareOperator.EQUAL,
                     new ColumnValue("ValueX")));
             success = PutRow(tableName, 4, "Col1", new ColumnValue("Value1"), cond);
             Assert.IsFalse(success);
 
             // invalid column value in column condition
-            cond = new CompositeCondition(CompositeCondition.LogicOperator.AND);
+            cond = new CompositeCondition(LogicOperator.AND);
             cond.AddCondition(new RelationalCondition(
-                    "ColX9", RelationalCondition.CompareOperator.EQUAL,
+                    "ColX9", CompareOperator.EQUAL,
                     new ColumnValue("ValueX")))
                 .AddCondition(new RelationalCondition(
-                    "ColX9", RelationalCondition.CompareOperator.EQUAL,
+                    "ColX9", CompareOperator.EQUAL,
                     new ColumnValue("ValueX")));
             Assert.IsFalse(success);
         }
 
+        /**
         [Test]
         public void TestTransactionalUpdate()
         {
@@ -392,18 +422,21 @@ namespace Aliyun.OTS.UnitTest.DataModel
                 threadList.Add(mythread);
                 mythread.Start();
             }
+
             foreach(var tmpThread in threadList)
             {
                 tmpThread.Join();
             }
+
             int total = 0;
             foreach (var tmp in threadList) {
-                total += tmp.getValue();
+                total += tmp.GetValue();
             }
+
             long v = ReadRow(tableName, 5);
             Assert.AreEqual(total, v);
         }
-
+        **/
         [Test]
         public void TestBatchWriteRow()
         {
@@ -417,33 +450,47 @@ namespace Aliyun.OTS.UnitTest.DataModel
             success = PutRow(tableName, 22, "Col1", new ColumnValue("Value22"), null);
             Assert.IsTrue(success);
 
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add("PK0", new ColumnValue(20));
-            var attribute = new AttributeColumns();
-            attribute.Add("Col2", new ColumnValue("Value2"));
-            Condition cond1 = new Condition(RowExistenceExpectation.IGNORE);
-            cond1.ColumnCondition = new RelationalCondition(
-                    "Col1", RelationalCondition.CompareOperator.NOT_EQUAL,
-                    new ColumnValue("Value20"));
+            var primaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(20) }
+            };
+            var attribute = new AttributeColumns
+            {
+                { "Col2", new ColumnValue("Value2") }
+            };
+            Condition cond1 = new Condition(RowExistenceExpectation.IGNORE)
+            {
+                ColumnCondition = new RelationalCondition(
+                    "Col1", CompareOperator.NOT_EQUAL,
+                    new ColumnValue("Value20"))
+            };
 
-            var updatePrimaryKey = new PrimaryKey();
-            updatePrimaryKey.Add("PK0", new ColumnValue(21));
+            var updatePrimaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(21) }
+            };
             UpdateOfAttribute update2 = new UpdateOfAttribute();
             update2.AddAttributeColumnToPut("Col3", new ColumnValue("Value3"));
-            Condition cond2 = new Condition(RowExistenceExpectation.IGNORE);
-            cond2.ColumnCondition = new RelationalCondition(
-                    "Col1", RelationalCondition.CompareOperator.EQUAL,
-                    new ColumnValue("Value21"));
+            Condition cond2 = new Condition(RowExistenceExpectation.IGNORE)
+            {
+                ColumnCondition = new RelationalCondition(
+                    "Col1", CompareOperator.EQUAL,
+                    new ColumnValue("Value21"))
+            };
 
-            var deletePrimaryKey = new PrimaryKey();
-            deletePrimaryKey.Add("PK0", new ColumnValue(22));
-            Condition cond3 = new Condition(RowExistenceExpectation.IGNORE);
-            cond3.ColumnCondition = new RelationalCondition(
-                    "Col1", RelationalCondition.CompareOperator.GREATER_THAN,
-                    new ColumnValue("Value22"));
+            var deletePrimaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(22) }
+            };
+            Condition cond3 = new Condition(RowExistenceExpectation.IGNORE)
+            {
+                ColumnCondition = new RelationalCondition(
+                    "Col1", CompareOperator.GREATER_THAN,
+                    new ColumnValue("Value22"))
+            };
 
             var batchWriteRequest = new BatchWriteRowRequest();
-            RowChanges changes = new RowChanges();
+            RowChanges changes = new RowChanges(tableName);
             changes.AddPut(cond1, primaryKey, attribute);
             changes.AddUpdate(cond2, updatePrimaryKey, update2);
             changes.AddDelete(cond3, deletePrimaryKey);
@@ -453,9 +500,7 @@ namespace Aliyun.OTS.UnitTest.DataModel
             var tables = response.TableRespones;
             Assert.AreEqual(1, tables.Count);
             var rows = tables[tableName];
-            Assert.IsFalse(rows.PutResponses[0].IsOK);
-            Assert.IsTrue(rows.UpdateResponses[0].IsOK);
-            Assert.IsTrue(rows.UpdateResponses[0].IsOK);
+            Assert.IsFalse(rows.Responses[0].IsOK);
         }
     }
 }

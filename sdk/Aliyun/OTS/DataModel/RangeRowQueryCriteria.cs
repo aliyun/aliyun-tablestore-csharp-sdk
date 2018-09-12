@@ -35,6 +35,11 @@ namespace Aliyun.OTS.DataModel
         public PrimaryKey ExclusiveEndPrimaryKey { get; set; }
 
         /// <summary>
+        /// 用于行内流式读, 标记位置和状态信息.
+        /// </summary>
+        public byte[] Token { get; set; }
+
+        /// <summary>
         /// 构造一个在给定名称的表中查询的条件。
         /// </summary>
         /// <param name="tableName">表名称</param>
@@ -44,6 +49,11 @@ namespace Aliyun.OTS.DataModel
             Direction = GetRangeDirection.Forward;
             InclusiveStartPrimaryKey = new PrimaryKey();
             ExclusiveEndPrimaryKey = new PrimaryKey();
+        }
+
+        public bool HasSetToken()
+        {
+            return Token != null;
         }
     }
 }

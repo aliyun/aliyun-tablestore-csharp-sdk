@@ -28,13 +28,21 @@ namespace Aliyun.OTS.Response
         /// 预留读写吞吐量的详细信息
         /// </summary>
         public ReservedThroughputDetails ReservedThroughputDetails { get; set; }
+
+        public TableOptions TableOptions { get; set; }
+
+
+        public StreamDetails StreamDetails { get; set; }
+
+        public System.Collections.Generic.List<byte[]> ShardSplits { get; set; }
         
         public DescribeTableResponse() {}
         
-        public DescribeTableResponse(TableMeta tableMeta, ReservedThroughputDetails reservedThroughputDetails)
+        public DescribeTableResponse(TableMeta tableMeta, ReservedThroughputDetails reservedThroughputDetails, TableOptions tableOptions)
         {
             TableMeta = tableMeta;
             ReservedThroughputDetails = reservedThroughputDetails;
+            TableOptions = tableOptions;
         }
     }
 }

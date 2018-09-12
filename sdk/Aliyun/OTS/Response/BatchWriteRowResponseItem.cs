@@ -18,17 +18,17 @@ namespace Aliyun.OTS.Response
     /// </summary>
     public class BatchWriteRowResponseItem
     {
-        
+
         /// <summary>
         /// 操作是否成功
         /// </summary>
         public bool IsOK = true;
-        
+
         /// <summary>
         /// 错误码
         /// </summary>
         public string ErrorCode = null;
-        
+
         /// <summary>
         /// 错误消息
         /// </summary>
@@ -48,6 +48,8 @@ namespace Aliyun.OTS.Response
         /// 本次操作消耗的读写能力单元
         /// </summary>
         public CapacityUnit Consumed { get; set; }
+
+        public IRow Row{get;set;}
         
         public BatchWriteRowResponseItem(string errorCode, string errorMessage, string tableName, int index)
         {
@@ -64,6 +66,26 @@ namespace Aliyun.OTS.Response
             Consumed = consumed;
             TableName = tableName;
             Index = index;
+        }
+
+        public BatchWriteRowResponseItem(CapacityUnit consumed, string tableName, int index, IRow row):this(consumed, tableName, index)
+        {
+            this.Row = row;
+        }
+
+        public BatchWriteRowResponseItem(string errorCode, string errorMessage, string tableName, int index, IRow row) : this(errorCode, errorMessage, tableName, index)
+        {
+            this.Row = row;
+        }
+
+        public override string ToString()
+        {
+            if (IsOK)
+            {
+                return Index + "write success, table name: " + TableName + "; read:" + Consumed.Read + ", write:" + Consumed.Write;
+            }
+
+            return Index + " write failed, error code: " + ErrorCode + ", error message: " + ErrorMessage;
         }
     }
 }

@@ -39,21 +39,30 @@ namespace Aliyun.OTS.Handler
             var task = responseMessage.Content.ReadAsByteArrayAsync();
             task.Wait();
 
-            if (OTSClientTestHelper.HTTPResponseBodyIsSet) {
+            if (OTSClientTestHelper.HTTPResponseBodyIsSet)
+            {
                 context.HttpResponseBody = OTSClientTestHelper.HTTPResponseBody;
-            } else {
+            }
+            else
+            {
                 context.HttpResponseBody = task.Result;
             }
-            
-            if (OTSClientTestHelper.HttpStatusCodeIsSet) {
+
+            if (OTSClientTestHelper.HttpStatusCodeIsSet)
+            {
                 context.HttpResponseStatusCode = OTSClientTestHelper.HttpStatusCode;
-            } else {
+            }
+            else
+            {
                 context.HttpResponseStatusCode = responseMessage.StatusCode;
             }
 
-            if (OTSClientTestHelper.HttpResponseHeadersIsSet) {
+            if (OTSClientTestHelper.HttpResponseHeadersIsSet)
+            {
                 context.HttpResponseHeaders = OTSClientTestHelper.HttpRequestHeaders;
-            } else {
+            }
+            else
+            {
                 context.HttpResponseHeaders = new Dictionary<string, string>();
                 foreach (var item in responseMessage.Headers)
                 {

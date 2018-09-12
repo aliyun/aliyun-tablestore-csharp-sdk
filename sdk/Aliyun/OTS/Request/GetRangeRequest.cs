@@ -66,17 +66,15 @@ namespace Aliyun.OTS.Request
                                PrimaryKey exclusiveEndPrimaryKey,
                                HashSet<string> columnsToGet = null,
                                int? limit = null,
-                               ColumnCondition condition = null)
+                               IColumnCondition condition = null)
         {
-            QueryCriteria = new RangeRowQueryCriteria(tableName);
-
-            QueryCriteria.Direction = direction;
-
-            QueryCriteria.Limit = limit;
-
-            QueryCriteria.InclusiveStartPrimaryKey = inclusiveStartPrimaryKey;
-
-            QueryCriteria.ExclusiveEndPrimaryKey = exclusiveEndPrimaryKey;
+            QueryCriteria = new RangeRowQueryCriteria(tableName)
+            {
+                Direction = direction,
+                Limit = limit,
+                InclusiveStartPrimaryKey = inclusiveStartPrimaryKey,
+                ExclusiveEndPrimaryKey = exclusiveEndPrimaryKey
+            };
 
             if (columnsToGet != null)
             {
@@ -85,7 +83,7 @@ namespace Aliyun.OTS.Request
 
             if (condition != null)
             {
-                QueryCriteria.Filter = condition;
+                QueryCriteria.Filter = condition.ToFilter();
             }
         }
 

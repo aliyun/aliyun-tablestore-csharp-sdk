@@ -1,29 +1,27 @@
 using System.Collections.Generic;
+using Google.ProtocolBuffers;
+using Aliyun.OTS.DataModel.Filter;
 
 namespace Aliyun.OTS.DataModel.ConditionalUpdate
 {
-    public class CompositeCondition : ColumnCondition
+    public class CompositeCondition : IColumnCondition
     {
-        public enum LogicOperator
-        {
-            NOT, AND, OR
-        }
+        private List<IColumnCondition> subConditions;
 
-        private List<ColumnCondition> subConditions;
+        public LogicOperator LogicOperator { get; set; }
 
-        public LogicOperator Type { get; set; }
-        public List<ColumnCondition> SubConditions
+        public List<IColumnCondition> SubConditions
         {
             get { return subConditions; }
         }
 
-        public CompositeCondition(LogicOperator type)
+        public CompositeCondition(LogicOperator logicOperator)
         {
-            Type = type;
-            subConditions = new List<ColumnCondition>();
+            LogicOperator = logicOperator;
+            subConditions = new List<IColumnCondition>();
         }
         
-        public CompositeCondition AddCondition(ColumnCondition condition)
+        public CompositeCondition AddCondition(IColumnCondition condition)
         {
             subConditions.Add(condition);
             return this;
@@ -31,9 +29,26 @@ namespace Aliyun.OTS.DataModel.ConditionalUpdate
 
         public void Clear() { subConditions.Clear(); }
 
-        public new ColumnConditionType GetType()
+        public ColumnConditionType GetConditionType()
         {
             return ColumnConditionType.COMPOSITE_CONDITION;
+        }
+
+        public ByteString Serialize()
+        {
+            return ToFilter().Serialize();
+        }
+
+        public IFilter ToFilter()
+        {
+            CompositeColumnValueFilter compositeColumnValueFilter = new CompositeColumnValueFilter(LogicOperator);
+
+            foreach (IColumnCondition condition in SubConditions)
+            {
+                compositeColumnValueFilter.AddFilter(condition.ToFilter());
+            }
+
+            return compositeColumnValueFilter;
         }
     }
 }

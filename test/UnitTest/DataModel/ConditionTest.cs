@@ -9,23 +9,9 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
 using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
-using Aliyun.OTS.Request;
 
 namespace Aliyun.OTS.UnitTest.DataModel
 {
@@ -43,8 +29,10 @@ namespace Aliyun.OTS.UnitTest.DataModel
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(0), condition:new Condition(RowExistenceExpectation.IGNORE));
             TestSingleAPI("PutRow");
             TestSingleAPI("GetRow");
-            
-            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(1), condition:new Condition(RowExistenceExpectation.IGNORE));
+
+            SetTestConext(primaryKey: GetPredefinedPrimaryKeyWith4PK(1),
+                          condition: new Condition(RowExistenceExpectation.IGNORE),
+                          deleteRowConsumed: new CapacityUnit(0, 1));
             TestSingleAPI("DeleteRow");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(2), condition:new Condition(RowExistenceExpectation.IGNORE));
@@ -77,12 +65,15 @@ namespace Aliyun.OTS.UnitTest.DataModel
                 PutSinglePredefinedRow(i);
             }
                 
-            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(0), condition:new Condition(RowExistenceExpectation.IGNORE),
+            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(0), 
+                          condition:new Condition(RowExistenceExpectation.IGNORE),
                           putRowConsumed: new CapacityUnit(0, 1));
             TestSingleAPI("PutRow");
             TestSingleAPI("GetRow");
             
-            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(1), condition:new Condition(RowExistenceExpectation.IGNORE));
+            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(1), 
+                          condition:new Condition(RowExistenceExpectation.IGNORE),
+                          deleteRowConsumed: new CapacityUnit(0, 1));
             TestSingleAPI("DeleteRow");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(2), condition:new Condition(RowExistenceExpectation.IGNORE));
@@ -199,16 +190,13 @@ namespace Aliyun.OTS.UnitTest.DataModel
             TestSingleAPI("PutRow");
             TestSingleAPI("GetRow");
             
-            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(1), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while deleting row.");
+            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(1), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST));
             TestSingleAPI("DeleteRow");
             
-            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(2), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while updating row.");
+            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(2), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST));
             TestSingleAPI("UpdateRow_Put");
             
-            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(3), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while updating row.");
+            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(3), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST));
             TestSingleAPI("UpdateRow_Delete");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(4), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
@@ -216,12 +204,10 @@ namespace Aliyun.OTS.UnitTest.DataModel
             TestSingleAPI("BatchWriteRow_Put");
             TestSingleAPI("GetRow"); 
             
-            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(5), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while updating row #0 in table: 'SampleTestName'.");
+            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(5), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST));
             TestSingleAPI("BatchWriteRow_Update");
             
-            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(6), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while deleting row #0 in table: 'SampleTestName'.");
+            SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(6), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST));
             TestSingleAPI("BatchWriteRow_Delete"); 
         }
 
@@ -241,15 +227,15 @@ namespace Aliyun.OTS.UnitTest.DataModel
             TestSingleAPI("PutRow");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(1), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while deleting row.");
+                          allFailedMessage:"Condition check failed.");
             TestSingleAPI("DeleteRow");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(2), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while updating row.");
+                          allFailedMessage:"Condition check failed.");
             TestSingleAPI("UpdateRow_Put");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(3), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while updating row.");
+                          allFailedMessage:"Condition check failed.");
             TestSingleAPI("UpdateRow_Delete");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(4), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
@@ -257,11 +243,11 @@ namespace Aliyun.OTS.UnitTest.DataModel
             TestSingleAPI("BatchWriteRow_Put");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(5), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while updating row #0 in table: 'SampleTestName'.");
+                          allFailedMessage:"Condition check failed.");
             TestSingleAPI("BatchWriteRow_Update");
             
             SetTestConext(primaryKey:GetPredefinedPrimaryKeyWith4PK(6), condition: new Condition(RowExistenceExpectation.EXPECT_NOT_EXIST),
-                          allFailedMessage:"Invalid condition: EXPECT_NOT_EXIST while deleting row #0 in table: 'SampleTestName'.");
+                          allFailedMessage:"Condition check failed.");
             TestSingleAPI("BatchWriteRow_Delete"); 
         }
 

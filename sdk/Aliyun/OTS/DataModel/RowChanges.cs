@@ -22,23 +22,42 @@ namespace Aliyun.OTS.DataModel
         /// <summary>
         /// 表示多个Put操作。
         /// </summary>
-        public List<Tuple<Condition, PrimaryKey, AttributeColumns>> PutOperations;
+        public List<Tuple<Condition, PrimaryKey, AttributeColumns>> PutOperations { get; set; }
         
         /// <summary>
         /// 表示多个Update操作。
         /// </summary>
-        public List<Tuple<Condition, PrimaryKey, UpdateOfAttribute>> UpdateOperations;
+        public List<Tuple<Condition, PrimaryKey, UpdateOfAttribute>> UpdateOperations { get; set; }
         
         /// <summary>
         /// 表示多个Delete操作。
         /// </summary>
-        public List<Tuple<Condition, PrimaryKey>> DeleteOperations;
+        public List<Tuple<Condition, PrimaryKey>> DeleteOperations { get; set;}
+
+
+        /// <summary>
+        /// 表示多个Put操作。
+        /// </summary>
+        public List<RowPutChange> RowPutChanges;
+
+        /// <summary>
+        /// 表示多个Update操作。
+        /// </summary>
+        public List<RowUpdateChange> RowUpdateChanges;
+
+        /// <summary>
+        /// 表示多个Delete操作。
+        /// </summary>
+        public List<RowDeleteChange> RowDeleteChanges;
+
+        public string TableName { get; set;}
         
-        public RowChanges()
+        public RowChanges(string tableName)
         {
-            PutOperations = new List<Tuple<Condition, PrimaryKey, AttributeColumns>>();
-            UpdateOperations = new List<Tuple<Condition, PrimaryKey, UpdateOfAttribute>>();
-            DeleteOperations = new List<Tuple<Condition, PrimaryKey>>();
+            RowPutChanges = new List<RowPutChange>();
+            RowUpdateChanges = new List<RowUpdateChange>();
+            RowDeleteChanges = new List<RowDeleteChange>();
+            TableName = tableName;
         }
 
         /// <summary>
@@ -46,11 +65,23 @@ namespace Aliyun.OTS.DataModel
         /// </summary>
         /// <param name="condition">检查条件</param>
         /// <param name="primaryKey">主键</param>
-        /// <param name="attribute">属性</param>
-        public void AddPut(Condition condition, PrimaryKey primaryKey, AttributeColumns attribute)
+        /// <param name="attributeColumns">属性</param>
+        public void AddPut(Condition condition, PrimaryKey primaryKey, AttributeColumns attributeColumns)
         {
-            var item = new Tuple<Condition, PrimaryKey, AttributeColumns>(condition, primaryKey, attribute);
-            PutOperations.Add(item);
+            var item = new RowPutChange(TableName, primaryKey)
+            {
+                Condition = condition
+            };
+
+            if (attributeColumns != null)
+            {
+                foreach (var column in attributeColumns)
+                {
+                    item.AddColumn(column.Key, column.Value);
+                }
+            }
+
+            RowPutChanges.Add(item);
         }
         
         /// <summary>
@@ -60,8 +91,12 @@ namespace Aliyun.OTS.DataModel
         /// <param name="primaryKey"></param>
         public void AddDelete(Condition condition, PrimaryKey primaryKey)
         {
-            var item = new Tuple<Condition, PrimaryKey>(condition, primaryKey);
-            DeleteOperations.Add(item);
+            var item = new RowDeleteChange(TableName, primaryKey)
+            {
+                Condition = condition
+            };
+
+            RowDeleteChanges.Add(item);
         }
         
         /// <summary>
@@ -69,11 +104,22 @@ namespace Aliyun.OTS.DataModel
         /// </summary>
         /// <param name="condition"></param>
         /// <param name="primaryKey"></param>
-        /// <param name="updates"></param>
-        public void AddUpdate(Condition condition, PrimaryKey primaryKey, UpdateOfAttribute updates)
+        /// <param name="updateAttributes"></param>
+        public void AddUpdate(Condition condition, PrimaryKey primaryKey, UpdateOfAttribute updateAttributes)
         {
-            var item = new Tuple<Condition, PrimaryKey, UpdateOfAttribute>(condition, primaryKey, updates);
-            UpdateOperations.Add(item);
+            var item = new RowUpdateChange(TableName, primaryKey)
+            {
+                Condition = condition
+            };
+
+            item.FromUpdateOfAtrribute(updateAttributes);
+
+            RowUpdateChanges.Add(item);
+        }
+
+        public bool IsEmpty()
+        {
+            return RowPutChanges.Count + RowUpdateChanges.Count + RowDeleteChanges.Count == 0;
         }
     }
 }

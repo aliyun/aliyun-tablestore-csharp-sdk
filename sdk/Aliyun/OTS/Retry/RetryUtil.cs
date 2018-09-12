@@ -16,24 +16,25 @@ namespace Aliyun.OTS.Retry
         public static bool ShouldRetryNoMatterWhichAPI(OTSException exception)
         {
             var e = exception as OTSServerException;
-            if (e != null) 
+
+            if (e != null)
             {
                 if (e.ErrorCode == "OTSRowOperationConflict" ||
                     e.ErrorCode == "OTSNotEnoughCapacityUnit" ||
                     e.ErrorCode == "OTSTableNotReady" ||
                     e.ErrorCode == "OTSPartitionUnavailable" ||
-                    e.ErrorCode == "OTSServerBusy") 
+                    e.ErrorCode == "OTSServerBusy")
                 {
                     return true;
                 }
-                
+
                 if (e.ErrorCode == "OTSQuotaExhausted" &&
                     e.ErrorMessage == "Too frequent table operations.")
                 {
                     return true;
                 }
             }
-            
+
             return false;
         }
         
@@ -54,6 +55,7 @@ namespace Aliyun.OTS.Retry
         public static bool ShouldRetryWhenAPIRepeatable(OTSException exception)
         {
             var e = exception as OTSServerException;
+
             if (e != null)
             {
                 if (e.ErrorCode == "OTSTimeout" ||
@@ -62,22 +64,23 @@ namespace Aliyun.OTS.Retry
                 {
                     return true;
                 }
-                
+
                 int code = (int)e.HttpStatusCode;
                 if (code == 500 || code == 502 || code == 503)
                 {
                     return true;
                 }
-                
+
                 // TODO handle network error & timeout
             }
-            
+
             return false;
         }
         
         public static bool IsServerThrottlingException(OTSException exception)
         {
             var e = exception as OTSServerException;
+
             if (e != null)
             {
                 if (e.ErrorCode == "OTSServerBusy" ||
@@ -87,7 +90,7 @@ namespace Aliyun.OTS.Retry
                     return true;
                 }
             }
-            
+
             return false;
         }
     }

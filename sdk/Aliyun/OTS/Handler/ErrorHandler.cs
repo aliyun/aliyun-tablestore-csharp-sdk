@@ -10,7 +10,7 @@
  */
 
 
-using PB = com.aliyun.cloudservice.ots2;
+using PB = com.alicloud.openservices.tablestore.core.protocol;
 
 namespace Aliyun.OTS.Handler
 {
@@ -77,9 +77,12 @@ namespace Aliyun.OTS.Handler
                 errorMessage,
                 requestID
             );
-            if (context.ClientConfig.OTSErrorLogHandler != null) {
-                context.ClientConfig.OTSErrorLogHandler(exception.ToString());
+
+            if(context.ClientConfig.OTSErrorLogHandler != null)
+            {
+                context.ClientConfig.OTSErrorLogHandler.Invoke(exception.ToString());
             }
+
             throw exception;
         }
     }

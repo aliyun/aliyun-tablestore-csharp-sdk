@@ -9,6 +9,7 @@
  *
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,9 +17,16 @@ namespace Aliyun.OTS.Response
 {
     public struct BatchWriteRowResponseForOneTable
     {
+        [Obsolete("Please use Responses")]
         public IList<BatchWriteRowResponseItem> PutResponses;
+
+        [Obsolete("Please use Responses")]
         public IList<BatchWriteRowResponseItem> UpdateResponses;
+
+        [Obsolete("Please use Responses")]
         public IList<BatchWriteRowResponseItem> DeleteResponses;
+
+        public IList<BatchWriteRowResponseItem> Responses;
     }
 
     /// <summary>
@@ -38,12 +46,11 @@ namespace Aliyun.OTS.Response
         public IEnumerable<BatchWriteRowResponseItem> GetFailedRows() 
         {
             var result = new List<BatchWriteRowResponseItem>();
-            foreach (var tableResult in TableRespones)
+            foreach (var tableResponse in TableRespones)
             {
-                result.AddRange(tableResult.Value.PutResponses.Where(_ => !_.IsOK));
-                result.AddRange(tableResult.Value.UpdateResponses.Where(_ => !_.IsOK));
-                result.AddRange(tableResult.Value.DeleteResponses.Where(_ => !_.IsOK));
+                result.AddRange(tableResponse.Value.Responses.Where(_ => !_.IsOK));
             }
+
             return result;
         }
 

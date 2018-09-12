@@ -20,8 +20,8 @@ namespace Aliyun.OTS.Handler
             inner = new HttpHandler();
             inner = new HttpHeaderHandler(inner);
             inner = new ErrorHandler(inner);
-            inner = new ProtoBufferDecoder(inner);
-            inner = new ProtoBufferEncoder(inner);
+            inner = new ProtocolBufferDecoder(inner);
+            inner = new ProtocolBufferEncoder(inner);
             inner = new RetryHandler(inner);
             InnerHandler = inner;
         }

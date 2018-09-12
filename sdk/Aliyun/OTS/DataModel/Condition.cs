@@ -24,7 +24,7 @@ namespace Aliyun.OTS.DataModel
         /// condition update的新接口
         /// </summary>
         public RowExistenceExpectation RowExistenceExpect { get; set; }
-        public ColumnCondition ColumnCondition { get; set; }
+        public IColumnCondition ColumnCondition { get; set; }
 
         public Condition() { }
 

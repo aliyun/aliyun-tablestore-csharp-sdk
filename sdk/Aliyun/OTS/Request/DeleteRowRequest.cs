@@ -34,13 +34,26 @@ namespace Aliyun.OTS.Request
         /// 该行的主键
         /// </summary>
         public PrimaryKey PrimaryKey { get; set; }
+
+        public RowDeleteChange RowDeleteChange { get; set;}
         
         public DeleteRowRequest(string tableName, Condition condition, PrimaryKey primaryKey) 
         {
             TableName = tableName;
             Condition = condition;
             PrimaryKey = primaryKey;
+            RowDeleteChange = new RowDeleteChange(tableName, primaryKey)
+            {
+                Condition = condition
+            };
         }
 
+        public DeleteRowRequest(RowDeleteChange rowDeleteChange)
+        {
+            RowDeleteChange = rowDeleteChange;
+            TableName = rowDeleteChange.TableName;
+            Condition = rowDeleteChange.Condition;
+            PrimaryKey = rowDeleteChange.PrimaryKey;
+        }
     }
 }

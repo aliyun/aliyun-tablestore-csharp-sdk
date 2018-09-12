@@ -48,6 +48,14 @@ namespace Aliyun.OTS.Response
         /// 属性
         /// </summary>
         public AttributeColumns Attribute { get; set; }
+
+
+        public string TableName { get; set; }
+
+        public IRow Row { get; set; }
+
+        public int Index { get; set; }
+        public byte[] NextToken { get; set; }
         
         public BatchGetRowResponseItem(string errorCode, string errorMessage)
         {
@@ -58,10 +66,39 @@ namespace Aliyun.OTS.Response
         
         public BatchGetRowResponseItem(CapacityUnit consumed, PrimaryKey primaryKey, AttributeColumns attribute)
         {
-            IsOK = true;
             Consumed = consumed;
             PrimaryKey = primaryKey;
             Attribute = attribute;
+        }
+
+        public BatchGetRowResponseItem(string tableName, IRow row, CapacityUnit consumed, int index)
+        {
+            TableName = tableName;
+            Row = row;
+            Consumed = consumed;
+            Index = index;
+
+            if (row != null)
+            {
+                PrimaryKey = row.GetPrimaryKey();
+                Attribute = (row as Row).AttributeColumns;
+            }
+            else
+            {
+                PrimaryKey = new PrimaryKey();
+                Attribute = new AttributeColumns();
+            }
+        }
+
+        public BatchGetRowResponseItem(string tableName, IRow row, CapacityUnit consumed, int index, byte[] nextToken):
+        this(tableName, row, consumed, index)
+        {
+            NextToken = nextToken;
+        }
+
+        public bool HasNextToken()
+        {
+            return (NextToken != null) && (NextToken.Length > 0);
         }
     }
 }

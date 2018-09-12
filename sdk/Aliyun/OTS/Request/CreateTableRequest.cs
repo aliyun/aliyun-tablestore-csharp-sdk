@@ -10,6 +10,7 @@
  */
 
 
+using System.Collections.Generic;
 using Aliyun.OTS.DataModel;
 
 namespace Aliyun.OTS.Request
@@ -28,10 +29,22 @@ namespace Aliyun.OTS.Request
         /// 预留读写吞吐量。
         /// </summary>
         public CapacityUnit ReservedThroughput { get; set; }
+
+
+        public TableOptions TableOptions { get; set; }
+
+
+        public StreamSpecification StreamSpecification { get; set; }
+
+
+        public List<PartitionRange> PartitionRange { get; set; }
+
+
         public CreateTableRequest(TableMeta tableMeta, CapacityUnit reservedThroughput) 
         {
             TableMeta = tableMeta;
             ReservedThroughput = reservedThroughput;
+            TableOptions = new TableOptions();
         }
     }
 }

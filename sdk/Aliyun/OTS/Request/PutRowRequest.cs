@@ -28,23 +28,33 @@ namespace Aliyun.OTS.Request
         /// 操作条件
         /// </summary>
         public Condition Condition { get; set; }
-        
+
         /// <summary>
-        /// 主键
+        /// PutRow操作的请求参数
         /// </summary>
-        public PrimaryKey PrimaryKey { get; set; }
+        /// <value>The row put change.</value>
+        public RowPutChange RowPutChange { get; set; }
         
-        /// <summary>
-        /// 属性
-        /// </summary>
-        public AttributeColumns Attribute { get; set; }
-        
-        public PutRowRequest(string tableName, Condition condition, PrimaryKey primaryKey, AttributeColumns attribute)
+        public PutRowRequest(string tableName, Condition condition)
         {
             TableName = tableName;
             Condition = condition;
-            PrimaryKey = primaryKey;
-            Attribute = attribute;
+            RowPutChange = new RowPutChange(tableName);
+        }
+
+        public PutRowRequest(string tableName, Condition condition, PrimaryKey primaryKey, AttributeColumns columns):this(tableName, condition)
+        {
+            RowPutChange.PrimaryKey = primaryKey;
+
+            if(columns != null)
+            {
+                var enumerator = columns.GetEnumerator();
+                while (enumerator.MoveNext())
+                {
+                    var column  = enumerator.Current;
+                    RowPutChange.AddColumn(new Column(column.Key, column.Value));
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Aliyun.OTS.Samples
     public static class CreateTableSample
     {
 
-        private static string TableName = "createTableSample";
+        private static readonly string TableName = "createTableSample";
 
         public static void TableOperations()
         {
@@ -17,9 +17,11 @@ namespace Aliyun.OTS.Samples
             OTSClient otsClient = Config.GetClient();
             {
                 Console.WriteLine("Start create table...");
-                PrimaryKeySchema primaryKeySchema = new PrimaryKeySchema();
-                primaryKeySchema.Add("pk0", ColumnValueType.Integer);
-                primaryKeySchema.Add("pk1", ColumnValueType.String);
+                PrimaryKeySchema primaryKeySchema = new PrimaryKeySchema
+                {
+                    { "pk0", ColumnValueType.Integer },
+                    { "pk1", ColumnValueType.String }
+                };
                 TableMeta tableMeta = new TableMeta(TableName, primaryKeySchema);
 
                 CapacityUnit reservedThroughput = new CapacityUnit(1, 1);
@@ -56,12 +58,12 @@ namespace Aliyun.OTS.Samples
             }
 
             // 删除表
-            //{
-                //Console.WriteLine("Start delete table...");
-                //DeleteTableRequest request = new DeleteTableRequest(TableName);
-                //otsClient.DeleteTable(request);
-                //Console.WriteLine("Table is deleted.");
-            //}
+            {
+                Console.WriteLine("Start delete table...");
+                DeleteTableRequest request = new DeleteTableRequest(TableName);
+                otsClient.DeleteTable(request);
+                Console.WriteLine("Table is deleted.");
+            }
         }
     }
 }

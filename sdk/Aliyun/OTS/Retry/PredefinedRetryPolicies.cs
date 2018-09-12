@@ -26,9 +26,9 @@ namespace Aliyun.OTS.Retry
         private int ServerThrottlingExceptionDelayFactor = 500;
         
         private int StabilityExceptionDelayFactor = 200;
-        
-        private Random RandomGenerator;
-        
+
+        private readonly Random RandomGenerator;
+
         public DefaultRetryPolicy()
         {
             RandomGenerator = new Random();
@@ -40,10 +40,12 @@ namespace Aliyun.OTS.Retry
             if (maxRetryTimes < 0) {
                 throw new OTSClientException("maxRetryTimes must be >= 0.");
             }
+
             MaxDelay = maxRetryDelay;
             if (maxRetryDelay < 0) {
                 throw new OTSClientException("maxRetryDelay must be >= 0.");
             }
+
             RandomGenerator = new Random();
         }
         

@@ -14,27 +14,27 @@ namespace Aliyun.OTS.Samples
 
                 CreateTableSample.TableOperations();
 
-                //SingleRowReadWriteSample.PutRow();
-                //SingleRowReadWriteSample.PutRowAsync();
+                SingleRowReadWriteSample.PutRow();
+                SingleRowReadWriteSample.PutRowAsync();
 
-                //SingleRowReadWriteSample.UpdateRow();
+                SingleRowReadWriteSample.UpdateRow();
 
-                //SingleRowReadWriteSample.GetRow();
-                //SingleRowReadWriteSample.GetRowWithFilter();
+                SingleRowReadWriteSample.GetRow();
+                SingleRowReadWriteSample.GetRowWithFilter();
 
-                //MultiRowReadWriteSample.BatchWriteRow();
+                MultiRowReadWriteSample.BatchWriteRow();
 
-                //MultiRowReadWriteSample.GetRange();
-                //MultiRowReadWriteSample.GetRangeWithFilter();
-                //MultiRowReadWriteSample.GetIterator();
+                MultiRowReadWriteSample.GetRange();
+                MultiRowReadWriteSample.GetRangeWithFilter();
+                MultiRowReadWriteSample.GetIterator();
 
-                //MultiRowReadWriteSample.BatchGetRow();
-                //MultiRowReadWriteSample.BatchGetRowWithFilter();
+                MultiRowReadWriteSample.BatchGetRow();
+                MultiRowReadWriteSample.BatchGetRowWithFilter();
 
-                //ConditionUpdateSample.ConditionPutRow();
-                //ConditionUpdateSample.ConditionUpdateRow();
-                //ConditionUpdateSample.ConditionDeleteRow();
-                //ConditionUpdateSample.ConditionBatchWriteRow();
+                ConditionUpdateSample.ConditionPutRow();
+                ConditionUpdateSample.ConditionUpdateRow();
+                ConditionUpdateSample.ConditionDeleteRow();
+                ConditionUpdateSample.ConditionBatchWriteRow();
             }
             catch (OTSClientException ex)
             {

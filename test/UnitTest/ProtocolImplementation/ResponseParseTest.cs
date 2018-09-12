@@ -10,27 +10,15 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
 using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
-using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
 using Aliyun.OTS.Request;
 
 
 namespace Aliyun.OTS.UnitTest.ProtocolImplementation
 {
-    
+
     [TestFixture]
     class ResponseParseTest : OTSUnitTestBase
     {
@@ -256,7 +244,7 @@ namespace Aliyun.OTS.UnitTest.ProtocolImplementation
             OTSClientTestHelper.SetHTTPResponseBody(body);
             OTSClientTestHelper.SetHttpStatusCode(HttpStatusCode.OK);
             var headers = MakeResponseHeaders("/ListTable", body);
-            headers["x-ots-date"] = (DateTime.UtcNow.AddMinutes(16)).ToString("R");
+            headers["x-ots-date"] = Util.OtsUtils.FormatDateTimeStr(DateTime.UtcNow.AddMinutes(16));
             headers["Authorization"] = String.Format("OTS {0}:{1}", 
                                                      TestAccessKeyID, 
                                                      MakeSignature("/ListTable", headers, TestAccessKeySecret));
@@ -276,7 +264,7 @@ namespace Aliyun.OTS.UnitTest.ProtocolImplementation
             OTSClientTestHelper.SetHTTPResponseBody(body);
             OTSClientTestHelper.SetHttpStatusCode(HttpStatusCode.OK);
             headers = MakeResponseHeaders("/ListTable", body);
-            headers["x-ots-date"] = (DateTime.UtcNow.AddMinutes(-16)).ToString("R");
+            headers["x-ots-date"] = Util.OtsUtils.FormatDateTimeStr(DateTime.UtcNow.AddMinutes(-16));
             headers["Authorization"] = String.Format("OTS {0}:{1}", 
                                                      TestAccessKeyID, 
                                                      MakeSignature("/ListTable", headers, TestAccessKeySecret));
@@ -311,7 +299,8 @@ namespace Aliyun.OTS.UnitTest.ProtocolImplementation
             try {
                 var response = OTSClient.ListTable(request);
                 Assert.Fail();
-            } catch (OTSClientException e) {
+            } catch (OTSClientException)
+            {
                 Assert.IsTrue(true);
             }
         }
@@ -363,7 +352,8 @@ namespace Aliyun.OTS.UnitTest.ProtocolImplementation
             try {
                 var response = OTSClient.ListTable(request);
                 Assert.Fail();
-            } catch (OTSClientException e) {
+            } catch (OTSClientException)
+            {
                 Assert.IsTrue(true);
             }
         }

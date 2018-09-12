@@ -9,35 +9,21 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
 using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
-using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
-using Aliyun.OTS.Request;
 using Aliyun.OTS.Retry;
 using Aliyun.OTS.Handler;
 
 namespace Aliyun.OTS.UnitTest.RetryPolicyTest
 {
-    
+
     [TestFixture]
     class StandardRetryConditionTest : OTSUnitTestBase
     {
         RetryPolicy retryPolicy = new DefaultRetryPolicy();
-            
-        string[] apiNames = new [] {
+        private string[] apiNames = new [] {
             "CreateTable",   // 0
             "ListTable",     // 1
             "UpdateTable",   // 2
@@ -51,8 +37,7 @@ namespace Aliyun.OTS.UnitTest.RetryPolicyTest
             "BatchWriteRow", // 10
             "GetRange",      // 11
         };
-            
-        string[][] errors = {
+        private string[][] errors = {
             new []{ "OTSAuthFailed", null },                                            // 0
             new []{ "OTSRequestBodyTooLarge", null },                                   // 1
             new []{ "OTSRequestTimeout", null },                                        // 2
@@ -152,9 +137,11 @@ namespace Aliyun.OTS.UnitTest.RetryPolicyTest
                     var expect = retryConditionTable[j][i] == 1;
                     
                     var exception = new OTSServerException(apiName, httpCode, errorCode, errorMessage);
-                    var context = new Context();
-                    context.APIName = apiName;
-                    
+                    var context = new Context
+                    {
+                        APIName = apiName
+                    };
+
                     Assert.AreEqual(expect, retryPolicy.CanRetry(context, exception), 
                                     "Retry Condition Not Match: API Name {0}, Error Code: {1}",
                                     apiName, errorCode);

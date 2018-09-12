@@ -51,8 +51,8 @@ namespace Aliyun.OTS.Request
                                  CapacityUnit consumedCapacityUnitCounter,
                                  HashSet<string> columnsToGet = null,
                                  int? limit = null,
-                                 ColumnCondition condition = null)
-            : base (tableName, direction, inclusiveStartPrimaryKey, exclusiveEndPrimaryKey, 
+                                 IColumnCondition condition = null)
+            : base(tableName, direction, inclusiveStartPrimaryKey, exclusiveEndPrimaryKey,
                     columnsToGet, limit, condition)
         {
             ConsumedCapacityUnitCounter = consumedCapacityUnitCounter;

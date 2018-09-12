@@ -10,48 +10,51 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
 using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
-using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
 using Aliyun.OTS.Request;
 
 
 namespace Aliyun.OTS.UnitTest.ProtocolImplementation
 {
-    
+
     [TestFixture]
     class ErrorHandlingTest : OTSUnitTestBase 
     {
-        
+
         // <summary>
         // 服务器返回的 message Error 不合法，期望抛出服务端异常，并校验 HTTP 返回码。
         // </summary>
         [Test]
-        public void TestInvalidPBInError() 
+        public void TestInvalidPBInError()
         {
             OTSClientTestHelper.SetHttpStatusCode(HttpStatusCode.BadRequest);
-            OTSClientTestHelper.SetHTTPResponseBody(new byte[]{});
-            
+            OTSClientTestHelper.SetHTTPResponseBody(new byte[] { });
+
             var request = new ListTableRequest();
-            
-            try {
+
+            try
+            {
                 var response = OTSClient.ListTable(request);
                 Assert.Fail();
-            } catch (OTSServerException e) {
+            }
+            catch (OTSServerException e)
+            {
                 AssertOTSServerException(new OTSServerException("/ListTable", HttpStatusCode.BadRequest), e);
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        // <summary>
+        // 服务器返回的 message Error 不合法，期望抛出服务端异常，并校验 HTTP 返回码。
+        // </summary>
+        [Test]
+        public void TestInvalidPBInErrorWithCorrectBody() 
+            {
             
             var body = new byte[20];
             OTSClientTestHelper.SetHttpStatusCode(HttpStatusCode.BadRequest);
@@ -59,7 +62,7 @@ namespace Aliyun.OTS.UnitTest.ProtocolImplementation
             var headers = MakeResponseHeaders("/ListTable", body);
             OTSClientTestHelper.SetHttpRequestHeaders(headers);
             
-            request = new ListTableRequest();
+            var request = new ListTableRequest();
             
             try {
                 var response = OTSClient.ListTable(request);

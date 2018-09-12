@@ -11,7 +11,7 @@ namespace Aliyun.OTS.Samples
     public static class SingleRowReadWriteSample
     {
 
-        private static string TableName = "singleRowReadWriteSample";
+        private static readonly string TableName = "singleRowReadWriteSample";
 
         private static void PrepareTable()
         {
@@ -24,9 +24,11 @@ namespace Aliyun.OTS.Samples
             }
 
 
-            PrimaryKeySchema primaryKeySchema = new PrimaryKeySchema();
-            primaryKeySchema.Add("pk0", ColumnValueType.Integer);
-            primaryKeySchema.Add("pk1", ColumnValueType.String);
+            PrimaryKeySchema primaryKeySchema = new PrimaryKeySchema
+            {
+                { "pk0", ColumnValueType.Integer },
+                { "pk1", ColumnValueType.String }
+            };
             TableMeta tableMeta = new TableMeta(TableName, primaryKeySchema);
 
             CapacityUnit reservedThroughput = new CapacityUnit(1, 1);
@@ -42,15 +44,19 @@ namespace Aliyun.OTS.Samples
             OTSClient otsClient = Config.GetClient();
 
             // 定义行的主键，必须与创建表时的TableMeta中定义的一致
-            PrimaryKey primaryKey = new PrimaryKey();
-            primaryKey.Add("pk0", new ColumnValue(0));
-            primaryKey.Add("pk1", new ColumnValue("abc"));
+            PrimaryKey primaryKey = new PrimaryKey
+            {
+                { "pk0", new ColumnValue(0) },
+                { "pk1", new ColumnValue("abc") }
+            };
 
             // 定义要写入改行的属性列
-            AttributeColumns attribute = new AttributeColumns();
-            attribute.Add("col0", new ColumnValue(0));
-            attribute.Add("col1", new ColumnValue("a"));
-            attribute.Add("col2", new ColumnValue(true));
+            AttributeColumns attribute = new AttributeColumns
+            {
+                { "col0", new ColumnValue(0) },
+                { "col1", new ColumnValue("a") },
+                { "col2", new ColumnValue(true) }
+            };
             PutRowRequest request = new PutRowRequest(TableName, new Condition(RowExistenceExpectation.IGNORE), primaryKey, attribute);
 
             otsClient.PutRow(request);
@@ -69,15 +75,19 @@ namespace Aliyun.OTS.Samples
                 for (int i = 0; i < 100; i++)
                 {
                     // 定义行的主键，必须与创建表时的TableMeta中定义的一致
-                    var primaryKey = new PrimaryKey();
-                    primaryKey.Add("pk0", new ColumnValue(i));
-                    primaryKey.Add("pk1", new ColumnValue("abc"));
+                    var primaryKey = new PrimaryKey
+                    {
+                        { "pk0", new ColumnValue(i) },
+                        { "pk1", new ColumnValue("abc") }
+                    };
 
                     // 定义要写入改行的属性列
-                    var attribute = new AttributeColumns();
-                    attribute.Add("col0", new ColumnValue(i));
-                    attribute.Add("col1", new ColumnValue("a"));
-                    attribute.Add("col2", new ColumnValue(true));
+                    var attribute = new AttributeColumns
+                    {
+                        { "col0", new ColumnValue(i) },
+                        { "col1", new ColumnValue("a") },
+                        { "col2", new ColumnValue(true) }
+                    };
 
                     var request = new PutRowRequest(TableName, new Condition(RowExistenceExpectation.IGNORE),
                                                     primaryKey, attribute);
@@ -107,9 +117,11 @@ namespace Aliyun.OTS.Samples
             OTSClient otsClient = Config.GetClient();
 
             // 定义行的主键，必须与创建表时的TableMeta中定义的一致
-            PrimaryKey primaryKey = new PrimaryKey();
-            primaryKey.Add("pk0", new ColumnValue(0));
-            primaryKey.Add("pk1", new ColumnValue("abc"));
+            PrimaryKey primaryKey = new PrimaryKey
+            {
+                { "pk0", new ColumnValue(0) },
+                { "pk1", new ColumnValue("abc") }
+            };
 
             // 定义要写入改行的属性列
             UpdateOfAttribute attribute = new UpdateOfAttribute();
@@ -143,9 +155,11 @@ namespace Aliyun.OTS.Samples
             OTSClient otsClient = Config.GetClient();
 
             // 定义行的主键，必须与创建表时的TableMeta中定义的一致
-            PrimaryKey primaryKey = new PrimaryKey();
-            primaryKey.Add("pk0", new ColumnValue(0));
-            primaryKey.Add("pk1", new ColumnValue("abc"));
+            PrimaryKey primaryKey = new PrimaryKey
+            {
+                { "pk0", new ColumnValue(0) },
+                { "pk1", new ColumnValue("abc") }
+            };
 
             GetRowRequest request = new GetRowRequest(TableName, primaryKey); // 未指定读哪列，默认读整行
             GetRowResponse response = otsClient.GetRow(request);
@@ -174,25 +188,29 @@ namespace Aliyun.OTS.Samples
             OTSClient otsClient = Config.GetClient();
 
             // 定义行的主键，必须与创建表时的TableMeta中定义的一致
-            PrimaryKey primaryKey = new PrimaryKey();
-            primaryKey.Add("pk0", new ColumnValue(0));
-            primaryKey.Add("pk1", new ColumnValue("abc"));
+            PrimaryKey primaryKey = new PrimaryKey
+            {
+                { "pk0", new ColumnValue(0) },
+                { "pk1", new ColumnValue("abc") }
+            };
 
-            var rowQueryCriteria = new SingleRowQueryCriteria(TableName);
-            rowQueryCriteria.RowPrimaryKey = primaryKey;
+            var rowQueryCriteria = new SingleRowQueryCriteria(TableName)
+            {
+                RowPrimaryKey = primaryKey
+            };
 
             // 只返回col0的值等于5的行或者col1不等于ff的行
             var filter1 = new RelationalCondition("col0",
-                    RelationalCondition.CompareOperator.EQUAL,
+                    CompareOperator.EQUAL,
                     new ColumnValue(5));
 
-            var filter2 = new RelationalCondition("col1", RelationalCondition.CompareOperator.NOT_EQUAL, new ColumnValue("ff"));
+            var filter2 = new RelationalCondition("col1", CompareOperator.NOT_EQUAL, new ColumnValue("ff"));
 
-            var filter = new CompositeCondition(CompositeCondition.LogicOperator.OR);
+            var filter = new CompositeCondition(LogicOperator.OR);
             filter.AddCondition(filter1);
             filter.AddCondition(filter2);
 
-            rowQueryCriteria.Filter = filter;
+            rowQueryCriteria.Filter = filter.ToFilter();
             rowQueryCriteria.AddColumnsToGet("col0");
             rowQueryCriteria.AddColumnsToGet("col1");
 

@@ -26,49 +26,49 @@ namespace Aliyun.OTS
         /// API名称，例如 "/GetRow"，"/CeateTable"。
         /// </summary>
         public string APIName { get; private set; }
-        
+
         /// <summary>
         /// HTTP返回码。 
         /// </summary>
         public HttpStatusCode HttpStatusCode { get; private set; }
-        
+
         /// <summary>
         /// 错误类型字符串。
         /// </summary>
         public string ErrorCode { get; private set; }
-        
+
         /// <summary>
         /// 错误消息字符串。
         /// </summary>
         public string ErrorMessage { get; private set; }
-        
+
         /// <summary>
         /// 本次请求的ID，用于OTS工程师定位错误使用。
         /// </summary>
         public string RequestID { get; private set; }
-        
+
         private static string GetMessageString(string apiName, HttpStatusCode httpStatusCode, string errorCode, string errorMessage, string requestID)
         {
             string ret = String.Format(
                 "OTS request failed, API: {0}, HTTPStatus: {1} {2}",
                 apiName, (int)httpStatusCode, httpStatusCode
             );
-            
+
             if (errorCode != null)
             {
                 ret += String.Format(", ErrorCode: {0}", errorCode);
             }
-            
+
             if (errorMessage != null)
             {
                 ret += String.Format(", ErrorMessage: {0}", errorMessage);
             }
-                  
+
             if (requestID != null)
             {
                 ret += String.Format(", Request ID: {0}", requestID);
             }
-            
+
             return ret;
         }
 

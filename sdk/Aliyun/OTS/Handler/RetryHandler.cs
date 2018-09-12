@@ -11,7 +11,6 @@
 
 using System.Linq;
 using System.Threading;
-
 using Aliyun.OTS.Retry;
 
 namespace Aliyun.OTS.Handler
@@ -40,10 +39,6 @@ namespace Aliyun.OTS.Handler
             return false;
         }
         
-        private void RestRequestForRetry(Context context)
-        {
-        }
-        
         private void ResetRetry(Context context)
         {
             InnerHandler.HandleBefore(context);
@@ -57,15 +52,20 @@ namespace Aliyun.OTS.Handler
             while (true) 
             { 
                 OTSException exceptionForRetry = null;
-                
-                try {
+
+                try
+                {
                     InnerHandler.HandleAfter(context);
-                } catch (OTSClientException exception) {
-                    exceptionForRetry = exception;
-                } catch (OTSServerException exception) {
+                }
+                catch (OTSClientException exception)
+                {
                     exceptionForRetry = exception;
                 }
-                
+                catch (OTSServerException exception)
+                {
+                    exceptionForRetry = exception;
+                }
+
                 if (OTSClientTestHelper.RetryTimesAndBackOffRecordSwith) {
                     if (OTSClientTestHelper.RetryExceptions.Count() > OTSClientTestHelper.RetryTimes) {
                         exceptionForRetry = OTSClientTestHelper.RetryExceptions[OTSClientTestHelper.RetryTimes];
@@ -73,7 +73,6 @@ namespace Aliyun.OTS.Handler
                 }
                 
                 if (ShouldRetry(retryPolicy, context, exceptionForRetry)) {
-                    RestRequestForRetry(context);
                     int retryDelay = retryPolicy.DelayBeforeNextRetry(context, exceptionForRetry);
                     Thread.Sleep(retryDelay);
                     ResetRetry(context);
@@ -86,7 +85,7 @@ namespace Aliyun.OTS.Handler
                     
                     continue;
                 }
-                
+
                 if (exceptionForRetry != null) {
                     throw exceptionForRetry;
                 }

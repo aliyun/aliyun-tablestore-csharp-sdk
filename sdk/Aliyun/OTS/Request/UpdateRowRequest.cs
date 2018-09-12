@@ -38,7 +38,9 @@ namespace Aliyun.OTS.Request
         /// 属性的修改
         /// </summary>
         public UpdateOfAttribute UpdateOfAttribute { get; set; }
-        
+
+        public RowUpdateChange RowUpdateChange { get; set;}
+
         public UpdateRowRequest(string tableName, Condition condition, PrimaryKey primaryKey,
             UpdateOfAttribute updateOfAttribute)
         {
@@ -46,6 +48,20 @@ namespace Aliyun.OTS.Request
             Condition = condition;
             PrimaryKey = primaryKey;
             UpdateOfAttribute = updateOfAttribute;
+            RowUpdateChange = new RowUpdateChange(tableName, primaryKey)
+            {
+                Condition = condition
+            };
+
+            RowUpdateChange.FromUpdateOfAtrribute(updateOfAttribute);
+        }
+
+        public UpdateRowRequest(RowUpdateChange rowUpdateChange)
+        {
+            this.RowUpdateChange = rowUpdateChange;
+            this.TableName = rowUpdateChange.TableName;
+            this.Condition = rowUpdateChange.Condition;
+            this.PrimaryKey = rowUpdateChange.PrimaryKey;
         }
     }
 }

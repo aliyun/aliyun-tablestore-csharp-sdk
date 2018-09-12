@@ -1,4 +1,4 @@
-﻿# Aliyun TableStore SDK for C# 
+# Aliyun TableStore SDK for C# 
 
 [![Software License](https://img.shields.io/badge/license-apache2-brightgreen.svg)](LICENSE)
 [![GitHub version](https://badge.fury.io/gh/aliyun%2Faliyun-tablestore-csharp-sdk.svg)](https://badge.fury.io/gh/aliyun%2Faliyun-tablestore-csharp-sdk)
@@ -9,7 +9,7 @@
  - 阿里云表格存储是构建在阿里云飞天分布式系统之上的NoSQL数据存储服务，提供海量结构化数据的存储和实时访问。
 
 ## 版本
- - 当前版本：3.0.0
+ - 当前版本：4.0.0
 
 ## 运行环境
 ### Windows

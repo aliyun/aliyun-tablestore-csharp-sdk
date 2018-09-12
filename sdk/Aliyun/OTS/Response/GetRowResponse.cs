@@ -18,6 +18,8 @@ namespace Aliyun.OTS.Response
     /// </summary>
     public class GetRowResponse : OTSResponse
     {
+        private AttributeColumns attributes = null;
+
         /// <summary>
         /// 本次操作消耗的读写能力单元。
         /// </summary>
@@ -31,7 +33,30 @@ namespace Aliyun.OTS.Response
         /// <summary>
         /// 属性
         /// </summary>
-        public AttributeColumns Attribute { get; private set; }
+        public AttributeColumns Attribute
+        {
+            get
+            {
+
+                if (this.attributes != null || Columns == null)
+                {
+                    return this.attributes;
+                }
+
+                this.attributes = new AttributeColumns();
+
+                foreach (var column in Columns)
+                {
+                    this.attributes.Add(column);
+                }
+
+                return this.attributes;
+            }
+        }
+
+        public Column[] Columns { get; set;}
+
+        public Row Row { get; set; }
         
         public GetRowResponse() {}
 
@@ -39,7 +64,22 @@ namespace Aliyun.OTS.Response
         {
             ConsumedCapacityUnit = consumedCapacityUnit;
             PrimaryKey = primaryKey;
-            Attribute = attribute;
+            this.attributes = attribute;
+        }
+
+        public GetRowResponse(CapacityUnit consumedCapacityUnit, PrimaryKey primaryKey, Column[] columns)
+        {
+            ConsumedCapacityUnit = consumedCapacityUnit;
+            PrimaryKey = primaryKey;
+            Columns = columns;
+        }
+
+        public GetRowResponse(CapacityUnit consumedCapacityUnit, IRow row)
+        {
+            ConsumedCapacityUnit = consumedCapacityUnit;
+            Row = row as Row;
+            PrimaryKey = Row.GetPrimaryKey();
+            Columns = Row.GetColumns();
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alibaba Cloud Computing")]
 [assembly: AssemblyProduct("Aliyun.TableStore.Test")]
-[assembly: AssemblyCopyright("Copyright (c) 2009-2016 aliyun.com")]
+[assembly: AssemblyCopyright("Copyright (c) 2009-2018 aliyun.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -9,20 +9,8 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
-using Aliyun.OTS.Response;
 using Aliyun.OTS.Request;
 
 namespace Aliyun.OTS.UnitTest

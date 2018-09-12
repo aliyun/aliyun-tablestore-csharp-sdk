@@ -14,13 +14,7 @@ using System.Collections.Generic;
 using Aliyun.OTS.DataModel;
 
 namespace Aliyun.OTS.Response
-{
-    public struct RowDataFromGetRange
-    {
-        public PrimaryKey PrimaryKey { get; set; }
-        public AttributeColumns Attribute { get; set; }
-    }
-    
+{   
     /// <summary>
     /// 表示GetRange的返回
     /// </summary>
@@ -39,11 +33,13 @@ namespace Aliyun.OTS.Response
         /// <summary>
         /// 返回的每一行数据
         /// </summary>
-        public IList<RowDataFromGetRange> RowDataList { get; set; }
-        
+        public IList<Row> RowDataList { get; set; }
+
+        public byte[] NextToken { get; set; }
+
         public GetRangeResponse() 
         {
-            RowDataList = new List<RowDataFromGetRange>();
+            RowDataList = new List<Row>();
         }
     }
 }

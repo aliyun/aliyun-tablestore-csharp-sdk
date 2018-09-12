@@ -9,27 +9,13 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Net;
-using System.Net.Http;
-using System.IO;
 
 using NUnit.Framework;
-
-using Aliyun.OTS;
 using Aliyun.OTS.DataModel;
-using Aliyun.OTS.Response;
-using Aliyun.OTS.Request;
 
 namespace Aliyun.OTS.UnitTest.DataModel
 {
-    
+
     [TestFixture]
     class PrimaryKeyTest : OTSUnitTestBase
     {
@@ -47,9 +33,6 @@ namespace Aliyun.OTS.UnitTest.DataModel
                          allFailedMessage:"The number of primary key columns must be in range: [1, 4].");
             
             TestSingleAPI("CreateTable");
-            CreateTestTableWith4PK();
-            
-            TestAllDataAPI(createTable:false);
         }
 
         // <summary>
@@ -58,18 +41,26 @@ namespace Aliyun.OTS.UnitTest.DataModel
         [Test]
         public void TestOneColumnInPK() 
         {
-            var primaryKeySchema = new PrimaryKeySchema();
-            primaryKeySchema.Add("PK0", ColumnValueType.Integer);
-            
-            var primaryKey = new PrimaryKey();
-            primaryKey.Add("PK0", new ColumnValue(123));
-            
-            var startPrimaryKey = new PrimaryKey();
-            startPrimaryKey.Add("PK0", ColumnValue.INF_MIN);
+            var primaryKeySchema = new PrimaryKeySchema
+            {
+                { "PK0", ColumnValueType.Integer }
+            };
 
-            var endPrimaryKey = new PrimaryKey();
-            endPrimaryKey.Add("PK0", ColumnValue.INF_MAX);
-            
+            var primaryKey = new PrimaryKey
+            {
+                { "PK0", new ColumnValue(123) }
+            };
+
+            var startPrimaryKey = new PrimaryKey
+            {
+                { "PK0", ColumnValue.INF_MIN }
+            };
+
+            var endPrimaryKey = new PrimaryKey
+            {
+                { "PK0", ColumnValue.INF_MAX }
+            };
+
             SetTestConext(pkSchema:primaryKeySchema, primaryKey:primaryKey,
                           startPrimaryKey:startPrimaryKey, endPrimaryKey:endPrimaryKey);
             

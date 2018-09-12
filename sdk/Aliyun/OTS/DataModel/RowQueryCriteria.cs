@@ -9,7 +9,7 @@
  */
 
 using System.Collections.Generic;
-using Aliyun.OTS.DataModel.ConditionalUpdate;
+using Aliyun.OTS.DataModel.Filter;
 
 namespace Aliyun.OTS.DataModel
 {
@@ -29,9 +29,35 @@ namespace Aliyun.OTS.DataModel
         private HashSet<string> columnsToGet = new HashSet<string>();
 
         /// <summary>
+        ///  要读取的时间戳的范围，若未设置，则代表读取所有的版本。
+        /// </summary>
+        public TimeRange TimeRange { get; set; }
+
+        /// <summary>
+        /// 要返回的列的版本的个数，若未设置，则返回OTS当前保留的所有版本。
+        /// </summary>
+        public int? MaxVersions { get; set; }
+
+        /// <summary>
         /// 本次查询使用的Filter
         /// </summary>
-        public ColumnCondition Filter { get; set; }
+        public IFilter Filter { get; set; }
+
+        /// <summary>
+        /// 查询的列范围的起始位置.
+        /// </summary>
+        public string StartColumn { get; set; }
+
+        /// <summary>
+        /// 查询的列范围的终止位置.
+        /// </summary>
+        public string EndColumn { get; set; }
+
+        /// <summary>
+        /// 内部参数。
+        /// </summary>
+        public bool? CacheBlocks { get; set; }
+
 
         /// <summary>
         /// 构造一个在给定名称的表中查询的条件
@@ -75,10 +101,22 @@ namespace Aliyun.OTS.DataModel
         /// <summary>
         /// 设置需要读取的列的列表。若List为空，则读取所有列
         /// </summary>
-        /// <param name="columnsToGet">需要读取的列的列表</param>
+        /// <param name="columnNames">需要读取的列的列表</param>
         public void SetColumnsToGet(HashSet<string> columnNames)
         {
-            columnsToGet = columnNames;
+            this.columnsToGet = columnNames;
+        }
+
+        public void CopyTo(RowQueryCriteria target)
+        {
+            target.TableName = TableName;
+            target.columnsToGet.UnionWith(this.columnsToGet);
+            target.TimeRange = TimeRange;
+            target.MaxVersions = MaxVersions;
+            target.CacheBlocks = CacheBlocks;
+            target.Filter = Filter;
+            target.StartColumn = StartColumn;
+            target.EndColumn = EndColumn;
         }
     }
 }

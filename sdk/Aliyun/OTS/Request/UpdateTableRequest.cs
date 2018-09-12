@@ -27,7 +27,22 @@ namespace Aliyun.OTS.Request
         /// 要更新的预留读写吞吐量。这里的预留读写吞吐量可以仅设置读或写。
         /// </summary>
         public CapacityUnit ReservedThroughput { get; set; }
+
+        /// <summary>
+        /// 要更新的预留读写吞吐量。这里的预留读写吞吐量可以仅设置读或写。
+        /// </summary>
+        public TableOptions TableOptions { get; set; }
+
+        /// <summary>
+        /// 要更新的预留读写吞吐量。这里的预留读写吞吐量可以仅设置读或写。
+        /// </summary>
+        public StreamSpecification StreamSpecification { get; set; }
         
+        public UpdateTableRequest(string tableName)
+        {
+            TableName = tableName;
+        }
+
         public UpdateTableRequest(string tableName, CapacityUnit reservedThroughput)
         {
             TableName = tableName;

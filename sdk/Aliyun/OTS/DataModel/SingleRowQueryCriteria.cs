@@ -10,12 +10,18 @@
 
 namespace Aliyun.OTS.DataModel
 {
-    public class SingleRowQueryCriteria : RowQueryCriteria
+    public class SingleRowQueryCriteria : RowQueryCriteria, IRow
     {
         /// <summary>
         /// 设置和获取主键
         /// </summary>
         public PrimaryKey RowPrimaryKey {get;set;}
+
+        /// <summary>
+        /// 用于行内流式读, 标记位置和状态信息.
+        /// </summary>
+        /// <value>The token.</value>
+        public byte[] Token { get; set; }
 
         /// <summary>
         /// 构造一个在给定名称的表中查询的条件。
@@ -24,5 +30,15 @@ namespace Aliyun.OTS.DataModel
         public SingleRowQueryCriteria(string tableName)
             : base(tableName)
         { }
+
+        public PrimaryKey GetPrimaryKey()
+        {
+            return this.RowPrimaryKey;
+        }
+
+        public int CompareTo(IRow other)
+        {
+            return this.RowPrimaryKey.CompareTo(other.GetPrimaryKey());
+        }
     }
 }

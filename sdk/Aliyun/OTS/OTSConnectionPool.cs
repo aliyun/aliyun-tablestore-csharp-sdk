@@ -36,8 +36,11 @@ namespace Aliyun.OTS
 
             for (int i = 0; i < connectionLimit; i ++)
             {
-                var client = new HttpClient();
-                client.BaseAddress = new Uri(EndPoint);
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(EndPoint)
+                };
+
                 Pool.Enqueue(client);
             }
         }
@@ -52,6 +55,7 @@ namespace Aliyun.OTS
             while (!Pool.TryDequeue(out client)) {
                 Thread.Sleep(10);
             }
+
             return client;
         }
 
@@ -63,6 +67,5 @@ namespace Aliyun.OTS
         {
             Pool.Enqueue(httpClient);
         }
-        
     }
 }
