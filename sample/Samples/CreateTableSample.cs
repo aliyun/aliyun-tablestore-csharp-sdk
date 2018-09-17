@@ -24,7 +24,7 @@ namespace Aliyun.OTS.Samples
                 };
                 TableMeta tableMeta = new TableMeta(TableName, primaryKeySchema);
 
-                CapacityUnit reservedThroughput = new CapacityUnit(1, 1);
+                CapacityUnit reservedThroughput = new CapacityUnit(0, 0);
                 CreateTableRequest request = new CreateTableRequest(tableMeta, reservedThroughput);
                 otsClient.CreateTable(request);
 
