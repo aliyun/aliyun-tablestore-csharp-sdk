@@ -23,12 +23,24 @@ namespace Aliyun.OTS.Response
         /// 本次操作消耗的读写能力单元。
         /// </summary>
         public CapacityUnit ConsumedCapacityUnit;
-        
+
+        /// <summary>
+        /// 返回ReturnType指定的值
+        /// </summary>
+        public Row Row { get; set; }
+
+
         public DeleteRowResponse() {}
         
         public DeleteRowResponse(CapacityUnit consumedCapacityUnit)
         {
             ConsumedCapacityUnit = consumedCapacityUnit;
+        }
+
+        public DeleteRowResponse(CapacityUnit consumedCapacityUnit, Row row)
+        {
+            ConsumedCapacityUnit = consumedCapacityUnit;
+            Row = row;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Aliyun.OTS.Request
         /// 表的元数据，包含表名和主键的设计。
         /// </summary>
         public TableMeta TableMeta { get; set; }
-        
+
         /// <summary>
         /// 预留读写吞吐量。
         /// </summary>
@@ -39,12 +39,23 @@ namespace Aliyun.OTS.Request
 
         public List<PartitionRange> PartitionRange { get; set; }
 
+        public List<IndexMeta> IndexMetas { get; set; }
 
-        public CreateTableRequest(TableMeta tableMeta, CapacityUnit reservedThroughput) 
+
+        public CreateTableRequest(TableMeta tableMeta, CapacityUnit reservedThroughput)
         {
             TableMeta = tableMeta;
             ReservedThroughput = reservedThroughput;
             TableOptions = new TableOptions();
         }
+
+        public CreateTableRequest(TableMeta tableMeta, CapacityUnit reservedThroughput, List<IndexMeta> indexMetas)
+        {
+            TableMeta = tableMeta;
+            ReservedThroughput = reservedThroughput;
+            TableOptions = new TableOptions();
+            IndexMetas = indexMetas;
+        }
+        
     }
 }

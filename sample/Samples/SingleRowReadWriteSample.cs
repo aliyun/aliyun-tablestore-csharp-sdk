@@ -31,7 +31,7 @@ namespace Aliyun.OTS.Samples
             };
             TableMeta tableMeta = new TableMeta(TableName, primaryKeySchema);
 
-            CapacityUnit reservedThroughput = new CapacityUnit(1, 1);
+            CapacityUnit reservedThroughput = new CapacityUnit(0, 0);
             CreateTableRequest request = new CreateTableRequest(tableMeta, reservedThroughput);
             otsClient.CreateTable(request);
 
@@ -50,7 +50,7 @@ namespace Aliyun.OTS.Samples
                 { "pk1", new ColumnValue("abc") }
             };
 
-            // 定义要写入改行的属性列
+            // 定义要写入该行的属性列
             AttributeColumns attribute = new AttributeColumns
             {
                 { "col0", new ColumnValue(0) },
@@ -123,7 +123,7 @@ namespace Aliyun.OTS.Samples
                 { "pk1", new ColumnValue("abc") }
             };
 
-            // 定义要写入改行的属性列
+            // 定义要写入该行的属性列
             UpdateOfAttribute attribute = new UpdateOfAttribute();
             attribute.AddAttributeColumnToPut("col0", new ColumnValue(0));
             attribute.AddAttributeColumnToPut("col1", new ColumnValue("b")); // 将原先的值'a'改为'b'

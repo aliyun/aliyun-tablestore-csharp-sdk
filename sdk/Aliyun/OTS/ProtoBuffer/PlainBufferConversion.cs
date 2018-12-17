@@ -11,19 +11,19 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             {
                 throw new IOException("Row could not has delete marker: " + plainBufferRow);
             }
-		
+
             if (plainBufferRow.GetPrimaryKey() == null)
             {
                 throw new IOException("Row has no primary key: " + plainBufferRow);
             }
-		
+
             List<Column> columns = new List<Column>(plainBufferRow.GetCells().Count);
-		
+
             foreach (PlainBufferCell cell in plainBufferRow.GetCells())
             {
                 columns.Add(ToColumn(cell));
             }
-		
+
             return new Row(ToPrimaryKey(plainBufferRow.GetPrimaryKey()), columns);
         }
 
@@ -34,7 +34,7 @@ namespace com.alicloud.openservices.tablestore.core.protocol
                 throw new IOException("The cell has no name or value: " + cell);
             }
 
-            if (cell.HasCellType())
+            if (cell.HasCellType() && cell.GetCellType() != PlainBufferConsts.INCREMENT)
             {
                 throw new IOException("The cell should not has type: " + cell);
             }

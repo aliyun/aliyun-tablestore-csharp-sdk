@@ -15,6 +15,11 @@
         /// <summary>
         /// 代表删除该Column的所有版本的值。
         /// </summary>
-        DELETE_ALL
+        DELETE_ALL,
+
+        /// <summary>
+        /// 代表对该column的最新版本执行原子加。
+        /// </summary>
+        INCREMENT
     }
 }

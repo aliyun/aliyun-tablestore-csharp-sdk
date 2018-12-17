@@ -60,9 +60,55 @@
     <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\ColumnConditionType.cs" />
     <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\CompositeCondition.cs" />
     <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\RelationalCondition.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\DefinedColumnSchema.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\DefinedColumnType.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\IndexMeta.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\IndexType.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\IndexUpdateMode.cs" />
     <Compile Include="Aliyun\OTS\DataModel\MultiRowQueryCriteria.cs" />
     <Compile Include="Aliyun\OTS\DataModel\RangeRowQueryCriteria.cs" />
     <Compile Include="Aliyun\OTS\DataModel\RowQueryCriteria.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Collapse.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\ColumnsToGet.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\FieldSchema.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\FieldType.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\GeoPoint.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\IndexOptions.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\IndexSchema.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\IndexSetting.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\BoolQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\ConstScoreQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\FieldValueFactor.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\FunctionScoreQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\GeoBoundingBoxQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\GeoDistanceQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\GeoPolygonQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\IQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\MatchAllQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\MatchPhraseQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\MatchQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\NestedQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\PrefixQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\QueryOperator.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\QueryType.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\RangeQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\ScoreMode.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\TermQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\TermsQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Query\WildcardQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\SearchIndexInfo.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\SearchQuery.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\FieldSort.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\GeoDistanceSort.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\GeoDistanceType.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\ISorter.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\NestedFilter.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\PrimaryKeySort.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\ScoreSort.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\Sort.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\SortMode.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\SortOrder.cs" />
+    <Compile Include="Aliyun\OTS\DataModel\Search\SyncStat.cs" />
     <Compile Include="Aliyun\OTS\DataModel\SingleRowQueryCriteria.cs" />
     <Compile Include="Aliyun\OTS\DataModel\PrimaryKey.cs" />
     <Compile Include="Aliyun\OTS\DataModel\PrimaryKeySchema.cs" />
@@ -85,18 +131,29 @@
     <Compile Include="Aliyun\OTS\OTSDefaultLogHandler.cs" />
     <Compile Include="Aliyun\OTS\OTSException.cs" />
     <Compile Include="Aliyun\OTS\OTSServerException.cs" />
+    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchQueryBuilder.cs" />
+    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchSortBuilder.cs" />
+    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchVariantType.cs" />
+    <Compile Include="Aliyun\OTS\ProtoBuffer\TablestoreSearch.cs" />
     <Compile Include="Aliyun\OTS\Request\BatchGetRowRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\BatchWriteRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\CreateGlobalIndexRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\CreateSearchIndexRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\CreateTableRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\DeleteGlobalIndexRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\DeleteRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\DeleteSearchIndexRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\DeleteTableRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\DescribeSearchIndexRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\DescribeTableRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\GetIteratorRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\GetRangeRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\GetRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\ListSearchIndexRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\ListTableRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\OTSRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\PutRowRequest.cs" />
+    <Compile Include="Aliyun\OTS\Request\SearchRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\UpdateRowRequest.cs" />
     <Compile Include="Aliyun\OTS\Request\UpdateTableRequest.cs" />
     <Compile Include="Aliyun\OTS\Response\BatchGetRowErrorResponseItem.cs" />
@@ -107,15 +164,22 @@
     <Compile Include="Aliyun\OTS\Response\BatchWriteRowResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\BatchWriteRowResponseItem.cs" />
     <Compile Include="Aliyun\OTS\Response\BatchWriteRowSuccessResponseItem.cs" />
+    <Compile Include="Aliyun\OTS\Response\CreateGlobalIndexResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\CreateSearchIndexResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\CreateTableResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\DeleteGlobalIndexResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\DeleteRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\DeleteSearchIndexResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\DeleteTableResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\DescribeSearchIndexResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\DescribeTableResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\GetRangeResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\GetRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\ListSearchIndexResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\ListTableResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\OTSResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\PutRowResponse.cs" />
+    <Compile Include="Aliyun\OTS\Response\SearchResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\UpdateRowResponse.cs" />
     <Compile Include="Aliyun\OTS\Response\UpdateTableResponse.cs" />
     <Compile Include="Aliyun\OTS\Retry\PredefinedRetryPolicies.cs" />
@@ -173,14 +237,12 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Aliyun\OTS\ProtoBuffer\tablestore_search.proto" />
     <None Include="packages.config" />
     <None Include="Aliyun\OTS\ProtoBuffer\table_store_filter.proto" />
     <None Include="Aliyun\OTS\ProtoBuffer\table_store.proto" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Aliyun\OTS\DataModel\Filter\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

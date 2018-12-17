@@ -10,6 +10,8 @@
  */
 
 
+using System.Collections.Generic;
+
 namespace Aliyun.OTS.DataModel
 {
     /// <summary>
@@ -21,16 +23,27 @@ namespace Aliyun.OTS.DataModel
         /// 表名
         /// </summary>
         public string TableName { get; set; }
-        
+
         /// <summary>
         /// 主键的设计，包括每一个主键列的列名和列值类型，有序。
         /// </summary>
         public PrimaryKeySchema PrimaryKeySchema { get; set; }
 
+        /// <summary>
+        /// 预定义列
+        /// </summary>
+        public DefinedColumnSchema DefinedColumnSchema { get; set; }
+
         public TableMeta(string tableName, PrimaryKeySchema primaryKeySchema)
         {
             TableName = tableName;
             PrimaryKeySchema = primaryKeySchema;
+        }
+
+        public TableMeta(string tableName, DefinedColumnSchema definedColumnSchema)
+        {
+            TableName = tableName;
+            DefinedColumnSchema = definedColumnSchema;
         }
     }
 }

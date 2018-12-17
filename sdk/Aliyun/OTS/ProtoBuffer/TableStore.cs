@@ -20,10 +20,14 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.Error, global::com.alicloud.openservices.tablestore.core.protocol.Error.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_Error__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_PrimaryKeySchema__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.PrimaryKeySchema, global::com.alicloud.openservices.tablestore.core.protocol.PrimaryKeySchema.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_PrimaryKeySchema__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_DefinedColumnSchema__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema, global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_DefinedColumnSchema__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_PartitionRange__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.PartitionRange, global::com.alicloud.openservices.tablestore.core.protocol.PartitionRange.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_PartitionRange__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_TableOptions__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TableOptions, global::com.alicloud.openservices.tablestore.core.protocol.TableOptions.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_TableOptions__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_IndexMeta__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_IndexMeta__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_TableMeta__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TableMeta, global::com.alicloud.openservices.tablestore.core.protocol.TableMeta.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_TableMeta__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_Condition__Descriptor;
@@ -44,6 +48,14 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CreateTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.CreateTableRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableRequest__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableResponse__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CreateTableResponse, global::com.alicloud.openservices.tablestore.core.protocol.CreateTableResponse.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexRequest, global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexResponse, global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexResponse.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DropIndexRequest, global::com.alicloud.openservices.tablestore.core.protocol.DropIndexRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DropIndexResponse, global::com.alicloud.openservices.tablestore.core.protocol.DropIndexResponse.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexResponse__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableRequest__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.UpdateTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.UpdateTableRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableRequest__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableResponse__Descriptor;
@@ -114,6 +126,18 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetRangeRequest, global::com.alicloud.openservices.tablestore.core.protocol.GetRangeRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeRequest__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeResponse__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetRangeResponse, global::com.alicloud.openservices.tablestore.core.protocol.GetRangeResponse.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionRequest, global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionResponse, global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionResponse.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionRequest, global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionResponse, global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionResponse.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionResponse__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionRequest__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionRequest, global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionRequest__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionResponse__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionResponse, global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionResponse.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionResponse__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamRequest__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ListStreamRequest, global::com.alicloud.openservices.tablestore.core.protocol.ListStreamRequest.Builder> internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamRequest__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_com_alicloud_openservices_tablestore_core_protocol_Stream__Descriptor;
@@ -159,219 +183,269 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
             "c2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlByaW1hcnlLZXlU", 
             "eXBlElQKBm9wdGlvbhgDIAEoDjJELmNvbS5hbGljbG91ZC5vcGVuc2Vydmlj", 
             "ZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlByaW1hcnlLZXlPcHRpb24i", 
-            "LAoOUGFydGl0aW9uUmFuZ2USDQoFYmVnaW4YASACKAwSCwoDZW5kGAIgAigM", 
-            "ItUBCgxUYWJsZU9wdGlvbnMSFAoMdGltZV90b19saXZlGAEgASgFEhQKDG1h", 
-            "eF92ZXJzaW9ucxgCIAEoBRJeChFibG9vbV9maWx0ZXJfdHlwZRgDIAEoDjJD", 
-            "LmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnBy", 
-            "b3RvY29sLkJsb29tRmlsdGVyVHlwZRISCgpibG9ja19zaXplGAQgASgFEiUK", 
-            "HWRldmlhdGlvbl9jZWxsX3ZlcnNpb25faW5fc2VjGAUgASgDInoKCVRhYmxl", 
-            "TWV0YRISCgp0YWJsZV9uYW1lGAEgAigJElkKC3ByaW1hcnlfa2V5GAIgAygL", 
-            "MkQuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUu", 
-            "cHJvdG9jb2wuUHJpbWFyeUtleVNjaGVtYSKJAQoJQ29uZGl0aW9uEmIKDXJv", 
-            "d19leGlzdGVuY2UYASACKA4ySy5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2Vz", 
-            "LnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5Sb3dFeGlzdGVuY2VFeHBlY3Rh", 
-            "dGlvbhIYChBjb2x1bW5fY29uZGl0aW9uGAIgASgMIisKDENhcGFjaXR5VW5p", 
-            "dBIMCgRyZWFkGAEgASgFEg0KBXdyaXRlGAIgASgFIqwBChlSZXNlcnZlZFRo", 
-            "cm91Z2hwdXREZXRhaWxzElcKDWNhcGFjaXR5X3VuaXQYASACKAsyQC5jb20u", 
-            "YWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2Nv", 
-            "bC5DYXBhY2l0eVVuaXQSGgoSbGFzdF9pbmNyZWFzZV90aW1lGAIgAigDEhoK", 
-            "Emxhc3RfZGVjcmVhc2VfdGltZRgDIAEoAyJtChJSZXNlcnZlZFRocm91Z2hw", 
-            "dXQSVwoNY2FwYWNpdHlfdW5pdBgBIAIoCzJALmNvbS5hbGljbG91ZC5vcGVu", 
-            "c2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLkNhcGFjaXR5VW5p", 
-            "dCJrChBDb25zdW1lZENhcGFjaXR5ElcKDWNhcGFjaXR5X3VuaXQYASACKAsy", 
-            "QC5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5w", 
-            "cm90b2NvbC5DYXBhY2l0eVVuaXQiRQoTU3RyZWFtU3BlY2lmaWNhdGlvbhIV", 
-            "Cg1lbmFibGVfc3RyZWFtGAEgAigIEhcKD2V4cGlyYXRpb25fdGltZRgCIAEo", 
-            "BSJsCg1TdHJlYW1EZXRhaWxzEhUKDWVuYWJsZV9zdHJlYW0YASACKAgSEQoJ", 
-            "c3RyZWFtX2lkGAIgASgJEhcKD2V4cGlyYXRpb25fdGltZRgDIAEoBRIYChBs", 
-            "YXN0X2VuYWJsZV90aW1lGAQgASgDItsDChJDcmVhdGVUYWJsZVJlcXVlc3QS", 
-            "UQoKdGFibGVfbWV0YRgBIAIoCzI9LmNvbS5hbGljbG91ZC5vcGVuc2Vydmlj", 
-            "ZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlRhYmxlTWV0YRJjChNyZXNl", 
-            "cnZlZF90aHJvdWdocHV0GAIgAigLMkYuY29tLmFsaWNsb3VkLm9wZW5zZXJ2", 
-            "aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuUmVzZXJ2ZWRUaHJvdWdo", 
-            "cHV0ElcKDXRhYmxlX29wdGlvbnMYAyABKAsyQC5jb20uYWxpY2xvdWQub3Bl", 
-            "bnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5UYWJsZU9wdGlv", 
-            "bnMSVgoKcGFydGl0aW9ucxgEIAMoCzJCLmNvbS5hbGljbG91ZC5vcGVuc2Vy", 
-            "dmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlBhcnRpdGlvblJhbmdl", 
-            "ElwKC3N0cmVhbV9zcGVjGAUgASgLMkcuY29tLmFsaWNsb3VkLm9wZW5zZXJ2", 
-            "aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuU3RyZWFtU3BlY2lmaWNh", 
-            "dGlvbiIVChNDcmVhdGVUYWJsZVJlc3BvbnNlIsQCChJVcGRhdGVUYWJsZVJl", 
-            "cXVlc3QSEgoKdGFibGVfbmFtZRgBIAIoCRJjChNyZXNlcnZlZF90aHJvdWdo", 
-            "cHV0GAIgASgLMkYuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0", 
-            "b3JlLmNvcmUucHJvdG9jb2wuUmVzZXJ2ZWRUaHJvdWdocHV0ElcKDXRhYmxl", 
-            "X29wdGlvbnMYAyABKAsyQC5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRh", 
-            "Ymxlc3RvcmUuY29yZS5wcm90b2NvbC5UYWJsZU9wdGlvbnMSXAoLc3RyZWFt", 
-            "X3NwZWMYBCABKAsyRy5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxl", 
-            "c3RvcmUuY29yZS5wcm90b2NvbC5TdHJlYW1TcGVjaWZpY2F0aW9uIr0CChNV", 
-            "cGRhdGVUYWJsZVJlc3BvbnNlEnIKG3Jlc2VydmVkX3Rocm91Z2hwdXRfZGV0", 
-            "YWlscxgBIAIoCzJNLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVz", 
-            "dG9yZS5jb3JlLnByb3RvY29sLlJlc2VydmVkVGhyb3VnaHB1dERldGFpbHMS", 
-            "VwoNdGFibGVfb3B0aW9ucxgCIAIoCzJALmNvbS5hbGljbG91ZC5vcGVuc2Vy", 
-            "dmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlRhYmxlT3B0aW9ucxJZ", 
-            "Cg5zdHJlYW1fZGV0YWlscxgDIAEoCzJBLmNvbS5hbGljbG91ZC5vcGVuc2Vy", 
-            "dmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlN0cmVhbURldGFpbHMi", 
-            "KgoURGVzY3JpYmVUYWJsZVJlcXVlc3QSEgoKdGFibGVfbmFtZRgBIAIoCSL/", 
-            "AwoVRGVzY3JpYmVUYWJsZVJlc3BvbnNlElEKCnRhYmxlX21ldGEYASACKAsy", 
+            "eAoTRGVmaW5lZENvbHVtblNjaGVtYRIMCgRuYW1lGAEgAigJElMKBHR5cGUY", 
+            "AiACKA4yRS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUu", 
+            "Y29yZS5wcm90b2NvbC5EZWZpbmVkQ29sdW1uVHlwZSIsCg5QYXJ0aXRpb25S", 
+            "YW5nZRINCgViZWdpbhgBIAIoDBILCgNlbmQYAiACKAwi1QEKDFRhYmxlT3B0", 
+            "aW9ucxIUCgx0aW1lX3RvX2xpdmUYASABKAUSFAoMbWF4X3ZlcnNpb25zGAIg", 
+            "ASgFEl4KEWJsb29tX2ZpbHRlcl90eXBlGAMgASgOMkMuY29tLmFsaWNsb3Vk", 
+            "Lm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuQmxvb21G", 
+            "aWx0ZXJUeXBlEhIKCmJsb2NrX3NpemUYBCABKAUSJQodZGV2aWF0aW9uX2Nl", 
+            "bGxfdmVyc2lvbl9pbl9zZWMYBSABKAMi+QEKCUluZGV4TWV0YRIMCgRuYW1l", 
+            "GAEgAigJEhMKC3ByaW1hcnlfa2V5GAIgAygJEhYKDmRlZmluZWRfY29sdW1u", 
+            "GAMgAygJEl4KEWluZGV4X3VwZGF0ZV9tb2RlGAQgAigOMkMuY29tLmFsaWNs", 
+            "b3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuSW5k", 
+            "ZXhVcGRhdGVNb2RlElEKCmluZGV4X3R5cGUYBSACKA4yPS5jb20uYWxpY2xv", 
+            "dWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5JbmRl", 
+            "eFR5cGUirgIKCVRhYmxlTWV0YRISCgp0YWJsZV9uYW1lGAEgAigJElkKC3By", 
+            "aW1hcnlfa2V5GAIgAygLMkQuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50", 
+            "YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuUHJpbWFyeUtleVNjaGVtYRJfCg5k", 
+            "ZWZpbmVkX2NvbHVtbhgDIAMoCzJHLmNvbS5hbGljbG91ZC5vcGVuc2Vydmlj", 
+            "ZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLkRlZmluZWRDb2x1bW5TY2hl", 
+            "bWESUQoKaW5kZXhfbWV0YRgEIAMoCzI9LmNvbS5hbGljbG91ZC5vcGVuc2Vy", 
+            "dmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLkluZGV4TWV0YSKJAQoJ", 
+            "Q29uZGl0aW9uEmIKDXJvd19leGlzdGVuY2UYASACKA4ySy5jb20uYWxpY2xv", 
+            "dWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5Sb3dF", 
+            "eGlzdGVuY2VFeHBlY3RhdGlvbhIYChBjb2x1bW5fY29uZGl0aW9uGAIgASgM", 
+            "IisKDENhcGFjaXR5VW5pdBIMCgRyZWFkGAEgASgFEg0KBXdyaXRlGAIgASgF", 
+            "IqwBChlSZXNlcnZlZFRocm91Z2hwdXREZXRhaWxzElcKDWNhcGFjaXR5X3Vu", 
+            "aXQYASACKAsyQC5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3Rv", 
+            "cmUuY29yZS5wcm90b2NvbC5DYXBhY2l0eVVuaXQSGgoSbGFzdF9pbmNyZWFz", 
+            "ZV90aW1lGAIgAigDEhoKEmxhc3RfZGVjcmVhc2VfdGltZRgDIAEoAyJtChJS", 
+            "ZXNlcnZlZFRocm91Z2hwdXQSVwoNY2FwYWNpdHlfdW5pdBgBIAIoCzJALmNv", 
+            "bS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3Rv", 
+            "Y29sLkNhcGFjaXR5VW5pdCJrChBDb25zdW1lZENhcGFjaXR5ElcKDWNhcGFj", 
+            "aXR5X3VuaXQYASACKAsyQC5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRh", 
+            "Ymxlc3RvcmUuY29yZS5wcm90b2NvbC5DYXBhY2l0eVVuaXQiRQoTU3RyZWFt", 
+            "U3BlY2lmaWNhdGlvbhIVCg1lbmFibGVfc3RyZWFtGAEgAigIEhcKD2V4cGly", 
+            "YXRpb25fdGltZRgCIAEoBSJsCg1TdHJlYW1EZXRhaWxzEhUKDWVuYWJsZV9z", 
+            "dHJlYW0YASACKAgSEQoJc3RyZWFtX2lkGAIgASgJEhcKD2V4cGlyYXRpb25f", 
+            "dGltZRgDIAEoBRIYChBsYXN0X2VuYWJsZV90aW1lGAQgASgDIq8EChJDcmVh", 
+            "dGVUYWJsZVJlcXVlc3QSUQoKdGFibGVfbWV0YRgBIAIoCzI9LmNvbS5hbGlj", 
+            "bG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlRh", 
+            "YmxlTWV0YRJjChNyZXNlcnZlZF90aHJvdWdocHV0GAIgAigLMkYuY29tLmFs", 
+            "aWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wu", 
+            "UmVzZXJ2ZWRUaHJvdWdocHV0ElcKDXRhYmxlX29wdGlvbnMYAyABKAsyQC5j", 
+            "b20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90", 
+            "b2NvbC5UYWJsZU9wdGlvbnMSVgoKcGFydGl0aW9ucxgEIAMoCzJCLmNvbS5h", 
+            "bGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29s", 
+            "LlBhcnRpdGlvblJhbmdlElwKC3N0cmVhbV9zcGVjGAUgASgLMkcuY29tLmFs", 
+            "aWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wu", 
+            "U3RyZWFtU3BlY2lmaWNhdGlvbhJSCgtpbmRleF9tZXRhcxgHIAMoCzI9LmNv", 
+            "bS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3Rv", 
+            "Y29sLkluZGV4TWV0YSIVChNDcmVhdGVUYWJsZVJlc3BvbnNlIpsBChJDcmVh", 
+            "dGVJbmRleFJlcXVlc3QSFwoPbWFpbl90YWJsZV9uYW1lGAEgAigJElEKCmlu", 
+            "ZGV4X21ldGEYAiACKAsyPS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRh", 
+            "Ymxlc3RvcmUuY29yZS5wcm90b2NvbC5JbmRleE1ldGESGQoRaW5jbHVkZV9i", 
+            "YXNlX2RhdGEYAyABKAgiFQoTQ3JlYXRlSW5kZXhSZXNwb25zZSI/ChBEcm9w", 
+            "SW5kZXhSZXF1ZXN0EhcKD21haW5fdGFibGVfbmFtZRgBIAIoCRISCgppbmRl", 
+            "eF9uYW1lGAIgAigJIhMKEURyb3BJbmRleFJlc3BvbnNlIsQCChJVcGRhdGVU", 
+            "YWJsZVJlcXVlc3QSEgoKdGFibGVfbmFtZRgBIAIoCRJjChNyZXNlcnZlZF90", 
+            "aHJvdWdocHV0GAIgASgLMkYuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50", 
+            "YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuUmVzZXJ2ZWRUaHJvdWdocHV0ElcK", 
+            "DXRhYmxlX29wdGlvbnMYAyABKAsyQC5jb20uYWxpY2xvdWQub3BlbnNlcnZp", 
+            "Y2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5UYWJsZU9wdGlvbnMSXAoL", 
+            "c3RyZWFtX3NwZWMYBCABKAsyRy5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2Vz", 
+            "LnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5TdHJlYW1TcGVjaWZpY2F0aW9u", 
+            "Ir0CChNVcGRhdGVUYWJsZVJlc3BvbnNlEnIKG3Jlc2VydmVkX3Rocm91Z2hw", 
+            "dXRfZGV0YWlscxgBIAIoCzJNLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMu", 
+            "dGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlJlc2VydmVkVGhyb3VnaHB1dERl", 
+            "dGFpbHMSVwoNdGFibGVfb3B0aW9ucxgCIAIoCzJALmNvbS5hbGljbG91ZC5v", 
+            "cGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlRhYmxlT3B0", 
+            "aW9ucxJZCg5zdHJlYW1fZGV0YWlscxgDIAEoCzJBLmNvbS5hbGljbG91ZC5v", 
+            "cGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlN0cmVhbURl", 
+            "dGFpbHMiKgoURGVzY3JpYmVUYWJsZVJlcXVlc3QSEgoKdGFibGVfbmFtZRgB", 
+            "IAIoCSLTBAoVRGVzY3JpYmVUYWJsZVJlc3BvbnNlElEKCnRhYmxlX21ldGEY", 
+            "ASACKAsyPS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUu", 
+            "Y29yZS5wcm90b2NvbC5UYWJsZU1ldGEScgobcmVzZXJ2ZWRfdGhyb3VnaHB1", 
+            "dF9kZXRhaWxzGAIgAigLMk0uY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50", 
+            "YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuUmVzZXJ2ZWRUaHJvdWdocHV0RGV0", 
+            "YWlscxJXCg10YWJsZV9vcHRpb25zGAMgAigLMkAuY29tLmFsaWNsb3VkLm9w", 
+            "ZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuVGFibGVPcHRp", 
+            "b25zElUKDHRhYmxlX3N0YXR1cxgEIAIoDjI/LmNvbS5hbGljbG91ZC5vcGVu", 
+            "c2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlRhYmxlU3RhdHVz", 
+            "ElkKDnN0cmVhbV9kZXRhaWxzGAUgASgLMkEuY29tLmFsaWNsb3VkLm9wZW5z", 
+            "ZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuU3RyZWFtRGV0YWls", 
+            "cxIUCgxzaGFyZF9zcGxpdHMYBiADKAwSUgoLaW5kZXhfbWV0YXMYCCADKAsy", 
             "PS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5w", 
-            "cm90b2NvbC5UYWJsZU1ldGEScgobcmVzZXJ2ZWRfdGhyb3VnaHB1dF9kZXRh", 
-            "aWxzGAIgAigLMk0uY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0", 
-            "b3JlLmNvcmUucHJvdG9jb2wuUmVzZXJ2ZWRUaHJvdWdocHV0RGV0YWlscxJX", 
-            "Cg10YWJsZV9vcHRpb25zGAMgAigLMkAuY29tLmFsaWNsb3VkLm9wZW5zZXJ2", 
-            "aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuVGFibGVPcHRpb25zElUK", 
-            "DHRhYmxlX3N0YXR1cxgEIAIoDjI/LmNvbS5hbGljbG91ZC5vcGVuc2Vydmlj", 
-            "ZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlRhYmxlU3RhdHVzElkKDnN0", 
-            "cmVhbV9kZXRhaWxzGAUgASgLMkEuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNl", 
-            "cy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuU3RyZWFtRGV0YWlscxIUCgxz", 
-            "aGFyZF9zcGxpdHMYBiADKAwiEgoQTGlzdFRhYmxlUmVxdWVzdCIoChFMaXN0", 
+            "cm90b2NvbC5JbmRleE1ldGEiEgoQTGlzdFRhYmxlUmVxdWVzdCIoChFMaXN0", 
             "VGFibGVSZXNwb25zZRITCgt0YWJsZV9uYW1lcxgBIAMoCSIoChJEZWxldGVU", 
             "YWJsZVJlcXVlc3QSEgoKdGFibGVfbmFtZRgBIAIoCSIVChNEZWxldGVUYWJs", 
             "ZVJlc3BvbnNlIiYKEExvYWRUYWJsZVJlcXVlc3QSEgoKdGFibGVfbmFtZRgB", 
             "IAIoCSITChFMb2FkVGFibGVSZXNwb25zZSIoChJVbmxvYWRUYWJsZVJlcXVl", 
             "c3QSEgoKdGFibGVfbmFtZRgBIAIoCSIVChNVbmxvYWRUYWJsZVJlc3BvbnNl", 
             "IkgKCVRpbWVSYW5nZRISCgpzdGFydF90aW1lGAEgASgDEhAKCGVuZF90aW1l", 
-            "GAIgASgDEhUKDXNwZWNpZmljX3RpbWUYAyABKAMiZAoNUmV0dXJuQ29udGVu", 
-            "dBJTCgtyZXR1cm5fdHlwZRgBIAEoDjI+LmNvbS5hbGljbG91ZC5vcGVuc2Vy", 
-            "dmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlJldHVyblR5cGUingIK", 
-            "DUdldFJvd1JlcXVlc3QSEgoKdGFibGVfbmFtZRgBIAIoCRITCgtwcmltYXJ5", 
-            "X2tleRgCIAIoDBIWCg5jb2x1bW5zX3RvX2dldBgDIAMoCRJRCgp0aW1lX3Jh", 
-            "bmdlGAQgASgLMj0uY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0", 
-            "b3JlLmNvcmUucHJvdG9jb2wuVGltZVJhbmdlEhQKDG1heF92ZXJzaW9ucxgF", 
-            "IAEoBRIaCgxjYWNoZV9ibG9ja3MYBiABKAg6BHRydWUSDgoGZmlsdGVyGAcg", 
-            "ASgMEhQKDHN0YXJ0X2NvbHVtbhgIIAEoCRISCgplbmRfY29sdW1uGAkgASgJ", 
-            "Eg0KBXRva2VuGAogASgMIokBCg5HZXRSb3dSZXNwb25zZRJWCghjb25zdW1l", 
-            "ZBgBIAIoCzJELmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9y", 
-            "ZS5jb3JlLnByb3RvY29sLkNvbnN1bWVkQ2FwYWNpdHkSCwoDcm93GAIgAigM", 
-            "EhIKCm5leHRfdG9rZW4YAyABKAwi5wEKEFVwZGF0ZVJvd1JlcXVlc3QSEgoK", 
-            "dGFibGVfbmFtZRgBIAIoCRISCgpyb3dfY2hhbmdlGAIgAigMElAKCWNvbmRp", 
-            "dGlvbhgDIAIoCzI9LmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVz", 
-            "dG9yZS5jb3JlLnByb3RvY29sLkNvbmRpdGlvbhJZCg5yZXR1cm5fY29udGVu", 
-            "dBgEIAEoCzJBLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9y", 
-            "ZS5jb3JlLnByb3RvY29sLlJldHVybkNvbnRlbnQieAoRVXBkYXRlUm93UmVz", 
-            "cG9uc2USVgoIY29uc3VtZWQYASACKAsyRC5jb20uYWxpY2xvdWQub3BlbnNl", 
-            "cnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5Db25zdW1lZENhcGFj", 
-            "aXR5EgsKA3JvdxgCIAEoDCLdAQoNUHV0Um93UmVxdWVzdBISCgp0YWJsZV9u", 
-            "YW1lGAEgAigJEgsKA3JvdxgCIAIoDBJQCgljb25kaXRpb24YAyACKAsyPS5j", 
-            "b20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90", 
-            "b2NvbC5Db25kaXRpb24SWQoOcmV0dXJuX2NvbnRlbnQYBCABKAsyQS5jb20u", 
-            "YWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2Nv", 
-            "bC5SZXR1cm5Db250ZW50InUKDlB1dFJvd1Jlc3BvbnNlElYKCGNvbnN1bWVk", 
-            "GAEgAigLMkQuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3Jl", 
-            "LmNvcmUucHJvdG9jb2wuQ29uc3VtZWRDYXBhY2l0eRILCgNyb3cYAiABKAwi", 
-            "6AEKEERlbGV0ZVJvd1JlcXVlc3QSEgoKdGFibGVfbmFtZRgBIAIoCRITCgtw", 
-            "cmltYXJ5X2tleRgCIAIoDBJQCgljb25kaXRpb24YAyACKAsyPS5jb20uYWxp", 
-            "Y2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5D", 
-            "b25kaXRpb24SWQoOcmV0dXJuX2NvbnRlbnQYBCABKAsyQS5jb20uYWxpY2xv", 
-            "dWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5SZXR1", 
-            "cm5Db250ZW50IngKEURlbGV0ZVJvd1Jlc3BvbnNlElYKCGNvbnN1bWVkGAEg", 
-            "AigLMkQuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNv", 
-            "cmUucHJvdG9jb2wuQ29uc3VtZWRDYXBhY2l0eRILCgNyb3cYAiABKAwiqgIK", 
-            "GVRhYmxlSW5CYXRjaEdldFJvd1JlcXVlc3QSEgoKdGFibGVfbmFtZRgBIAIo", 
-            "CRITCgtwcmltYXJ5X2tleRgCIAMoDBINCgV0b2tlbhgDIAMoDBIWCg5jb2x1", 
-            "bW5zX3RvX2dldBgEIAMoCRJRCgp0aW1lX3JhbmdlGAUgASgLMj0uY29tLmFs", 
-            "aWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wu", 
-            "VGltZVJhbmdlEhQKDG1heF92ZXJzaW9ucxgGIAEoBRIaCgxjYWNoZV9ibG9j", 
-            "a3MYByABKAg6BHRydWUSDgoGZmlsdGVyGAggASgMEhQKDHN0YXJ0X2NvbHVt", 
-            "bhgJIAEoCRISCgplbmRfY29sdW1uGAogASgJInMKEkJhdGNoR2V0Um93UmVx", 
-            "dWVzdBJdCgZ0YWJsZXMYASADKAsyTS5jb20uYWxpY2xvdWQub3BlbnNlcnZp", 
-            "Y2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5UYWJsZUluQmF0Y2hHZXRS", 
-            "b3dSZXF1ZXN0IuwBChhSb3dJbkJhdGNoR2V0Um93UmVzcG9uc2USDQoFaXNf", 
-            "b2sYASACKAgSSAoFZXJyb3IYAiABKAsyOS5jb20uYWxpY2xvdWQub3BlbnNl", 
-            "cnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5FcnJvchJWCghjb25z", 
-            "dW1lZBgDIAEoCzJELmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVz", 
-            "dG9yZS5jb3JlLnByb3RvY29sLkNvbnN1bWVkQ2FwYWNpdHkSCwoDcm93GAQg", 
-            "ASgMEhIKCm5leHRfdG9rZW4YBSABKAwijAEKGlRhYmxlSW5CYXRjaEdldFJv", 
-            "d1Jlc3BvbnNlEhIKCnRhYmxlX25hbWUYASACKAkSWgoEcm93cxgCIAMoCzJM", 
-            "LmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnBy", 
-            "b3RvY29sLlJvd0luQmF0Y2hHZXRSb3dSZXNwb25zZSJ1ChNCYXRjaEdldFJv", 
-            "d1Jlc3BvbnNlEl4KBnRhYmxlcxgBIAMoCzJOLmNvbS5hbGljbG91ZC5vcGVu", 
-            "c2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlRhYmxlSW5CYXRj", 
-            "aEdldFJvd1Jlc3BvbnNlIq0CChlSb3dJbkJhdGNoV3JpdGVSb3dSZXF1ZXN0", 
-            "Ek8KBHR5cGUYASACKA4yQS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRh", 
-            "Ymxlc3RvcmUuY29yZS5wcm90b2NvbC5PcGVyYXRpb25UeXBlEhIKCnJvd19j", 
-            "aGFuZ2UYAiACKAwSUAoJY29uZGl0aW9uGAMgAigLMj0uY29tLmFsaWNsb3Vk", 
-            "Lm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuQ29uZGl0", 
-            "aW9uElkKDnJldHVybl9jb250ZW50GAQgASgLMkEuY29tLmFsaWNsb3VkLm9w", 
-            "ZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuUmV0dXJuQ29u", 
-            "dGVudCKOAQobVGFibGVJbkJhdGNoV3JpdGVSb3dSZXF1ZXN0EhIKCnRhYmxl", 
-            "X25hbWUYASACKAkSWwoEcm93cxgCIAMoCzJNLmNvbS5hbGljbG91ZC5vcGVu", 
-            "c2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlJvd0luQmF0Y2hX", 
-            "cml0ZVJvd1JlcXVlc3QidwoUQmF0Y2hXcml0ZVJvd1JlcXVlc3QSXwoGdGFi", 
-            "bGVzGAEgAygLMk8uY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0", 
-            "b3JlLmNvcmUucHJvdG9jb2wuVGFibGVJbkJhdGNoV3JpdGVSb3dSZXF1ZXN0", 
-            "ItoBChpSb3dJbkJhdGNoV3JpdGVSb3dSZXNwb25zZRINCgVpc19vaxgBIAIo", 
-            "CBJICgVlcnJvchgCIAEoCzI5LmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMu", 
-            "dGFibGVzdG9yZS5jb3JlLnByb3RvY29sLkVycm9yElYKCGNvbnN1bWVkGAMg", 
-            "ASgLMkQuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNv", 
-            "cmUucHJvdG9jb2wuQ29uc3VtZWRDYXBhY2l0eRILCgNyb3cYBCABKAwikAEK", 
-            "HFRhYmxlSW5CYXRjaFdyaXRlUm93UmVzcG9uc2USEgoKdGFibGVfbmFtZRgB", 
-            "IAIoCRJcCgRyb3dzGAIgAygLMk4uY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNl", 
-            "cy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuUm93SW5CYXRjaFdyaXRlUm93", 
-            "UmVzcG9uc2UieQoVQmF0Y2hXcml0ZVJvd1Jlc3BvbnNlEmAKBnRhYmxlcxgB", 
-            "IAMoCzJQLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5j", 
-            "b3JlLnByb3RvY29sLlRhYmxlSW5CYXRjaFdyaXRlUm93UmVzcG9uc2UitAMK", 
-            "D0dldFJhbmdlUmVxdWVzdBISCgp0YWJsZV9uYW1lGAEgAigJElAKCWRpcmVj", 
-            "dGlvbhgCIAIoDjI9LmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVz", 
-            "dG9yZS5jb3JlLnByb3RvY29sLkRpcmVjdGlvbhIWCg5jb2x1bW5zX3RvX2dl", 
-            "dBgDIAMoCRJRCgp0aW1lX3JhbmdlGAQgASgLMj0uY29tLmFsaWNsb3VkLm9w", 
+            "GAIgASgDEhUKDXNwZWNpZmljX3RpbWUYAyABKAMigQEKDVJldHVybkNvbnRl", 
+            "bnQSUwoLcmV0dXJuX3R5cGUYASABKA4yPi5jb20uYWxpY2xvdWQub3BlbnNl", 
+            "cnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5SZXR1cm5UeXBlEhsK", 
+            "E3JldHVybl9jb2x1bW5fbmFtZXMYAiADKAkitgIKDUdldFJvd1JlcXVlc3QS", 
+            "EgoKdGFibGVfbmFtZRgBIAIoCRITCgtwcmltYXJ5X2tleRgCIAIoDBIWCg5j", 
+            "b2x1bW5zX3RvX2dldBgDIAMoCRJRCgp0aW1lX3JhbmdlGAQgASgLMj0uY29t", 
+            "LmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9j", 
+            "b2wuVGltZVJhbmdlEhQKDG1heF92ZXJzaW9ucxgFIAEoBRIaCgxjYWNoZV9i", 
+            "bG9ja3MYBiABKAg6BHRydWUSDgoGZmlsdGVyGAcgASgMEhQKDHN0YXJ0X2Nv", 
+            "bHVtbhgIIAEoCRISCgplbmRfY29sdW1uGAkgASgJEg0KBXRva2VuGAogASgM", 
+            "EhYKDnRyYW5zYWN0aW9uX2lkGAsgASgJIokBCg5HZXRSb3dSZXNwb25zZRJW", 
+            "Cghjb25zdW1lZBgBIAIoCzJELmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMu", 
+            "dGFibGVzdG9yZS5jb3JlLnByb3RvY29sLkNvbnN1bWVkQ2FwYWNpdHkSCwoD", 
+            "cm93GAIgAigMEhIKCm5leHRfdG9rZW4YAyABKAwi/wEKEFVwZGF0ZVJvd1Jl", 
+            "cXVlc3QSEgoKdGFibGVfbmFtZRgBIAIoCRISCgpyb3dfY2hhbmdlGAIgAigM", 
+            "ElAKCWNvbmRpdGlvbhgDIAIoCzI9LmNvbS5hbGljbG91ZC5vcGVuc2Vydmlj", 
+            "ZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLkNvbmRpdGlvbhJZCg5yZXR1", 
+            "cm5fY29udGVudBgEIAEoCzJBLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMu", 
+            "dGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlJldHVybkNvbnRlbnQSFgoOdHJh", 
+            "bnNhY3Rpb25faWQYBSABKAkieAoRVXBkYXRlUm93UmVzcG9uc2USVgoIY29u", 
+            "c3VtZWQYASACKAsyRC5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxl", 
+            "c3RvcmUuY29yZS5wcm90b2NvbC5Db25zdW1lZENhcGFjaXR5EgsKA3JvdxgC", 
+            "IAEoDCL1AQoNUHV0Um93UmVxdWVzdBISCgp0YWJsZV9uYW1lGAEgAigJEgsK", 
+            "A3JvdxgCIAIoDBJQCgljb25kaXRpb24YAyACKAsyPS5jb20uYWxpY2xvdWQu", 
+            "b3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5Db25kaXRp", 
+            "b24SWQoOcmV0dXJuX2NvbnRlbnQYBCABKAsyQS5jb20uYWxpY2xvdWQub3Bl", 
+            "bnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5SZXR1cm5Db250", 
+            "ZW50EhYKDnRyYW5zYWN0aW9uX2lkGAUgASgJInUKDlB1dFJvd1Jlc3BvbnNl", 
+            "ElYKCGNvbnN1bWVkGAEgAigLMkQuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNl", 
+            "cy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuQ29uc3VtZWRDYXBhY2l0eRIL", 
+            "CgNyb3cYAiABKAwigAIKEERlbGV0ZVJvd1JlcXVlc3QSEgoKdGFibGVfbmFt", 
+            "ZRgBIAIoCRITCgtwcmltYXJ5X2tleRgCIAIoDBJQCgljb25kaXRpb24YAyAC", 
+            "KAsyPS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29y", 
+            "ZS5wcm90b2NvbC5Db25kaXRpb24SWQoOcmV0dXJuX2NvbnRlbnQYBCABKAsy", 
+            "QS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5w", 
+            "cm90b2NvbC5SZXR1cm5Db250ZW50EhYKDnRyYW5zYWN0aW9uX2lkGAUgASgJ", 
+            "IngKEURlbGV0ZVJvd1Jlc3BvbnNlElYKCGNvbnN1bWVkGAEgAigLMkQuY29t", 
+            "LmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9j", 
+            "b2wuQ29uc3VtZWRDYXBhY2l0eRILCgNyb3cYAiABKAwiqgIKGVRhYmxlSW5C", 
+            "YXRjaEdldFJvd1JlcXVlc3QSEgoKdGFibGVfbmFtZRgBIAIoCRITCgtwcmlt", 
+            "YXJ5X2tleRgCIAMoDBINCgV0b2tlbhgDIAMoDBIWCg5jb2x1bW5zX3RvX2dl", 
+            "dBgEIAMoCRJRCgp0aW1lX3JhbmdlGAUgASgLMj0uY29tLmFsaWNsb3VkLm9w", 
             "ZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuVGltZVJhbmdl", 
-            "EhQKDG1heF92ZXJzaW9ucxgFIAEoBRINCgVsaW1pdBgGIAEoBRIjChtpbmNs", 
-            "dXNpdmVfc3RhcnRfcHJpbWFyeV9rZXkYByACKAwSIQoZZXhjbHVzaXZlX2Vu", 
-            "ZF9wcmltYXJ5X2tleRgIIAIoDBIaCgxjYWNoZV9ibG9ja3MYCSABKAg6BHRy", 
-            "dWUSDgoGZmlsdGVyGAogASgMEhQKDHN0YXJ0X2NvbHVtbhgLIAEoCRISCgpl", 
-            "bmRfY29sdW1uGAwgASgJEg0KBXRva2VuGA0gASgMIqwBChBHZXRSYW5nZVJl", 
-            "c3BvbnNlElYKCGNvbnN1bWVkGAEgAigLMkQuY29tLmFsaWNsb3VkLm9wZW5z", 
-            "ZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuQ29uc3VtZWRDYXBh", 
-            "Y2l0eRIMCgRyb3dzGAIgAigMEh4KFm5leHRfc3RhcnRfcHJpbWFyeV9rZXkY", 
-            "AyABKAwSEgoKbmV4dF90b2tlbhgEIAEoDCInChFMaXN0U3RyZWFtUmVxdWVz", 
-            "dBISCgp0YWJsZV9uYW1lGAEgASgJIkYKBlN0cmVhbRIRCglzdHJlYW1faWQY", 
-            "ASACKAkSEgoKdGFibGVfbmFtZRgCIAIoCRIVCg1jcmVhdGlvbl90aW1lGAMg", 
-            "AigDImEKEkxpc3RTdHJlYW1SZXNwb25zZRJLCgdzdHJlYW1zGAEgAygLMjou", 
-            "Y29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJv", 
-            "dG9jb2wuU3RyZWFtIk0KC1N0cmVhbVNoYXJkEhAKCHNoYXJkX2lkGAEgAigJ", 
-            "EhEKCXBhcmVudF9pZBgCIAEoCRIZChFwYXJlbnRfc2libGluZ19pZBgDIAEo", 
-            "CSJhChVEZXNjcmliZVN0cmVhbVJlcXVlc3QSEQoJc3RyZWFtX2lkGAEgAigJ", 
-            "EiAKGGluY2x1c2l2ZV9zdGFydF9zaGFyZF9pZBgCIAEoCRITCgtzaGFyZF9s", 
-            "aW1pdBgDIAEoBSKwAgoWRGVzY3JpYmVTdHJlYW1SZXNwb25zZRIRCglzdHJl", 
-            "YW1faWQYASACKAkSFwoPZXhwaXJhdGlvbl90aW1lGAIgAigFEhIKCnRhYmxl", 
-            "X25hbWUYAyACKAkSFQoNY3JlYXRpb25fdGltZRgEIAIoAxJXCg1zdHJlYW1f", 
-            "c3RhdHVzGAUgAigOMkAuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJs", 
-            "ZXN0b3JlLmNvcmUucHJvdG9jb2wuU3RyZWFtU3RhdHVzEk8KBnNoYXJkcxgG", 
-            "IAMoCzI/LmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5j", 
-            "b3JlLnByb3RvY29sLlN0cmVhbVNoYXJkEhUKDW5leHRfc2hhcmRfaWQYByAB", 
-            "KAkiUQoXR2V0U2hhcmRJdGVyYXRvclJlcXVlc3QSEQoJc3RyZWFtX2lkGAEg", 
-            "AigJEhAKCHNoYXJkX2lkGAIgAigJEhEKCXRpbWVzdGFtcBgDIAEoAyIyChhH", 
-            "ZXRTaGFyZEl0ZXJhdG9yUmVzcG9uc2USFgoOc2hhcmRfaXRlcmF0b3IYASAC", 
-            "KAkiPwoWR2V0U3RyZWFtUmVjb3JkUmVxdWVzdBIWCg5zaGFyZF9pdGVyYXRv", 
-            "chgBIAIoCRINCgVsaW1pdBgCIAEoBSKdAgoXR2V0U3RyZWFtUmVjb3JkUmVz", 
-            "cG9uc2UScAoOc3RyZWFtX3JlY29yZHMYASADKAsyWC5jb20uYWxpY2xvdWQu", 
-            "b3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5HZXRTdHJl", 
-            "YW1SZWNvcmRSZXNwb25zZS5TdHJlYW1SZWNvcmQSGwoTbmV4dF9zaGFyZF9p", 
-            "dGVyYXRvchgCIAEoCRpzCgxTdHJlYW1SZWNvcmQSUwoLYWN0aW9uX3R5cGUY", 
-            "ASACKA4yPi5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUu", 
-            "Y29yZS5wcm90b2NvbC5BY3Rpb25UeXBlEg4KBnJlY29yZBgCIAIoDCJJCh9D", 
-            "b21wdXRlU3BsaXRQb2ludHNCeVNpemVSZXF1ZXN0EhIKCnRhYmxlX25hbWUY", 
-            "ASACKAkSEgoKc3BsaXRfc2l6ZRgCIAIoAyKQAwogQ29tcHV0ZVNwbGl0UG9p", 
-            "bnRzQnlTaXplUmVzcG9uc2USVgoIY29uc3VtZWQYASACKAsyRC5jb20uYWxp", 
-            "Y2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5D", 
-            "b25zdW1lZENhcGFjaXR5ElQKBnNjaGVtYRgCIAMoCzJELmNvbS5hbGljbG91", 
-            "ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlByaW1h", 
-            "cnlLZXlTY2hlbWESFAoMc3BsaXRfcG9pbnRzGAMgAygMEnUKCWxvY2F0aW9u", 
-            "cxgEIAMoCzJiLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9y", 
-            "ZS5jb3JlLnByb3RvY29sLkNvbXB1dGVTcGxpdFBvaW50c0J5U2l6ZVJlc3Bv", 
-            "bnNlLlNwbGl0TG9jYXRpb24aMQoNU3BsaXRMb2NhdGlvbhIQCghsb2NhdGlv", 
-            "bhgBIAIoCRIOCgZyZXBlYXQYAiACKBIqNQoOUHJpbWFyeUtleVR5cGUSCwoH", 
-            "SU5URUdFUhABEgoKBlNUUklORxACEgoKBkJJTkFSWRADKiYKEFByaW1hcnlL", 
-            "ZXlPcHRpb24SEgoOQVVUT19JTkNSRU1FTlQQASouCg9CbG9vbUZpbHRlclR5", 
-            "cGUSCAoETk9ORRABEggKBENFTEwQAhIHCgNST1cQAypRCgtUYWJsZVN0YXR1", 
-            "cxIKCgZBQ1RJVkUQARIMCghJTkFDVElWRRACEgsKB0xPQURJTkcQAxINCglV", 
-            "TkxPQURJTkcQBBIMCghVUERBVElORxAFKk0KF1Jvd0V4aXN0ZW5jZUV4cGVj", 
-            "dGF0aW9uEgoKBklHTk9SRRAAEhAKDEVYUEVDVF9FWElTVBABEhQKEEVYUEVD", 
-            "VF9OT1RfRVhJU1QQAiokCgpSZXR1cm5UeXBlEgsKB1JUX05PTkUQABIJCgVS", 
-            "VF9QSxABKjAKDU9wZXJhdGlvblR5cGUSBwoDUFVUEAESCgoGVVBEQVRFEAIS", 
-            "CgoGREVMRVRFEAMqJgoJRGlyZWN0aW9uEgsKB0ZPUldBUkQQABIMCghCQUNL", 
-            "V0FSRBABKjYKDFN0cmVhbVN0YXR1cxITCg9TVFJFQU1fRU5BQkxJTkcQARIR", 
-            "Cg1TVFJFQU1fQUNUSVZFEAIqOQoKQWN0aW9uVHlwZRILCgdQVVRfUk9XEAES", 
-          "DgoKVVBEQVRFX1JPVxACEg4KCkRFTEVURV9ST1cQAw=="));
+            "EhQKDG1heF92ZXJzaW9ucxgGIAEoBRIaCgxjYWNoZV9ibG9ja3MYByABKAg6", 
+            "BHRydWUSDgoGZmlsdGVyGAggASgMEhQKDHN0YXJ0X2NvbHVtbhgJIAEoCRIS", 
+            "CgplbmRfY29sdW1uGAogASgJInMKEkJhdGNoR2V0Um93UmVxdWVzdBJdCgZ0", 
+            "YWJsZXMYASADKAsyTS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxl", 
+            "c3RvcmUuY29yZS5wcm90b2NvbC5UYWJsZUluQmF0Y2hHZXRSb3dSZXF1ZXN0", 
+            "IuwBChhSb3dJbkJhdGNoR2V0Um93UmVzcG9uc2USDQoFaXNfb2sYASACKAgS", 
+            "SAoFZXJyb3IYAiABKAsyOS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRh", 
+            "Ymxlc3RvcmUuY29yZS5wcm90b2NvbC5FcnJvchJWCghjb25zdW1lZBgDIAEo", 
+            "CzJELmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3Jl", 
+            "LnByb3RvY29sLkNvbnN1bWVkQ2FwYWNpdHkSCwoDcm93GAQgASgMEhIKCm5l", 
+            "eHRfdG9rZW4YBSABKAwijAEKGlRhYmxlSW5CYXRjaEdldFJvd1Jlc3BvbnNl", 
+            "EhIKCnRhYmxlX25hbWUYASACKAkSWgoEcm93cxgCIAMoCzJMLmNvbS5hbGlj", 
+            "bG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlJv", 
+            "d0luQmF0Y2hHZXRSb3dSZXNwb25zZSJ1ChNCYXRjaEdldFJvd1Jlc3BvbnNl", 
+            "El4KBnRhYmxlcxgBIAMoCzJOLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMu", 
+            "dGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlRhYmxlSW5CYXRjaEdldFJvd1Jl", 
+            "c3BvbnNlIq0CChlSb3dJbkJhdGNoV3JpdGVSb3dSZXF1ZXN0Ek8KBHR5cGUY", 
+            "ASACKA4yQS5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUu", 
+            "Y29yZS5wcm90b2NvbC5PcGVyYXRpb25UeXBlEhIKCnJvd19jaGFuZ2UYAiAC", 
+            "KAwSUAoJY29uZGl0aW9uGAMgAigLMj0uY29tLmFsaWNsb3VkLm9wZW5zZXJ2", 
+            "aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuQ29uZGl0aW9uElkKDnJl", 
+            "dHVybl9jb250ZW50GAQgASgLMkEuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNl", 
+            "cy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuUmV0dXJuQ29udGVudCKOAQob", 
+            "VGFibGVJbkJhdGNoV3JpdGVSb3dSZXF1ZXN0EhIKCnRhYmxlX25hbWUYASAC", 
+            "KAkSWwoEcm93cxgCIAMoCzJNLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMu", 
+            "dGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlJvd0luQmF0Y2hXcml0ZVJvd1Jl", 
+            "cXVlc3QijwEKFEJhdGNoV3JpdGVSb3dSZXF1ZXN0El8KBnRhYmxlcxgBIAMo", 
+            "CzJPLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3Jl", 
+            "LnByb3RvY29sLlRhYmxlSW5CYXRjaFdyaXRlUm93UmVxdWVzdBIWCg50cmFu", 
+            "c2FjdGlvbl9pZBgCIAEoCSLaAQoaUm93SW5CYXRjaFdyaXRlUm93UmVzcG9u", 
+            "c2USDQoFaXNfb2sYASACKAgSSAoFZXJyb3IYAiABKAsyOS5jb20uYWxpY2xv", 
+            "dWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5FcnJv", 
+            "chJWCghjb25zdW1lZBgDIAEoCzJELmNvbS5hbGljbG91ZC5vcGVuc2Vydmlj", 
+            "ZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLkNvbnN1bWVkQ2FwYWNpdHkS", 
+            "CwoDcm93GAQgASgMIpABChxUYWJsZUluQmF0Y2hXcml0ZVJvd1Jlc3BvbnNl", 
+            "EhIKCnRhYmxlX25hbWUYASACKAkSXAoEcm93cxgCIAMoCzJOLmNvbS5hbGlj", 
+            "bG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnByb3RvY29sLlJv", 
+            "d0luQmF0Y2hXcml0ZVJvd1Jlc3BvbnNlInkKFUJhdGNoV3JpdGVSb3dSZXNw", 
+            "b25zZRJgCgZ0YWJsZXMYASADKAsyUC5jb20uYWxpY2xvdWQub3BlbnNlcnZp", 
+            "Y2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5UYWJsZUluQmF0Y2hXcml0", 
+            "ZVJvd1Jlc3BvbnNlItEFCg9HZXRSYW5nZVJlcXVlc3QSEgoKdGFibGVfbmFt", 
+            "ZRgBIAIoCRJQCglkaXJlY3Rpb24YAiACKA4yPS5jb20uYWxpY2xvdWQub3Bl", 
+            "bnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5EaXJlY3Rpb24S", 
+            "FgoOY29sdW1uc190b19nZXQYAyADKAkSUQoKdGltZV9yYW5nZRgEIAEoCzI9", 
+            "LmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVzdG9yZS5jb3JlLnBy", 
+            "b3RvY29sLlRpbWVSYW5nZRIUCgxtYXhfdmVyc2lvbnMYBSABKAUSDQoFbGlt", 
+            "aXQYBiABKAUSIwobaW5jbHVzaXZlX3N0YXJ0X3ByaW1hcnlfa2V5GAcgAigM", 
+            "EiEKGWV4Y2x1c2l2ZV9lbmRfcHJpbWFyeV9rZXkYCCACKAwSGgoMY2FjaGVf", 
+            "YmxvY2tzGAkgASgIOgR0cnVlEg4KBmZpbHRlchgKIAEoDBIUCgxzdGFydF9j", 
+            "b2x1bW4YCyABKAkSEgoKZW5kX2NvbHVtbhgMIAEoCRINCgV0b2tlbhgNIAEo", 
+            "DBIWCg50cmFuc2FjdGlvbl9pZBgOIAEoCRJxChRkYXRhX2Jsb2NrX3R5cGVf", 
+            "aGludBgPIAEoDjJBLmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVz", 
+            "dG9yZS5jb3JlLnByb3RvY29sLkRhdGFCbG9ja1R5cGU6EERCVF9QTEFJTl9C", 
+            "VUZGRVISKAoacmV0dXJuX2VudGlyZV9wcmltYXJ5X2tleXMYECABKAg6BHRy", 
+            "dWUSZgoSY29tcHJlc3NfdHlwZV9oaW50GBEgASgOMkAuY29tLmFsaWNsb3Vk", 
+            "Lm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuQ29tcHJl", 
+            "c3NUeXBlOghDUFRfTk9ORSLhAgoQR2V0UmFuZ2VSZXNwb25zZRJWCghjb25z", 
+            "dW1lZBgBIAIoCzJELmNvbS5hbGljbG91ZC5vcGVuc2VydmljZXMudGFibGVz", 
+            "dG9yZS5jb3JlLnByb3RvY29sLkNvbnN1bWVkQ2FwYWNpdHkSDAoEcm93cxgC", 
+            "IAIoDBIeChZuZXh0X3N0YXJ0X3ByaW1hcnlfa2V5GAMgASgMEhIKCm5leHRf", 
+            "dG9rZW4YBCABKAwSWgoPZGF0YV9ibG9ja190eXBlGAUgASgOMkEuY29tLmFs", 
+            "aWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wu", 
+            "RGF0YUJsb2NrVHlwZRJXCg1jb21wcmVzc190eXBlGAYgASgOMkAuY29tLmFs", 
+            "aWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wu", 
+            "Q29tcHJlc3NUeXBlIj8KHFN0YXJ0TG9jYWxUcmFuc2FjdGlvblJlcXVlc3QS", 
+            "EgoKdGFibGVfbmFtZRgBIAIoCRILCgNrZXkYAiACKAwiNwodU3RhcnRMb2Nh", 
+            "bFRyYW5zYWN0aW9uUmVzcG9uc2USFgoOdHJhbnNhY3Rpb25faWQYASACKAki", 
+            "MgoYQ29tbWl0VHJhbnNhY3Rpb25SZXF1ZXN0EhYKDnRyYW5zYWN0aW9uX2lk", 
+            "GAEgAigJIhsKGUNvbW1pdFRyYW5zYWN0aW9uUmVzcG9uc2UiMQoXQWJvcnRU", 
+            "cmFuc2FjdGlvblJlcXVlc3QSFgoOdHJhbnNhY3Rpb25faWQYASACKAkiGgoY", 
+            "QWJvcnRUcmFuc2FjdGlvblJlc3BvbnNlIicKEUxpc3RTdHJlYW1SZXF1ZXN0", 
+            "EhIKCnRhYmxlX25hbWUYASABKAkiRgoGU3RyZWFtEhEKCXN0cmVhbV9pZBgB", 
+            "IAIoCRISCgp0YWJsZV9uYW1lGAIgAigJEhUKDWNyZWF0aW9uX3RpbWUYAyAC", 
+            "KAMiYQoSTGlzdFN0cmVhbVJlc3BvbnNlEksKB3N0cmVhbXMYASADKAsyOi5j", 
+            "b20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5wcm90", 
+            "b2NvbC5TdHJlYW0iTQoLU3RyZWFtU2hhcmQSEAoIc2hhcmRfaWQYASACKAkS", 
+            "EQoJcGFyZW50X2lkGAIgASgJEhkKEXBhcmVudF9zaWJsaW5nX2lkGAMgASgJ", 
+            "ImEKFURlc2NyaWJlU3RyZWFtUmVxdWVzdBIRCglzdHJlYW1faWQYASACKAkS", 
+            "IAoYaW5jbHVzaXZlX3N0YXJ0X3NoYXJkX2lkGAIgASgJEhMKC3NoYXJkX2xp", 
+            "bWl0GAMgASgFIrACChZEZXNjcmliZVN0cmVhbVJlc3BvbnNlEhEKCXN0cmVh", 
+            "bV9pZBgBIAIoCRIXCg9leHBpcmF0aW9uX3RpbWUYAiACKAUSEgoKdGFibGVf", 
+            "bmFtZRgDIAIoCRIVCg1jcmVhdGlvbl90aW1lGAQgAigDElcKDXN0cmVhbV9z", 
+            "dGF0dXMYBSACKA4yQC5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxl", 
+            "c3RvcmUuY29yZS5wcm90b2NvbC5TdHJlYW1TdGF0dXMSTwoGc2hhcmRzGAYg", 
+            "AygLMj8uY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNv", 
+            "cmUucHJvdG9jb2wuU3RyZWFtU2hhcmQSFQoNbmV4dF9zaGFyZF9pZBgHIAEo", 
+            "CSI+ChdHZXRTaGFyZEl0ZXJhdG9yUmVxdWVzdBIRCglzdHJlYW1faWQYASAC", 
+            "KAkSEAoIc2hhcmRfaWQYAiACKAkiMgoYR2V0U2hhcmRJdGVyYXRvclJlc3Bv", 
+            "bnNlEhYKDnNoYXJkX2l0ZXJhdG9yGAEgAigJIj8KFkdldFN0cmVhbVJlY29y", 
+            "ZFJlcXVlc3QSFgoOc2hhcmRfaXRlcmF0b3IYASACKAkSDQoFbGltaXQYAiAB", 
+            "KAUinQIKF0dldFN0cmVhbVJlY29yZFJlc3BvbnNlEnAKDnN0cmVhbV9yZWNv", 
+            "cmRzGAEgAygLMlguY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0", 
+            "b3JlLmNvcmUucHJvdG9jb2wuR2V0U3RyZWFtUmVjb3JkUmVzcG9uc2UuU3Ry", 
+            "ZWFtUmVjb3JkEhsKE25leHRfc2hhcmRfaXRlcmF0b3IYAiABKAkacwoMU3Ry", 
+            "ZWFtUmVjb3JkElMKC2FjdGlvbl90eXBlGAEgAigOMj4uY29tLmFsaWNsb3Vk", 
+            "Lm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNvcmUucHJvdG9jb2wuQWN0aW9u", 
+            "VHlwZRIOCgZyZWNvcmQYAiACKAwiagofQ29tcHV0ZVNwbGl0UG9pbnRzQnlT", 
+            "aXplUmVxdWVzdBISCgp0YWJsZV9uYW1lGAEgAigJEhIKCnNwbGl0X3NpemUY", 
+            "AiACKAMSHwoXc3BsaXRfc2l6ZV91bml0X2luX2J5dGUYAyABKAMikAMKIENv", 
+            "bXB1dGVTcGxpdFBvaW50c0J5U2l6ZVJlc3BvbnNlElYKCGNvbnN1bWVkGAEg", 
+            "AigLMkQuY29tLmFsaWNsb3VkLm9wZW5zZXJ2aWNlcy50YWJsZXN0b3JlLmNv", 
+            "cmUucHJvdG9jb2wuQ29uc3VtZWRDYXBhY2l0eRJUCgZzY2hlbWEYAiADKAsy", 
+            "RC5jb20uYWxpY2xvdWQub3BlbnNlcnZpY2VzLnRhYmxlc3RvcmUuY29yZS5w", 
+            "cm90b2NvbC5QcmltYXJ5S2V5U2NoZW1hEhQKDHNwbGl0X3BvaW50cxgDIAMo", 
+            "DBJ1Cglsb2NhdGlvbnMYBCADKAsyYi5jb20uYWxpY2xvdWQub3BlbnNlcnZp", 
+            "Y2VzLnRhYmxlc3RvcmUuY29yZS5wcm90b2NvbC5Db21wdXRlU3BsaXRQb2lu", 
+            "dHNCeVNpemVSZXNwb25zZS5TcGxpdExvY2F0aW9uGjEKDVNwbGl0TG9jYXRp", 
+            "b24SEAoIbG9jYXRpb24YASACKAkSDgoGcmVwZWF0GAIgAigSKjUKDlByaW1h", 
+            "cnlLZXlUeXBlEgsKB0lOVEVHRVIQARIKCgZTVFJJTkcQAhIKCgZCSU5BUlkQ", 
+            "AypjChFEZWZpbmVkQ29sdW1uVHlwZRIPCgtEQ1RfSU5URUdFUhABEg4KCkRD", 
+            "VF9ET1VCTEUQAhIPCgtEQ1RfQk9PTEVBThADEg4KCkRDVF9TVFJJTkcQBBIM", 
+            "CghEQ1RfQkxPQhAHKiYKEFByaW1hcnlLZXlPcHRpb24SEgoOQVVUT19JTkNS", 
+            "RU1FTlQQASouCg9CbG9vbUZpbHRlclR5cGUSCAoETk9ORRABEggKBENFTEwQ", 
+            "AhIHCgNST1cQAypACg1EYXRhQmxvY2tUeXBlEhQKEERCVF9QTEFJTl9CVUZG", 
+            "RVIQABIZChVEQlRfU0lNUExFX1JPV19NQVRSSVgQASocCgxDb21wcmVzc1R5", 
+            "cGUSDAoIQ1BUX05PTkUQACo6Cg9JbmRleFVwZGF0ZU1vZGUSEwoPSVVNX0FT", 
+            "WU5DX0lOREVYEAASEgoOSVVNX1NZTkNfSU5ERVgQASo0CglJbmRleFR5cGUS", 
+            "EwoPSVRfR0xPQkFMX0lOREVYEAASEgoOSVRfTE9DQUxfSU5ERVgQASpRCgtU", 
+            "YWJsZVN0YXR1cxIKCgZBQ1RJVkUQARIMCghJTkFDVElWRRACEgsKB0xPQURJ", 
+            "TkcQAxINCglVTkxPQURJTkcQBBIMCghVUERBVElORxAFKk0KF1Jvd0V4aXN0", 
+            "ZW5jZUV4cGVjdGF0aW9uEgoKBklHTk9SRRAAEhAKDEVYUEVDVF9FWElTVBAB", 
+            "EhQKEEVYUEVDVF9OT1RfRVhJU1QQAio5CgpSZXR1cm5UeXBlEgsKB1JUX05P", 
+            "TkUQABIJCgVSVF9QSxABEhMKD1JUX0FGVEVSX01PRElGWRACKjAKDU9wZXJh", 
+            "dGlvblR5cGUSBwoDUFVUEAESCgoGVVBEQVRFEAISCgoGREVMRVRFEAMqJgoJ", 
+            "RGlyZWN0aW9uEgsKB0ZPUldBUkQQABIMCghCQUNLV0FSRBABKjYKDFN0cmVh", 
+            "bVN0YXR1cxITCg9TVFJFQU1fRU5BQkxJTkcQARIRCg1TVFJFQU1fQUNUSVZF", 
+            "EAIqOQoKQWN0aW9uVHlwZRILCgdQVVRfUk9XEAESDgoKVVBEQVRFX1JPVxAC", 
+          "Eg4KCkRFTEVURV9ST1cQAw=="));
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_com_alicloud_openservices_tablestore_core_protocol_Error__Descriptor = Descriptor.MessageTypes[0];
@@ -382,231 +456,279 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         internal__static_com_alicloud_openservices_tablestore_core_protocol_PrimaryKeySchema__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.PrimaryKeySchema, global::com.alicloud.openservices.tablestore.core.protocol.PrimaryKeySchema.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_PrimaryKeySchema__Descriptor,
                 new string[] { "Name", "Type", "Option", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_PartitionRange__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DefinedColumnSchema__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DefinedColumnSchema__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema, global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DefinedColumnSchema__Descriptor,
+                new string[] { "Name", "Type", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_PartitionRange__Descriptor = Descriptor.MessageTypes[3];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_PartitionRange__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.PartitionRange, global::com.alicloud.openservices.tablestore.core.protocol.PartitionRange.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_PartitionRange__Descriptor,
                 new string[] { "Begin", "End", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableOptions__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableOptions__Descriptor = Descriptor.MessageTypes[4];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_TableOptions__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TableOptions, global::com.alicloud.openservices.tablestore.core.protocol.TableOptions.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_TableOptions__Descriptor,
                 new string[] { "TimeToLive", "MaxVersions", "BloomFilterType", "BlockSize", "DeviationCellVersionInSec", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableMeta__Descriptor = Descriptor.MessageTypes[4];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_IndexMeta__Descriptor = Descriptor.MessageTypes[5];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_IndexMeta__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_IndexMeta__Descriptor,
+                new string[] { "Name", "PrimaryKey", "DefinedColumn", "IndexUpdateMode", "IndexType", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableMeta__Descriptor = Descriptor.MessageTypes[6];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_TableMeta__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TableMeta, global::com.alicloud.openservices.tablestore.core.protocol.TableMeta.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_TableMeta__Descriptor,
-                new string[] { "TableName", "PrimaryKey", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_Condition__Descriptor = Descriptor.MessageTypes[5];
+                new string[] { "TableName", "PrimaryKey", "DefinedColumn", "IndexMeta", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_Condition__Descriptor = Descriptor.MessageTypes[7];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_Condition__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.Condition, global::com.alicloud.openservices.tablestore.core.protocol.Condition.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_Condition__Descriptor,
                 new string[] { "RowExistence", "ColumnCondition", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_CapacityUnit__Descriptor = Descriptor.MessageTypes[6];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CapacityUnit__Descriptor = Descriptor.MessageTypes[8];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_CapacityUnit__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CapacityUnit, global::com.alicloud.openservices.tablestore.core.protocol.CapacityUnit.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_CapacityUnit__Descriptor,
                 new string[] { "Read", "Write", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ReservedThroughputDetails__Descriptor = Descriptor.MessageTypes[7];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ReservedThroughputDetails__Descriptor = Descriptor.MessageTypes[9];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ReservedThroughputDetails__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ReservedThroughputDetails, global::com.alicloud.openservices.tablestore.core.protocol.ReservedThroughputDetails.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ReservedThroughputDetails__Descriptor,
                 new string[] { "CapacityUnit", "LastIncreaseTime", "LastDecreaseTime", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ReservedThroughput__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ReservedThroughput__Descriptor = Descriptor.MessageTypes[10];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ReservedThroughput__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ReservedThroughput, global::com.alicloud.openservices.tablestore.core.protocol.ReservedThroughput.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ReservedThroughput__Descriptor,
                 new string[] { "CapacityUnit", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ConsumedCapacity__Descriptor = Descriptor.MessageTypes[9];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ConsumedCapacity__Descriptor = Descriptor.MessageTypes[11];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ConsumedCapacity__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ConsumedCapacity, global::com.alicloud.openservices.tablestore.core.protocol.ConsumedCapacity.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ConsumedCapacity__Descriptor,
                 new string[] { "CapacityUnit", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamSpecification__Descriptor = Descriptor.MessageTypes[10];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamSpecification__Descriptor = Descriptor.MessageTypes[12];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamSpecification__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.StreamSpecification, global::com.alicloud.openservices.tablestore.core.protocol.StreamSpecification.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamSpecification__Descriptor,
                 new string[] { "EnableStream", "ExpirationTime", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamDetails__Descriptor = Descriptor.MessageTypes[11];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamDetails__Descriptor = Descriptor.MessageTypes[13];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamDetails__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.StreamDetails, global::com.alicloud.openservices.tablestore.core.protocol.StreamDetails.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamDetails__Descriptor,
                 new string[] { "EnableStream", "StreamId", "ExpirationTime", "LastEnableTime", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableRequest__Descriptor = Descriptor.MessageTypes[12];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableRequest__Descriptor = Descriptor.MessageTypes[14];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CreateTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.CreateTableRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableRequest__Descriptor,
-                new string[] { "TableMeta", "ReservedThroughput", "TableOptions", "Partitions", "StreamSpec", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableResponse__Descriptor = Descriptor.MessageTypes[13];
+                new string[] { "TableMeta", "ReservedThroughput", "TableOptions", "Partitions", "StreamSpec", "IndexMetas", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableResponse__Descriptor = Descriptor.MessageTypes[15];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CreateTableResponse, global::com.alicloud.openservices.tablestore.core.protocol.CreateTableResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateTableResponse__Descriptor,
                 new string[] { });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableRequest__Descriptor = Descriptor.MessageTypes[14];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexRequest__Descriptor = Descriptor.MessageTypes[16];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexRequest, global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexRequest__Descriptor,
+                new string[] { "MainTableName", "IndexMeta", "IncludeBaseData", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexResponse__Descriptor = Descriptor.MessageTypes[17];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexResponse, global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexResponse__Descriptor,
+                new string[] { });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexRequest__Descriptor = Descriptor.MessageTypes[18];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DropIndexRequest, global::com.alicloud.openservices.tablestore.core.protocol.DropIndexRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexRequest__Descriptor,
+                new string[] { "MainTableName", "IndexName", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexResponse__Descriptor = Descriptor.MessageTypes[19];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DropIndexResponse, global::com.alicloud.openservices.tablestore.core.protocol.DropIndexResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexResponse__Descriptor,
+                new string[] { });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableRequest__Descriptor = Descriptor.MessageTypes[20];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.UpdateTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.UpdateTableRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableRequest__Descriptor,
                 new string[] { "TableName", "ReservedThroughput", "TableOptions", "StreamSpec", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableResponse__Descriptor = Descriptor.MessageTypes[15];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableResponse__Descriptor = Descriptor.MessageTypes[21];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.UpdateTableResponse, global::com.alicloud.openservices.tablestore.core.protocol.UpdateTableResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateTableResponse__Descriptor,
                 new string[] { "ReservedThroughputDetails", "TableOptions", "StreamDetails", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeTableRequest__Descriptor = Descriptor.MessageTypes[16];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeTableRequest__Descriptor = Descriptor.MessageTypes[22];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeTableRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DescribeTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.DescribeTableRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeTableRequest__Descriptor,
                 new string[] { "TableName", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeTableResponse__Descriptor = Descriptor.MessageTypes[17];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeTableResponse__Descriptor = Descriptor.MessageTypes[23];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeTableResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DescribeTableResponse, global::com.alicloud.openservices.tablestore.core.protocol.DescribeTableResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeTableResponse__Descriptor,
-                new string[] { "TableMeta", "ReservedThroughputDetails", "TableOptions", "TableStatus", "StreamDetails", "ShardSplits", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ListTableRequest__Descriptor = Descriptor.MessageTypes[18];
+                new string[] { "TableMeta", "ReservedThroughputDetails", "TableOptions", "TableStatus", "StreamDetails", "ShardSplits", "IndexMetas", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ListTableRequest__Descriptor = Descriptor.MessageTypes[24];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ListTableRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ListTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.ListTableRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ListTableRequest__Descriptor,
                 new string[] { });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ListTableResponse__Descriptor = Descriptor.MessageTypes[19];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ListTableResponse__Descriptor = Descriptor.MessageTypes[25];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ListTableResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ListTableResponse, global::com.alicloud.openservices.tablestore.core.protocol.ListTableResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ListTableResponse__Descriptor,
                 new string[] { "TableNames", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteTableRequest__Descriptor = Descriptor.MessageTypes[20];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteTableRequest__Descriptor = Descriptor.MessageTypes[26];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteTableRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DeleteTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.DeleteTableRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteTableRequest__Descriptor,
                 new string[] { "TableName", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteTableResponse__Descriptor = Descriptor.MessageTypes[21];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteTableResponse__Descriptor = Descriptor.MessageTypes[27];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteTableResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DeleteTableResponse, global::com.alicloud.openservices.tablestore.core.protocol.DeleteTableResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteTableResponse__Descriptor,
                 new string[] { });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_LoadTableRequest__Descriptor = Descriptor.MessageTypes[22];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_LoadTableRequest__Descriptor = Descriptor.MessageTypes[28];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_LoadTableRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.LoadTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.LoadTableRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_LoadTableRequest__Descriptor,
                 new string[] { "TableName", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_LoadTableResponse__Descriptor = Descriptor.MessageTypes[23];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_LoadTableResponse__Descriptor = Descriptor.MessageTypes[29];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_LoadTableResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.LoadTableResponse, global::com.alicloud.openservices.tablestore.core.protocol.LoadTableResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_LoadTableResponse__Descriptor,
                 new string[] { });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_UnloadTableRequest__Descriptor = Descriptor.MessageTypes[24];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_UnloadTableRequest__Descriptor = Descriptor.MessageTypes[30];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_UnloadTableRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.UnloadTableRequest, global::com.alicloud.openservices.tablestore.core.protocol.UnloadTableRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_UnloadTableRequest__Descriptor,
                 new string[] { "TableName", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_UnloadTableResponse__Descriptor = Descriptor.MessageTypes[25];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_UnloadTableResponse__Descriptor = Descriptor.MessageTypes[31];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_UnloadTableResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.UnloadTableResponse, global::com.alicloud.openservices.tablestore.core.protocol.UnloadTableResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_UnloadTableResponse__Descriptor,
                 new string[] { });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_TimeRange__Descriptor = Descriptor.MessageTypes[26];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_TimeRange__Descriptor = Descriptor.MessageTypes[32];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_TimeRange__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TimeRange, global::com.alicloud.openservices.tablestore.core.protocol.TimeRange.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_TimeRange__Descriptor,
                 new string[] { "StartTime", "EndTime", "SpecificTime", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ReturnContent__Descriptor = Descriptor.MessageTypes[27];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ReturnContent__Descriptor = Descriptor.MessageTypes[33];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ReturnContent__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ReturnContent, global::com.alicloud.openservices.tablestore.core.protocol.ReturnContent.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ReturnContent__Descriptor,
-                new string[] { "ReturnType", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRowRequest__Descriptor = Descriptor.MessageTypes[28];
+                new string[] { "ReturnType", "ReturnColumnNames", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRowRequest__Descriptor = Descriptor.MessageTypes[34];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.GetRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRowRequest__Descriptor,
-                new string[] { "TableName", "PrimaryKey", "ColumnsToGet", "TimeRange", "MaxVersions", "CacheBlocks", "Filter", "StartColumn", "EndColumn", "Token", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRowResponse__Descriptor = Descriptor.MessageTypes[29];
+                new string[] { "TableName", "PrimaryKey", "ColumnsToGet", "TimeRange", "MaxVersions", "CacheBlocks", "Filter", "StartColumn", "EndColumn", "Token", "TransactionId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRowResponse__Descriptor = Descriptor.MessageTypes[35];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.GetRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRowResponse__Descriptor,
                 new string[] { "Consumed", "Row", "NextToken", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateRowRequest__Descriptor = Descriptor.MessageTypes[30];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateRowRequest__Descriptor = Descriptor.MessageTypes[36];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.UpdateRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.UpdateRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateRowRequest__Descriptor,
-                new string[] { "TableName", "RowChange", "Condition", "ReturnContent", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateRowResponse__Descriptor = Descriptor.MessageTypes[31];
+                new string[] { "TableName", "RowChange", "Condition", "ReturnContent", "TransactionId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateRowResponse__Descriptor = Descriptor.MessageTypes[37];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.UpdateRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.UpdateRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_UpdateRowResponse__Descriptor,
                 new string[] { "Consumed", "Row", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_PutRowRequest__Descriptor = Descriptor.MessageTypes[32];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_PutRowRequest__Descriptor = Descriptor.MessageTypes[38];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_PutRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.PutRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.PutRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_PutRowRequest__Descriptor,
-                new string[] { "TableName", "Row", "Condition", "ReturnContent", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_PutRowResponse__Descriptor = Descriptor.MessageTypes[33];
+                new string[] { "TableName", "Row", "Condition", "ReturnContent", "TransactionId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_PutRowResponse__Descriptor = Descriptor.MessageTypes[39];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_PutRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.PutRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.PutRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_PutRowResponse__Descriptor,
                 new string[] { "Consumed", "Row", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteRowRequest__Descriptor = Descriptor.MessageTypes[34];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteRowRequest__Descriptor = Descriptor.MessageTypes[40];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DeleteRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.DeleteRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteRowRequest__Descriptor,
-                new string[] { "TableName", "PrimaryKey", "Condition", "ReturnContent", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteRowResponse__Descriptor = Descriptor.MessageTypes[35];
+                new string[] { "TableName", "PrimaryKey", "Condition", "ReturnContent", "TransactionId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteRowResponse__Descriptor = Descriptor.MessageTypes[41];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DeleteRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.DeleteRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DeleteRowResponse__Descriptor,
                 new string[] { "Consumed", "Row", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchGetRowRequest__Descriptor = Descriptor.MessageTypes[36];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchGetRowRequest__Descriptor = Descriptor.MessageTypes[42];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchGetRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchGetRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchGetRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchGetRowRequest__Descriptor,
                 new string[] { "TableName", "PrimaryKey", "Token", "ColumnsToGet", "TimeRange", "MaxVersions", "CacheBlocks", "Filter", "StartColumn", "EndColumn", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchGetRowRequest__Descriptor = Descriptor.MessageTypes[37];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchGetRowRequest__Descriptor = Descriptor.MessageTypes[43];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchGetRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.BatchGetRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.BatchGetRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchGetRowRequest__Descriptor,
                 new string[] { "Tables", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchGetRowResponse__Descriptor = Descriptor.MessageTypes[38];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchGetRowResponse__Descriptor = Descriptor.MessageTypes[44];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchGetRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.RowInBatchGetRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.RowInBatchGetRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchGetRowResponse__Descriptor,
                 new string[] { "IsOk", "Error", "Consumed", "Row", "NextToken", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchGetRowResponse__Descriptor = Descriptor.MessageTypes[39];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchGetRowResponse__Descriptor = Descriptor.MessageTypes[45];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchGetRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchGetRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchGetRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchGetRowResponse__Descriptor,
                 new string[] { "TableName", "Rows", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchGetRowResponse__Descriptor = Descriptor.MessageTypes[40];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchGetRowResponse__Descriptor = Descriptor.MessageTypes[46];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchGetRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.BatchGetRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.BatchGetRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchGetRowResponse__Descriptor,
                 new string[] { "Tables", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchWriteRowRequest__Descriptor = Descriptor.MessageTypes[41];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchWriteRowRequest__Descriptor = Descriptor.MessageTypes[47];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchWriteRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.RowInBatchWriteRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.RowInBatchWriteRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchWriteRowRequest__Descriptor,
                 new string[] { "Type", "RowChange", "Condition", "ReturnContent", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchWriteRowRequest__Descriptor = Descriptor.MessageTypes[42];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchWriteRowRequest__Descriptor = Descriptor.MessageTypes[48];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchWriteRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchWriteRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchWriteRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchWriteRowRequest__Descriptor,
                 new string[] { "TableName", "Rows", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchWriteRowRequest__Descriptor = Descriptor.MessageTypes[43];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchWriteRowRequest__Descriptor = Descriptor.MessageTypes[49];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchWriteRowRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.BatchWriteRowRequest, global::com.alicloud.openservices.tablestore.core.protocol.BatchWriteRowRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchWriteRowRequest__Descriptor,
-                new string[] { "Tables", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchWriteRowResponse__Descriptor = Descriptor.MessageTypes[44];
+                new string[] { "Tables", "TransactionId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchWriteRowResponse__Descriptor = Descriptor.MessageTypes[50];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchWriteRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.RowInBatchWriteRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.RowInBatchWriteRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_RowInBatchWriteRowResponse__Descriptor,
                 new string[] { "IsOk", "Error", "Consumed", "Row", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchWriteRowResponse__Descriptor = Descriptor.MessageTypes[45];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchWriteRowResponse__Descriptor = Descriptor.MessageTypes[51];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchWriteRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchWriteRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchWriteRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_TableInBatchWriteRowResponse__Descriptor,
                 new string[] { "TableName", "Rows", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchWriteRowResponse__Descriptor = Descriptor.MessageTypes[46];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchWriteRowResponse__Descriptor = Descriptor.MessageTypes[52];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchWriteRowResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.BatchWriteRowResponse, global::com.alicloud.openservices.tablestore.core.protocol.BatchWriteRowResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_BatchWriteRowResponse__Descriptor,
                 new string[] { "Tables", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeRequest__Descriptor = Descriptor.MessageTypes[47];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeRequest__Descriptor = Descriptor.MessageTypes[53];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetRangeRequest, global::com.alicloud.openservices.tablestore.core.protocol.GetRangeRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeRequest__Descriptor,
-                new string[] { "TableName", "Direction", "ColumnsToGet", "TimeRange", "MaxVersions", "Limit", "InclusiveStartPrimaryKey", "ExclusiveEndPrimaryKey", "CacheBlocks", "Filter", "StartColumn", "EndColumn", "Token", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeResponse__Descriptor = Descriptor.MessageTypes[48];
+                new string[] { "TableName", "Direction", "ColumnsToGet", "TimeRange", "MaxVersions", "Limit", "InclusiveStartPrimaryKey", "ExclusiveEndPrimaryKey", "CacheBlocks", "Filter", "StartColumn", "EndColumn", "Token", "TransactionId", "DataBlockTypeHint", "ReturnEntirePrimaryKeys", "CompressTypeHint", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeResponse__Descriptor = Descriptor.MessageTypes[54];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetRangeResponse, global::com.alicloud.openservices.tablestore.core.protocol.GetRangeResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetRangeResponse__Descriptor,
-                new string[] { "Consumed", "Rows", "NextStartPrimaryKey", "NextToken", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamRequest__Descriptor = Descriptor.MessageTypes[49];
+                new string[] { "Consumed", "Rows", "NextStartPrimaryKey", "NextToken", "DataBlockType", "CompressType", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionRequest__Descriptor = Descriptor.MessageTypes[55];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionRequest, global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionRequest__Descriptor,
+                new string[] { "TableName", "Key", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionResponse__Descriptor = Descriptor.MessageTypes[56];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionResponse, global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionResponse__Descriptor,
+                new string[] { "TransactionId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionRequest__Descriptor = Descriptor.MessageTypes[57];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionRequest, global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionRequest__Descriptor,
+                new string[] { "TransactionId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionResponse__Descriptor = Descriptor.MessageTypes[58];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionResponse, global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionResponse__Descriptor,
+                new string[] { });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionRequest__Descriptor = Descriptor.MessageTypes[59];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionRequest__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionRequest, global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionRequest__Descriptor,
+                new string[] { "TransactionId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionResponse__Descriptor = Descriptor.MessageTypes[60];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionResponse__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionResponse, global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionResponse__Descriptor,
+                new string[] { });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamRequest__Descriptor = Descriptor.MessageTypes[61];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ListStreamRequest, global::com.alicloud.openservices.tablestore.core.protocol.ListStreamRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamRequest__Descriptor,
                 new string[] { "TableName", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_Stream__Descriptor = Descriptor.MessageTypes[50];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_Stream__Descriptor = Descriptor.MessageTypes[62];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_Stream__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.Stream, global::com.alicloud.openservices.tablestore.core.protocol.Stream.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_Stream__Descriptor,
                 new string[] { "StreamId", "TableName", "CreationTime", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamResponse__Descriptor = Descriptor.MessageTypes[51];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamResponse__Descriptor = Descriptor.MessageTypes[63];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ListStreamResponse, global::com.alicloud.openservices.tablestore.core.protocol.ListStreamResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ListStreamResponse__Descriptor,
                 new string[] { "Streams", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamShard__Descriptor = Descriptor.MessageTypes[52];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamShard__Descriptor = Descriptor.MessageTypes[64];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamShard__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.StreamShard, global::com.alicloud.openservices.tablestore.core.protocol.StreamShard.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_StreamShard__Descriptor,
                 new string[] { "ShardId", "ParentId", "ParentSiblingId", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeStreamRequest__Descriptor = Descriptor.MessageTypes[53];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeStreamRequest__Descriptor = Descriptor.MessageTypes[65];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeStreamRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DescribeStreamRequest, global::com.alicloud.openservices.tablestore.core.protocol.DescribeStreamRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeStreamRequest__Descriptor,
                 new string[] { "StreamId", "InclusiveStartShardId", "ShardLimit", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeStreamResponse__Descriptor = Descriptor.MessageTypes[54];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeStreamResponse__Descriptor = Descriptor.MessageTypes[66];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeStreamResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.DescribeStreamResponse, global::com.alicloud.openservices.tablestore.core.protocol.DescribeStreamResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_DescribeStreamResponse__Descriptor,
                 new string[] { "StreamId", "ExpirationTime", "TableName", "CreationTime", "StreamStatus", "Shards", "NextShardId", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetShardIteratorRequest__Descriptor = Descriptor.MessageTypes[55];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetShardIteratorRequest__Descriptor = Descriptor.MessageTypes[67];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetShardIteratorRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetShardIteratorRequest, global::com.alicloud.openservices.tablestore.core.protocol.GetShardIteratorRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetShardIteratorRequest__Descriptor,
-                new string[] { "StreamId", "ShardId", "Timestamp", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetShardIteratorResponse__Descriptor = Descriptor.MessageTypes[56];
+                new string[] { "StreamId", "ShardId", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetShardIteratorResponse__Descriptor = Descriptor.MessageTypes[68];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetShardIteratorResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetShardIteratorResponse, global::com.alicloud.openservices.tablestore.core.protocol.GetShardIteratorResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetShardIteratorResponse__Descriptor,
                 new string[] { "ShardIterator", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordRequest__Descriptor = Descriptor.MessageTypes[57];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordRequest__Descriptor = Descriptor.MessageTypes[69];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetStreamRecordRequest, global::com.alicloud.openservices.tablestore.core.protocol.GetStreamRecordRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordRequest__Descriptor,
                 new string[] { "ShardIterator", "Limit", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordResponse__Descriptor = Descriptor.MessageTypes[58];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordResponse__Descriptor = Descriptor.MessageTypes[70];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetStreamRecordResponse, global::com.alicloud.openservices.tablestore.core.protocol.GetStreamRecordResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordResponse__Descriptor,
                 new string[] { "StreamRecords", "NextShardIterator", });
@@ -614,11 +736,11 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordResponse_StreamRecord__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.GetStreamRecordResponse.Types.StreamRecord, global::com.alicloud.openservices.tablestore.core.protocol.GetStreamRecordResponse.Types.StreamRecord.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_GetStreamRecordResponse_StreamRecord__Descriptor,
                 new string[] { "ActionType", "Record", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ComputeSplitPointsBySizeRequest__Descriptor = Descriptor.MessageTypes[59];
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ComputeSplitPointsBySizeRequest__Descriptor = Descriptor.MessageTypes[71];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ComputeSplitPointsBySizeRequest__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ComputeSplitPointsBySizeRequest, global::com.alicloud.openservices.tablestore.core.protocol.ComputeSplitPointsBySizeRequest.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ComputeSplitPointsBySizeRequest__Descriptor,
-                new string[] { "TableName", "SplitSize", });
-        internal__static_com_alicloud_openservices_tablestore_core_protocol_ComputeSplitPointsBySizeResponse__Descriptor = Descriptor.MessageTypes[60];
+                new string[] { "TableName", "SplitSize", "SplitSizeUnitInByte", });
+        internal__static_com_alicloud_openservices_tablestore_core_protocol_ComputeSplitPointsBySizeResponse__Descriptor = Descriptor.MessageTypes[72];
         internal__static_com_alicloud_openservices_tablestore_core_protocol_ComputeSplitPointsBySizeResponse__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::com.alicloud.openservices.tablestore.core.protocol.ComputeSplitPointsBySizeResponse, global::com.alicloud.openservices.tablestore.core.protocol.ComputeSplitPointsBySizeResponse.Builder>(internal__static_com_alicloud_openservices_tablestore_core_protocol_ComputeSplitPointsBySizeResponse__Descriptor,
                 new string[] { "Consumed", "Schema", "SplitPoints", "Locations", });
@@ -642,6 +764,14 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
     BINARY = 3,
   }
   
+  public enum DefinedColumnType {
+    DCT_INTEGER = 1,
+    DCT_DOUBLE = 2,
+    DCT_BOOLEAN = 3,
+    DCT_STRING = 4,
+    DCT_BLOB = 7,
+  }
+  
   public enum PrimaryKeyOption {
     AUTO_INCREMENT = 1,
   }
@@ -650,6 +780,25 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
     NONE = 1,
     CELL = 2,
     ROW = 3,
+  }
+  
+  public enum DataBlockType {
+    DBT_PLAIN_BUFFER = 0,
+    DBT_SIMPLE_ROW_MATRIX = 1,
+  }
+  
+  public enum CompressType {
+    CPT_NONE = 0,
+  }
+  
+  public enum IndexUpdateMode {
+    IUM_ASYNC_INDEX = 0,
+    IUM_SYNC_INDEX = 1,
+  }
+  
+  public enum IndexType {
+    IT_GLOBAL_INDEX = 0,
+    IT_LOCAL_INDEX = 1,
   }
   
   public enum TableStatus {
@@ -669,6 +818,7 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public enum ReturnType {
     RT_NONE = 0,
     RT_PK = 1,
+    RT_AFTER_MODIFY = 2,
   }
   
   public enum OperationType {
@@ -1393,6 +1543,335 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
     }
     static PrimaryKeySchema() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class DefinedColumnSchema : pb::GeneratedMessage<DefinedColumnSchema, DefinedColumnSchema.Builder> {
+    private DefinedColumnSchema() { }
+    private static readonly DefinedColumnSchema defaultInstance = new DefinedColumnSchema().MakeReadOnly();
+    private static readonly string[] _definedColumnSchemaFieldNames = new string[] { "name", "type" };
+    private static readonly uint[] _definedColumnSchemaFieldTags = new uint[] { 10, 16 };
+    public static DefinedColumnSchema DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override DefinedColumnSchema DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override DefinedColumnSchema ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_DefinedColumnSchema__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<DefinedColumnSchema, DefinedColumnSchema.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_DefinedColumnSchema__FieldAccessorTable; }
+    }
+    
+    public const int NameFieldNumber = 1;
+    private bool hasName;
+    private string name_ = "";
+    public bool HasName {
+      get { return hasName; }
+    }
+    public string Name {
+      get { return name_; }
+    }
+    
+    public const int TypeFieldNumber = 2;
+    private bool hasType;
+    private global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnType type_ = global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnType.DCT_INTEGER;
+    public bool HasType {
+      get { return hasType; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnType Type {
+      get { return type_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasName) return false;
+        if (!hasType) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _definedColumnSchemaFieldNames;
+      if (hasName) {
+        output.WriteString(1, field_names[0], Name);
+      }
+      if (hasType) {
+        output.WriteEnum(2, field_names[1], (int) Type, Type);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasName) {
+        size += pb::CodedOutputStream.ComputeStringSize(1, Name);
+      }
+      if (hasType) {
+        size += pb::CodedOutputStream.ComputeEnumSize(2, (int) Type);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static DefinedColumnSchema ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DefinedColumnSchema ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private DefinedColumnSchema MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(DefinedColumnSchema prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<DefinedColumnSchema, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(DefinedColumnSchema cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private DefinedColumnSchema result;
+      
+      private DefinedColumnSchema PrepareBuilder() {
+        if (resultIsReadOnly) {
+          DefinedColumnSchema original = result;
+          result = new DefinedColumnSchema();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override DefinedColumnSchema MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema.Descriptor; }
+      }
+      
+      public override DefinedColumnSchema DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema.DefaultInstance; }
+      }
+      
+      public override DefinedColumnSchema BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is DefinedColumnSchema) {
+          return MergeFrom((DefinedColumnSchema) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(DefinedColumnSchema other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasName) {
+          Name = other.Name;
+        }
+        if (other.HasType) {
+          Type = other.Type;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_definedColumnSchemaFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _definedColumnSchemaFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasName = input.ReadString(ref result.name_);
+              break;
+            }
+            case 16: {
+              object unknown;
+              if(input.ReadEnum(ref result.type_, out unknown)) {
+                result.hasType = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(2, (ulong)(int)unknown);
+              }
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasName {
+        get { return result.hasName; }
+      }
+      public string Name {
+        get { return result.Name; }
+        set { SetName(value); }
+      }
+      public Builder SetName(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasName = true;
+        result.name_ = value;
+        return this;
+      }
+      public Builder ClearName() {
+        PrepareBuilder();
+        result.hasName = false;
+        result.name_ = "";
+        return this;
+      }
+      
+      public bool HasType {
+       get { return result.hasType; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnType Type {
+        get { return result.Type; }
+        set { SetType(value); }
+      }
+      public Builder SetType(global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnType value) {
+        PrepareBuilder();
+        result.hasType = true;
+        result.type_ = value;
+        return this;
+      }
+      public Builder ClearType() {
+        PrepareBuilder();
+        result.hasType = false;
+        result.type_ = global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnType.DCT_INTEGER;
+        return this;
+      }
+    }
+    static DefinedColumnSchema() {
       object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
     }
   }
@@ -2175,11 +2654,518 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   }
   
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class IndexMeta : pb::GeneratedMessage<IndexMeta, IndexMeta.Builder> {
+    private IndexMeta() { }
+    private static readonly IndexMeta defaultInstance = new IndexMeta().MakeReadOnly();
+    private static readonly string[] _indexMetaFieldNames = new string[] { "defined_column", "index_type", "index_update_mode", "name", "primary_key" };
+    private static readonly uint[] _indexMetaFieldTags = new uint[] { 26, 40, 32, 10, 18 };
+    public static IndexMeta DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override IndexMeta DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override IndexMeta ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_IndexMeta__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<IndexMeta, IndexMeta.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_IndexMeta__FieldAccessorTable; }
+    }
+    
+    public const int NameFieldNumber = 1;
+    private bool hasName;
+    private string name_ = "";
+    public bool HasName {
+      get { return hasName; }
+    }
+    public string Name {
+      get { return name_; }
+    }
+    
+    public const int PrimaryKeyFieldNumber = 2;
+    private pbc::PopsicleList<string> primaryKey_ = new pbc::PopsicleList<string>();
+    public scg::IList<string> PrimaryKeyList {
+      get { return pbc::Lists.AsReadOnly(primaryKey_); }
+    }
+    public int PrimaryKeyCount {
+      get { return primaryKey_.Count; }
+    }
+    public string GetPrimaryKey(int index) {
+      return primaryKey_[index];
+    }
+    
+    public const int DefinedColumnFieldNumber = 3;
+    private pbc::PopsicleList<string> definedColumn_ = new pbc::PopsicleList<string>();
+    public scg::IList<string> DefinedColumnList {
+      get { return pbc::Lists.AsReadOnly(definedColumn_); }
+    }
+    public int DefinedColumnCount {
+      get { return definedColumn_.Count; }
+    }
+    public string GetDefinedColumn(int index) {
+      return definedColumn_[index];
+    }
+    
+    public const int IndexUpdateModeFieldNumber = 4;
+    private bool hasIndexUpdateMode;
+    private global::com.alicloud.openservices.tablestore.core.protocol.IndexUpdateMode indexUpdateMode_ = global::com.alicloud.openservices.tablestore.core.protocol.IndexUpdateMode.IUM_ASYNC_INDEX;
+    public bool HasIndexUpdateMode {
+      get { return hasIndexUpdateMode; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.IndexUpdateMode IndexUpdateMode {
+      get { return indexUpdateMode_; }
+    }
+    
+    public const int IndexTypeFieldNumber = 5;
+    private bool hasIndexType;
+    private global::com.alicloud.openservices.tablestore.core.protocol.IndexType indexType_ = global::com.alicloud.openservices.tablestore.core.protocol.IndexType.IT_GLOBAL_INDEX;
+    public bool HasIndexType {
+      get { return hasIndexType; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.IndexType IndexType {
+      get { return indexType_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasName) return false;
+        if (!hasIndexUpdateMode) return false;
+        if (!hasIndexType) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _indexMetaFieldNames;
+      if (hasName) {
+        output.WriteString(1, field_names[3], Name);
+      }
+      if (primaryKey_.Count > 0) {
+        output.WriteStringArray(2, field_names[4], primaryKey_);
+      }
+      if (definedColumn_.Count > 0) {
+        output.WriteStringArray(3, field_names[0], definedColumn_);
+      }
+      if (hasIndexUpdateMode) {
+        output.WriteEnum(4, field_names[2], (int) IndexUpdateMode, IndexUpdateMode);
+      }
+      if (hasIndexType) {
+        output.WriteEnum(5, field_names[1], (int) IndexType, IndexType);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasName) {
+        size += pb::CodedOutputStream.ComputeStringSize(1, Name);
+      }
+      {
+        int dataSize = 0;
+        foreach (string element in PrimaryKeyList) {
+          dataSize += pb::CodedOutputStream.ComputeStringSizeNoTag(element);
+        }
+        size += dataSize;
+        size += 1 * primaryKey_.Count;
+      }
+      {
+        int dataSize = 0;
+        foreach (string element in DefinedColumnList) {
+          dataSize += pb::CodedOutputStream.ComputeStringSizeNoTag(element);
+        }
+        size += dataSize;
+        size += 1 * definedColumn_.Count;
+      }
+      if (hasIndexUpdateMode) {
+        size += pb::CodedOutputStream.ComputeEnumSize(4, (int) IndexUpdateMode);
+      }
+      if (hasIndexType) {
+        size += pb::CodedOutputStream.ComputeEnumSize(5, (int) IndexType);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static IndexMeta ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static IndexMeta ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static IndexMeta ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static IndexMeta ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static IndexMeta ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static IndexMeta ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static IndexMeta ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static IndexMeta ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static IndexMeta ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static IndexMeta ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private IndexMeta MakeReadOnly() {
+      primaryKey_.MakeReadOnly();
+      definedColumn_.MakeReadOnly();
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(IndexMeta prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<IndexMeta, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(IndexMeta cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private IndexMeta result;
+      
+      private IndexMeta PrepareBuilder() {
+        if (resultIsReadOnly) {
+          IndexMeta original = result;
+          result = new IndexMeta();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override IndexMeta MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Descriptor; }
+      }
+      
+      public override IndexMeta DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.DefaultInstance; }
+      }
+      
+      public override IndexMeta BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is IndexMeta) {
+          return MergeFrom((IndexMeta) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(IndexMeta other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasName) {
+          Name = other.Name;
+        }
+        if (other.primaryKey_.Count != 0) {
+          result.primaryKey_.Add(other.primaryKey_);
+        }
+        if (other.definedColumn_.Count != 0) {
+          result.definedColumn_.Add(other.definedColumn_);
+        }
+        if (other.HasIndexUpdateMode) {
+          IndexUpdateMode = other.IndexUpdateMode;
+        }
+        if (other.HasIndexType) {
+          IndexType = other.IndexType;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_indexMetaFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _indexMetaFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasName = input.ReadString(ref result.name_);
+              break;
+            }
+            case 18: {
+              input.ReadStringArray(tag, field_name, result.primaryKey_);
+              break;
+            }
+            case 26: {
+              input.ReadStringArray(tag, field_name, result.definedColumn_);
+              break;
+            }
+            case 32: {
+              object unknown;
+              if(input.ReadEnum(ref result.indexUpdateMode_, out unknown)) {
+                result.hasIndexUpdateMode = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(4, (ulong)(int)unknown);
+              }
+              break;
+            }
+            case 40: {
+              object unknown;
+              if(input.ReadEnum(ref result.indexType_, out unknown)) {
+                result.hasIndexType = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(5, (ulong)(int)unknown);
+              }
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasName {
+        get { return result.hasName; }
+      }
+      public string Name {
+        get { return result.Name; }
+        set { SetName(value); }
+      }
+      public Builder SetName(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasName = true;
+        result.name_ = value;
+        return this;
+      }
+      public Builder ClearName() {
+        PrepareBuilder();
+        result.hasName = false;
+        result.name_ = "";
+        return this;
+      }
+      
+      public pbc::IPopsicleList<string> PrimaryKeyList {
+        get { return PrepareBuilder().primaryKey_; }
+      }
+      public int PrimaryKeyCount {
+        get { return result.PrimaryKeyCount; }
+      }
+      public string GetPrimaryKey(int index) {
+        return result.GetPrimaryKey(index);
+      }
+      public Builder SetPrimaryKey(int index, string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.primaryKey_[index] = value;
+        return this;
+      }
+      public Builder AddPrimaryKey(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.primaryKey_.Add(value);
+        return this;
+      }
+      public Builder AddRangePrimaryKey(scg::IEnumerable<string> values) {
+        PrepareBuilder();
+        result.primaryKey_.Add(values);
+        return this;
+      }
+      public Builder ClearPrimaryKey() {
+        PrepareBuilder();
+        result.primaryKey_.Clear();
+        return this;
+      }
+      
+      public pbc::IPopsicleList<string> DefinedColumnList {
+        get { return PrepareBuilder().definedColumn_; }
+      }
+      public int DefinedColumnCount {
+        get { return result.DefinedColumnCount; }
+      }
+      public string GetDefinedColumn(int index) {
+        return result.GetDefinedColumn(index);
+      }
+      public Builder SetDefinedColumn(int index, string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.definedColumn_[index] = value;
+        return this;
+      }
+      public Builder AddDefinedColumn(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.definedColumn_.Add(value);
+        return this;
+      }
+      public Builder AddRangeDefinedColumn(scg::IEnumerable<string> values) {
+        PrepareBuilder();
+        result.definedColumn_.Add(values);
+        return this;
+      }
+      public Builder ClearDefinedColumn() {
+        PrepareBuilder();
+        result.definedColumn_.Clear();
+        return this;
+      }
+      
+      public bool HasIndexUpdateMode {
+       get { return result.hasIndexUpdateMode; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.IndexUpdateMode IndexUpdateMode {
+        get { return result.IndexUpdateMode; }
+        set { SetIndexUpdateMode(value); }
+      }
+      public Builder SetIndexUpdateMode(global::com.alicloud.openservices.tablestore.core.protocol.IndexUpdateMode value) {
+        PrepareBuilder();
+        result.hasIndexUpdateMode = true;
+        result.indexUpdateMode_ = value;
+        return this;
+      }
+      public Builder ClearIndexUpdateMode() {
+        PrepareBuilder();
+        result.hasIndexUpdateMode = false;
+        result.indexUpdateMode_ = global::com.alicloud.openservices.tablestore.core.protocol.IndexUpdateMode.IUM_ASYNC_INDEX;
+        return this;
+      }
+      
+      public bool HasIndexType {
+       get { return result.hasIndexType; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.IndexType IndexType {
+        get { return result.IndexType; }
+        set { SetIndexType(value); }
+      }
+      public Builder SetIndexType(global::com.alicloud.openservices.tablestore.core.protocol.IndexType value) {
+        PrepareBuilder();
+        result.hasIndexType = true;
+        result.indexType_ = value;
+        return this;
+      }
+      public Builder ClearIndexType() {
+        PrepareBuilder();
+        result.hasIndexType = false;
+        result.indexType_ = global::com.alicloud.openservices.tablestore.core.protocol.IndexType.IT_GLOBAL_INDEX;
+        return this;
+      }
+    }
+    static IndexMeta() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   public sealed partial class TableMeta : pb::GeneratedMessage<TableMeta, TableMeta.Builder> {
     private TableMeta() { }
     private static readonly TableMeta defaultInstance = new TableMeta().MakeReadOnly();
-    private static readonly string[] _tableMetaFieldNames = new string[] { "primary_key", "table_name" };
-    private static readonly uint[] _tableMetaFieldTags = new uint[] { 18, 10 };
+    private static readonly string[] _tableMetaFieldNames = new string[] { "defined_column", "index_meta", "primary_key", "table_name" };
+    private static readonly uint[] _tableMetaFieldTags = new uint[] { 26, 34, 18, 10 };
     public static TableMeta DefaultInstance {
       get { return defaultInstance; }
     }
@@ -2222,10 +3208,40 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       return primaryKey_[index];
     }
     
+    public const int DefinedColumnFieldNumber = 3;
+    private pbc::PopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema> definedColumn_ = new pbc::PopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema>();
+    public scg::IList<global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema> DefinedColumnList {
+      get { return definedColumn_; }
+    }
+    public int DefinedColumnCount {
+      get { return definedColumn_.Count; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema GetDefinedColumn(int index) {
+      return definedColumn_[index];
+    }
+    
+    public const int IndexMetaFieldNumber = 4;
+    private pbc::PopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> indexMeta_ = new pbc::PopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta>();
+    public scg::IList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> IndexMetaList {
+      get { return indexMeta_; }
+    }
+    public int IndexMetaCount {
+      get { return indexMeta_.Count; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta GetIndexMeta(int index) {
+      return indexMeta_[index];
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableName) return false;
         foreach (global::com.alicloud.openservices.tablestore.core.protocol.PrimaryKeySchema element in PrimaryKeyList) {
+          if (!element.IsInitialized) return false;
+        }
+        foreach (global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema element in DefinedColumnList) {
+          if (!element.IsInitialized) return false;
+        }
+        foreach (global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta element in IndexMetaList) {
           if (!element.IsInitialized) return false;
         }
         return true;
@@ -2236,10 +3252,16 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       CalcSerializedSize();
       string[] field_names = _tableMetaFieldNames;
       if (hasTableName) {
-        output.WriteString(1, field_names[1], TableName);
+        output.WriteString(1, field_names[3], TableName);
       }
       if (primaryKey_.Count > 0) {
-        output.WriteMessageArray(2, field_names[0], primaryKey_);
+        output.WriteMessageArray(2, field_names[2], primaryKey_);
+      }
+      if (definedColumn_.Count > 0) {
+        output.WriteMessageArray(3, field_names[0], definedColumn_);
+      }
+      if (indexMeta_.Count > 0) {
+        output.WriteMessageArray(4, field_names[1], indexMeta_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -2263,6 +3285,12 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       foreach (global::com.alicloud.openservices.tablestore.core.protocol.PrimaryKeySchema element in PrimaryKeyList) {
         size += pb::CodedOutputStream.ComputeMessageSize(2, element);
+      }
+      foreach (global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema element in DefinedColumnList) {
+        size += pb::CodedOutputStream.ComputeMessageSize(3, element);
+      }
+      foreach (global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta element in IndexMetaList) {
+        size += pb::CodedOutputStream.ComputeMessageSize(4, element);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -2300,6 +3328,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
     }
     private TableMeta MakeReadOnly() {
       primaryKey_.MakeReadOnly();
+      definedColumn_.MakeReadOnly();
+      indexMeta_.MakeReadOnly();
       return this;
     }
     
@@ -2393,6 +3423,12 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.primaryKey_.Count != 0) {
           result.primaryKey_.Add(other.primaryKey_);
         }
+        if (other.definedColumn_.Count != 0) {
+          result.definedColumn_.Add(other.definedColumn_);
+        }
+        if (other.indexMeta_.Count != 0) {
+          result.indexMeta_.Add(other.indexMeta_);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -2442,6 +3478,14 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
             }
             case 18: {
               input.ReadMessageArray(tag, field_name, result.primaryKey_, global::com.alicloud.openservices.tablestore.core.protocol.PrimaryKeySchema.DefaultInstance, extensionRegistry);
+              break;
+            }
+            case 26: {
+              input.ReadMessageArray(tag, field_name, result.definedColumn_, global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema.DefaultInstance, extensionRegistry);
+              break;
+            }
+            case 34: {
+              input.ReadMessageArray(tag, field_name, result.indexMeta_, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -2516,6 +3560,94 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       public Builder ClearPrimaryKey() {
         PrepareBuilder();
         result.primaryKey_.Clear();
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema> DefinedColumnList {
+        get { return PrepareBuilder().definedColumn_; }
+      }
+      public int DefinedColumnCount {
+        get { return result.DefinedColumnCount; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema GetDefinedColumn(int index) {
+        return result.GetDefinedColumn(index);
+      }
+      public Builder SetDefinedColumn(int index, global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.definedColumn_[index] = value;
+        return this;
+      }
+      public Builder SetDefinedColumn(int index, global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.definedColumn_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddDefinedColumn(global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.definedColumn_.Add(value);
+        return this;
+      }
+      public Builder AddDefinedColumn(global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.definedColumn_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeDefinedColumn(scg::IEnumerable<global::com.alicloud.openservices.tablestore.core.protocol.DefinedColumnSchema> values) {
+        PrepareBuilder();
+        result.definedColumn_.Add(values);
+        return this;
+      }
+      public Builder ClearDefinedColumn() {
+        PrepareBuilder();
+        result.definedColumn_.Clear();
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> IndexMetaList {
+        get { return PrepareBuilder().indexMeta_; }
+      }
+      public int IndexMetaCount {
+        get { return result.IndexMetaCount; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta GetIndexMeta(int index) {
+        return result.GetIndexMeta(index);
+      }
+      public Builder SetIndexMeta(int index, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.indexMeta_[index] = value;
+        return this;
+      }
+      public Builder SetIndexMeta(int index, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.indexMeta_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddIndexMeta(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.indexMeta_.Add(value);
+        return this;
+      }
+      public Builder AddIndexMeta(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.indexMeta_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeIndexMeta(scg::IEnumerable<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> values) {
+        PrepareBuilder();
+        result.indexMeta_.Add(values);
+        return this;
+      }
+      public Builder ClearIndexMeta() {
+        PrepareBuilder();
+        result.indexMeta_.Clear();
         return this;
       }
     }
@@ -4889,8 +6021,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class CreateTableRequest : pb::GeneratedMessage<CreateTableRequest, CreateTableRequest.Builder> {
     private CreateTableRequest() { }
     private static readonly CreateTableRequest defaultInstance = new CreateTableRequest().MakeReadOnly();
-    private static readonly string[] _createTableRequestFieldNames = new string[] { "partitions", "reserved_throughput", "stream_spec", "table_meta", "table_options" };
-    private static readonly uint[] _createTableRequestFieldTags = new uint[] { 34, 18, 42, 10, 26 };
+    private static readonly string[] _createTableRequestFieldNames = new string[] { "index_metas", "partitions", "reserved_throughput", "stream_spec", "table_meta", "table_options" };
+    private static readonly uint[] _createTableRequestFieldTags = new uint[] { 58, 34, 18, 42, 10, 26 };
     public static CreateTableRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -4963,6 +6095,18 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return streamSpec_ ?? global::com.alicloud.openservices.tablestore.core.protocol.StreamSpecification.DefaultInstance; }
     }
     
+    public const int IndexMetasFieldNumber = 7;
+    private pbc::PopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> indexMetas_ = new pbc::PopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta>();
+    public scg::IList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> IndexMetasList {
+      get { return indexMetas_; }
+    }
+    public int IndexMetasCount {
+      get { return indexMetas_.Count; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta GetIndexMetas(int index) {
+      return indexMetas_[index];
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableMeta) return false;
@@ -4975,6 +6119,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (HasStreamSpec) {
           if (!StreamSpec.IsInitialized) return false;
         }
+        foreach (global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta element in IndexMetasList) {
+          if (!element.IsInitialized) return false;
+        }
         return true;
       }
     }
@@ -4983,19 +6130,22 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       CalcSerializedSize();
       string[] field_names = _createTableRequestFieldNames;
       if (hasTableMeta) {
-        output.WriteMessage(1, field_names[3], TableMeta);
+        output.WriteMessage(1, field_names[4], TableMeta);
       }
       if (hasReservedThroughput) {
-        output.WriteMessage(2, field_names[1], ReservedThroughput);
+        output.WriteMessage(2, field_names[2], ReservedThroughput);
       }
       if (hasTableOptions) {
-        output.WriteMessage(3, field_names[4], TableOptions);
+        output.WriteMessage(3, field_names[5], TableOptions);
       }
       if (partitions_.Count > 0) {
-        output.WriteMessageArray(4, field_names[0], partitions_);
+        output.WriteMessageArray(4, field_names[1], partitions_);
       }
       if (hasStreamSpec) {
-        output.WriteMessage(5, field_names[2], StreamSpec);
+        output.WriteMessage(5, field_names[3], StreamSpec);
+      }
+      if (indexMetas_.Count > 0) {
+        output.WriteMessageArray(7, field_names[0], indexMetas_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -5028,6 +6178,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasStreamSpec) {
         size += pb::CodedOutputStream.ComputeMessageSize(5, StreamSpec);
+      }
+      foreach (global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta element in IndexMetasList) {
+        size += pb::CodedOutputStream.ComputeMessageSize(7, element);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -5065,6 +6218,7 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
     }
     private CreateTableRequest MakeReadOnly() {
       partitions_.MakeReadOnly();
+      indexMetas_.MakeReadOnly();
       return this;
     }
     
@@ -5167,6 +6321,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasStreamSpec) {
           MergeStreamSpec(other.StreamSpec);
         }
+        if (other.indexMetas_.Count != 0) {
+          result.indexMetas_.Add(other.indexMetas_);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -5248,6 +6405,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               StreamSpec = subBuilder.BuildPartial();
+              break;
+            }
+            case 58: {
+              input.ReadMessageArray(tag, field_name, result.indexMetas_, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -5461,6 +6622,50 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         PrepareBuilder();
         result.hasStreamSpec = false;
         result.streamSpec_ = null;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> IndexMetasList {
+        get { return PrepareBuilder().indexMetas_; }
+      }
+      public int IndexMetasCount {
+        get { return result.IndexMetasCount; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta GetIndexMetas(int index) {
+        return result.GetIndexMetas(index);
+      }
+      public Builder SetIndexMetas(int index, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.indexMetas_[index] = value;
+        return this;
+      }
+      public Builder SetIndexMetas(int index, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.indexMetas_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddIndexMetas(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.indexMetas_.Add(value);
+        return this;
+      }
+      public Builder AddIndexMetas(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.indexMetas_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeIndexMetas(scg::IEnumerable<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> values) {
+        PrepareBuilder();
+        result.indexMetas_.Add(values);
+        return this;
+      }
+      public Builder ClearIndexMetas() {
+        PrepareBuilder();
+        result.indexMetas_.Clear();
         return this;
       }
     }
@@ -5697,6 +6902,1182 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       
     }
     static CreateTableResponse() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class CreateIndexRequest : pb::GeneratedMessage<CreateIndexRequest, CreateIndexRequest.Builder> {
+    private CreateIndexRequest() { }
+    private static readonly CreateIndexRequest defaultInstance = new CreateIndexRequest().MakeReadOnly();
+    private static readonly string[] _createIndexRequestFieldNames = new string[] { "include_base_data", "index_meta", "main_table_name" };
+    private static readonly uint[] _createIndexRequestFieldTags = new uint[] { 24, 18, 10 };
+    public static CreateIndexRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CreateIndexRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CreateIndexRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CreateIndexRequest, CreateIndexRequest.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexRequest__FieldAccessorTable; }
+    }
+    
+    public const int MainTableNameFieldNumber = 1;
+    private bool hasMainTableName;
+    private string mainTableName_ = "";
+    public bool HasMainTableName {
+      get { return hasMainTableName; }
+    }
+    public string MainTableName {
+      get { return mainTableName_; }
+    }
+    
+    public const int IndexMetaFieldNumber = 2;
+    private bool hasIndexMeta;
+    private global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta indexMeta_;
+    public bool HasIndexMeta {
+      get { return hasIndexMeta; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta IndexMeta {
+      get { return indexMeta_ ?? global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.DefaultInstance; }
+    }
+    
+    public const int IncludeBaseDataFieldNumber = 3;
+    private bool hasIncludeBaseData;
+    private bool includeBaseData_;
+    public bool HasIncludeBaseData {
+      get { return hasIncludeBaseData; }
+    }
+    public bool IncludeBaseData {
+      get { return includeBaseData_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasMainTableName) return false;
+        if (!hasIndexMeta) return false;
+        if (!IndexMeta.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _createIndexRequestFieldNames;
+      if (hasMainTableName) {
+        output.WriteString(1, field_names[2], MainTableName);
+      }
+      if (hasIndexMeta) {
+        output.WriteMessage(2, field_names[1], IndexMeta);
+      }
+      if (hasIncludeBaseData) {
+        output.WriteBool(3, field_names[0], IncludeBaseData);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasMainTableName) {
+        size += pb::CodedOutputStream.ComputeStringSize(1, MainTableName);
+      }
+      if (hasIndexMeta) {
+        size += pb::CodedOutputStream.ComputeMessageSize(2, IndexMeta);
+      }
+      if (hasIncludeBaseData) {
+        size += pb::CodedOutputStream.ComputeBoolSize(3, IncludeBaseData);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static CreateIndexRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CreateIndexRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CreateIndexRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CreateIndexRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CreateIndexRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CreateIndexRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CreateIndexRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CreateIndexRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CreateIndexRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CreateIndexRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CreateIndexRequest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CreateIndexRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<CreateIndexRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CreateIndexRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CreateIndexRequest result;
+      
+      private CreateIndexRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CreateIndexRequest original = result;
+          result = new CreateIndexRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CreateIndexRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexRequest.Descriptor; }
+      }
+      
+      public override CreateIndexRequest DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexRequest.DefaultInstance; }
+      }
+      
+      public override CreateIndexRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CreateIndexRequest) {
+          return MergeFrom((CreateIndexRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CreateIndexRequest other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasMainTableName) {
+          MainTableName = other.MainTableName;
+        }
+        if (other.HasIndexMeta) {
+          MergeIndexMeta(other.IndexMeta);
+        }
+        if (other.HasIncludeBaseData) {
+          IncludeBaseData = other.IncludeBaseData;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_createIndexRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _createIndexRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasMainTableName = input.ReadString(ref result.mainTableName_);
+              break;
+            }
+            case 18: {
+              global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder subBuilder = global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.CreateBuilder();
+              if (result.hasIndexMeta) {
+                subBuilder.MergeFrom(IndexMeta);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              IndexMeta = subBuilder.BuildPartial();
+              break;
+            }
+            case 24: {
+              result.hasIncludeBaseData = input.ReadBool(ref result.includeBaseData_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasMainTableName {
+        get { return result.hasMainTableName; }
+      }
+      public string MainTableName {
+        get { return result.MainTableName; }
+        set { SetMainTableName(value); }
+      }
+      public Builder SetMainTableName(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasMainTableName = true;
+        result.mainTableName_ = value;
+        return this;
+      }
+      public Builder ClearMainTableName() {
+        PrepareBuilder();
+        result.hasMainTableName = false;
+        result.mainTableName_ = "";
+        return this;
+      }
+      
+      public bool HasIndexMeta {
+       get { return result.hasIndexMeta; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta IndexMeta {
+        get { return result.IndexMeta; }
+        set { SetIndexMeta(value); }
+      }
+      public Builder SetIndexMeta(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasIndexMeta = true;
+        result.indexMeta_ = value;
+        return this;
+      }
+      public Builder SetIndexMeta(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasIndexMeta = true;
+        result.indexMeta_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeIndexMeta(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasIndexMeta &&
+            result.indexMeta_ != global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.DefaultInstance) {
+            result.indexMeta_ = global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.CreateBuilder(result.indexMeta_).MergeFrom(value).BuildPartial();
+        } else {
+          result.indexMeta_ = value;
+        }
+        result.hasIndexMeta = true;
+        return this;
+      }
+      public Builder ClearIndexMeta() {
+        PrepareBuilder();
+        result.hasIndexMeta = false;
+        result.indexMeta_ = null;
+        return this;
+      }
+      
+      public bool HasIncludeBaseData {
+        get { return result.hasIncludeBaseData; }
+      }
+      public bool IncludeBaseData {
+        get { return result.IncludeBaseData; }
+        set { SetIncludeBaseData(value); }
+      }
+      public Builder SetIncludeBaseData(bool value) {
+        PrepareBuilder();
+        result.hasIncludeBaseData = true;
+        result.includeBaseData_ = value;
+        return this;
+      }
+      public Builder ClearIncludeBaseData() {
+        PrepareBuilder();
+        result.hasIncludeBaseData = false;
+        result.includeBaseData_ = false;
+        return this;
+      }
+    }
+    static CreateIndexRequest() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class CreateIndexResponse : pb::GeneratedMessage<CreateIndexResponse, CreateIndexResponse.Builder> {
+    private CreateIndexResponse() { }
+    private static readonly CreateIndexResponse defaultInstance = new CreateIndexResponse().MakeReadOnly();
+    private static readonly string[] _createIndexResponseFieldNames = new string[] {  };
+    private static readonly uint[] _createIndexResponseFieldTags = new uint[] {  };
+    public static CreateIndexResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CreateIndexResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CreateIndexResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CreateIndexResponse, CreateIndexResponse.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_CreateIndexResponse__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _createIndexResponseFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static CreateIndexResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CreateIndexResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CreateIndexResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CreateIndexResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CreateIndexResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CreateIndexResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CreateIndexResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CreateIndexResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CreateIndexResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CreateIndexResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CreateIndexResponse MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CreateIndexResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<CreateIndexResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CreateIndexResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CreateIndexResponse result;
+      
+      private CreateIndexResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CreateIndexResponse original = result;
+          result = new CreateIndexResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CreateIndexResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexResponse.Descriptor; }
+      }
+      
+      public override CreateIndexResponse DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexResponse.DefaultInstance; }
+      }
+      
+      public override CreateIndexResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CreateIndexResponse) {
+          return MergeFrom((CreateIndexResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CreateIndexResponse other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.CreateIndexResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_createIndexResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _createIndexResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static CreateIndexResponse() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class DropIndexRequest : pb::GeneratedMessage<DropIndexRequest, DropIndexRequest.Builder> {
+    private DropIndexRequest() { }
+    private static readonly DropIndexRequest defaultInstance = new DropIndexRequest().MakeReadOnly();
+    private static readonly string[] _dropIndexRequestFieldNames = new string[] { "index_name", "main_table_name" };
+    private static readonly uint[] _dropIndexRequestFieldTags = new uint[] { 18, 10 };
+    public static DropIndexRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override DropIndexRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override DropIndexRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<DropIndexRequest, DropIndexRequest.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexRequest__FieldAccessorTable; }
+    }
+    
+    public const int MainTableNameFieldNumber = 1;
+    private bool hasMainTableName;
+    private string mainTableName_ = "";
+    public bool HasMainTableName {
+      get { return hasMainTableName; }
+    }
+    public string MainTableName {
+      get { return mainTableName_; }
+    }
+    
+    public const int IndexNameFieldNumber = 2;
+    private bool hasIndexName;
+    private string indexName_ = "";
+    public bool HasIndexName {
+      get { return hasIndexName; }
+    }
+    public string IndexName {
+      get { return indexName_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasMainTableName) return false;
+        if (!hasIndexName) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _dropIndexRequestFieldNames;
+      if (hasMainTableName) {
+        output.WriteString(1, field_names[1], MainTableName);
+      }
+      if (hasIndexName) {
+        output.WriteString(2, field_names[0], IndexName);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasMainTableName) {
+        size += pb::CodedOutputStream.ComputeStringSize(1, MainTableName);
+      }
+      if (hasIndexName) {
+        size += pb::CodedOutputStream.ComputeStringSize(2, IndexName);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static DropIndexRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DropIndexRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DropIndexRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DropIndexRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DropIndexRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DropIndexRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static DropIndexRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static DropIndexRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static DropIndexRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DropIndexRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private DropIndexRequest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(DropIndexRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<DropIndexRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(DropIndexRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private DropIndexRequest result;
+      
+      private DropIndexRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          DropIndexRequest original = result;
+          result = new DropIndexRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override DropIndexRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.DropIndexRequest.Descriptor; }
+      }
+      
+      public override DropIndexRequest DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.DropIndexRequest.DefaultInstance; }
+      }
+      
+      public override DropIndexRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is DropIndexRequest) {
+          return MergeFrom((DropIndexRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(DropIndexRequest other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.DropIndexRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasMainTableName) {
+          MainTableName = other.MainTableName;
+        }
+        if (other.HasIndexName) {
+          IndexName = other.IndexName;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_dropIndexRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _dropIndexRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasMainTableName = input.ReadString(ref result.mainTableName_);
+              break;
+            }
+            case 18: {
+              result.hasIndexName = input.ReadString(ref result.indexName_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasMainTableName {
+        get { return result.hasMainTableName; }
+      }
+      public string MainTableName {
+        get { return result.MainTableName; }
+        set { SetMainTableName(value); }
+      }
+      public Builder SetMainTableName(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasMainTableName = true;
+        result.mainTableName_ = value;
+        return this;
+      }
+      public Builder ClearMainTableName() {
+        PrepareBuilder();
+        result.hasMainTableName = false;
+        result.mainTableName_ = "";
+        return this;
+      }
+      
+      public bool HasIndexName {
+        get { return result.hasIndexName; }
+      }
+      public string IndexName {
+        get { return result.IndexName; }
+        set { SetIndexName(value); }
+      }
+      public Builder SetIndexName(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasIndexName = true;
+        result.indexName_ = value;
+        return this;
+      }
+      public Builder ClearIndexName() {
+        PrepareBuilder();
+        result.hasIndexName = false;
+        result.indexName_ = "";
+        return this;
+      }
+    }
+    static DropIndexRequest() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class DropIndexResponse : pb::GeneratedMessage<DropIndexResponse, DropIndexResponse.Builder> {
+    private DropIndexResponse() { }
+    private static readonly DropIndexResponse defaultInstance = new DropIndexResponse().MakeReadOnly();
+    private static readonly string[] _dropIndexResponseFieldNames = new string[] {  };
+    private static readonly uint[] _dropIndexResponseFieldTags = new uint[] {  };
+    public static DropIndexResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override DropIndexResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override DropIndexResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<DropIndexResponse, DropIndexResponse.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_DropIndexResponse__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _dropIndexResponseFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static DropIndexResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DropIndexResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DropIndexResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static DropIndexResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static DropIndexResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DropIndexResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static DropIndexResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static DropIndexResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static DropIndexResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static DropIndexResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private DropIndexResponse MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(DropIndexResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<DropIndexResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(DropIndexResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private DropIndexResponse result;
+      
+      private DropIndexResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          DropIndexResponse original = result;
+          result = new DropIndexResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override DropIndexResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.DropIndexResponse.Descriptor; }
+      }
+      
+      public override DropIndexResponse DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.DropIndexResponse.DefaultInstance; }
+      }
+      
+      public override DropIndexResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is DropIndexResponse) {
+          return MergeFrom((DropIndexResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(DropIndexResponse other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.DropIndexResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_dropIndexResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _dropIndexResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static DropIndexResponse() {
       object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
     }
   }
@@ -6911,8 +9292,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class DescribeTableResponse : pb::GeneratedMessage<DescribeTableResponse, DescribeTableResponse.Builder> {
     private DescribeTableResponse() { }
     private static readonly DescribeTableResponse defaultInstance = new DescribeTableResponse().MakeReadOnly();
-    private static readonly string[] _describeTableResponseFieldNames = new string[] { "reserved_throughput_details", "shard_splits", "stream_details", "table_meta", "table_options", "table_status" };
-    private static readonly uint[] _describeTableResponseFieldTags = new uint[] { 18, 50, 42, 10, 26, 32 };
+    private static readonly string[] _describeTableResponseFieldNames = new string[] { "index_metas", "reserved_throughput_details", "shard_splits", "stream_details", "table_meta", "table_options", "table_status" };
+    private static readonly uint[] _describeTableResponseFieldTags = new uint[] { 66, 18, 50, 42, 10, 26, 32 };
     public static DescribeTableResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -6995,6 +9376,18 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       return shardSplits_[index];
     }
     
+    public const int IndexMetasFieldNumber = 8;
+    private pbc::PopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> indexMetas_ = new pbc::PopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta>();
+    public scg::IList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> IndexMetasList {
+      get { return indexMetas_; }
+    }
+    public int IndexMetasCount {
+      get { return indexMetas_.Count; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta GetIndexMetas(int index) {
+      return indexMetas_[index];
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableMeta) return false;
@@ -7006,6 +9399,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (HasStreamDetails) {
           if (!StreamDetails.IsInitialized) return false;
         }
+        foreach (global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta element in IndexMetasList) {
+          if (!element.IsInitialized) return false;
+        }
         return true;
       }
     }
@@ -7014,22 +9410,25 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       CalcSerializedSize();
       string[] field_names = _describeTableResponseFieldNames;
       if (hasTableMeta) {
-        output.WriteMessage(1, field_names[3], TableMeta);
+        output.WriteMessage(1, field_names[4], TableMeta);
       }
       if (hasReservedThroughputDetails) {
-        output.WriteMessage(2, field_names[0], ReservedThroughputDetails);
+        output.WriteMessage(2, field_names[1], ReservedThroughputDetails);
       }
       if (hasTableOptions) {
-        output.WriteMessage(3, field_names[4], TableOptions);
+        output.WriteMessage(3, field_names[5], TableOptions);
       }
       if (hasTableStatus) {
-        output.WriteEnum(4, field_names[5], (int) TableStatus, TableStatus);
+        output.WriteEnum(4, field_names[6], (int) TableStatus, TableStatus);
       }
       if (hasStreamDetails) {
-        output.WriteMessage(5, field_names[2], StreamDetails);
+        output.WriteMessage(5, field_names[3], StreamDetails);
       }
       if (shardSplits_.Count > 0) {
-        output.WriteBytesArray(6, field_names[1], shardSplits_);
+        output.WriteBytesArray(6, field_names[2], shardSplits_);
+      }
+      if (indexMetas_.Count > 0) {
+        output.WriteMessageArray(8, field_names[0], indexMetas_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -7071,6 +9470,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         size += dataSize;
         size += 1 * shardSplits_.Count;
       }
+      foreach (global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta element in IndexMetasList) {
+        size += pb::CodedOutputStream.ComputeMessageSize(8, element);
+      }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
       return size;
@@ -7107,6 +9509,7 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
     }
     private DescribeTableResponse MakeReadOnly() {
       shardSplits_.MakeReadOnly();
+      indexMetas_.MakeReadOnly();
       return this;
     }
     
@@ -7212,6 +9615,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.shardSplits_.Count != 0) {
           result.shardSplits_.Add(other.shardSplits_);
         }
+        if (other.indexMetas_.Count != 0) {
+          result.indexMetas_.Add(other.indexMetas_);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -7305,6 +9711,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
             }
             case 50: {
               input.ReadBytesArray(tag, field_name, result.shardSplits_);
+              break;
+            }
+            case 66: {
+              input.ReadMessageArray(tag, field_name, result.indexMetas_, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.DefaultInstance, extensionRegistry);
               break;
             }
           }
@@ -7526,6 +9936,50 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       public Builder ClearShardSplits() {
         PrepareBuilder();
         result.shardSplits_.Clear();
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> IndexMetasList {
+        get { return PrepareBuilder().indexMetas_; }
+      }
+      public int IndexMetasCount {
+        get { return result.IndexMetasCount; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta GetIndexMetas(int index) {
+        return result.GetIndexMetas(index);
+      }
+      public Builder SetIndexMetas(int index, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.indexMetas_[index] = value;
+        return this;
+      }
+      public Builder SetIndexMetas(int index, global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.indexMetas_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddIndexMetas(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.indexMetas_.Add(value);
+        return this;
+      }
+      public Builder AddIndexMetas(global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.indexMetas_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeIndexMetas(scg::IEnumerable<global::com.alicloud.openservices.tablestore.core.protocol.IndexMeta> values) {
+        PrepareBuilder();
+        result.indexMetas_.Add(values);
+        return this;
+      }
+      public Builder ClearIndexMetas() {
+        PrepareBuilder();
+        result.indexMetas_.Clear();
         return this;
       }
     }
@@ -9953,8 +12407,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class ReturnContent : pb::GeneratedMessage<ReturnContent, ReturnContent.Builder> {
     private ReturnContent() { }
     private static readonly ReturnContent defaultInstance = new ReturnContent().MakeReadOnly();
-    private static readonly string[] _returnContentFieldNames = new string[] { "return_type" };
-    private static readonly uint[] _returnContentFieldTags = new uint[] { 8 };
+    private static readonly string[] _returnContentFieldNames = new string[] { "return_column_names", "return_type" };
+    private static readonly uint[] _returnContentFieldTags = new uint[] { 18, 8 };
     public static ReturnContent DefaultInstance {
       get { return defaultInstance; }
     }
@@ -9985,6 +12439,18 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return returnType_; }
     }
     
+    public const int ReturnColumnNamesFieldNumber = 2;
+    private pbc::PopsicleList<string> returnColumnNames_ = new pbc::PopsicleList<string>();
+    public scg::IList<string> ReturnColumnNamesList {
+      get { return pbc::Lists.AsReadOnly(returnColumnNames_); }
+    }
+    public int ReturnColumnNamesCount {
+      get { return returnColumnNames_.Count; }
+    }
+    public string GetReturnColumnNames(int index) {
+      return returnColumnNames_[index];
+    }
+    
     public override bool IsInitialized {
       get {
         return true;
@@ -9995,7 +12461,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       CalcSerializedSize();
       string[] field_names = _returnContentFieldNames;
       if (hasReturnType) {
-        output.WriteEnum(1, field_names[0], (int) ReturnType, ReturnType);
+        output.WriteEnum(1, field_names[1], (int) ReturnType, ReturnType);
+      }
+      if (returnColumnNames_.Count > 0) {
+        output.WriteStringArray(2, field_names[0], returnColumnNames_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -10016,6 +12485,14 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       size = 0;
       if (hasReturnType) {
         size += pb::CodedOutputStream.ComputeEnumSize(1, (int) ReturnType);
+      }
+      {
+        int dataSize = 0;
+        foreach (string element in ReturnColumnNamesList) {
+          dataSize += pb::CodedOutputStream.ComputeStringSizeNoTag(element);
+        }
+        size += dataSize;
+        size += 1 * returnColumnNames_.Count;
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -10052,6 +12529,7 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private ReturnContent MakeReadOnly() {
+      returnColumnNames_.MakeReadOnly();
       return this;
     }
     
@@ -10142,6 +12620,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasReturnType) {
           ReturnType = other.ReturnType;
         }
+        if (other.returnColumnNames_.Count != 0) {
+          result.returnColumnNames_.Add(other.returnColumnNames_);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -10197,6 +12678,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
               }
               break;
             }
+            case 18: {
+              input.ReadStringArray(tag, field_name, result.returnColumnNames_);
+              break;
+            }
           }
         }
         
@@ -10226,6 +12711,38 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         result.returnType_ = global::com.alicloud.openservices.tablestore.core.protocol.ReturnType.RT_NONE;
         return this;
       }
+      
+      public pbc::IPopsicleList<string> ReturnColumnNamesList {
+        get { return PrepareBuilder().returnColumnNames_; }
+      }
+      public int ReturnColumnNamesCount {
+        get { return result.ReturnColumnNamesCount; }
+      }
+      public string GetReturnColumnNames(int index) {
+        return result.GetReturnColumnNames(index);
+      }
+      public Builder SetReturnColumnNames(int index, string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.returnColumnNames_[index] = value;
+        return this;
+      }
+      public Builder AddReturnColumnNames(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.returnColumnNames_.Add(value);
+        return this;
+      }
+      public Builder AddRangeReturnColumnNames(scg::IEnumerable<string> values) {
+        PrepareBuilder();
+        result.returnColumnNames_.Add(values);
+        return this;
+      }
+      public Builder ClearReturnColumnNames() {
+        PrepareBuilder();
+        result.returnColumnNames_.Clear();
+        return this;
+      }
     }
     static ReturnContent() {
       object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
@@ -10236,8 +12753,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class GetRowRequest : pb::GeneratedMessage<GetRowRequest, GetRowRequest.Builder> {
     private GetRowRequest() { }
     private static readonly GetRowRequest defaultInstance = new GetRowRequest().MakeReadOnly();
-    private static readonly string[] _getRowRequestFieldNames = new string[] { "cache_blocks", "columns_to_get", "end_column", "filter", "max_versions", "primary_key", "start_column", "table_name", "time_range", "token" };
-    private static readonly uint[] _getRowRequestFieldTags = new uint[] { 48, 26, 74, 58, 40, 18, 66, 10, 34, 82 };
+    private static readonly string[] _getRowRequestFieldNames = new string[] { "cache_blocks", "columns_to_get", "end_column", "filter", "max_versions", "primary_key", "start_column", "table_name", "time_range", "token", "transaction_id" };
+    private static readonly uint[] _getRowRequestFieldTags = new uint[] { 48, 26, 74, 58, 40, 18, 66, 10, 34, 82, 90 };
     public static GetRowRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -10360,6 +12877,16 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return token_; }
     }
     
+    public const int TransactionIdFieldNumber = 11;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableName) return false;
@@ -10400,6 +12927,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasToken) {
         output.WriteBytes(10, field_names[9], Token);
+      }
+      if (hasTransactionId) {
+        output.WriteString(11, field_names[10], TransactionId);
       }
       UnknownFields.WriteTo(output);
     }
@@ -10452,6 +12982,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasToken) {
         size += pb::CodedOutputStream.ComputeBytesSize(10, Token);
+      }
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(11, TransactionId);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -10606,6 +13139,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasToken) {
           Token = other.Token;
         }
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -10692,6 +13228,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
             }
             case 82: {
               result.hasToken = input.ReadBytes(ref result.token_);
+              break;
+            }
+            case 90: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
               break;
             }
           }
@@ -10939,6 +13479,27 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         PrepareBuilder();
         result.hasToken = false;
         result.token_ = pb::ByteString.Empty;
+        return this;
+      }
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
         return this;
       }
     }
@@ -11342,8 +13903,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class UpdateRowRequest : pb::GeneratedMessage<UpdateRowRequest, UpdateRowRequest.Builder> {
     private UpdateRowRequest() { }
     private static readonly UpdateRowRequest defaultInstance = new UpdateRowRequest().MakeReadOnly();
-    private static readonly string[] _updateRowRequestFieldNames = new string[] { "condition", "return_content", "row_change", "table_name" };
-    private static readonly uint[] _updateRowRequestFieldTags = new uint[] { 26, 34, 18, 10 };
+    private static readonly string[] _updateRowRequestFieldNames = new string[] { "condition", "return_content", "row_change", "table_name", "transaction_id" };
+    private static readonly uint[] _updateRowRequestFieldTags = new uint[] { 26, 34, 18, 10, 42 };
     public static UpdateRowRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -11404,6 +13965,16 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return returnContent_ ?? global::com.alicloud.openservices.tablestore.core.protocol.ReturnContent.DefaultInstance; }
     }
     
+    public const int TransactionIdFieldNumber = 5;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableName) return false;
@@ -11428,6 +13999,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasReturnContent) {
         output.WriteMessage(4, field_names[1], ReturnContent);
+      }
+      if (hasTransactionId) {
+        output.WriteString(5, field_names[4], TransactionId);
       }
       UnknownFields.WriteTo(output);
     }
@@ -11457,6 +14031,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasReturnContent) {
         size += pb::CodedOutputStream.ComputeMessageSize(4, ReturnContent);
+      }
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(5, TransactionId);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -11592,6 +14169,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasReturnContent) {
           MergeReturnContent(other.ReturnContent);
         }
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -11659,6 +14239,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               ReturnContent = subBuilder.BuildPartial();
+              break;
+            }
+            case 42: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
               break;
             }
           }
@@ -11790,6 +14374,27 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         PrepareBuilder();
         result.hasReturnContent = false;
         result.returnContent_ = null;
+        return this;
+      }
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
         return this;
       }
     }
@@ -12148,8 +14753,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class PutRowRequest : pb::GeneratedMessage<PutRowRequest, PutRowRequest.Builder> {
     private PutRowRequest() { }
     private static readonly PutRowRequest defaultInstance = new PutRowRequest().MakeReadOnly();
-    private static readonly string[] _putRowRequestFieldNames = new string[] { "condition", "return_content", "row", "table_name" };
-    private static readonly uint[] _putRowRequestFieldTags = new uint[] { 26, 34, 18, 10 };
+    private static readonly string[] _putRowRequestFieldNames = new string[] { "condition", "return_content", "row", "table_name", "transaction_id" };
+    private static readonly uint[] _putRowRequestFieldTags = new uint[] { 26, 34, 18, 10, 42 };
     public static PutRowRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -12210,6 +14815,16 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return returnContent_ ?? global::com.alicloud.openservices.tablestore.core.protocol.ReturnContent.DefaultInstance; }
     }
     
+    public const int TransactionIdFieldNumber = 5;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableName) return false;
@@ -12234,6 +14849,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasReturnContent) {
         output.WriteMessage(4, field_names[1], ReturnContent);
+      }
+      if (hasTransactionId) {
+        output.WriteString(5, field_names[4], TransactionId);
       }
       UnknownFields.WriteTo(output);
     }
@@ -12263,6 +14881,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasReturnContent) {
         size += pb::CodedOutputStream.ComputeMessageSize(4, ReturnContent);
+      }
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(5, TransactionId);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -12398,6 +15019,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasReturnContent) {
           MergeReturnContent(other.ReturnContent);
         }
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -12465,6 +15089,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               ReturnContent = subBuilder.BuildPartial();
+              break;
+            }
+            case 42: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
               break;
             }
           }
@@ -12596,6 +15224,27 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         PrepareBuilder();
         result.hasReturnContent = false;
         result.returnContent_ = null;
+        return this;
+      }
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
         return this;
       }
     }
@@ -12954,8 +15603,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class DeleteRowRequest : pb::GeneratedMessage<DeleteRowRequest, DeleteRowRequest.Builder> {
     private DeleteRowRequest() { }
     private static readonly DeleteRowRequest defaultInstance = new DeleteRowRequest().MakeReadOnly();
-    private static readonly string[] _deleteRowRequestFieldNames = new string[] { "condition", "primary_key", "return_content", "table_name" };
-    private static readonly uint[] _deleteRowRequestFieldTags = new uint[] { 26, 18, 34, 10 };
+    private static readonly string[] _deleteRowRequestFieldNames = new string[] { "condition", "primary_key", "return_content", "table_name", "transaction_id" };
+    private static readonly uint[] _deleteRowRequestFieldTags = new uint[] { 26, 18, 34, 10, 42 };
     public static DeleteRowRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -13016,6 +15665,16 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return returnContent_ ?? global::com.alicloud.openservices.tablestore.core.protocol.ReturnContent.DefaultInstance; }
     }
     
+    public const int TransactionIdFieldNumber = 5;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableName) return false;
@@ -13040,6 +15699,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasReturnContent) {
         output.WriteMessage(4, field_names[2], ReturnContent);
+      }
+      if (hasTransactionId) {
+        output.WriteString(5, field_names[4], TransactionId);
       }
       UnknownFields.WriteTo(output);
     }
@@ -13069,6 +15731,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasReturnContent) {
         size += pb::CodedOutputStream.ComputeMessageSize(4, ReturnContent);
+      }
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(5, TransactionId);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -13204,6 +15869,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasReturnContent) {
           MergeReturnContent(other.ReturnContent);
         }
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -13271,6 +15939,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               ReturnContent = subBuilder.BuildPartial();
+              break;
+            }
+            case 42: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
               break;
             }
           }
@@ -13402,6 +16074,27 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         PrepareBuilder();
         result.hasReturnContent = false;
         result.returnContent_ = null;
+        return this;
+      }
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
         return this;
       }
     }
@@ -16795,8 +19488,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class BatchWriteRowRequest : pb::GeneratedMessage<BatchWriteRowRequest, BatchWriteRowRequest.Builder> {
     private BatchWriteRowRequest() { }
     private static readonly BatchWriteRowRequest defaultInstance = new BatchWriteRowRequest().MakeReadOnly();
-    private static readonly string[] _batchWriteRowRequestFieldNames = new string[] { "tables" };
-    private static readonly uint[] _batchWriteRowRequestFieldTags = new uint[] { 10 };
+    private static readonly string[] _batchWriteRowRequestFieldNames = new string[] { "tables", "transaction_id" };
+    private static readonly uint[] _batchWriteRowRequestFieldTags = new uint[] { 10, 18 };
     public static BatchWriteRowRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -16829,6 +19522,16 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       return tables_[index];
     }
     
+    public const int TransactionIdFieldNumber = 2;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
     public override bool IsInitialized {
       get {
         foreach (global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchWriteRowRequest element in TablesList) {
@@ -16843,6 +19546,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       string[] field_names = _batchWriteRowRequestFieldNames;
       if (tables_.Count > 0) {
         output.WriteMessageArray(1, field_names[0], tables_);
+      }
+      if (hasTransactionId) {
+        output.WriteString(2, field_names[1], TransactionId);
       }
       UnknownFields.WriteTo(output);
     }
@@ -16863,6 +19569,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       size = 0;
       foreach (global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchWriteRowRequest element in TablesList) {
         size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+      }
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(2, TransactionId);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -16990,6 +19699,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.tables_.Count != 0) {
           result.tables_.Add(other.tables_);
         }
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -17035,6 +19747,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
             }
             case 10: {
               input.ReadMessageArray(tag, field_name, result.tables_, global::com.alicloud.openservices.tablestore.core.protocol.TableInBatchWriteRowRequest.DefaultInstance, extensionRegistry);
+              break;
+            }
+            case 18: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
               break;
             }
           }
@@ -17088,6 +19804,27 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       public Builder ClearTables() {
         PrepareBuilder();
         result.tables_.Clear();
+        return this;
+      }
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
         return this;
       }
     }
@@ -18217,8 +20954,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class GetRangeRequest : pb::GeneratedMessage<GetRangeRequest, GetRangeRequest.Builder> {
     private GetRangeRequest() { }
     private static readonly GetRangeRequest defaultInstance = new GetRangeRequest().MakeReadOnly();
-    private static readonly string[] _getRangeRequestFieldNames = new string[] { "cache_blocks", "columns_to_get", "direction", "end_column", "exclusive_end_primary_key", "filter", "inclusive_start_primary_key", "limit", "max_versions", "start_column", "table_name", "time_range", "token" };
-    private static readonly uint[] _getRangeRequestFieldTags = new uint[] { 72, 26, 16, 98, 66, 82, 58, 48, 40, 90, 10, 34, 106 };
+    private static readonly string[] _getRangeRequestFieldNames = new string[] { "cache_blocks", "columns_to_get", "compress_type_hint", "data_block_type_hint", "direction", "end_column", "exclusive_end_primary_key", "filter", "inclusive_start_primary_key", "limit", "max_versions", "return_entire_primary_keys", "start_column", "table_name", "time_range", "token", "transaction_id" };
+    private static readonly uint[] _getRangeRequestFieldTags = new uint[] { 72, 26, 136, 120, 16, 98, 66, 82, 58, 48, 40, 128, 90, 10, 34, 106, 114 };
     public static GetRangeRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -18371,6 +21108,46 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return token_; }
     }
     
+    public const int TransactionIdFieldNumber = 14;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
+    public const int DataBlockTypeHintFieldNumber = 15;
+    private bool hasDataBlockTypeHint;
+    private global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType dataBlockTypeHint_ = global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType.DBT_PLAIN_BUFFER;
+    public bool HasDataBlockTypeHint {
+      get { return hasDataBlockTypeHint; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType DataBlockTypeHint {
+      get { return dataBlockTypeHint_; }
+    }
+    
+    public const int ReturnEntirePrimaryKeysFieldNumber = 16;
+    private bool hasReturnEntirePrimaryKeys;
+    private bool returnEntirePrimaryKeys_ = true;
+    public bool HasReturnEntirePrimaryKeys {
+      get { return hasReturnEntirePrimaryKeys; }
+    }
+    public bool ReturnEntirePrimaryKeys {
+      get { return returnEntirePrimaryKeys_; }
+    }
+    
+    public const int CompressTypeHintFieldNumber = 17;
+    private bool hasCompressTypeHint;
+    private global::com.alicloud.openservices.tablestore.core.protocol.CompressType compressTypeHint_ = global::com.alicloud.openservices.tablestore.core.protocol.CompressType.CPT_NONE;
+    public bool HasCompressTypeHint {
+      get { return hasCompressTypeHint; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.CompressType CompressTypeHint {
+      get { return compressTypeHint_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableName) return false;
@@ -18385,43 +21162,55 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       CalcSerializedSize();
       string[] field_names = _getRangeRequestFieldNames;
       if (hasTableName) {
-        output.WriteString(1, field_names[10], TableName);
+        output.WriteString(1, field_names[13], TableName);
       }
       if (hasDirection) {
-        output.WriteEnum(2, field_names[2], (int) Direction, Direction);
+        output.WriteEnum(2, field_names[4], (int) Direction, Direction);
       }
       if (columnsToGet_.Count > 0) {
         output.WriteStringArray(3, field_names[1], columnsToGet_);
       }
       if (hasTimeRange) {
-        output.WriteMessage(4, field_names[11], TimeRange);
+        output.WriteMessage(4, field_names[14], TimeRange);
       }
       if (hasMaxVersions) {
-        output.WriteInt32(5, field_names[8], MaxVersions);
+        output.WriteInt32(5, field_names[10], MaxVersions);
       }
       if (hasLimit) {
-        output.WriteInt32(6, field_names[7], Limit);
+        output.WriteInt32(6, field_names[9], Limit);
       }
       if (hasInclusiveStartPrimaryKey) {
-        output.WriteBytes(7, field_names[6], InclusiveStartPrimaryKey);
+        output.WriteBytes(7, field_names[8], InclusiveStartPrimaryKey);
       }
       if (hasExclusiveEndPrimaryKey) {
-        output.WriteBytes(8, field_names[4], ExclusiveEndPrimaryKey);
+        output.WriteBytes(8, field_names[6], ExclusiveEndPrimaryKey);
       }
       if (hasCacheBlocks) {
         output.WriteBool(9, field_names[0], CacheBlocks);
       }
       if (hasFilter) {
-        output.WriteBytes(10, field_names[5], Filter);
+        output.WriteBytes(10, field_names[7], Filter);
       }
       if (hasStartColumn) {
-        output.WriteString(11, field_names[9], StartColumn);
+        output.WriteString(11, field_names[12], StartColumn);
       }
       if (hasEndColumn) {
-        output.WriteString(12, field_names[3], EndColumn);
+        output.WriteString(12, field_names[5], EndColumn);
       }
       if (hasToken) {
-        output.WriteBytes(13, field_names[12], Token);
+        output.WriteBytes(13, field_names[15], Token);
+      }
+      if (hasTransactionId) {
+        output.WriteString(14, field_names[16], TransactionId);
+      }
+      if (hasDataBlockTypeHint) {
+        output.WriteEnum(15, field_names[3], (int) DataBlockTypeHint, DataBlockTypeHint);
+      }
+      if (hasReturnEntirePrimaryKeys) {
+        output.WriteBool(16, field_names[11], ReturnEntirePrimaryKeys);
+      }
+      if (hasCompressTypeHint) {
+        output.WriteEnum(17, field_names[2], (int) CompressTypeHint, CompressTypeHint);
       }
       UnknownFields.WriteTo(output);
     }
@@ -18483,6 +21272,18 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasToken) {
         size += pb::CodedOutputStream.ComputeBytesSize(13, Token);
+      }
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(14, TransactionId);
+      }
+      if (hasDataBlockTypeHint) {
+        size += pb::CodedOutputStream.ComputeEnumSize(15, (int) DataBlockTypeHint);
+      }
+      if (hasReturnEntirePrimaryKeys) {
+        size += pb::CodedOutputStream.ComputeBoolSize(16, ReturnEntirePrimaryKeys);
+      }
+      if (hasCompressTypeHint) {
+        size += pb::CodedOutputStream.ComputeEnumSize(17, (int) CompressTypeHint);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -18646,6 +21447,18 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasToken) {
           Token = other.Token;
         }
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
+        if (other.HasDataBlockTypeHint) {
+          DataBlockTypeHint = other.DataBlockTypeHint;
+        }
+        if (other.HasReturnEntirePrimaryKeys) {
+          ReturnEntirePrimaryKeys = other.ReturnEntirePrimaryKeys;
+        }
+        if (other.HasCompressTypeHint) {
+          CompressTypeHint = other.CompressTypeHint;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -18752,6 +21565,38 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
             }
             case 106: {
               result.hasToken = input.ReadBytes(ref result.token_);
+              break;
+            }
+            case 114: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
+              break;
+            }
+            case 120: {
+              object unknown;
+              if(input.ReadEnum(ref result.dataBlockTypeHint_, out unknown)) {
+                result.hasDataBlockTypeHint = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(15, (ulong)(int)unknown);
+              }
+              break;
+            }
+            case 128: {
+              result.hasReturnEntirePrimaryKeys = input.ReadBool(ref result.returnEntirePrimaryKeys_);
+              break;
+            }
+            case 136: {
+              object unknown;
+              if(input.ReadEnum(ref result.compressTypeHint_, out unknown)) {
+                result.hasCompressTypeHint = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(17, (ulong)(int)unknown);
+              }
               break;
             }
           }
@@ -19062,6 +21907,87 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         result.token_ = pb::ByteString.Empty;
         return this;
       }
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
+        return this;
+      }
+      
+      public bool HasDataBlockTypeHint {
+       get { return result.hasDataBlockTypeHint; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType DataBlockTypeHint {
+        get { return result.DataBlockTypeHint; }
+        set { SetDataBlockTypeHint(value); }
+      }
+      public Builder SetDataBlockTypeHint(global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType value) {
+        PrepareBuilder();
+        result.hasDataBlockTypeHint = true;
+        result.dataBlockTypeHint_ = value;
+        return this;
+      }
+      public Builder ClearDataBlockTypeHint() {
+        PrepareBuilder();
+        result.hasDataBlockTypeHint = false;
+        result.dataBlockTypeHint_ = global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType.DBT_PLAIN_BUFFER;
+        return this;
+      }
+      
+      public bool HasReturnEntirePrimaryKeys {
+        get { return result.hasReturnEntirePrimaryKeys; }
+      }
+      public bool ReturnEntirePrimaryKeys {
+        get { return result.ReturnEntirePrimaryKeys; }
+        set { SetReturnEntirePrimaryKeys(value); }
+      }
+      public Builder SetReturnEntirePrimaryKeys(bool value) {
+        PrepareBuilder();
+        result.hasReturnEntirePrimaryKeys = true;
+        result.returnEntirePrimaryKeys_ = value;
+        return this;
+      }
+      public Builder ClearReturnEntirePrimaryKeys() {
+        PrepareBuilder();
+        result.hasReturnEntirePrimaryKeys = false;
+        result.returnEntirePrimaryKeys_ = true;
+        return this;
+      }
+      
+      public bool HasCompressTypeHint {
+       get { return result.hasCompressTypeHint; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.CompressType CompressTypeHint {
+        get { return result.CompressTypeHint; }
+        set { SetCompressTypeHint(value); }
+      }
+      public Builder SetCompressTypeHint(global::com.alicloud.openservices.tablestore.core.protocol.CompressType value) {
+        PrepareBuilder();
+        result.hasCompressTypeHint = true;
+        result.compressTypeHint_ = value;
+        return this;
+      }
+      public Builder ClearCompressTypeHint() {
+        PrepareBuilder();
+        result.hasCompressTypeHint = false;
+        result.compressTypeHint_ = global::com.alicloud.openservices.tablestore.core.protocol.CompressType.CPT_NONE;
+        return this;
+      }
     }
     static GetRangeRequest() {
       object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
@@ -19072,8 +21998,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class GetRangeResponse : pb::GeneratedMessage<GetRangeResponse, GetRangeResponse.Builder> {
     private GetRangeResponse() { }
     private static readonly GetRangeResponse defaultInstance = new GetRangeResponse().MakeReadOnly();
-    private static readonly string[] _getRangeResponseFieldNames = new string[] { "consumed", "next_start_primary_key", "next_token", "rows" };
-    private static readonly uint[] _getRangeResponseFieldTags = new uint[] { 10, 26, 34, 18 };
+    private static readonly string[] _getRangeResponseFieldNames = new string[] { "compress_type", "consumed", "data_block_type", "next_start_primary_key", "next_token", "rows" };
+    private static readonly uint[] _getRangeResponseFieldTags = new uint[] { 48, 10, 40, 26, 34, 18 };
     public static GetRangeResponse DefaultInstance {
       get { return defaultInstance; }
     }
@@ -19134,6 +22060,26 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return nextToken_; }
     }
     
+    public const int DataBlockTypeFieldNumber = 5;
+    private bool hasDataBlockType;
+    private global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType dataBlockType_ = global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType.DBT_PLAIN_BUFFER;
+    public bool HasDataBlockType {
+      get { return hasDataBlockType; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType DataBlockType {
+      get { return dataBlockType_; }
+    }
+    
+    public const int CompressTypeFieldNumber = 6;
+    private bool hasCompressType;
+    private global::com.alicloud.openservices.tablestore.core.protocol.CompressType compressType_ = global::com.alicloud.openservices.tablestore.core.protocol.CompressType.CPT_NONE;
+    public bool HasCompressType {
+      get { return hasCompressType; }
+    }
+    public global::com.alicloud.openservices.tablestore.core.protocol.CompressType CompressType {
+      get { return compressType_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasConsumed) return false;
@@ -19147,16 +22093,22 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       CalcSerializedSize();
       string[] field_names = _getRangeResponseFieldNames;
       if (hasConsumed) {
-        output.WriteMessage(1, field_names[0], Consumed);
+        output.WriteMessage(1, field_names[1], Consumed);
       }
       if (hasRows) {
-        output.WriteBytes(2, field_names[3], Rows);
+        output.WriteBytes(2, field_names[5], Rows);
       }
       if (hasNextStartPrimaryKey) {
-        output.WriteBytes(3, field_names[1], NextStartPrimaryKey);
+        output.WriteBytes(3, field_names[3], NextStartPrimaryKey);
       }
       if (hasNextToken) {
-        output.WriteBytes(4, field_names[2], NextToken);
+        output.WriteBytes(4, field_names[4], NextToken);
+      }
+      if (hasDataBlockType) {
+        output.WriteEnum(5, field_names[2], (int) DataBlockType, DataBlockType);
+      }
+      if (hasCompressType) {
+        output.WriteEnum(6, field_names[0], (int) CompressType, CompressType);
       }
       UnknownFields.WriteTo(output);
     }
@@ -19186,6 +22138,12 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasNextToken) {
         size += pb::CodedOutputStream.ComputeBytesSize(4, NextToken);
+      }
+      if (hasDataBlockType) {
+        size += pb::CodedOutputStream.ComputeEnumSize(5, (int) DataBlockType);
+      }
+      if (hasCompressType) {
+        size += pb::CodedOutputStream.ComputeEnumSize(6, (int) CompressType);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -19321,6 +22279,12 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasNextToken) {
           NextToken = other.NextToken;
         }
+        if (other.HasDataBlockType) {
+          DataBlockType = other.DataBlockType;
+        }
+        if (other.HasCompressType) {
+          CompressType = other.CompressType;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -19383,6 +22347,30 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
             }
             case 34: {
               result.hasNextToken = input.ReadBytes(ref result.nextToken_);
+              break;
+            }
+            case 40: {
+              object unknown;
+              if(input.ReadEnum(ref result.dataBlockType_, out unknown)) {
+                result.hasDataBlockType = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(5, (ulong)(int)unknown);
+              }
+              break;
+            }
+            case 48: {
+              object unknown;
+              if(input.ReadEnum(ref result.compressType_, out unknown)) {
+                result.hasCompressType = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(6, (ulong)(int)unknown);
+              }
               break;
             }
           }
@@ -19497,8 +22485,1665 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         result.nextToken_ = pb::ByteString.Empty;
         return this;
       }
+      
+      public bool HasDataBlockType {
+       get { return result.hasDataBlockType; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType DataBlockType {
+        get { return result.DataBlockType; }
+        set { SetDataBlockType(value); }
+      }
+      public Builder SetDataBlockType(global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType value) {
+        PrepareBuilder();
+        result.hasDataBlockType = true;
+        result.dataBlockType_ = value;
+        return this;
+      }
+      public Builder ClearDataBlockType() {
+        PrepareBuilder();
+        result.hasDataBlockType = false;
+        result.dataBlockType_ = global::com.alicloud.openservices.tablestore.core.protocol.DataBlockType.DBT_PLAIN_BUFFER;
+        return this;
+      }
+      
+      public bool HasCompressType {
+       get { return result.hasCompressType; }
+      }
+      public global::com.alicloud.openservices.tablestore.core.protocol.CompressType CompressType {
+        get { return result.CompressType; }
+        set { SetCompressType(value); }
+      }
+      public Builder SetCompressType(global::com.alicloud.openservices.tablestore.core.protocol.CompressType value) {
+        PrepareBuilder();
+        result.hasCompressType = true;
+        result.compressType_ = value;
+        return this;
+      }
+      public Builder ClearCompressType() {
+        PrepareBuilder();
+        result.hasCompressType = false;
+        result.compressType_ = global::com.alicloud.openservices.tablestore.core.protocol.CompressType.CPT_NONE;
+        return this;
+      }
     }
     static GetRangeResponse() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class StartLocalTransactionRequest : pb::GeneratedMessage<StartLocalTransactionRequest, StartLocalTransactionRequest.Builder> {
+    private StartLocalTransactionRequest() { }
+    private static readonly StartLocalTransactionRequest defaultInstance = new StartLocalTransactionRequest().MakeReadOnly();
+    private static readonly string[] _startLocalTransactionRequestFieldNames = new string[] { "key", "table_name" };
+    private static readonly uint[] _startLocalTransactionRequestFieldTags = new uint[] { 18, 10 };
+    public static StartLocalTransactionRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override StartLocalTransactionRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override StartLocalTransactionRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<StartLocalTransactionRequest, StartLocalTransactionRequest.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionRequest__FieldAccessorTable; }
+    }
+    
+    public const int TableNameFieldNumber = 1;
+    private bool hasTableName;
+    private string tableName_ = "";
+    public bool HasTableName {
+      get { return hasTableName; }
+    }
+    public string TableName {
+      get { return tableName_; }
+    }
+    
+    public const int KeyFieldNumber = 2;
+    private bool hasKey;
+    private pb::ByteString key_ = pb::ByteString.Empty;
+    public bool HasKey {
+      get { return hasKey; }
+    }
+    public pb::ByteString Key {
+      get { return key_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasTableName) return false;
+        if (!hasKey) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _startLocalTransactionRequestFieldNames;
+      if (hasTableName) {
+        output.WriteString(1, field_names[1], TableName);
+      }
+      if (hasKey) {
+        output.WriteBytes(2, field_names[0], Key);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasTableName) {
+        size += pb::CodedOutputStream.ComputeStringSize(1, TableName);
+      }
+      if (hasKey) {
+        size += pb::CodedOutputStream.ComputeBytesSize(2, Key);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static StartLocalTransactionRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static StartLocalTransactionRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private StartLocalTransactionRequest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(StartLocalTransactionRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<StartLocalTransactionRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(StartLocalTransactionRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private StartLocalTransactionRequest result;
+      
+      private StartLocalTransactionRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          StartLocalTransactionRequest original = result;
+          result = new StartLocalTransactionRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override StartLocalTransactionRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionRequest.Descriptor; }
+      }
+      
+      public override StartLocalTransactionRequest DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionRequest.DefaultInstance; }
+      }
+      
+      public override StartLocalTransactionRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is StartLocalTransactionRequest) {
+          return MergeFrom((StartLocalTransactionRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(StartLocalTransactionRequest other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasTableName) {
+          TableName = other.TableName;
+        }
+        if (other.HasKey) {
+          Key = other.Key;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_startLocalTransactionRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _startLocalTransactionRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasTableName = input.ReadString(ref result.tableName_);
+              break;
+            }
+            case 18: {
+              result.hasKey = input.ReadBytes(ref result.key_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasTableName {
+        get { return result.hasTableName; }
+      }
+      public string TableName {
+        get { return result.TableName; }
+        set { SetTableName(value); }
+      }
+      public Builder SetTableName(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTableName = true;
+        result.tableName_ = value;
+        return this;
+      }
+      public Builder ClearTableName() {
+        PrepareBuilder();
+        result.hasTableName = false;
+        result.tableName_ = "";
+        return this;
+      }
+      
+      public bool HasKey {
+        get { return result.hasKey; }
+      }
+      public pb::ByteString Key {
+        get { return result.Key; }
+        set { SetKey(value); }
+      }
+      public Builder SetKey(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasKey = true;
+        result.key_ = value;
+        return this;
+      }
+      public Builder ClearKey() {
+        PrepareBuilder();
+        result.hasKey = false;
+        result.key_ = pb::ByteString.Empty;
+        return this;
+      }
+    }
+    static StartLocalTransactionRequest() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class StartLocalTransactionResponse : pb::GeneratedMessage<StartLocalTransactionResponse, StartLocalTransactionResponse.Builder> {
+    private StartLocalTransactionResponse() { }
+    private static readonly StartLocalTransactionResponse defaultInstance = new StartLocalTransactionResponse().MakeReadOnly();
+    private static readonly string[] _startLocalTransactionResponseFieldNames = new string[] { "transaction_id" };
+    private static readonly uint[] _startLocalTransactionResponseFieldTags = new uint[] { 10 };
+    public static StartLocalTransactionResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override StartLocalTransactionResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override StartLocalTransactionResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<StartLocalTransactionResponse, StartLocalTransactionResponse.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_StartLocalTransactionResponse__FieldAccessorTable; }
+    }
+    
+    public const int TransactionIdFieldNumber = 1;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasTransactionId) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _startLocalTransactionResponseFieldNames;
+      if (hasTransactionId) {
+        output.WriteString(1, field_names[0], TransactionId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(1, TransactionId);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static StartLocalTransactionResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static StartLocalTransactionResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private StartLocalTransactionResponse MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(StartLocalTransactionResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<StartLocalTransactionResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(StartLocalTransactionResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private StartLocalTransactionResponse result;
+      
+      private StartLocalTransactionResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          StartLocalTransactionResponse original = result;
+          result = new StartLocalTransactionResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override StartLocalTransactionResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionResponse.Descriptor; }
+      }
+      
+      public override StartLocalTransactionResponse DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionResponse.DefaultInstance; }
+      }
+      
+      public override StartLocalTransactionResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is StartLocalTransactionResponse) {
+          return MergeFrom((StartLocalTransactionResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(StartLocalTransactionResponse other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.StartLocalTransactionResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_startLocalTransactionResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _startLocalTransactionResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
+        return this;
+      }
+    }
+    static StartLocalTransactionResponse() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class CommitTransactionRequest : pb::GeneratedMessage<CommitTransactionRequest, CommitTransactionRequest.Builder> {
+    private CommitTransactionRequest() { }
+    private static readonly CommitTransactionRequest defaultInstance = new CommitTransactionRequest().MakeReadOnly();
+    private static readonly string[] _commitTransactionRequestFieldNames = new string[] { "transaction_id" };
+    private static readonly uint[] _commitTransactionRequestFieldTags = new uint[] { 10 };
+    public static CommitTransactionRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CommitTransactionRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CommitTransactionRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CommitTransactionRequest, CommitTransactionRequest.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionRequest__FieldAccessorTable; }
+    }
+    
+    public const int TransactionIdFieldNumber = 1;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasTransactionId) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _commitTransactionRequestFieldNames;
+      if (hasTransactionId) {
+        output.WriteString(1, field_names[0], TransactionId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(1, TransactionId);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static CommitTransactionRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CommitTransactionRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CommitTransactionRequest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CommitTransactionRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<CommitTransactionRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CommitTransactionRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CommitTransactionRequest result;
+      
+      private CommitTransactionRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CommitTransactionRequest original = result;
+          result = new CommitTransactionRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CommitTransactionRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionRequest.Descriptor; }
+      }
+      
+      public override CommitTransactionRequest DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionRequest.DefaultInstance; }
+      }
+      
+      public override CommitTransactionRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CommitTransactionRequest) {
+          return MergeFrom((CommitTransactionRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CommitTransactionRequest other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_commitTransactionRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _commitTransactionRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
+        return this;
+      }
+    }
+    static CommitTransactionRequest() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class CommitTransactionResponse : pb::GeneratedMessage<CommitTransactionResponse, CommitTransactionResponse.Builder> {
+    private CommitTransactionResponse() { }
+    private static readonly CommitTransactionResponse defaultInstance = new CommitTransactionResponse().MakeReadOnly();
+    private static readonly string[] _commitTransactionResponseFieldNames = new string[] {  };
+    private static readonly uint[] _commitTransactionResponseFieldTags = new uint[] {  };
+    public static CommitTransactionResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CommitTransactionResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override CommitTransactionResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CommitTransactionResponse, CommitTransactionResponse.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_CommitTransactionResponse__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _commitTransactionResponseFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static CommitTransactionResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CommitTransactionResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private CommitTransactionResponse MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CommitTransactionResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<CommitTransactionResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(CommitTransactionResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private CommitTransactionResponse result;
+      
+      private CommitTransactionResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          CommitTransactionResponse original = result;
+          result = new CommitTransactionResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override CommitTransactionResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionResponse.Descriptor; }
+      }
+      
+      public override CommitTransactionResponse DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionResponse.DefaultInstance; }
+      }
+      
+      public override CommitTransactionResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CommitTransactionResponse) {
+          return MergeFrom((CommitTransactionResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CommitTransactionResponse other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.CommitTransactionResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_commitTransactionResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _commitTransactionResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static CommitTransactionResponse() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class AbortTransactionRequest : pb::GeneratedMessage<AbortTransactionRequest, AbortTransactionRequest.Builder> {
+    private AbortTransactionRequest() { }
+    private static readonly AbortTransactionRequest defaultInstance = new AbortTransactionRequest().MakeReadOnly();
+    private static readonly string[] _abortTransactionRequestFieldNames = new string[] { "transaction_id" };
+    private static readonly uint[] _abortTransactionRequestFieldTags = new uint[] { 10 };
+    public static AbortTransactionRequest DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override AbortTransactionRequest DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override AbortTransactionRequest ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionRequest__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<AbortTransactionRequest, AbortTransactionRequest.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionRequest__FieldAccessorTable; }
+    }
+    
+    public const int TransactionIdFieldNumber = 1;
+    private bool hasTransactionId;
+    private string transactionId_ = "";
+    public bool HasTransactionId {
+      get { return hasTransactionId; }
+    }
+    public string TransactionId {
+      get { return transactionId_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasTransactionId) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _abortTransactionRequestFieldNames;
+      if (hasTransactionId) {
+        output.WriteString(1, field_names[0], TransactionId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      if (hasTransactionId) {
+        size += pb::CodedOutputStream.ComputeStringSize(1, TransactionId);
+      }
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static AbortTransactionRequest ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AbortTransactionRequest ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private AbortTransactionRequest MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(AbortTransactionRequest prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<AbortTransactionRequest, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(AbortTransactionRequest cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private AbortTransactionRequest result;
+      
+      private AbortTransactionRequest PrepareBuilder() {
+        if (resultIsReadOnly) {
+          AbortTransactionRequest original = result;
+          result = new AbortTransactionRequest();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override AbortTransactionRequest MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionRequest.Descriptor; }
+      }
+      
+      public override AbortTransactionRequest DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionRequest.DefaultInstance; }
+      }
+      
+      public override AbortTransactionRequest BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is AbortTransactionRequest) {
+          return MergeFrom((AbortTransactionRequest) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(AbortTransactionRequest other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionRequest.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasTransactionId) {
+          TransactionId = other.TransactionId;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_abortTransactionRequestFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _abortTransactionRequestFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasTransactionId = input.ReadString(ref result.transactionId_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasTransactionId {
+        get { return result.hasTransactionId; }
+      }
+      public string TransactionId {
+        get { return result.TransactionId; }
+        set { SetTransactionId(value); }
+      }
+      public Builder SetTransactionId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasTransactionId = true;
+        result.transactionId_ = value;
+        return this;
+      }
+      public Builder ClearTransactionId() {
+        PrepareBuilder();
+        result.hasTransactionId = false;
+        result.transactionId_ = "";
+        return this;
+      }
+    }
+    static AbortTransactionRequest() {
+      object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  public sealed partial class AbortTransactionResponse : pb::GeneratedMessage<AbortTransactionResponse, AbortTransactionResponse.Builder> {
+    private AbortTransactionResponse() { }
+    private static readonly AbortTransactionResponse defaultInstance = new AbortTransactionResponse().MakeReadOnly();
+    private static readonly string[] _abortTransactionResponseFieldNames = new string[] {  };
+    private static readonly uint[] _abortTransactionResponseFieldTags = new uint[] {  };
+    public static AbortTransactionResponse DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override AbortTransactionResponse DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override AbortTransactionResponse ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionResponse__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<AbortTransactionResponse, AbortTransactionResponse.Builder> InternalFieldAccessors {
+      get { return global::com.alicloud.openservices.tablestore.core.protocol.TableStore.internal__static_com_alicloud_openservices_tablestore_core_protocol_AbortTransactionResponse__FieldAccessorTable; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      CalcSerializedSize();
+      string[] field_names = _abortTransactionResponseFieldNames;
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        return CalcSerializedSize();
+      }
+    }
+    
+    private int CalcSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+      
+      size = 0;
+      size += UnknownFields.SerializedSize;
+      memoizedSerializedSize = size;
+      return size;
+    }
+    public static AbortTransactionResponse ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AbortTransactionResponse ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private AbortTransactionResponse MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(AbortTransactionResponse prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public sealed partial class Builder : pb::GeneratedBuilder<AbortTransactionResponse, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(AbortTransactionResponse cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private AbortTransactionResponse result;
+      
+      private AbortTransactionResponse PrepareBuilder() {
+        if (resultIsReadOnly) {
+          AbortTransactionResponse original = result;
+          result = new AbortTransactionResponse();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override AbortTransactionResponse MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionResponse.Descriptor; }
+      }
+      
+      public override AbortTransactionResponse DefaultInstanceForType {
+        get { return global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionResponse.DefaultInstance; }
+      }
+      
+      public override AbortTransactionResponse BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is AbortTransactionResponse) {
+          return MergeFrom((AbortTransactionResponse) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(AbortTransactionResponse other) {
+        if (other == global::com.alicloud.openservices.tablestore.core.protocol.AbortTransactionResponse.DefaultInstance) return this;
+        PrepareBuilder();
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_abortTransactionResponseFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _abortTransactionResponseFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+    }
+    static AbortTransactionResponse() {
       object.ReferenceEquals(global::com.alicloud.openservices.tablestore.core.protocol.TableStore.Descriptor, null);
     }
   }
@@ -21762,8 +26407,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class GetShardIteratorRequest : pb::GeneratedMessage<GetShardIteratorRequest, GetShardIteratorRequest.Builder> {
     private GetShardIteratorRequest() { }
     private static readonly GetShardIteratorRequest defaultInstance = new GetShardIteratorRequest().MakeReadOnly();
-    private static readonly string[] _getShardIteratorRequestFieldNames = new string[] { "shard_id", "stream_id", "timestamp" };
-    private static readonly uint[] _getShardIteratorRequestFieldTags = new uint[] { 18, 10, 24 };
+    private static readonly string[] _getShardIteratorRequestFieldNames = new string[] { "shard_id", "stream_id" };
+    private static readonly uint[] _getShardIteratorRequestFieldTags = new uint[] { 18, 10 };
     public static GetShardIteratorRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -21804,16 +26449,6 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return shardId_; }
     }
     
-    public const int TimestampFieldNumber = 3;
-    private bool hasTimestamp;
-    private long timestamp_;
-    public bool HasTimestamp {
-      get { return hasTimestamp; }
-    }
-    public long Timestamp {
-      get { return timestamp_; }
-    }
-    
     public override bool IsInitialized {
       get {
         if (!hasStreamId) return false;
@@ -21830,9 +26465,6 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasShardId) {
         output.WriteString(2, field_names[0], ShardId);
-      }
-      if (hasTimestamp) {
-        output.WriteInt64(3, field_names[2], Timestamp);
       }
       UnknownFields.WriteTo(output);
     }
@@ -21856,9 +26488,6 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasShardId) {
         size += pb::CodedOutputStream.ComputeStringSize(2, ShardId);
-      }
-      if (hasTimestamp) {
-        size += pb::CodedOutputStream.ComputeInt64Size(3, Timestamp);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -21988,9 +26617,6 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasShardId) {
           ShardId = other.ShardId;
         }
-        if (other.HasTimestamp) {
-          Timestamp = other.Timestamp;
-        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -22042,10 +26668,6 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
               result.hasShardId = input.ReadString(ref result.shardId_);
               break;
             }
-            case 24: {
-              result.hasTimestamp = input.ReadInt64(ref result.timestamp_);
-              break;
-            }
           }
         }
         
@@ -22095,26 +26717,6 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         PrepareBuilder();
         result.hasShardId = false;
         result.shardId_ = "";
-        return this;
-      }
-      
-      public bool HasTimestamp {
-        get { return result.hasTimestamp; }
-      }
-      public long Timestamp {
-        get { return result.Timestamp; }
-        set { SetTimestamp(value); }
-      }
-      public Builder SetTimestamp(long value) {
-        PrepareBuilder();
-        result.hasTimestamp = true;
-        result.timestamp_ = value;
-        return this;
-      }
-      public Builder ClearTimestamp() {
-        PrepareBuilder();
-        result.hasTimestamp = false;
-        result.timestamp_ = 0L;
         return this;
       }
     }
@@ -23408,8 +28010,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
   public sealed partial class ComputeSplitPointsBySizeRequest : pb::GeneratedMessage<ComputeSplitPointsBySizeRequest, ComputeSplitPointsBySizeRequest.Builder> {
     private ComputeSplitPointsBySizeRequest() { }
     private static readonly ComputeSplitPointsBySizeRequest defaultInstance = new ComputeSplitPointsBySizeRequest().MakeReadOnly();
-    private static readonly string[] _computeSplitPointsBySizeRequestFieldNames = new string[] { "split_size", "table_name" };
-    private static readonly uint[] _computeSplitPointsBySizeRequestFieldTags = new uint[] { 16, 10 };
+    private static readonly string[] _computeSplitPointsBySizeRequestFieldNames = new string[] { "split_size", "split_size_unit_in_byte", "table_name" };
+    private static readonly uint[] _computeSplitPointsBySizeRequestFieldTags = new uint[] { 16, 24, 10 };
     public static ComputeSplitPointsBySizeRequest DefaultInstance {
       get { return defaultInstance; }
     }
@@ -23450,6 +28052,16 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       get { return splitSize_; }
     }
     
+    public const int SplitSizeUnitInByteFieldNumber = 3;
+    private bool hasSplitSizeUnitInByte;
+    private long splitSizeUnitInByte_;
+    public bool HasSplitSizeUnitInByte {
+      get { return hasSplitSizeUnitInByte; }
+    }
+    public long SplitSizeUnitInByte {
+      get { return splitSizeUnitInByte_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasTableName) return false;
@@ -23462,10 +28074,13 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       CalcSerializedSize();
       string[] field_names = _computeSplitPointsBySizeRequestFieldNames;
       if (hasTableName) {
-        output.WriteString(1, field_names[1], TableName);
+        output.WriteString(1, field_names[2], TableName);
       }
       if (hasSplitSize) {
         output.WriteInt64(2, field_names[0], SplitSize);
+      }
+      if (hasSplitSizeUnitInByte) {
+        output.WriteInt64(3, field_names[1], SplitSizeUnitInByte);
       }
       UnknownFields.WriteTo(output);
     }
@@ -23489,6 +28104,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
       }
       if (hasSplitSize) {
         size += pb::CodedOutputStream.ComputeInt64Size(2, SplitSize);
+      }
+      if (hasSplitSizeUnitInByte) {
+        size += pb::CodedOutputStream.ComputeInt64Size(3, SplitSizeUnitInByte);
       }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
@@ -23618,6 +28236,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         if (other.HasSplitSize) {
           SplitSize = other.SplitSize;
         }
+        if (other.HasSplitSizeUnitInByte) {
+          SplitSizeUnitInByte = other.SplitSizeUnitInByte;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -23669,6 +28290,10 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
               result.hasSplitSize = input.ReadInt64(ref result.splitSize_);
               break;
             }
+            case 24: {
+              result.hasSplitSizeUnitInByte = input.ReadInt64(ref result.splitSizeUnitInByte_);
+              break;
+            }
           }
         }
         
@@ -23717,6 +28342,26 @@ namespace com.alicloud.openservices.tablestore.core.protocol {
         PrepareBuilder();
         result.hasSplitSize = false;
         result.splitSize_ = 0L;
+        return this;
+      }
+      
+      public bool HasSplitSizeUnitInByte {
+        get { return result.hasSplitSizeUnitInByte; }
+      }
+      public long SplitSizeUnitInByte {
+        get { return result.SplitSizeUnitInByte; }
+        set { SetSplitSizeUnitInByte(value); }
+      }
+      public Builder SetSplitSizeUnitInByte(long value) {
+        PrepareBuilder();
+        result.hasSplitSizeUnitInByte = true;
+        result.splitSizeUnitInByte_ = value;
+        return this;
+      }
+      public Builder ClearSplitSizeUnitInByte() {
+        PrepareBuilder();
+        result.hasSplitSizeUnitInByte = false;
+        result.splitSizeUnitInByte_ = 0L;
         return this;
       }
     }

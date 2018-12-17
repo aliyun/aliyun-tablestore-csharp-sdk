@@ -20,8 +20,14 @@
 - 连接池的默认连接个数从50调整到300
 - 新增conditional update功能
 
-## 版本号 4.0.0 日期2018/09/07
+## 版本号 4.0.0 日期：2018/09/07
 ### 变更内容
-- 数据传输改为ProtocolBuffer加PlainBuffer
+- 数据传输改为ProtocolBuffer加PlainBuffer　　
 - 支持自增列
 - 支持多版本
+
+## 版本号 4.1.0 日期：2018/12/17
+###　变更内容
+- 支持多元索引(SearchIndex）
+- 支持全局二级索引(GlobalIndex)
+- 支持原子增

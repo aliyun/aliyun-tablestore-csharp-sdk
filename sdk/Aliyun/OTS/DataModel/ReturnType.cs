@@ -15,5 +15,10 @@ namespace Aliyun.OTS.DataModel
         /// 返回PK列的数据。
         /// </summary>
         RT_PK,
+
+        /// <summary>
+        /// 返回修改列的数据（如原子加的结果返回）
+        /// </summary>
+        RT_AFTER_MODIFY,
     }
 }

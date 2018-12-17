@@ -1,4 +1,4 @@
-﻿namespace com.alicloud.openservices.tablestore.core.protocol
+﻿ namespace com.alicloud.openservices.tablestore.core.protocol
 {
     public static class PlainBufferConsts
     {
@@ -24,6 +24,7 @@
         // cell op type
         public const byte DELETE_ALL_VERSION = 0x1;
         public const byte DELETE_ONE_VERSION = 0x3;
+        public const byte INCREMENT = 0x4;
 
         // variant type
         public const byte VT_INTEGER = 0x0;

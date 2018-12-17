@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Aliyun.OTS.Samples
 {
     class Program

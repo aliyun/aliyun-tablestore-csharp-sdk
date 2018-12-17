@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 namespace Aliyun.OTS.DataModel
 {
@@ -33,6 +34,11 @@ namespace Aliyun.OTS.DataModel
         /// </summary>
         /// <value>The type of the return.</value>
         public ReturnType ReturnType { get; set; }
+
+        /// <summary>
+        /// 指定本次需要返回的列名
+        /// </summary>
+        public List<String> ReturnColumnNames { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Aliyun.OTS.DataModel.RowChange"/> class.

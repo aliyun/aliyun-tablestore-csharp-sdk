@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Google.ProtocolBuffers;
 using System.IO;
 using PB = com.alicloud.openservices.tablestore.core.protocol;
+using Aliyun.OTS.DataModel.Search;
+using com.alicloud.openservices.tablestore.core.protocol;
 
 namespace Aliyun.OTS.Handler
 {
@@ -28,6 +30,15 @@ namespace Aliyun.OTS.Handler
                 { "/BatchWriteRow",        DecodeBatchWriteRow },
                 { "/BatchGetRow",          DecodeBatchGetRow },
                 { "/GetRange",             DecodeGetRange },
+
+                 { "/ListSearchIndex",             DecodeListSearchIndex },
+                 { "/CreateSearchIndex",             DecodeCreateSearchIndex },
+                 { "/DescribeSearchIndex",             DecodeDescribeSearchIndex },
+                 { "/DeleteSearchIndex",             DecodeDeleteSearchIndex },
+                 { "/Search",             DecodeSearch },
+
+                  { "/CreateIndex",             DecodeCreateGlobalIndex },
+                  { "/DropIndex",             DecodeDeleteGlobalIndex },
             };
         }
 
@@ -133,8 +144,19 @@ namespace Aliyun.OTS.Handler
             builder.MergeFrom(body);
             var message = builder.Build();
 
+            DataModel.Row row = null;
+            if (message.HasRow && !message.Row.IsEmpty)
+            {
+                row = ParseRow(message.Row);
+            }
+            else
+            {
+                row = new DataModel.Row(new DataModel.PrimaryKey(), new List<DataModel.Column>());
+            }
+
             var response = new Response.PutRowResponse(
-                ParseCapacityUnit(message.Consumed.CapacityUnit)
+                ParseCapacityUnit(message.Consumed.CapacityUnit),
+                row
             );
             _message = message;
             return response;
@@ -145,25 +167,16 @@ namespace Aliyun.OTS.Handler
             var builder = PB.GetRowResponse.CreateBuilder();
             builder.MergeFrom(body);
             var message = builder.Build();
-            Console.WriteLine(message.ToJson());
 
             DataModel.Row row = null;
 
             if (message.HasRow && !message.Row.IsEmpty)
             {
-                PB.PlainBufferCodedInputStream inputStream = new PB.PlainBufferCodedInputStream(message.Row.CreateCodedInput());
-                List<PB.PlainBufferRow> rows = inputStream.ReadRowsWithHeader();
-                if (rows.Count != 1)
-                {
-                    throw new IOException("Expect only returns one row. Row count: " + rows.Count);
-                }
-
-                row = PB.PlainBufferConversion.ToRow(rows[0]) as DataModel.Row;
+                row = ParseRow(message.Row);
             }
             else
             {
                 row = new DataModel.Row(new DataModel.PrimaryKey(), new List<DataModel.Column>());
-
             }
 
             var primaryKey = row.GetPrimaryKey();
@@ -184,12 +197,26 @@ namespace Aliyun.OTS.Handler
             builder.MergeFrom(body);
             var message = builder.Build();
 
+            DataModel.Row row = null;
+
+            if (message.HasRow && !message.Row.IsEmpty)
+            {
+                row = ParseRow(message.Row);
+            }
+            else
+            {
+                row = new DataModel.Row(new DataModel.PrimaryKey(), new List<DataModel.Column>());
+            }
+
             var response = new Response.UpdateRowResponse(
-                ParseCapacityUnit(message.Consumed.CapacityUnit)
+                ParseCapacityUnit(message.Consumed.CapacityUnit),
+                row
             );
             _message = message;
             return response;
         }
+
+
 
         private Response.OTSResponse DecodeDeleteRow(byte[] body, out IMessage _message)
         {
@@ -197,11 +224,34 @@ namespace Aliyun.OTS.Handler
             builder.MergeFrom(body);
             var message = builder.Build();
 
+            DataModel.Row row = null;
+            if (message.HasRow && !message.Row.IsEmpty)
+            {
+                row = ParseRow(message.Row);
+            }
+            else
+            {
+                row = new DataModel.Row(new DataModel.PrimaryKey(), new List<DataModel.Column>());
+            }
+
             var response = new Response.DeleteRowResponse(
-                ParseCapacityUnit(message.Consumed.CapacityUnit)
+                ParseCapacityUnit(message.Consumed.CapacityUnit),
+                row
             );
             _message = message;
             return response;
+        }
+
+        private DataModel.Row ParseRow(ByteString row)
+        {
+            PB.PlainBufferCodedInputStream inputStream = new PB.PlainBufferCodedInputStream(row.CreateCodedInput());
+            List<PB.PlainBufferRow> rows = inputStream.ReadRowsWithHeader();
+            if (rows.Count != 1)
+            {
+                throw new IOException("Expect only returns one row. Row count: " + rows.Count);
+            }
+
+            return PB.PlainBufferConversion.ToRow(rows[0]) as DataModel.Row;
         }
 
         private Response.OTSResponse DecodeBatchWriteRow(byte[] body, out IMessage _message)
@@ -293,6 +343,216 @@ namespace Aliyun.OTS.Handler
             _message = message;
             return response;
         }
+
+        private Response.OTSResponse DecodeListSearchIndex(byte[] body, out IMessage _message)
+        {
+            var response = new Response.ListSearchIndexResponse
+            {
+                IndexInfos = new List<SearchIndexInfo>()
+            };
+
+            var builder = PB.ListSearchIndexResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+
+            for (int i = 0; i < message.IndicesCount; i++)
+            {
+                PB.IndexInfo indexInfo = message.GetIndices(i);
+                SearchIndexInfo searchIndexInfo = new SearchIndexInfo();
+                searchIndexInfo.TableName = indexInfo.TableName;
+                searchIndexInfo.IndexName = indexInfo.IndexName;
+                response.IndexInfos.Add(searchIndexInfo);
+            }
+            _message = message;
+            return response;
+        }
+
+        private Response.OTSResponse DecodeCreateSearchIndex(byte[] body, out IMessage _message)
+        {
+            var response = new Response.CreateSearchIndexResponse();
+            var builder = PB.CreateSearchIndexResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+            return response;
+        }
+
+        private Response.OTSResponse DecodeDeleteSearchIndex(byte[] body, out IMessage _message)
+        {
+            var response = new Response.DeleteSearchIndexResponse();
+            var builder = PB.DeleteSearchIndexResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+            return response;
+        }
+
+        private Response.OTSResponse DecodeSearch(byte[] body, out IMessage _message)
+        {
+            var response = new Response.SearchResponse();
+            var builder = PB.SearchResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+
+            response.TotalCount = message.TotalHits;
+            response.IsAllSuccess = message.IsAllSucceeded;
+            response.Rows = new List<DataModel.Row>();
+
+            foreach (var item in message.RowsList)
+            {
+                PlainBufferCodedInputStream coded = new PlainBufferCodedInputStream(item.CreateCodedInput());
+                List<PlainBufferRow> plainBufferRows = coded.ReadRowsWithHeader();
+                if (plainBufferRows.Count != 1)
+                {
+                    throw new IOException("Expect only returns one row. Row count: " + plainBufferRows.Count);
+                }
+                var row = PlainBufferConversion.ToRow(plainBufferRows[0]);
+                response.Rows.Add(row as DataModel.Row);
+            }
+            if (message.HasNextToken)
+            {
+                response.NextToken = message.NextToken.ToByteArray();
+            }
+
+            return response;
+        }
+
+        private Response.OTSResponse DecodeDescribeSearchIndex(byte[] body, out IMessage _message)
+        {
+            var response = new Response.DescribeSearchIndexResponse();
+            var builder = PB.DescribeSearchIndexResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            response.Schema = ParseIndexSchema(message.Schema);
+            response.SyncStat = ParseSyncStat(message.SyncStat);
+            _message = message;
+            return response;
+        }
+
+        private DataModel.Search.SyncStat ParseSyncStat(PB.SyncStat syncStat)
+        {
+            var ret = new DataModel.Search.SyncStat();
+            ret.CurrentSyncTimestamp = syncStat.CurrentSyncTimestamp;
+            ret.SyncPhase = ParseSyncPhase(syncStat.SyncPhase);
+            return ret;
+        }
+
+        private DataModel.Search.SyncPhase ParseSyncPhase(PB.SyncPhase syncPhase)
+        {
+            switch (syncPhase)
+            {
+                case PB.SyncPhase.FULL:
+                    return DataModel.Search.SyncPhase.FULL;
+                case PB.SyncPhase.INCR:
+                    return DataModel.Search.SyncPhase.INCR;
+                default:
+                    throw new OTSClientException(
+                        String.Format("Invalid indexOptions SyncPhase type {0}", syncPhase)
+                    );
+            }
+
+        }
+
+        private DataModel.Search.IndexSchema ParseIndexSchema(PB.IndexSchema indexSchema)
+        {
+            var ret = new DataModel.Search.IndexSchema();
+            ret.IndexSetting = ParseIndexSetting(indexSchema.IndexSetting);
+            ret.FieldSchemas = new List<DataModel.Search.FieldSchema>();
+            foreach (var item in indexSchema.FieldSchemasList)
+            {
+                ret.FieldSchemas.Add(ParseFieldSchema(item));
+            }
+            return ret;
+        }
+
+        private DataModel.Search.FieldSchema ParseFieldSchema(PB.FieldSchema fieldSchema)
+        {
+            var ret = new DataModel.Search.FieldSchema(fieldSchema.FieldName, ParseFieldType(fieldSchema.FieldType));
+            ret.Analyzer = ParseAnalyzer(fieldSchema.Analyzer);
+            ret.EnableSortAndAgg = fieldSchema.DocValues;
+            ret.index = fieldSchema.Index;
+            ret.Store = fieldSchema.Store;
+            ret.IsArray = fieldSchema.IsArray;
+            ret.IndexOptions = ParseIndexOption(fieldSchema.IndexOptions);
+            foreach (var item in fieldSchema.FieldSchemasList)
+            {
+                ret.SubFieldSchemas.Add(ParseFieldSchema(item));
+            }
+
+            return ret;
+        }
+
+        private DataModel.Search.IndexOptions ParseIndexOption(PB.IndexOptions indexOptions)
+        {
+            switch (indexOptions)
+            {
+                case PB.IndexOptions.DOCS:
+                    return DataModel.Search.IndexOptions.DOCS;
+                case PB.IndexOptions.FREQS:
+                    return DataModel.Search.IndexOptions.FREQS;
+                case PB.IndexOptions.OFFSETS:
+                    return DataModel.Search.IndexOptions.OFFSETS;
+                case PB.IndexOptions.POSITIONS:
+                    return DataModel.Search.IndexOptions.POSITIONS;
+                default:
+                    throw new OTSClientException(
+                        String.Format("Invalid indexOptions type {0}", indexOptions)
+                    );
+            }
+        }
+
+        private DataModel.Search.FieldType ParseFieldType(PB.FieldType fieldType)
+        {
+            switch (fieldType)
+            {
+                case PB.FieldType.BOOLEAN:
+                    return DataModel.Search.FieldType.BOOLEAN;
+                case PB.FieldType.DOUBLE:
+                    return DataModel.Search.FieldType.DOUBLE;
+                case PB.FieldType.GEO_POINT:
+                    return DataModel.Search.FieldType.GEO_POINT;
+                case PB.FieldType.KEYWORD:
+                    return DataModel.Search.FieldType.KEYWORD;
+                case PB.FieldType.LONG:
+                    return DataModel.Search.FieldType.LONG;
+                case PB.FieldType.NESTED:
+                    return DataModel.Search.FieldType.NESTED;
+                case PB.FieldType.TEXT:
+                    return DataModel.Search.FieldType.TEXT;
+                default:
+                    throw new OTSClientException(
+                        String.Format("Invalid FieldType type {0}", fieldType)
+                    );
+            }
+        }
+
+        private DataModel.Search.Analyzer ParseAnalyzer(string analyzer)
+        {
+            switch (analyzer)
+            {
+                case "max_word":
+                    return Analyzer.MaxWord;
+                case "single_word":
+                    return Analyzer.SingleWord;
+                default:
+                    throw new OTSClientException(
+                        String.Format("Invalid Analyzer type {0}", analyzer)
+                    );
+            }
+        }
+
+        private DataModel.Search.IndexSetting ParseIndexSetting(PB.IndexSetting indexSetting)
+        {
+            var ret = new DataModel.Search.IndexSetting();
+            foreach (var item in indexSetting.RoutingFieldsList)
+            {
+                ret.RoutingFields.Add(item);
+            }
+            
+            return ret;
+        }
+
 
         private IList<Response.BatchGetRowResponseItem> ParseTableInBatchGetRowResponse(PB.TableInBatchGetRowResponse table)
         {
@@ -487,6 +747,26 @@ namespace Aliyun.OTS.Handler
             }
 
             return ret;
+        }
+
+        private Response.CreateGlobalIndexResponse DecodeCreateGlobalIndex(byte[] body, out IMessage _message)
+        {
+            var response = new Response.CreateGlobalIndexResponse();
+            var builder = PB.CreateIndexResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+            return response;
+        }
+
+        private Response.DeleteGlobalIndexResponse DecodeDeleteGlobalIndex(byte[] body, out IMessage _message)
+        {
+            var response = new Response.DeleteGlobalIndexResponse();
+            var builder = PB.DropIndexResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+            return response;
         }
     }
 }

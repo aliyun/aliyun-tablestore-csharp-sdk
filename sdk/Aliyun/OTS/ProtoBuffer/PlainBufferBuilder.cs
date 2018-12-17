@@ -439,6 +439,9 @@ namespace com.alicloud.openservices.tablestore.core.protocol
                         case RowChangeType.DELETE_ALL:
                             cells.Add(PlainBufferConversion.ToPlainBufferCell(column.Item1, true, true, true, PlainBufferConsts.DELETE_ALL_VERSION));
                             break;
+                        case RowChangeType.INCREMENT:
+                            cells.Add(PlainBufferConversion.ToPlainBufferCell(column.Item1, false, true, true, PlainBufferConsts.INCREMENT));
+                            break;
                     }
                 }
             }

@@ -15,6 +15,8 @@ using PB = com.alicloud.openservices.tablestore.core.protocol;
 using Google.ProtocolBuffers;
 using Aliyun.OTS.DataModel.Filter;
 using Aliyun.OTS.DataModel.ConditionalUpdate;
+using com.alicloud.openservices.tablestore.core.protocol;
+using Aliyun.OTS.ProtoBuffer;
 
 namespace Aliyun.OTS.Handler
 {
@@ -22,6 +24,7 @@ namespace Aliyun.OTS.Handler
     {
         private delegate IMessage RequestEncoder(Request.OTSRequest request);
         private readonly Dictionary<string, RequestEncoder> EncoderMap;
+        private readonly int DEFAULT_NUMBER_OF_SHARDS = 1;
 
         public ProtocolBufferEncoder(PipelineHandler innerHandler) : base(innerHandler)
         {
@@ -40,6 +43,15 @@ namespace Aliyun.OTS.Handler
                 { "/BatchWriteRow",        EncodeBatchWriteRow },
                 { "/BatchGetRow",          EncodeBatchGetRow },
                 { "/GetRange",             EncodeGetRange },
+
+                { "/ListSearchIndex",             EncodeListSearchIndex },
+                { "/CreateSearchIndex",             EncodeCreateSearchIndex },
+                { "/DescribeSearchIndex",             EncodeDescribeSearchIndex },
+                { "/DeleteSearchIndex",             EncodeDeleteSearchIndex },
+                { "/Search",             EncodeSearch },
+
+                 { "/CreateIndex",             EncodeCreateGlobalIndex },
+                  { "/DropIndex",             EncodeDeleteGlobalIndex },
             };
         }
 
@@ -77,6 +89,14 @@ namespace Aliyun.OTS.Handler
                 for (var i = 0; i < requestReal.PartitionRange.Count; i++)
                 {
                     builder.SetPartitions(i, EncodePartitionRange(requestReal.PartitionRange[i]));
+                }
+            }
+
+            if (requestReal.IndexMetas != null)
+            {
+                for (int i = 0; i < requestReal.IndexMetas.Count; i++)
+                {
+                    builder.AddIndexMetas(EncodeIndexMeta(requestReal.IndexMetas[i]));
                 }
             }
 
@@ -137,7 +157,7 @@ namespace Aliyun.OTS.Handler
             builder.SetTableName(requestReal.TableName);
             builder.SetCondition(EncodeCondition(requestReal.Condition));
             builder.SetRow(ByteString.CopyFrom(PB.PlainBufferBuilder.BuildRowPutChangeWithHeader(requestReal.RowPutChange)));
-            builder.SetReturnContent(EncodeReturnContent(requestReal.RowPutChange.ReturnType));
+            builder.SetReturnContent(EncodeReturnContent(requestReal.RowPutChange.ReturnType, requestReal.RowPutChange.ReturnColumnNames));
             return builder.Build();
         }
 
@@ -211,7 +231,7 @@ namespace Aliyun.OTS.Handler
             // required Condition condition = 3;
             builder.SetCondition(EncodeCondition(rowChange.Condition));
             // option ReturnType = 4;
-            builder.SetReturnContent(EncodeReturnContent(rowChange.ReturnType));
+            builder.SetReturnContent(EncodeReturnContent(rowChange.ReturnType, rowChange.ReturnColumnNames));
 
             return builder.Build();
         }
@@ -229,7 +249,7 @@ namespace Aliyun.OTS.Handler
             // required Condition condition = 3;
             builder.SetCondition(EncodeCondition(rowChange.Condition));
             // option ReturnType = 4;
-            builder.SetReturnContent(EncodeReturnContent(rowChange.ReturnType));
+            builder.SetReturnContent(EncodeReturnContent(rowChange.ReturnType, rowChange.ReturnColumnNames));
             return builder.Build();
         }
 
@@ -340,6 +360,291 @@ namespace Aliyun.OTS.Handler
             return builder.Build();
         }
 
+
+        private IMessage EncodeListSearchIndex(Request.OTSRequest request)
+        {
+            var requestReal = (Request.ListSearchIndexRequest)request;
+            var builder = PB.ListSearchIndexRequest.CreateBuilder();
+            builder.SetTableName(requestReal.TableName);
+            return builder.Build();
+        }
+
+        private IMessage EncodeCreateSearchIndex(Request.OTSRequest request)
+        {
+            var requestReal = (Request.CreateSearchIndexRequest)request;
+            var builder = PB.CreateSearchIndexRequest.CreateBuilder();
+            builder.SetTableName(requestReal.TableName);
+            builder.SetIndexName(requestReal.IndexName);  
+            builder.SetSchema(EncodeIndexSchema(requestReal.IndexSchame));
+            return builder.Build();
+        }
+
+        private IMessage EncodeSearch(Request.OTSRequest request)
+        {
+            var requestReal = (Request.SearchRequest)request;
+            var builder = PB.SearchRequest.CreateBuilder();
+
+            builder.SetTableName(requestReal.TableName);
+            builder.SetIndexName(requestReal.IndexName);
+            builder.SetSearchQuery(EncodeSearchQuery(requestReal.SearchQuery).ToByteString());
+            if (requestReal.ColumnsToGet != null)
+            {
+                builder.SetColumnsToGet(EncodeColumsToGet(requestReal.ColumnsToGet));
+            }
+            if (requestReal.RoutingValues != null)
+            {
+                List<ByteString> routingValues = new List<ByteString>();
+                foreach (var pk in requestReal.RoutingValues)
+                {
+                    try
+                    {
+                        routingValues.Add(ByteString.CopyFrom(PlainBufferBuilder.BuildPrimaryKeyWithHeader(pk)));
+                    }
+                    catch (Exception e)
+                    {
+                        throw new OTSClientException("build plain buffer fail,msg:" + e.Message);
+                    }
+                }
+                builder.AddRangeRoutingValues(routingValues);
+            }
+
+            return builder.Build();
+        }
+
+        private PB.ColumnsToGet EncodeColumsToGet(DataModel.Search.ColumnsToGet columnsToGet)
+        {
+            var builder = PB.ColumnsToGet.CreateBuilder();
+            if (columnsToGet.ReturnAll)
+            {
+                builder.SetReturnType(ColumnReturnType.RETURN_ALL);
+            }
+            else if (columnsToGet.Columns.Count > 0)
+            {
+                builder.SetReturnType(ColumnReturnType.RETURN_SPECIFIED);
+                builder.AddRangeColumnNames(columnsToGet.Columns);
+            }
+            else
+            {
+                builder.SetReturnType(ColumnReturnType.RETURN_NONE);
+            }
+            return builder.Build();
+        }
+
+        private PB.SearchQuery EncodeSearchQuery(DataModel.Search.SearchQuery searchQuery)
+        {
+            var builder = PB.SearchQuery.CreateBuilder();
+            if (searchQuery.Limit.HasValue)
+            {
+                builder.SetLimit(searchQuery.Limit.Value);
+            }
+            if (searchQuery.Offset.HasValue)
+            {
+                builder.SetOffset(searchQuery.Offset.Value);
+            }
+
+            if (searchQuery.Collapse != null)
+            {
+                builder.SetCollapse(EncodeCollapse(searchQuery.Collapse));
+            }
+
+            if (searchQuery.Query != null)
+            {
+                builder.SetQuery(SearchQueryBuilder.BuildQuery(searchQuery.Query));
+            }
+
+            if (searchQuery.Sort != null)
+            {
+                builder.SetSort(SearchSortBuilder.BuildSort(searchQuery.Sort));
+            }
+
+            builder.SetGetTotalCount(searchQuery.GetTotalCount);
+            if (searchQuery.Token != null)
+            {
+                builder.SetToken(ByteString.CopyFrom(searchQuery.Token));
+            }
+
+            return builder.Build();
+        }
+
+        private PB.Collapse EncodeCollapse(DataModel.Search.Collapse collapse)
+        {
+            var builder = PB.Collapse.CreateBuilder();
+            if (collapse.FieldName != null)
+            {
+                builder.SetFieldName(collapse.FieldName);
+            }
+            return builder.Build();
+        }
+
+        private PB.IndexSchema EncodeIndexSchema(DataModel.Search.IndexSchema schema)
+        {
+            var builder = PB.IndexSchema.CreateBuilder();
+
+            if (schema.IndexSetting != null)
+            {
+                builder.SetIndexSetting(EncodeIndexSetting(schema.IndexSetting));
+            }
+            else
+            {
+                builder.SetIndexSetting(EncodeIndexSetting(new DataModel.Search.IndexSetting()));
+            }
+            if (schema.FieldSchemas != null)
+            {
+                for (var i = 0; i < schema.FieldSchemas.Count; i++)
+                {
+                    builder.FieldSchemasList.Add(EncodingFieldSchema(schema.FieldSchemas[i]));
+                }
+            }
+            if (schema.IndexSort != null)
+            {
+                builder.SetIndexSort(SearchSortBuilder.BuildSort(schema.IndexSort));
+            }
+            return builder.Build();
+        }
+
+        private PB.FieldSchema EncodingFieldSchema(DataModel.Search.FieldSchema fieldSchema)
+        {
+            var builder = PB.FieldSchema.CreateBuilder();
+            builder.SetFieldName(fieldSchema.FieldName);
+            builder.SetFieldType(EncodingFieldType(fieldSchema.FieldType));
+            if (fieldSchema.FieldType != DataModel.Search.FieldType.NESTED)
+            {
+                builder.Index = fieldSchema.index;
+                builder.DocValues = fieldSchema.EnableSortAndAgg;
+                builder.Store = fieldSchema.Store;
+                builder.IsArray = fieldSchema.IsArray;
+            }
+
+            builder.IndexOptions = EncodingIndexOptions(fieldSchema.IndexOptions);
+            builder.Analyzer = EncodingAnalyzer(fieldSchema.Analyzer);
+
+            if (fieldSchema.SubFieldSchemas != null)
+            {
+                for (var i = 0; i < fieldSchema.SubFieldSchemas.Count; i++)
+                {
+                    builder.SetFieldSchemas(i, EncodingFieldSchema(fieldSchema.SubFieldSchemas[i]));
+                }
+            }
+
+            return builder.Build();
+        }
+
+        private string EncodingAnalyzer(DataModel.Search.Analyzer analyzer)
+        {
+            switch (analyzer)
+            {
+                case DataModel.Search.Analyzer.MaxWord:
+                    return "max_word";
+                case DataModel.Search.Analyzer.SingleWord:
+                    return "single_word";
+                default:
+                    throw new OTSClientException(
+                        String.Format("Invalid Analyzer {0}", analyzer)
+                    );
+            }
+        }
+
+        private PB.IndexOptions EncodingIndexOptions(DataModel.Search.IndexOptions indexOptions)
+        {
+            switch (indexOptions)
+            {
+                case DataModel.Search.IndexOptions.DOCS:
+                    return PB.IndexOptions.DOCS;
+                case DataModel.Search.IndexOptions.FREQS:
+                    return PB.IndexOptions.FREQS;
+                case DataModel.Search.IndexOptions.OFFSETS:
+                    return PB.IndexOptions.OFFSETS;
+                case DataModel.Search.IndexOptions.POSITIONS:
+                    return PB.IndexOptions.POSITIONS;
+                default:
+                    throw new OTSClientException(
+                        String.Format("Invalid IndexOptions {0}", indexOptions)
+                    );
+            }
+        }
+
+        private PB.FieldType EncodingFieldType(DataModel.Search.FieldType fieldType)
+        {
+            switch (fieldType)
+            {
+                case DataModel.Search.FieldType.BOOLEAN:
+                    return PB.FieldType.BOOLEAN;
+                case DataModel.Search.FieldType.DOUBLE:
+                    return PB.FieldType.DOUBLE;
+                case DataModel.Search.FieldType.GEO_POINT:
+                    return PB.FieldType.GEO_POINT;
+                case DataModel.Search.FieldType.KEYWORD:
+                    return PB.FieldType.KEYWORD;
+                case DataModel.Search.FieldType.LONG:
+                    return PB.FieldType.LONG;
+                case DataModel.Search.FieldType.NESTED:
+                    return PB.FieldType.NESTED;
+                case DataModel.Search.FieldType.TEXT:
+                    return PB.FieldType.TEXT;
+                default:
+                    throw new OTSClientException(
+                        String.Format("Invalid FieldType {0}", fieldType)
+                    );
+            }
+        }
+
+        private PB.IndexSetting EncodeIndexSetting(DataModel.Search.IndexSetting indexSetting)
+        {
+            var builder = PB.IndexSetting.CreateBuilder();
+            if (indexSetting != null)
+            {
+                if (indexSetting.RoutingFields != null)
+                {
+                    for (var i = 0; i < indexSetting.RoutingFields.Count; i++)
+                    {
+                        builder.SetRoutingFields(i, indexSetting.RoutingFields[i]);
+                    }
+                }
+                builder.SetNumberOfShards(DEFAULT_NUMBER_OF_SHARDS);
+            }
+            return builder.Build();
+        }
+
+
+        private IMessage EncodeDescribeSearchIndex(Request.OTSRequest request)
+        {
+            var requestReal = (Request.DescribeSearchIndexRequest)request;
+            var builder = PB.DescribeSearchIndexRequest.CreateBuilder();
+            builder.SetTableName(requestReal.TableName);
+            builder.SetIndexName(requestReal.IndexName);
+            return builder.Build();
+        }
+
+        private IMessage EncodeDeleteSearchIndex(Request.OTSRequest request)
+        {
+            var requestReal = (Request.DeleteSearchIndexRequest)request;
+            var builder = PB.DeleteSearchIndexRequest.CreateBuilder();
+            builder.SetTableName(requestReal.TableName);
+            builder.SetIndexName(requestReal.IndexName);
+            return builder.Build();
+        }
+
+        private IMessage EncodeCreateGlobalIndex(Request.OTSRequest request)
+        {
+            var requestReal = (Request.CreateGlobalIndexRequest)request;
+            var builder = PB.CreateIndexRequest.CreateBuilder();
+            builder.SetMainTableName(requestReal.MainTableName);
+            builder.SetIncludeBaseData(requestReal.IncludeBaseData);
+            builder.SetIndexMeta(EncodeIndexMeta(requestReal.IndexMeta));
+
+            return builder.Build();
+        }
+
+        public IMessage EncodeDeleteGlobalIndex(Request.OTSRequest request)
+        {
+            var requestReal = (Request.DeleteGlobalIndexRequest)request;
+            var builder = PB.DropIndexRequest.CreateBuilder();
+            builder.SetMainTableName(requestReal.MainTableName);
+            builder.SetIndexName(requestReal.IndexName);
+
+            return builder.Build();
+        }
+
         #endregion
 
         #region Encode Others
@@ -377,7 +682,7 @@ namespace Aliyun.OTS.Handler
                 builder.SetBlockSize(tableOptions.BlockSize.Value);
             }
 
-            if(tableOptions.BloomFilterType.HasValue)
+            if (tableOptions.BloomFilterType.HasValue)
             {
                 builder.SetBloomFilterType(EncodeBloomFilterType(tableOptions.BloomFilterType.Value));
             }
@@ -420,12 +725,106 @@ namespace Aliyun.OTS.Handler
             return builder.Build();
         }
 
+        private PB.IndexMeta EncodeIndexMeta(DataModel.IndexMeta indexMeta)
+        {
+            var builder = PB.IndexMeta.CreateBuilder();
+            builder.Name = indexMeta.IndexName;
+            builder.IndexType = EncodeIndexType(indexMeta.IndexType);
+            builder.IndexUpdateMode = EncodeIndexUpdateMode(indexMeta.IndexUpdateModel);
+            if (indexMeta.PrimaryKey != null)
+            {
+                for (int i = 0; i < indexMeta.PrimaryKey.Count; i++)
+                {
+                    builder.AddPrimaryKey(indexMeta.PrimaryKey[i]);
+                }
+            }
+
+            if (indexMeta.DefinedColumns != null)
+            {
+                for (int i = 0; i < indexMeta.DefinedColumns.Count; i++)
+                {
+                    builder.AddDefinedColumn(indexMeta.DefinedColumns[i]);
+                }
+            }
+
+            return builder.Build();
+        }
+
+        private PB.IndexType EncodeIndexType(DataModel.IndexType indexType)
+        {
+            switch (indexType)
+            {
+                case DataModel.IndexType.IT_GLOBAL_INDEX:
+                    return PB.IndexType.IT_GLOBAL_INDEX;
+                default:
+                    throw new OTSClientException(String.Format(
+                       "Invalid indexType {0}", indexType
+                   ));
+            }
+        }
+
+        private PB.IndexUpdateMode EncodeIndexUpdateMode(DataModel.IndexUpdateMode indexUpdateModel)
+        {
+            switch (indexUpdateModel)
+            {
+                case DataModel.IndexUpdateMode.IUM_ASYNC_INDEX:
+                    return PB.IndexUpdateMode.IUM_ASYNC_INDEX;
+                default:
+                    throw new OTSClientException(String.Format(
+                       "Invalid indexUpdateModel {0}", indexUpdateModel
+                   ));
+            }
+        }
+
         private PB.TableMeta EncodeTableMeta(DataModel.TableMeta tableMeta)
         {
             var builder = PB.TableMeta.CreateBuilder();
             builder.SetTableName(tableMeta.TableName);
             builder.AddRangePrimaryKey(EncodePrimaryKeySchema(tableMeta.PrimaryKeySchema));
+            if (tableMeta.DefinedColumnSchema != null)
+            {
+                builder.AddRangeDefinedColumn(EncodeDefinedColumnSchema(tableMeta.DefinedColumnSchema));
+            }
             return builder.Build();
+        }
+
+        private IEnumerable<PB.DefinedColumnSchema> EncodeDefinedColumnSchema(DataModel.DefinedColumnSchema schema)
+        {
+            foreach (var item in schema)
+            {
+                yield return EncodeDefinedColumnSchemaItem(item);
+            }
+        }
+
+        private PB.DefinedColumnSchema EncodeDefinedColumnSchemaItem(Tuple<string, DataModel.DefinedColumnType> schema)
+        {
+            var builder = PB.DefinedColumnSchema.CreateBuilder();
+            builder.SetName(schema.Item1);
+            builder.SetType(EncodeDeinedColumnType(schema.Item2));
+
+            return builder.Build();
+        }
+
+        private PB.DefinedColumnType EncodeDeinedColumnType(DataModel.DefinedColumnType type)
+        {
+            switch (type)
+            {
+                case DataModel.DefinedColumnType.BINARY:
+                    return DefinedColumnType.DCT_BLOB;
+                case DataModel.DefinedColumnType.INTEGER:
+                    return DefinedColumnType.DCT_INTEGER;
+                case DataModel.DefinedColumnType.STRING:
+                    return DefinedColumnType.DCT_STRING;
+                case DataModel.DefinedColumnType.DOUBLE:
+                    return DefinedColumnType.DCT_STRING;
+                case DataModel.DefinedColumnType.BOOLEAN:
+                    return DefinedColumnType.DCT_BOOLEAN;
+
+                default:
+                    throw new OTSClientException(String.Format(
+                           "Invalid definedColumn value type: {0}", type
+                       ));
+            }
         }
 
         private IEnumerable<PB.PrimaryKeySchema> EncodePrimaryKeySchema(DataModel.PrimaryKeySchema schema)
@@ -469,7 +868,7 @@ namespace Aliyun.OTS.Handler
 
         private PB.PrimaryKeyOption EncodePrimaryKeyOption(DataModel.PrimaryKeyOption option)
         {
-            switch(option)
+            switch (option)
             {
                 case DataModel.PrimaryKeyOption.AUTO_INCREMENT:
                     return PB.PrimaryKeyOption.AUTO_INCREMENT;
@@ -561,10 +960,18 @@ namespace Aliyun.OTS.Handler
             }
         }
 
-        private static PB.ReturnContent EncodeReturnContent(DataModel.ReturnType returnType)
+        private static PB.ReturnContent EncodeReturnContent(DataModel.ReturnType returnType, List<string> returnColumnNames)
         {
             PB.ReturnContent.Builder builder = PB.ReturnContent.CreateBuilder();
             builder.SetReturnType(ToPBReturnType(returnType));
+
+            if (returnColumnNames != null)
+            {
+                foreach (var item in returnColumnNames)
+                {
+                    builder.AddReturnColumnNames(item);
+                }
+            }
 
             return builder.Build();
         }
@@ -639,7 +1046,7 @@ namespace Aliyun.OTS.Handler
             }
 
             rowBuilder.SetCondition(EncodeCondition(rowChange.Condition));
-            rowBuilder.SetReturnContent(EncodeReturnContent(rowChange.ReturnType));
+            rowBuilder.SetReturnContent(EncodeReturnContent(rowChange.ReturnType, rowChange.ReturnColumnNames));
             return rowBuilder.Build();
         }
 
@@ -755,6 +1162,8 @@ namespace Aliyun.OTS.Handler
                     return PB.ReturnType.RT_NONE;
                 case DataModel.ReturnType.RT_PK:
                     return PB.ReturnType.RT_PK;
+                case DataModel.ReturnType.RT_AFTER_MODIFY:
+                    return PB.ReturnType.RT_AFTER_MODIFY;
                 default:
                     throw new ArgumentException("Invalid return type: " + returnType);
             }
@@ -773,15 +1182,15 @@ namespace Aliyun.OTS.Handler
             }
         }
 
-        private static PB.FilterType ToPBFilterType(FilterType filterType)
+        private static PB.FilterType ToPBFilterType(DataModel.Filter.FilterType filterType)
         {
             switch (filterType)
             {
-                case FilterType.SINGLE_COLUMN_VALUE_FILTER:
+                case DataModel.Filter.FilterType.SINGLE_COLUMN_VALUE_FILTER:
                     return PB.FilterType.FT_SINGLE_COLUMN_VALUE;
-                case FilterType.COMPOSITE_COLUMN_VALUE_FILTER:
+                case DataModel.Filter.FilterType.COMPOSITE_COLUMN_VALUE_FILTER:
                     return PB.FilterType.FT_COMPOSITE_COLUMN_VALUE;
-                case FilterType.COLUMN_PAGINATION_FILTER:
+                case DataModel.Filter.FilterType.COLUMN_PAGINATION_FILTER:
                     return PB.FilterType.FT_COLUMN_PAGINATION;
                 default:
                     throw new ArgumentException("Unknown filter type: " + filterType);

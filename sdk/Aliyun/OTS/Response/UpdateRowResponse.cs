@@ -20,15 +20,21 @@ namespace Aliyun.OTS.Response
     public class UpdateRowResponse : OTSResponse
     {        
         /// <summary>
+        /// ReturnType指定返回的值
+        /// </summary>
+        public Row Row { get; set; }
+
+        /// <summary>
         /// 本次操作消耗的读写能力单元。
         /// </summary>
         public CapacityUnit ConsumedCapacityUnit { get; private set; }
         
         public UpdateRowResponse() {}
 
-        public UpdateRowResponse(CapacityUnit consumedCapacityUnit)
+        public UpdateRowResponse(CapacityUnit consumedCapacityUnit, IRow row)
         {
             ConsumedCapacityUnit = consumedCapacityUnit;
+            Row = row as Row;
         }
     }
 }

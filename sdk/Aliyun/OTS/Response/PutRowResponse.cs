@@ -17,17 +17,28 @@ namespace Aliyun.OTS.Response
     /// 表示PutRow的返回
     /// </summary>
     public class PutRowResponse : OTSResponse
-    {        
+    {
         /// <summary>
         /// 本次操作消耗的读写能力单元。
         /// </summary>
         public CapacityUnit ConsumedCapacityUnit { get; private set; }
-        
-        public PutRowResponse() {}
+
+        /// <summary>
+        /// 返回ReturnType指定的值
+        /// </summary>
+        public Row Row { get; set; }
+
+        public PutRowResponse() { }
 
         public PutRowResponse(CapacityUnit consumedCapacityUnit)
         {
             ConsumedCapacityUnit = consumedCapacityUnit;
+        }
+
+        public PutRowResponse(CapacityUnit consumedCapacityUnit, Row row)
+        {
+            ConsumedCapacityUnit = consumedCapacityUnit;
+            Row = row;
         }
     }
 }

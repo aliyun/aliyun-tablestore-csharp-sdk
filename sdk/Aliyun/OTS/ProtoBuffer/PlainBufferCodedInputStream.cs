@@ -64,18 +64,17 @@ namespace com.alicloud.openservices.tablestore.core.protocol
 
         public PlainBufferRow ReadRow()
         {
-            if (!CheckLastTagWas(PlainBufferConsts.TAG_ROW_PK))
-            {
-                throw new IOException("Expect TAG_ROW_PK but it was " + PlainBufferConsts.PrintTag(GetLastTag()));
-            }
-
             List<PlainBufferCell> columns = new List<PlainBufferCell>();
+            List<PlainBufferCell> primaryKey = new List<PlainBufferCell>();
             bool hasDeleteMarker = false;
 
-            List<PlainBufferCell> primaryKey = ReadRowPK();
-            if (primaryKey.Count <= 0)
+            if (CheckLastTagWas(PlainBufferConsts.TAG_ROW_PK))
             {
-                throw new IOException("The primary key of row is empty.");
+                primaryKey = ReadRowPK();
+                if (primaryKey.Count <= 0)
+                {
+                    throw new IOException("The primary key of row is empty.");
+                }
             }
 
             if (CheckLastTagWas(PlainBufferConsts.TAG_ROW_DATA))

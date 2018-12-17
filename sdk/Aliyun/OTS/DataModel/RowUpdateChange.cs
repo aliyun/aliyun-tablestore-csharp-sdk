@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Aliyun.OTS.DataModel
-{  
+{
     public class RowUpdateChange : RowChange
     {
 
@@ -130,6 +130,17 @@ namespace Aliyun.OTS.DataModel
         }
 
         /// <summary>
+        /// 添加一列原子自增
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public RowUpdateChange Increment(Column column)
+        {
+            this.columnsToUpdate.Add(new Tuple<Column, RowChangeType>(column, RowChangeType.INCREMENT));
+            return this;
+        }
+
+        /// <summary>
         /// 
         ///所有要更新的属性列。
         ///<p>若类型为{@link Type#PUT}，则代表写入一个属性列。</p>
@@ -158,15 +169,15 @@ namespace Aliyun.OTS.DataModel
 
         public RowUpdateChange FromUpdateOfAtrribute(UpdateOfAttribute updateOfAttribute)
         {
-            if(updateOfAttribute.AttributeColumnsToDelete != null)
+            if (updateOfAttribute.AttributeColumnsToDelete != null)
             {
-                foreach(var attributeColumnToDelete in updateOfAttribute.AttributeColumnsToDelete)
+                foreach (var attributeColumnToDelete in updateOfAttribute.AttributeColumnsToDelete)
                 {
                     this.DeleteColumn(attributeColumnToDelete);
                 }
             }
 
-            if(updateOfAttribute.AttributeColumnsToPut != null)
+            if (updateOfAttribute.AttributeColumnsToPut != null)
             {
                 foreach (var attributeColumnToPut in updateOfAttribute.AttributeColumnsToPut)
                 {
