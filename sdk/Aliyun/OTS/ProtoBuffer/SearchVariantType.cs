@@ -75,7 +75,7 @@ namespace Aliyun.OTS.ProtoBuffer
         {
             using (MemoryStream ms = new MemoryStream())
             {
-                byte[] strBytes = UTF8Encoding.Default.GetBytes(v);
+                byte[] strBytes = Encoding.UTF8.GetBytes(v);
 
                 ms.WriteByte(VT_STRING);
                 foreach (var item in BitConverter.GetBytes(strBytes.Length))
@@ -83,7 +83,7 @@ namespace Aliyun.OTS.ProtoBuffer
                     ms.WriteByte(item);
                 }
 
-                foreach (var item in UTF8Encoding.Default.GetBytes(v))
+                foreach (var item in Encoding.UTF8.GetBytes(v))
                 {
                     ms.WriteByte(item);
                 }
