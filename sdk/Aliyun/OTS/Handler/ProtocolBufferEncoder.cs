@@ -516,7 +516,10 @@ namespace Aliyun.OTS.Handler
             }
 
             builder.IndexOptions = EncodingIndexOptions(fieldSchema.IndexOptions);
-            builder.Analyzer = EncodingAnalyzer(fieldSchema.Analyzer);
+            if(fieldSchema.FieldType == DataModel.Search.FieldType.TEXT)
+            {
+                builder.Analyzer = EncodingAnalyzer(fieldSchema.Analyzer);
+            }
 
             if (fieldSchema.SubFieldSchemas != null)
             {
