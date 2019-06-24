@@ -374,7 +374,7 @@ namespace Aliyun.OTS.Handler
             var requestReal = (Request.CreateSearchIndexRequest)request;
             var builder = PB.CreateSearchIndexRequest.CreateBuilder();
             builder.SetTableName(requestReal.TableName);
-            builder.SetIndexName(requestReal.IndexName);  
+            builder.SetIndexName(requestReal.IndexName);
             builder.SetSchema(EncodeIndexSchema(requestReal.IndexSchame));
             return builder.Build();
         }
@@ -515,8 +515,11 @@ namespace Aliyun.OTS.Handler
                 builder.IsArray = fieldSchema.IsArray;
             }
 
-            builder.IndexOptions = EncodingIndexOptions(fieldSchema.IndexOptions);
-            if(fieldSchema.FieldType == DataModel.Search.FieldType.TEXT)
+            if (fieldSchema.IndexOptions != DataModel.Search.IndexOptions.NULL)
+            {
+                builder.IndexOptions = EncodingIndexOptions(fieldSchema.IndexOptions);
+            }
+            if (fieldSchema.Analyzer != DataModel.Search.Analyzer.NotAnalyzed)
             {
                 builder.Analyzer = EncodingAnalyzer(fieldSchema.Analyzer);
             }
@@ -525,7 +528,7 @@ namespace Aliyun.OTS.Handler
             {
                 for (var i = 0; i < fieldSchema.SubFieldSchemas.Count; i++)
                 {
-                    builder.SetFieldSchemas(i, EncodingFieldSchema(fieldSchema.SubFieldSchemas[i]));
+                    builder.AddFieldSchemas(EncodingFieldSchema(fieldSchema.SubFieldSchemas[i]));
                 }
             }
 

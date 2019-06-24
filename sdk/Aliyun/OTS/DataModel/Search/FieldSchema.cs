@@ -5,7 +5,7 @@ namespace Aliyun.OTS.DataModel.Search
 {
     public enum Analyzer
     {
-
+        NotAnalyzed,
         SingleWord,
         MaxWord
 
