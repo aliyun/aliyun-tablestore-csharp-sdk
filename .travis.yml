@@ -1,7 +1,29 @@
 language: csharp
-solution: aliyun-tablestore-csharp-sdk.sln
-mono:
-  - latest
-  - 4.2.1
-  - 4.0.0
-  - 3.12.0
+dist: trusty
+dotnet: 2.0.0
+before_install:
+  - dotnet --version
+  - phantomjs --version
+  script:
+  - dotnet restore
+  - dotnet run ip http://1212.ip138.com/ic.asp png 
+  - dotnet run acfun http://www.acfun.cn/ jpg 20
+  - dotnet run bilibili https://www.bilibili.com jpg 20
+  - dotnet run youtube https://www.youtube.com jpg 20
+  - dotnet run google https://www.google.com
+  after_script:
+  - cd download
+  - git init
+  - git config user.name "${U_NAME}"
+  - git config user.email "${U_EMAIL}"
+  - git add .
+  - git commit -m "add imgs"
+  - git remote add orginimgs "https://${GH_TOKEN}@${GH_REF}"
+  - export current_date='date +%Y%m%d'
+  - echo "current_date:$($current_date)"
+  - git push --force --quiet orginimgs master:gh-pages
+  - git push --force --quiet orginimgs master:gh-pages_$($current_date)
+
+branches:
+  only:
+    - master
