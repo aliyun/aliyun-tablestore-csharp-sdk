@@ -180,6 +180,25 @@ namespace Aliyun.OTS.Samples
 
             Console.WriteLine("Get row succeed.");
         }
+        
+        
+        public static void deleteRow()
+        {
+            Console.WriteLine("Start delete row");
+            PrepareTable();
+
+            OTSClient otsClient = Config.GetClient();
+            // 定义行的主键，必须与创建表时的TableMeta中定义的一致
+            PrimaryKey primaryKey = new PrimaryKey
+            {
+                { "pk0", new ColumnValue(0) },
+                { "pk1", new ColumnValue("abc") }
+            };
+
+            DeleteRowRequest request = new DeleteRowRequest(TableName,new Condition(RowExistenceExpectation.EXPECT_EXIST),primaryKey);
+            otsClient.DeleteRow(request);
+            Console.WriteLine("end  delete row");
+        }
          
         public static void GetRowWithFilter()
         {
