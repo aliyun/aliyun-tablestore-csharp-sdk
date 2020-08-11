@@ -181,7 +181,6 @@ namespace Aliyun.OTS.Samples
             Console.WriteLine("Get row succeed.");
         }
         
-        
         public static void deleteRow()
         {
             Console.WriteLine("Start delete row");
