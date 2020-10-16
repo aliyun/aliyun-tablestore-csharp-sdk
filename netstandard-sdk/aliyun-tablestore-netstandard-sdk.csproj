@@ -3,6 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>aliyun_tablestore_netcore_sdk</RootNamespace>
+    <PackageId>OSS.Clients.Ali.TableStore</PackageId>
+    <Description>迁移至 Aliyun.TableStore.SDK 的标准库实现，同时支持.Net Core 和 .Net Framework</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>\aliyun-tablestore-netstandard-sdk.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
