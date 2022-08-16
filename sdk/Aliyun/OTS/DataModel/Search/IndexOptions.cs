@@ -6,7 +6,6 @@
     /// </summary>
     public enum IndexOptions
     {
-        NULL,
         DOCS,
         FREQS,
         POSITIONS,

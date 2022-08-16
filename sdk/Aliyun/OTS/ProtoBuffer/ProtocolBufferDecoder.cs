@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Google.ProtocolBuffers;
 using System.IO;
 using PB = com.alicloud.openservices.tablestore.core.protocol;
 using Aliyun.OTS.DataModel.Search;
 using com.alicloud.openservices.tablestore.core.protocol;
+using Aliyun.OTS.Handler;
 
-namespace Aliyun.OTS.Handler
+namespace Aliyun.OTS.ProtoBuffer
 {
     public class ProtocolBufferDecoder : PipelineHandler
     {
@@ -16,29 +17,34 @@ namespace Aliyun.OTS.Handler
         public ProtocolBufferDecoder(PipelineHandler innerHandler) : base(innerHandler)
         {
             DecoderMap = new Dictionary<string, ResponseDecoder>() {
-                { "/CreateTable",          DecodeCreateTable },
-                { "/DeleteTable",          DecodeDeleteTable },
-                { "/UpdateTable",          DecodeUpdateTable },
-                { "/DescribeTable",        DecodeDescribeTable },
-                { "/ListTable",            DecodeListTable },
+                { "/CreateTable",              DecodeCreateTable },
+                { "/DeleteTable",              DecodeDeleteTable },
+                { "/UpdateTable",              DecodeUpdateTable },
+                { "/DescribeTable",            DecodeDescribeTable },
+                { "/ListTable",                DecodeListTable },
 
-                { "/PutRow",               DecodePutRow },
-                { "/GetRow",               DecodeGetRow },
-                { "/UpdateRow",            DecodeUpdateRow },
-                { "/DeleteRow",            DecodeDeleteRow },
+                { "/PutRow",                   DecodePutRow },
+                { "/GetRow",                   DecodeGetRow },
+                { "/UpdateRow",                DecodeUpdateRow },
+                { "/DeleteRow",                DecodeDeleteRow },
 
-                { "/BatchWriteRow",        DecodeBatchWriteRow },
-                { "/BatchGetRow",          DecodeBatchGetRow },
-                { "/GetRange",             DecodeGetRange },
+                { "/BatchWriteRow",            DecodeBatchWriteRow },
+                { "/BatchGetRow",              DecodeBatchGetRow },
+                { "/GetRange",                 DecodeGetRange },
 
-                 { "/ListSearchIndex",             DecodeListSearchIndex },
-                 { "/CreateSearchIndex",             DecodeCreateSearchIndex },
-                 { "/DescribeSearchIndex",             DecodeDescribeSearchIndex },
-                 { "/DeleteSearchIndex",             DecodeDeleteSearchIndex },
-                 { "/Search",             DecodeSearch },
+                { "/ListSearchIndex",          DecodeListSearchIndex },
+                { "/CreateSearchIndex",        DecodeCreateSearchIndex },
+                { "/ComputeSplits",            DecodeComputeSplits},
+                { "/DescribeSearchIndex",      DecodeDescribeSearchIndex },
+                { "/DeleteSearchIndex",        DecodeDeleteSearchIndex },
+                { "/ParallelScan",             DecodeParallelScan },
+                { "/UpdateSearchIndex" ,       DecodeUpdateSearchIndex },
+                { "/Search",                   DecodeSearch },
 
-                  { "/CreateIndex",             DecodeCreateGlobalIndex },
-                  { "/DropIndex",             DecodeDeleteGlobalIndex },
+                { "/CreateIndex",              DecodeCreateGlobalIndex },
+                { "/DropIndex",                DecodeDeleteGlobalIndex },
+
+                { "/SQLQuery",                 DecodeSQLQuery },
             };
         }
 
@@ -51,8 +57,20 @@ namespace Aliyun.OTS.Handler
         {
             InnerHandler.HandleAfter(context);
             IMessage message;
+
             context.OTSReponse = DecoderMap[context.APIName](context.HttpResponseBody, out message);
+
+            SetRequestIDForResponse(context);
+
             LogEncodedMessage(context, message);
+        }
+
+        private void SetRequestIDForResponse(Context context)
+        {
+            if (context.HttpResponseHeaders.ContainsKey("x-ots-requestid"))
+            {
+                context.OTSReponse.RequestID = context.HttpResponseHeaders["x-ots-requestid"];
+            }
         }
 
         private void LogEncodedMessage(Context context, IMessage message)
@@ -377,6 +395,27 @@ namespace Aliyun.OTS.Handler
             return response;
         }
 
+        private Response.OTSResponse DecodeComputeSplits(byte[] body, out IMessage _message)
+        {
+            var response = new Response.ComputeSplitsResponse();
+            var builder = PB.ComputeSplitsResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+
+            if (message.HasSessionId)
+            {
+                response.SessionId = message.SessionId.ToByteArray();
+            }
+
+            if (message.HasSplitsSize)
+            {
+                response.SplitsSize = message.SplitsSize;
+            }
+
+            return response;
+        }
+
         private Response.OTSResponse DecodeDeleteSearchIndex(byte[] body, out IMessage _message)
         {
             var response = new Response.DeleteSearchIndexResponse();
@@ -385,6 +424,43 @@ namespace Aliyun.OTS.Handler
             var message = builder.Build();
             _message = message;
             return response;
+        }
+
+        private Response.OTSResponse DecodeParallelScan(byte[] body, out IMessage _message)
+        {
+            var response = new Response.ParallelScanResponse();
+            var builder = PB.ParallelScanResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+
+            if (message.RowsList != null && message.RowsCount != 0)
+            {
+                response.Rows = new List<DataModel.Row>();
+
+                foreach (ByteString row in message.RowsList)
+                {
+                    response.Rows.Add(ParseRow(row));
+                }
+            }
+
+            if (message.HasNextToken)
+            {
+                response.NextToken = message.NextToken.ToByteArray();
+            }
+
+            response.BodyBytes = message.SerializedSize;
+
+            return response;
+        }
+
+        private Response.OTSResponse DecodeUpdateSearchIndex(byte[] body, out IMessage _message)
+        {
+            var builder = PB.UpdateSearchIndexResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+            return new Response.UpdateSearchIndexResponse();
         }
 
         private Response.OTSResponse DecodeSearch(byte[] body, out IMessage _message)
@@ -397,8 +473,9 @@ namespace Aliyun.OTS.Handler
 
             response.TotalCount = message.TotalHits;
             response.IsAllSuccess = message.IsAllSucceeded;
-            response.Rows = new List<DataModel.Row>();
+            response.BodyBytes = message.SerializedSize;
 
+            response.Rows = new List<DataModel.Row>();
             foreach (var item in message.RowsList)
             {
                 PlainBufferCodedInputStream coded = new PlainBufferCodedInputStream(item.CreateCodedInput());
@@ -415,6 +492,16 @@ namespace Aliyun.OTS.Handler
                 response.NextToken = message.NextToken.ToByteArray();
             }
 
+            if (message.HasAggs)
+            {
+                response.AggregationResults = SearchAggregationResultBuilder.BuildAggregationResultsFromByteString(message.Aggs);
+            }
+
+            if (message.HasGroupBys)
+            {
+                response.GroupByResults = SearchGroupByResultBuilder.BuildGroupByResultsFromByteString(message.GroupBys);
+            }
+
             return response;
         }
 
@@ -424,10 +511,65 @@ namespace Aliyun.OTS.Handler
             var builder = PB.DescribeSearchIndexResponse.CreateBuilder();
             builder.MergeFrom(body);
             var message = builder.Build();
-            response.Schema = ParseIndexSchema(message.Schema);
-            response.SyncStat = ParseSyncStat(message.SyncStat);
             _message = message;
+
+            if (message.HasSchema)
+            {
+                response.Schema = ParseIndexSchema(message.Schema);
+            }
+
+            if (message.HasSyncStat)
+            {
+                response.SyncStat = ParseSyncStat(message.SyncStat);
+            }
+
+            if (message.HasMeteringInfo)
+            {
+                response.MeteringInfo = ParseMeteringInfo(message.MeteringInfo);
+            }
+
+            if (message.HasBrotherIndexName)
+            {
+                response.BrotherIndexName = message.BrotherIndexName;
+            }
+
+            if (message.HasCreateTime)
+            {
+                response.CreateTime = message.CreateTime;
+            }
+
+            if (message.HasTimeToLive)
+            {
+                response.TimeToLive = message.TimeToLive;
+            }
             return response;
+        }
+
+        private DataModel.Search.MeteringInfo ParseMeteringInfo(PB.MeteringInfo meteringInfo)
+        {
+            var searchMeteringInfo = new DataModel.Search.MeteringInfo();
+
+            if (meteringInfo.HasReservedReadCu)
+            {
+                searchMeteringInfo.ReservedThroughput = new DataModel.ReservedThroughput(new DataModel.CapacityUnit((int)meteringInfo.ReservedReadCu));
+            }
+
+            if (meteringInfo.HasRowCount)
+            {
+                searchMeteringInfo.RowCount = meteringInfo.RowCount;
+            }
+
+            if (meteringInfo.HasStorageSize)
+            {
+                searchMeteringInfo.StorageSize = meteringInfo.StorageSize;
+            }
+
+            if (meteringInfo.HasTimestamp)
+            {
+                searchMeteringInfo.Timestamp = meteringInfo.Timestamp;
+            }
+
+            return searchMeteringInfo;
         }
 
         private DataModel.Search.SyncStat ParseSyncStat(PB.SyncStat syncStat)
@@ -451,7 +593,6 @@ namespace Aliyun.OTS.Handler
                         String.Format("Invalid indexOptions SyncPhase type {0}", syncPhase)
                     );
             }
-
         }
 
         private DataModel.Search.IndexSchema ParseIndexSchema(PB.IndexSchema indexSchema)
@@ -469,15 +610,109 @@ namespace Aliyun.OTS.Handler
         private DataModel.Search.FieldSchema ParseFieldSchema(PB.FieldSchema fieldSchema)
         {
             var ret = new DataModel.Search.FieldSchema(fieldSchema.FieldName, ParseFieldType(fieldSchema.FieldType));
-            ret.Analyzer = ParseAnalyzer(fieldSchema.Analyzer);
+
+            if (fieldSchema.HasAnalyzer)
+            {
+                ret.Analyzer = ParseAnalyzer(fieldSchema.Analyzer);
+            }
             ret.EnableSortAndAgg = fieldSchema.DocValues;
             ret.index = fieldSchema.Index;
             ret.Store = fieldSchema.Store;
             ret.IsArray = fieldSchema.IsArray;
             ret.IndexOptions = ParseIndexOption(fieldSchema.IndexOptions);
-            foreach (var item in fieldSchema.FieldSchemasList)
+
+            if (fieldSchema.HasAnalyzerParameter && fieldSchema.HasAnalyzer)
             {
-                ret.SubFieldSchemas.Add(ParseFieldSchema(item));
+                try
+                {
+                    Analyzer analyzer = ParseAnalyzer(fieldSchema.Analyzer);
+                    switch (analyzer)
+                    {
+                        case Analyzer.SingleWord:
+                            ret.AnalyzerParameter = ParseAnalyzerParameter(PB.SingleWordAnalyzerParameter.ParseFrom(fieldSchema.AnalyzerParameter));
+                            break;
+                        case Analyzer.Fuzzy:
+                            ret.AnalyzerParameter = ParseAnalyzerParameter(PB.FuzzyAnalyzerParameter.ParseFrom(fieldSchema.AnalyzerParameter));
+                            break;
+                        case Analyzer.Split:
+                            ret.AnalyzerParameter = ParseAnalyzerParameter(PB.SplitAnalyzerParameter.ParseFrom(fieldSchema.AnalyzerParameter));
+                            break;
+                    }
+                }
+                catch (InvalidProtocolBufferException e)
+                {
+                    throw new OTSClientException("failed to parse analyzer parameter: " + e.Message);
+                }
+            }
+
+            if (fieldSchema.FieldSchemasList != null && fieldSchema.FieldSchemasCount != 0)
+            {
+                ret.SubFieldSchemas = new List<DataModel.Search.FieldSchema>();
+                foreach (var item in fieldSchema.FieldSchemasList)
+                {
+                    ret.SubFieldSchemas.Add(ParseFieldSchema(item));
+                }
+            }
+
+            if (fieldSchema.HasIsVirtualField)
+            {
+                ret.IsVirtualField = fieldSchema.IsVirtualField;
+            }
+
+            if (fieldSchema.SourceFieldNamesList != null && fieldSchema.SourceFieldNamesCount != 0)
+            {
+                ret.SourceFieldNames = new List<string>(fieldSchema.SourceFieldNamesList);
+            }
+
+            if (fieldSchema.DateFormatesList != null && fieldSchema.DateFormatesCount != 0)
+            {
+                ret.DateFormats = new List<string>(fieldSchema.DateFormatesList);
+            }
+
+            return ret;
+        }
+
+        private DataModel.Search.Analysis.SingleWordAnalyzerParameter ParseAnalyzerParameter(PB.SingleWordAnalyzerParameter analyzerParameter)
+        {
+            DataModel.Search.Analysis.SingleWordAnalyzerParameter ret = new DataModel.Search.Analysis.SingleWordAnalyzerParameter();
+
+            if (analyzerParameter.HasCaseSensitive)
+            {
+                ret.CaseSensitive = analyzerParameter.CaseSensitive;
+            }
+
+            if (analyzerParameter.HasDelimitWord)
+            {
+                ret.DelimitWord = analyzerParameter.DelimitWord;
+            }
+
+            return ret;
+        }
+
+        private DataModel.Search.Analysis.FuzzyAnalyzerParameter ParseAnalyzerParameter(PB.FuzzyAnalyzerParameter analyzerParameter)
+        {
+            DataModel.Search.Analysis.FuzzyAnalyzerParameter ret = new DataModel.Search.Analysis.FuzzyAnalyzerParameter();
+
+            if (analyzerParameter.HasMaxChars)
+            {
+                ret.MaxChars = analyzerParameter.MaxChars;
+            }
+
+            if (analyzerParameter.HasMinChars)
+            {
+                ret.MinChars = analyzerParameter.MinChars;
+            }
+
+            return ret;
+        }
+
+        private DataModel.Search.Analysis.SplitAnalyzerParameter ParseAnalyzerParameter(PB.SplitAnalyzerParameter analyzerParameter)
+        {
+            DataModel.Search.Analysis.SplitAnalyzerParameter ret = new DataModel.Search.Analysis.SplitAnalyzerParameter();
+
+            if (analyzerParameter.HasDelimiter)
+            {
+                ret.Delimiter = analyzerParameter.Delimiter;
             }
 
             return ret;
@@ -520,6 +755,8 @@ namespace Aliyun.OTS.Handler
                     return DataModel.Search.FieldType.NESTED;
                 case PB.FieldType.TEXT:
                     return DataModel.Search.FieldType.TEXT;
+                case PB.FieldType.DATE:
+                    return DataModel.Search.FieldType.DATE;
                 default:
                     throw new OTSClientException(
                         String.Format("Invalid FieldType type {0}", fieldType)
@@ -535,10 +772,14 @@ namespace Aliyun.OTS.Handler
                     return Analyzer.MaxWord;
                 case "single_word":
                     return Analyzer.SingleWord;
+                case "min_word":
+                    return Analyzer.MinWord;
+                case "split":
+                    return Analyzer.Split;
+                case "fuzzy":
+                    return Analyzer.Fuzzy;
                 default:
-                    throw new OTSClientException(
-                        String.Format("Invalid Analyzer type {0}", analyzer)
-                    );
+                    throw new OTSClientException(string.Format("Invalid Analyzer type {0}", analyzer));
             }
         }
 
@@ -549,7 +790,7 @@ namespace Aliyun.OTS.Handler
             {
                 ret.RoutingFields.Add(item);
             }
-            
+
             return ret;
         }
 
@@ -576,7 +817,6 @@ namespace Aliyun.OTS.Handler
                     {
                         throw new IOException("Expect only returns one row. Row count: " + rows.Count);
                     }
-
                     result = PB.PlainBufferConversion.ToRow(rows[0]);
                 }
 
@@ -613,10 +853,19 @@ namespace Aliyun.OTS.Handler
                 schema.Add(item.Name, ParseColumnValueType(item.Type));
             }
 
-            var ret = new DataModel.TableMeta(
-                tableMeta.TableName,
-                schema
-            );
+            var definedColumnSchema = new DataModel.DefinedColumnSchema();
+
+            for (int i = 0; i < tableMeta.DefinedColumnCount; i++)
+            {
+                var item = tableMeta.GetDefinedColumn(i);
+
+                definedColumnSchema.Add(item.Name, ParseDefinedColumnValueType(item.Type));
+            }
+
+            var ret = new DataModel.TableMeta(tableMeta.TableName, schema)
+            {
+                DefinedColumnSchema = definedColumnSchema
+            };
 
             return ret;
         }
@@ -627,16 +876,33 @@ namespace Aliyun.OTS.Handler
             {
                 case PB.PrimaryKeyType.BINARY:
                     return DataModel.ColumnValueType.Binary;
-
                 case PB.PrimaryKeyType.INTEGER:
                     return DataModel.ColumnValueType.Integer;
                 case PB.PrimaryKeyType.STRING:
                     return DataModel.ColumnValueType.String;
-
                 default:
                     throw new OTSClientException(
-                        String.Format("Invalid column type {0}", type)
+                        String.Format("Invalid column primary key type {0}", type)
                     );
+            }
+        }
+
+        private DataModel.DefinedColumnType ParseDefinedColumnValueType(PB.DefinedColumnType type)
+        {
+            switch (type)
+            {
+                case PB.DefinedColumnType.DCT_BLOB:
+                    return DataModel.DefinedColumnType.BINARY; ;
+                case PB.DefinedColumnType.DCT_BOOLEAN:
+                    return DataModel.DefinedColumnType.BOOLEAN;
+                case PB.DefinedColumnType.DCT_DOUBLE:
+                    return DataModel.DefinedColumnType.DOUBLE;
+                case PB.DefinedColumnType.DCT_INTEGER:
+                    return DataModel.DefinedColumnType.INTEGER;
+                case PB.DefinedColumnType.DCT_STRING:
+                    return DataModel.DefinedColumnType.STRING;
+                default:
+                    throw new OTSClientException(string.Format("Invalid defined column type {0}", type));
             }
         }
 
@@ -676,6 +942,11 @@ namespace Aliyun.OTS.Handler
                 BlockSize = tableOptions.BlockSize,
                 BloomFilterType = ParseBloomFilterType(tableOptions.BloomFilterType)
             };
+
+            if (tableOptions.HasAllowUpdate)
+            {
+                options.AllowUpdate = tableOptions.AllowUpdate;
+            }
 
             return options;
         }
@@ -749,6 +1020,38 @@ namespace Aliyun.OTS.Handler
             return ret;
         }
 
+        private DataModel.SQL.SQLPayloadVersion ParseSQLPayloadVersion(SQLPayloadVersion version)
+        {
+            switch (version)
+            {
+                case SQLPayloadVersion.SQL_FLAT_BUFFERS:
+                    return DataModel.SQL.SQLPayloadVersion.SQLFlatBuffers;
+                default:
+                    throw new OTSClientException(string.Format("not support SQL payload version: {0}", version.ToString()));
+            }
+        }
+
+        private DataModel.SQL.SQLStatementType ParseSQLStatementType(SQLStatementType type)
+        {
+            switch (type)
+            {
+                case SQLStatementType.SQL_SELECT:
+                    return DataModel.SQL.SQLStatementType.SQLSelect;
+                case SQLStatementType.SQL_CREATE_TABLE:
+                    return DataModel.SQL.SQLStatementType.SQLCreateTable;
+                case SQLStatementType.SQL_SHOW_TABLE:
+                    return DataModel.SQL.SQLStatementType.SQLShowTable;
+                case SQLStatementType.SQL_DESCRIBE_TABLE:
+                    return DataModel.SQL.SQLStatementType.SQLDescribeTable;
+                case SQLStatementType.SQL_DROP_TABLE:
+                    return DataModel.SQL.SQLStatementType.SQLDropTable;
+                case SQLStatementType.SQL_ALTER_TABLE:
+                    return DataModel.SQL.SQLStatementType.SQLAlterTable;
+                default:
+                    throw new OTSClientException(string.Format("not support SQL statement type: {0}", type.ToString()));
+            }
+        }
+
         private Response.CreateGlobalIndexResponse DecodeCreateGlobalIndex(byte[] body, out IMessage _message)
         {
             var response = new Response.CreateGlobalIndexResponse();
@@ -766,6 +1069,45 @@ namespace Aliyun.OTS.Handler
             builder.MergeFrom(body);
             var message = builder.Build();
             _message = message;
+            return response;
+        }
+
+        private Response.SQLQueryResponse DecodeSQLQuery(byte[] body, out IMessage _message)
+        {
+            var response = new Response.SQLQueryResponse();
+            var builder = PB.SQLQueryResponse.CreateBuilder();
+            builder.MergeFrom(body);
+            var message = builder.Build();
+            _message = message;
+
+            if (message.HasVersion)
+            {
+                response.SQLPayloadVersion = ParseSQLPayloadVersion(message.Version);
+            }
+
+            response.SQLStatementType = ParseSQLStatementType(message.Type);
+
+            if (message.HasRows)
+            {
+                response.Rows = message.Rows;
+            }
+
+            if (message.ConsumesCount == 0)
+            {
+                return response;
+            }
+
+            Dictionary<string, DataModel.ConsumedCapacity> consumendCapacityByTable = new Dictionary<string, OTS.DataModel.ConsumedCapacity>();
+            foreach (TableConsumedCapacity tableConsumedCapacity in message.ConsumesList)
+            {
+                if (tableConsumedCapacity.HasConsumed && tableConsumedCapacity.Consumed.HasCapacityUnit)
+                {
+                    DataModel.ConsumedCapacity consumedCapacity = new DataModel.ConsumedCapacity(ParseCapacityUnit(tableConsumedCapacity.Consumed.CapacityUnit));
+                    consumendCapacityByTable.Add(tableConsumedCapacity.TableName, consumedCapacity);
+                }
+            }
+            response.ConsumedCapacityByTable = consumendCapacityByTable;
+
             return response;
         }
     }

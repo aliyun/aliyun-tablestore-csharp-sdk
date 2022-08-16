@@ -10,6 +10,8 @@
  */
 
 
+using Aliyun.OTS.ProtoBuffer;
+
 namespace Aliyun.OTS.Handler
 {
     public class OTSHandler : PipelineHandler
@@ -27,12 +29,12 @@ namespace Aliyun.OTS.Handler
         }
 
 
-        public override void HandleBefore(Context context) 
+        public override void HandleBefore(Context context)
         {
             InnerHandler.HandleBefore(context);
         }
-        
-        public override void HandleAfter(Context context) 
+
+        public override void HandleAfter(Context context)
         {
             InnerHandler.HandleAfter(context);
         }

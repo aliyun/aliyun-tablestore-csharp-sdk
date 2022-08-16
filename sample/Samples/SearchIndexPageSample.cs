@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using Aliyun.OTS.DataModel;
 using Aliyun.OTS.DataModel.Search;
@@ -193,7 +191,7 @@ namespace Aliyun.OTS.Samples.Samples
 
             var searchQuery = new SearchQuery();
             searchQuery.Query = new MatchAllQuery();
-            
+
             var request = new SearchRequest(TableName, IndexName, searchQuery);
 
             var response = otsClient.Search(request);

@@ -3,8 +3,8 @@
 namespace Aliyun.OTS.DataModel.Search
 {
     public class IndexSetting
-	{
-		public IndexSetting() { }
-		public List<string> RoutingFields { get; set; }
-	}
+    {
+        public IndexSetting() { }
+        public List<string> RoutingFields { get; set; }
+    }
 }

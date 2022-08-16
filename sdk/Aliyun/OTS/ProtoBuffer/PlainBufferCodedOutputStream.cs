@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Aliyun.OTS.DataModel;
 
 namespace com.alicloud.openservices.tablestore.core.protocol
@@ -43,6 +44,11 @@ namespace com.alicloud.openservices.tablestore.core.protocol
 
         public void WriteCellValue(ColumnValue value)
         {
+            if (!value.Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
             WriteTag(PlainBufferConsts.TAG_CELL_VALUE);
             if (value.IsInfMin())
             {
@@ -204,6 +210,11 @@ namespace com.alicloud.openservices.tablestore.core.protocol
 
         public void WritePrimaryKeyValueWithoutLengthPrefix(ColumnValue value)
         {
+            if (!value.Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
             if (value.IsInfMin())
             {
                 output.WriteRawByte(PlainBufferConsts.VT_INF_MIN);
@@ -251,7 +262,13 @@ namespace com.alicloud.openservices.tablestore.core.protocol
 
         public void WriteColumnValueWithoutLengthPrefix(ColumnValue value)
         {
+            if (!value.Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
             byte[] rawData;
+
             switch (value.Type)
             {
                 case ColumnValueType.String:

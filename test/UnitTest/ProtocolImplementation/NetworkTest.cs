@@ -9,10 +9,9 @@
  *
  */
 
-using System.Net.Http;
-
 using NUnit.Framework;
 using Aliyun.OTS.Request;
+using System;
 
 namespace Aliyun.OTS.UnitTest.ProtocolImplementation
 {
@@ -31,7 +30,8 @@ namespace Aliyun.OTS.UnitTest.ProtocolImplementation
                 var request = new ListTableRequest();
                 var response = otsClient.ListTable(request);
                 Assert.Fail();
-            } catch (HttpRequestException) {
+            } catch (Exception)
+            {
                 
             }
             
@@ -40,7 +40,7 @@ namespace Aliyun.OTS.UnitTest.ProtocolImplementation
                 var request = new ListTableRequest();
                 var response = otsClient.ListTable(request);
                 Assert.Fail();
-            } catch (HttpRequestException) {
+            } catch (Exception){
                 
             }
         }

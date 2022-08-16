@@ -11,7 +11,6 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
 using Aliyun.OTS.DataModel;
 using Aliyun.OTS.Request;
 using Aliyun.OTS.Response;
@@ -156,6 +155,16 @@ namespace Aliyun.OTS
         public Task<CreateTableResponse> CreateTableAsync(CreateTableRequest request)
         {
             return CallAsync<CreateTableRequest, CreateTableResponse>("/CreateTable", request);
+        }
+
+        public ComputeSplitsResponse ComputeSplits(ComputeSplitsRequest request)
+        {
+            return GetResponseFromAsyncTask(ComputeSplitsAsync(request));
+        }
+
+        public Task<ComputeSplitsResponse> ComputeSplitsAsync(ComputeSplitsRequest request)
+        {
+            return CallAsync<ComputeSplitsRequest, ComputeSplitsResponse>("/ComputeSplits", request);
         }
 
         /// <summary>
@@ -439,7 +448,8 @@ namespace Aliyun.OTS
         /// batchGetRowRequest.Add("SampleTableName", primaryKeys);
         /// var batchGetRowRespnse = otsClient.BatchGetRow(batchGetRowRequest);
         /// 
-        /// foreach (var responseForOneTable in batchGetRowRespnse.RowDataGroupByTable) {
+        /// foreach (var responseForOneTable in batchGetRowRespnse.RowDataGroupByTable) 
+        /// {
         ///     foreach (var row in responseForOneTable.Value) {
         ///         // 处理每一行的返回
         ///     }
@@ -719,6 +729,36 @@ namespace Aliyun.OTS
             return CallAsync<DescribeSearchIndexRequest, DescribeSearchIndexResponse>("/DescribeSearchIndex", request);
         }
 
+        public ParallelScanResponse ParallelScan(ParallelScanRequest request)
+        {
+            return GetResponseFromAsyncTask(ParallelScanAsync(request));
+        }
+
+        /// <summary>
+        /// ParallelScan的异步形式。
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public Task<ParallelScanResponse> ParallelScanAsync(ParallelScanRequest request)
+        {
+            return CallAsync<ParallelScanRequest, ParallelScanResponse>("/ParallelScan", request);
+        }
+
+        /// <summary>
+        /// UpdateSearchIndex的异步形式。
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public Task<UpdateSearchIndexResponse> UpdateSearchIndexAsync(UpdateSearchIndexRequest request)
+        {
+            return CallAsync<UpdateSearchIndexRequest, UpdateSearchIndexResponse>("/UpdateSearchIndex", request);
+        }
+
+        public UpdateSearchIndexResponse UpdateSearchIndex(UpdateSearchIndexRequest request)
+        {
+            return GetResponseFromAsyncTask(UpdateSearchIndexAsync(request));
+        }
+
         public SearchResponse Search(SearchRequest request)
         {
             return GetResponseFromAsyncTask(SearchAsync(request));
@@ -769,6 +809,16 @@ namespace Aliyun.OTS
             return CallAsync<DeleteGlobalIndexRequest, DeleteGlobalIndexResponse>("/DropIndex", request);
         }
 
+        public SQLQueryResponse SQLQuery(SQLQueryRequest request)
+        {
+            return GetResponseFromAsyncTask(SQLQueryAsync(request));
+        }
+
+        public Task<SQLQueryResponse> SQLQueryAsync(SQLQueryRequest request)
+        {
+            return CallAsync<SQLQueryRequest, SQLQueryResponse>("/SQLQuery", request);
+        }
+
         #endregion
 
 
@@ -804,6 +854,7 @@ namespace Aliyun.OTS
             {
                 // ConnectionPool.ReturnHttpClient(otsContext.HttpClient);
                 OTSHandler.HandleAfter(otsContext);
+
                 return (TResponse)otsContext.OTSReponse;
             });
         }

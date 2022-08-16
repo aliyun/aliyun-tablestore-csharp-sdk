@@ -26,7 +26,7 @@ namespace Aliyun.OTS.Samples.Samples
 
             //写入10行，自增列Pk2将
             for (int i = 0; i < 10; i++)
-            {  
+            {
                 PutRow(i.ToString());
             }
 
@@ -39,7 +39,7 @@ namespace Aliyun.OTS.Samples.Samples
         /// </summary>
         private static void CreateTableWithAutoIncrementPk()
         {
-            
+
             OTSClient otsClient = Config.GetClient();
 
             IList<string> tables = otsClient.ListTable(new ListTableRequest()).TableNames;
@@ -47,7 +47,7 @@ namespace Aliyun.OTS.Samples.Samples
             {
                 return;
             }
-            
+
             PrimaryKeySchema primaryKeySchema = new PrimaryKeySchema
             {
                 { Pk1, ColumnValueType.String },
@@ -82,9 +82,9 @@ namespace Aliyun.OTS.Samples.Samples
             PutRowRequest request = new PutRowRequest(TableName, new Condition(RowExistenceExpectation.IGNORE), primaryKey, attribute);
             request.RowPutChange.ReturnType = ReturnType.RT_PK;
 
-            var response =  otsClient.PutRow(request);
-            Console.WriteLine("Put row succeed，autoIncrement Pk value:"+ response.Row.GetPrimaryKey()[Pk2].IntegerValue);
+            var response = otsClient.PutRow(request);
+            Console.WriteLine("Put row succeed，autoIncrement Pk value:" + response.Row.GetPrimaryKey()[Pk2].IntegerValue);
         }
-        
+
     }
 }

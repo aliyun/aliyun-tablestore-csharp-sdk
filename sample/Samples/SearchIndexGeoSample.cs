@@ -90,7 +90,7 @@ namespace Aliyun.OTS.Samples.Samples
         {
             Console.WriteLine("\n Start Create searchindex...");
 
-            CreateSearchIndexRequest request = new CreateSearchIndexRequest(TableName,IndexName);
+            CreateSearchIndexRequest request = new CreateSearchIndexRequest(TableName, IndexName);
             List<FieldSchema> FieldSchemas = new List<FieldSchema>() {
                 new FieldSchema(Geo_type_col,FieldType.GEO_POINT){ index=true,EnableSortAndAgg=true},
             };

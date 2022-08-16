@@ -21,6 +21,7 @@ using Aliyun.OTS.Response;
 using Aliyun.OTS.Request;
 using PB = com.alicloud.openservices.tablestore.core.protocol;
 using Aliyun.OTS.DataModel.ConditionalUpdate;
+using Aliyun.OTS.DataModel.Search;
 
 namespace Aliyun.OTS.UnitTest
 {
@@ -53,7 +54,7 @@ namespace Aliyun.OTS.UnitTest
         public static new void DefaultErrorLogHandler(string message)
         {
             var dateString = GetDateTimeString();
-            using (StreamWriter w = File.AppendText("/Users/xiaofeizhao/Downloads/log.txt"))
+            using (StreamWriter w = File.AppendText("./log.txt"))
             {
                 w.Write("OTSClient ERROR {0} {1}", dateString, message);
             }
@@ -62,13 +63,14 @@ namespace Aliyun.OTS.UnitTest
         public static new void DefaultDebugLogHandler(string message)
         {
             var dateString = GetDateTimeString();
-            using (StreamWriter w = File.AppendText("/Users/xiaofeizhao/Downloads/log.txt"))
+            using (StreamWriter w = File.AppendText("./log.txt"))
             {
                 w.Write("OTSClient DEBUG {0} {1}", dateString, message);
             }
         }
     }
 
+    [TestFixture]
     class OTSUnitTestBase
     {
         public string TestEndPoint = Test.Config.Endpoint;
@@ -78,7 +80,8 @@ namespace Aliyun.OTS.UnitTest
         public OTSClient OTSClient;
 
         // Predefined test data
-        public static string TestTableName;
+        public static string TestTableName = "SearchQueryTest";
+        public static string TestSearchIndexName = "SearchQueryTestIndex";
         public static PrimaryKey PrimaryKeyWith4Columns;
         public static PrimaryKey MinPrimaryKeyWith4Columns;
         public static PrimaryKey MaxPrimaryKeyWith4Columns;
@@ -92,9 +95,6 @@ namespace Aliyun.OTS.UnitTest
         public void Setup()
         {
             Thread.Sleep(1000);
-
-            TestTableName = "SampleTestName";
-
 
             var clientConfig = new OTSClientConfig(
                                    TestEndPoint,
@@ -112,9 +112,28 @@ namespace Aliyun.OTS.UnitTest
             OTSClient = new OTSClient(clientConfig);
             OTSClientTestHelper.Reset();
 
+            // 删除数据表
             foreach (var tableName in OTSClient.ListTable(new ListTableRequest()).TableNames)
             {
-                DeleteTable(tableName);
+                try
+                {
+                    ListSearchIndexRequest listSearchIndexRequest = new ListSearchIndexRequest(tableName);
+                    ListSearchIndexResponse listSearchIndexResponse = OTSClient.ListSearchIndex(listSearchIndexRequest);
+
+                    foreach (SearchIndexInfo indexInfo in listSearchIndexResponse.IndexInfos)
+                    {
+                        DeleteSearchIndexRequest deleteSearchIndexRequest = new DeleteSearchIndexRequest(tableName, indexInfo.IndexName);
+                        OTSClient.DeleteSearchIndex(deleteSearchIndexRequest);
+                    }
+
+                    Thread.Sleep(1000);
+
+                    DeleteTable(tableName);
+                }
+                catch
+                {
+                    Console.WriteLine("Delete Index or Table failed!");
+                }
             }
 
             PrimaryKeyWith4Columns = new PrimaryKey
@@ -159,6 +178,75 @@ namespace Aliyun.OTS.UnitTest
                 PrimaryKeyList.Add(GetPredefinedPrimaryKeyWith4PK(i));
                 AttributeColumnsList.Add(GetPredefinedAttributeWith5PK(i));
             }
+
+            // 创建数据表
+            Thread.Sleep(2000);
+            var primaryKeySchema = new PrimaryKeySchema
+            {
+                {"pk0" , ColumnValueType.String},
+                {"pk1" , ColumnValueType.Integer}
+            };
+
+            TableMeta tableMeta = new TableMeta(TestTableName, primaryKeySchema);
+
+            tableMeta.DefinedColumnSchema = new DefinedColumnSchema{
+                { "col1" , DefinedColumnType.STRING},
+                { "col2" , DefinedColumnType.STRING},
+            };
+
+            // TableOptions
+            TableOptions tableOptions = new TableOptions();
+            tableOptions.AllowUpdate = false;
+
+            // 创建二级索引
+            IndexMeta indexMeta = new IndexMeta(TestTableName + "index");
+            indexMeta.PrimaryKey = new List<string>() { "col1" };
+            indexMeta.DefinedColumns = new List<string>() { "col2" };
+
+            List<IndexMeta> indexMetas = new List<IndexMeta>() { };
+            indexMetas.Add(indexMeta);
+
+            // ִ执行创建表操作
+            CapacityUnit reservedThroughput = new CapacityUnit(0, 0);
+            CreateTableRequest request = new CreateTableRequest(tableMeta, reservedThroughput);
+            request.TableOptions = tableOptions;
+            CreateTableResponse createTableResponse = OTSClient.CreateTable(request);
+            Console.WriteLine("Create table succeed!");
+
+            // 创建多元索引
+            CreateSearchIndexRequest createSearchIndexRequest = new CreateSearchIndexRequest(TestTableName, TestSearchIndexName);
+            List<FieldSchema> fieldSchemas = new List<FieldSchema> {
+                new FieldSchema("col1" , FieldType.KEYWORD){
+                    index = true,
+                    EnableSortAndAgg = true
+                },
+                new FieldSchema("pk1" , FieldType.LONG) { index = true, EnableSortAndAgg = true},
+                new FieldSchema("col2" , FieldType.TEXT) {
+                    index = true ,
+                    Analyzer=Analyzer.MaxWord
+                },
+                new FieldSchema("DATE_col" , FieldType.DATE){
+                    index = true,
+                    DateFormats = new List<string>(){
+                        "yyyy-MM-dd'T'HH:mm:ss.SSSSSS",
+                        "yyyy-MM-dd'T'HH:mm:ss.SSS"
+                    }
+                }
+            };
+
+            createSearchIndexRequest.IndexSchame = new IndexSchema()
+            {
+                FieldSchemas = fieldSchemas,
+                IndexSort = new OTS.DataModel.Search.Sort.Sort(
+                    new List<OTS.DataModel.Search.Sort.ISorter>
+                    {
+                        new OTS.DataModel.Search.Sort.FieldSort("pk1", OTS.DataModel.Search.Sort.SortOrder.ASC)
+                    })
+            };
+
+            CreateSearchIndexResponse createSearchIndexResponse = OTSClient.CreateSearchIndex(createSearchIndexRequest);
+
+            Console.WriteLine("Create Search Index succeed!");
         }
 
         public PrimaryKey GetPredefinedPrimaryKeyWith4PK(int index)
@@ -226,7 +314,7 @@ namespace Aliyun.OTS.UnitTest
 
                 var result = expectItem.CompareTo(actualItem);
 
-                Assert.IsTrue(result ==0, "columnValue Not equal, expect:" + expectItem + ", actual:" + actualItem);
+                Assert.IsTrue(result == 0, "columnValue Not equal, expect:" + expectItem + ", actual:" + actualItem);
             }
         }
 
@@ -605,12 +693,12 @@ namespace Aliyun.OTS.UnitTest
         /// <param name="condition">Condition.</param>
         private CapacityUnit GetDefaultCapacityUnit(Condition condition)
         {
-            if(condition == null)
+            if (condition == null)
             {
                 return new CapacityUnit(0, 1);
             }
 
-            switch(condition.RowExistenceExpect)
+            switch (condition.RowExistenceExpect)
             {
                 case RowExistenceExpectation.IGNORE:
                     return new CapacityUnit(0, 1);
@@ -703,7 +791,7 @@ namespace Aliyun.OTS.UnitTest
                         RowPutChange = new RowPutChange(tableName, primaryKey)
                     };
 
-                    foreach(var attr in attributeForPut.AttributeColumnsToPut)
+                    foreach (var attr in attributeForPut.AttributeColumnsToPut)
                     {
                         request5.RowPutChange.AddColumn(new Column(attr.Key, attr.Value));
                     }
@@ -898,7 +986,7 @@ namespace Aliyun.OTS.UnitTest
                 {
                     Assert.AreEqual(failedMessage, exception.Message);
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     Console.WriteLine(exception.Message);
                 }

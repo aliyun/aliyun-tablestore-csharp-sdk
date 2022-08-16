@@ -10,9 +10,10 @@
  */
 
 using System;
-using com.alicloud.openservices.tablestore.core.protocol;
 using System.IO;
 using Aliyun.OTS.Util;
+using com.alicloud.openservices.tablestore.core.protocol;
+
 
 namespace Aliyun.OTS.DataModel
 {
@@ -39,7 +40,7 @@ namespace Aliyun.OTS.DataModel
         /// <summary>
         /// 列值的类型
         /// </summary>
-        public ColumnValueType Type { get; private set; }
+        public ColumnValueType? Type { get; private set; }
 
         public Int64 IntegerValue;
         public string StringValue;
@@ -113,7 +114,12 @@ namespace Aliyun.OTS.DataModel
         /// <returns><c>true</c>, column value类型可以成为primary key, <c>false</c> otherwise.</returns>
         public bool CanBePrimaryKeyValue()
         {
-            switch (this.Type)
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
+            switch (Type)
             {
                 case ColumnValueType.String:
                 case ColumnValueType.Integer:
@@ -126,22 +132,97 @@ namespace Aliyun.OTS.DataModel
 
         public byte[] AsStringInBytes()
         {
-            return System.Text.Encoding.UTF8.GetBytes(this.StringValue);
+            return System.Text.Encoding.UTF8.GetBytes(StringValue);
         }
 
         public bool IsInfMin()
         {
-            return this.StringValue == "INF_MIN";
+            return StringValue == "INF_MIN";
         }
 
         public bool IsInfMax()
         {
-            return this.StringValue == "INF_MAX";
+            return StringValue == "INF_MAX";
         }
 
         public bool IsPlaceHolderForAutoIncr()
         {
-            return this.StringValue == "AUTO_INCREMENT";
+            return StringValue == "AUTO_INCREMENT";
+        }
+
+        public long AsLong()
+        {
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
+            if (Type != ColumnValueType.Integer)
+            {
+                throw new ArgumentException(string.Format("The type of column is not INTEGER but {0}", Type.ToString()));
+            }
+
+            return IntegerValue;
+        }
+
+        public string AsString()
+        {
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
+            if (Type != ColumnValueType.String)
+            {
+                throw new ArgumentException(string.Format("The type of column is not STRING but {0}", Type.ToString()));
+            }
+
+            return StringValue;
+        }
+
+        public byte[] AsBinary()
+        {
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
+            if (Type != ColumnValueType.Binary)
+            {
+                throw new ArgumentException(string.Format("The type of column is not BINARY but {0}", Type.ToString()));
+            }
+
+            return BinaryValue;
+        }
+
+        public bool AsBoolean()
+        {
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
+            if (Type != ColumnValueType.Boolean)
+            {
+                throw new ArgumentException(string.Format("The type of column is not BOOLEAN but {0}", Type.ToString()));
+            }
+
+            return BooleanValue;
+        }
+
+        public double AsDouble()
+        {
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
+            if (Type != ColumnValueType.Double)
+            {
+                throw new ArgumentException(string.Format("The type of column is not DOUBLE but {0}", Type.ToString()));
+            }
+
+            return DoubleValue;
         }
 
         /// <summary>
@@ -169,7 +250,12 @@ namespace Aliyun.OTS.DataModel
                 return crc;
             }
 
-            switch (this.Type)
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
+            switch (Type)
             {
                 case ColumnValueType.String:
                     {
@@ -215,6 +301,12 @@ namespace Aliyun.OTS.DataModel
         public int GetDataSize()
         {
             int dataSize = 0;
+
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
             switch (this.Type)
             {
                 case ColumnValueType.Integer:
@@ -244,6 +336,11 @@ namespace Aliyun.OTS.DataModel
         {
             var target = obj as ColumnValue;
 
+            if (!this.Type.HasValue || !target.Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
             if (this.Type != target.Type)
             {
                 throw new ArgumentException("The type of column to compare must be the same.");
@@ -270,6 +367,12 @@ namespace Aliyun.OTS.DataModel
         public override string ToString()
         {
             string result = "";
+
+            if (!Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
             switch (Type)
             {
                 case ColumnValueType.String:

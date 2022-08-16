@@ -56,6 +56,5 @@ namespace Aliyun.OTS.Request
             TableOptions = new TableOptions();
             IndexMetas = indexMetas;
         }
-        
     }
 }

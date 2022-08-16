@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Aliyun.OTS.DataModel;
+using Aliyun.OTS.DataModel.Search.Agg;
+using Aliyun.OTS.DataModel.Search.GroupBy;
 
 namespace Aliyun.OTS.Response
 {
@@ -23,5 +25,11 @@ namespace Aliyun.OTS.Response
         public bool IsAllSuccess { get; set; }
 
         public byte[] NextToken { get; set; }
+
+        public long BodyBytes { get; set; }
+
+        public AggregationResults AggregationResults { get; set; }
+
+        public GroupByResults GroupByResults { get; set; }
     }
 }

@@ -14,9 +14,13 @@ namespace Aliyun.OTS.DataModel.Search.Query
          */
         public string Prefix { get; set; }
 
-        public PrefixQuery(string fieldName, string prefix) {
-            this.FieldName = fieldName;
-            this.Prefix = prefix;
+        public float Weight { get; set; }
+
+        public PrefixQuery(string fieldName, string prefix)
+        {
+            FieldName = fieldName;
+            Prefix = prefix;
+            Weight = 1.0f;
         }
 
         public QueryType GetQueryType()

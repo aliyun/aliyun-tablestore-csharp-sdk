@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Newtonsoft.Json;
 using Aliyun.OTS.DataModel;
 using Aliyun.OTS.DataModel.Search;
+using Aliyun.OTS.DataModel.Search.Agg;
+using Aliyun.OTS.DataModel.Search.Analysis;
+using Aliyun.OTS.DataModel.Search.GroupBy;
 using Aliyun.OTS.DataModel.Search.Query;
 using Aliyun.OTS.DataModel.Search.Sort;
 using Aliyun.OTS.Request;
 using Aliyun.OTS.Response;
-using Newtonsoft.Json;
+
 
 namespace Aliyun.OTS.Samples.Samples
 {
@@ -15,17 +19,20 @@ namespace Aliyun.OTS.Samples.Samples
     {
         private static readonly string TableName = "SearchIndexSampleTable";
         private static readonly string IndexName = "SearchIndexSampleTableIndex2";
+        private static readonly string IndexNamewithSort = "SearchIndexSampleTableIndexwithSort";
         private static readonly string Pk0 = "pk0";
         private static readonly string Pk1 = "pk1";
         private static readonly string Long_type_col = "Long_type_col";
         private static readonly string Text_type_col = "Text_type_col";
         private static readonly string Keyword_type_col = "Keyword_type_col";
+        private static readonly string Date_type_col = "Data_type_col";
+        private static readonly string Geo_type_col = "Geo_type_col";
+        private static readonly string Virtual_col_Text = "Virtual_col_Text";
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Start SeaIndexSample...");
             OTSClient otsClient = Config.GetClient();
-            //DeleteSearchIndex(otsClient);
-            //DeleteTable(otsClient);
 
             //创建一张TableStore表
             CreateTable(otsClient);
@@ -37,6 +44,7 @@ namespace Aliyun.OTS.Samples.Samples
             Thread.Sleep(3 * 1000);
 
             ListSearchIndex(otsClient);
+
             CreateSearchIndexWithIndexSort(otsClient);
             DescribeSearchIndex(otsClient);
             PutRow(otsClient);
@@ -68,6 +76,23 @@ namespace Aliyun.OTS.Samples.Samples
             //BoolQuery
             BoolQuery(otsClient);
 
+            //ParallelScan
+            ParallelScan(otsClient);
+
+            //UpdateSearchIndex
+            UpdateSearchIndex(otsClient);
+
+            //GroupBy
+            GroupBy(otsClient);
+
+            // Aggregation
+            Aggregation(otsClient);
+
+            // Delete SearchIndex and Table
+            DeleteSearchIndex(otsClient);
+            DeleteTable(otsClient);
+
+            Console.WriteLine("SearchIndexSample Finish！");
             Console.ReadLine();
         }
 
@@ -75,14 +100,30 @@ namespace Aliyun.OTS.Samples.Samples
         {
             Console.WriteLine("\n Start create table...");
             PrimaryKeySchema primaryKeySchema = new PrimaryKeySchema
-                {
-                    { Pk0, ColumnValueType.Integer },
-                    { Pk1, ColumnValueType.String }
-                };
-            TableMeta tableMeta = new TableMeta(TableName, primaryKeySchema);
+            {
+                { Pk0, ColumnValueType.Integer },
+                { Pk1, ColumnValueType.String }
+            };
+
+            DefinedColumnSchema definedColumnSchema = new DefinedColumnSchema
+            {
+                { Long_type_col, DefinedColumnType.INTEGER},
+                { Text_type_col, DefinedColumnType.STRING},
+                { Keyword_type_col, DefinedColumnType.STRING},
+                { Date_type_col, DefinedColumnType.STRING},
+                { Geo_type_col, DefinedColumnType.STRING}
+            };
+
+            TableMeta tableMeta = new TableMeta(TableName, primaryKeySchema, definedColumnSchema);
 
             CapacityUnit reservedThroughput = new CapacityUnit(0, 0);
+
+            TableOptions tableOptions = new TableOptions();
+            // 若需要支持多元索引TTL，需禁用数据表的UpdateRow功能。
+            tableOptions.AllowUpdate = false;
+
             CreateTableRequest request = new CreateTableRequest(tableMeta, reservedThroughput);
+            request.TableOptions = tableOptions;
             otsClient.CreateTable(request);
 
             Console.WriteLine("Table is created: " + TableName);
@@ -90,8 +131,16 @@ namespace Aliyun.OTS.Samples.Samples
 
         public static void DeleteTable(OTSClient otsClient)
         {
-            DeleteTableRequest request = new DeleteTableRequest(TableName);
-            otsClient.DeleteTable(request);
+            try
+            {
+                DeleteTableRequest request = new DeleteTableRequest(TableName);
+                otsClient.DeleteTable(request);
+            }
+            catch (OTSServerException e)
+            {
+                Console.WriteLine("Delete table failed with error: {0}", e.ErrorMessage);
+            }
+
         }
 
         /// <summary>
@@ -121,13 +170,42 @@ namespace Aliyun.OTS.Samples.Samples
 
             //指定表名和索引名
             CreateSearchIndexRequest request = new CreateSearchIndexRequest(TableName, IndexName);
+            request.SetTimeToLive(7 * 24 * 60 * 60);
+
             List<FieldSchema> FieldSchemas = new List<FieldSchema>() {
                 new FieldSchema(Keyword_type_col,FieldType.KEYWORD){ //设置字段名和字段类型
                     index =true, //开启索引
                     EnableSortAndAgg =true //开启排序和统计功能
                 },
+                new FieldSchema(Pk1, FieldType.KEYWORD) { index=true, EnableSortAndAgg=true },
                 new FieldSchema(Long_type_col,FieldType.LONG){ index=true,EnableSortAndAgg=true},
-                new FieldSchema(Text_type_col,FieldType.TEXT){ index=true}
+                new FieldSchema(Text_type_col,FieldType.TEXT){ index=true },
+                // 构建虚拟列
+                new FieldSchema(Virtual_col_Text, FieldType.TEXT){
+                    index=true,
+                    SourceFieldNames= new List<string>(){ Text_type_col },
+                    IsVirtualField = true,
+                    Analyzer = Analyzer.Split,
+                    AnalyzerParameter = new SplitAnalyzerParameter(){
+                        Delimiter=" "
+                    }
+                },
+                // 构建日期列
+                new FieldSchema(Date_type_col, FieldType.DATE) {
+                    index = true,
+                    DateFormats = new List<string>(){
+                        "yyyy-MM-dd'T'HH:mm:ss.SSSSSS",
+                        "yyyy-MM-dd'T'HH:mm:ss.SSS",
+                        "yyyy/MM/dd'T'HH:mm:ss"
+                    }
+                },
+
+                // 构建地理位置列
+                new FieldSchema(Geo_type_col, FieldType.GEO_POINT)
+                {
+                    index = true,
+                    EnableSortAndAgg = true
+                }
             };
             request.IndexSchame = new IndexSchema()
             {
@@ -148,7 +226,7 @@ namespace Aliyun.OTS.Samples.Samples
             Console.WriteLine("\n Start Create searchindex with indexSort...");
 
             //指定表名和索引名
-            CreateSearchIndexRequest request = new CreateSearchIndexRequest(TableName, IndexName);
+            CreateSearchIndexRequest request = new CreateSearchIndexRequest(TableName, IndexNamewithSort);
             List<FieldSchema> FieldSchemas = new List<FieldSchema>() {
                 new FieldSchema(Keyword_type_col,FieldType.KEYWORD){ //设置字段名和字段类型
                     index =true, //开启索引
@@ -168,7 +246,7 @@ namespace Aliyun.OTS.Samples.Samples
 
             CreateSearchIndexResponse response = otsClient.CreateSearchIndex(request);
 
-            Console.WriteLine("Searchindex is created: " + IndexName);
+            Console.WriteLine("Searchindex is created: " + IndexNamewithSort);
         }
 
         /// <summary>
@@ -195,9 +273,24 @@ namespace Aliyun.OTS.Samples.Samples
         {
             Console.WriteLine("\n Start Delete searchindex...");
 
-            //设置表名和索引名
-            DeleteSearchIndexRequest request = new DeleteSearchIndexRequest(TableName, IndexName);
-            DeleteSearchIndexResponse response = otsClient.DeleteSearchIndex(request);
+            // 删除索引表
+            try
+            {
+                foreach (var indexInfo in otsClient.ListSearchIndex(new ListSearchIndexRequest(TableName)).IndexInfos)
+                {
+
+                    DeleteSearchIndexRequest deleteSearchIndexRequest = new DeleteSearchIndexRequest(TableName, indexInfo.IndexName);
+                    otsClient.DeleteSearchIndex(deleteSearchIndexRequest);
+
+                    Thread.Sleep(1000);
+
+                }
+            }
+
+            catch (OTSException e)
+            {
+                Console.WriteLine("Delete Index or Table failed with error: {0}", e.Message);
+            }
 
             Console.WriteLine("Searchindex is deleted:" + IndexName);
         }
@@ -227,7 +320,9 @@ namespace Aliyun.OTS.Samples.Samples
                 AttributeColumns attribute = new AttributeColumns{
                     { Long_type_col, new ColumnValue(i) },
                     { Text_type_col, new ColumnValue(colList[i]) },
-                    { Keyword_type_col, new ColumnValue(colList[i]) }
+                    { Keyword_type_col, new ColumnValue(colList[i]) },
+                    { Date_type_col, new ColumnValue(DateTime.Now.ToString())},
+                    { Geo_type_col, new ColumnValue(string.Format("{0},{1}", i , i + 1))}
                 };
                 PutRowRequest request = new PutRowRequest(TableName, new Condition(RowExistenceExpectation.IGNORE), primaryKey, attribute);
 
@@ -320,6 +415,8 @@ namespace Aliyun.OTS.Samples.Samples
 
             Console.WriteLine("IsAllSuccess:" + response.IsAllSuccess);
             Console.WriteLine("Total Count:" + response.TotalCount);
+
+            Console.WriteLine("\n matchAll query finished!");
         }
 
 
@@ -348,6 +445,8 @@ namespace Aliyun.OTS.Samples.Samples
             {
                 PrintRow(row);
             }
+
+            Console.WriteLine("\n match query finished!");
         }
 
         /// <summary>
@@ -359,7 +458,7 @@ namespace Aliyun.OTS.Samples.Samples
             Console.WriteLine("\n Start MatchPhrase query...");
 
             var searchQuery = new SearchQuery();
-            searchQuery.Query = new MatchPhraseQuery(Text_type_col, "TableStore SearchIndex");
+            searchQuery.Query = new MatchPhraseQuery(Text_type_col, "SearchIndex");
             searchQuery.GetTotalCount = true;
             var request = new SearchRequest(TableName, IndexName, searchQuery);
             request.ColumnsToGet = new ColumnsToGet()
@@ -374,6 +473,8 @@ namespace Aliyun.OTS.Samples.Samples
             {
                 PrintRow(row);
             }
+
+            Console.WriteLine("\n MatchPhrase query finished!");
         }
 
         /// <summary>
@@ -398,6 +499,8 @@ namespace Aliyun.OTS.Samples.Samples
             {
                 PrintRow(row);
             }
+
+            Console.WriteLine("\n range query finished!");
         }
 
 
@@ -425,6 +528,8 @@ namespace Aliyun.OTS.Samples.Samples
             {
                 PrintRow(row);
             }
+
+            Console.WriteLine("\n prefix query finished!");
         }
 
         /// <summary>
@@ -452,6 +557,8 @@ namespace Aliyun.OTS.Samples.Samples
             {
                 PrintRow(row);
             }
+
+            Console.WriteLine("\n Term query finished!");
         }
 
         /// <summary>
@@ -465,9 +572,10 @@ namespace Aliyun.OTS.Samples.Samples
 
             var searchQuery = new SearchQuery();
             searchQuery.GetTotalCount = true;
-            var query = new TermsQuery();
-            query.FieldName = Keyword_type_col;
-            query.Terms = new List<ColumnValue>() { new ColumnValue("TableStore"), new ColumnValue("SearchIndex") };
+            var query = new TermsQuery(
+                    Keyword_type_col,
+                    new List<ColumnValue>() { new ColumnValue("TableStore"), new ColumnValue("SearchIndex") }
+                );
 
             var request = new SearchRequest(TableName, IndexName, searchQuery);
             request.ColumnsToGet = new ColumnsToGet()
@@ -482,6 +590,8 @@ namespace Aliyun.OTS.Samples.Samples
             {
                 PrintRow(row);
             }
+
+            Console.WriteLine("\n Terms query finished!");
         }
 
 
@@ -562,7 +672,7 @@ namespace Aliyun.OTS.Samples.Samples
             searchQuery.GetTotalCount = true;
             var nestedQuery = new NestedQuery();
             nestedQuery.Path = "col1_nested"; //设置nested字段路径
-            TermQuery termQuery = new TermQuery("col1_nested.nested_1",new ColumnValue("tablestore"));//构造NestedQuery的子查询
+            TermQuery termQuery = new TermQuery("col1_nested.nested_1", new ColumnValue("tablestore"));//构造NestedQuery的子查询
             nestedQuery.Query = termQuery;
             nestedQuery.ScoreMode = ScoreMode.None;
 
@@ -579,6 +689,246 @@ namespace Aliyun.OTS.Samples.Samples
             {
                 PrintRow(row);
             }
+        }
+
+        /// <summary>
+        /// 当使用场景中不关心整个结果集的顺序时，可以使用并发导出数据功能以更快的速度将命中的数据全部返回。
+        /// </summary>
+        /// <param name="otsClient"></param>
+        public static void ParallelScan(OTSClient otsClient)
+        {
+            Console.WriteLine("\n Start ParallelScan...");
+
+            SearchIndexSplitsOptions indexOptions = new SearchIndexSplitsOptions(IndexName);
+            ComputeSplitsRequest computeSplitsRequest = new ComputeSplitsRequest(TableName, indexOptions);
+
+            ComputeSplitsResponse computeSplitResponse = otsClient.ComputeSplits(computeSplitsRequest);
+
+            ScanQuery scanQuery = new ScanQuery();
+            scanQuery.Limit = 10;
+            scanQuery.MaxParallel = computeSplitResponse.SplitsSize;
+            scanQuery.Query = new MatchAllQuery();
+
+            ParallelScanRequest request = new ParallelScanRequest(TableName, IndexName);
+            request.ScanQuery = scanQuery;
+            request.SessionId = computeSplitResponse.SessionId;
+            request.ColumnToGet = new ColumnsToGet()
+            {
+                ReturnAllFromIndex = true,
+            };
+
+            ParallelScanResponse response = otsClient.ParallelScan(request);
+            while (response.NextToken != null)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Rows));
+
+                request.ScanQuery.Token = response.NextToken;
+                response = otsClient.ParallelScan(request);
+            }
+
+            Console.WriteLine("\n ParallelScan finshed!");
+        }
+
+        /// <summary>
+        /// 更新SearchIndex的TTL
+        /// </summary>
+        /// <param name="otsClient"></param>
+        public static void UpdateSearchIndex(OTSClient otsClient)
+        {
+            Console.WriteLine("\n UpdateSearchIndex start...");
+
+            UpdateSearchIndexRequest request = new UpdateSearchIndexRequest(TableName, IndexName);
+            request.SetTimeToLive(14 * 24 * 60 * 60);      // two weeks
+
+            otsClient.UpdateSearchIndex(request);
+
+            Console.WriteLine("\n UpdateSeatchIndex finish!");
+        }
+
+        public static void GroupBy(OTSClient otsClient)
+        {
+            Console.WriteLine("\n GroupBy start...");
+
+            GroupByField groupByField = new GroupByField();
+            groupByField.GroupByName = "groupByField";
+            groupByField.FieldName = Long_type_col;
+            groupByField.GroupBySorters = new List<GroupBySorter>(){
+                new GroupBySorter()
+                {
+                    GroupKeySort = new GroupKeySort() { Order = SortOrder.DESC }
+                }
+            };
+
+            GroupByFilter groupByFilter = new GroupByFilter();
+            groupByFilter.GroupByName = "groupByFilter";
+            groupByFilter.Filters = new List<IQuery>()
+            {
+                new MatchPhraseQuery(Virtual_col_Text, "Tablestore")
+            };
+
+            GroupByGeoDistance groupByGeoDistance = new GroupByGeoDistance();
+            groupByGeoDistance.FieldName = Geo_type_col;
+            groupByGeoDistance.GroupByName = "groupByGeoDistance";
+            groupByGeoDistance.Origin = new GeoPoint(0, 0);
+            groupByGeoDistance.Ranges = new List<Range>()
+            {
+                new Range(double.MinValue, 100.0),
+                new Range(100.0, 1000.0),
+                new Range(1000.0, double.MaxValue)
+            };
+
+            GroupByHistogram groupByHistogram = new GroupByHistogram();
+            groupByHistogram.GroupByName = "groupByHistogram";
+            groupByHistogram.FieldName = Long_type_col;
+            groupByHistogram.Interval = new ColumnValue(2);
+            groupByHistogram.Missing = new ColumnValue(2);
+            groupByHistogram.FieldRange = new FieldRange(new ColumnValue(0), new ColumnValue(1000));
+
+            GroupByRange groupByRange = new GroupByRange();
+            groupByRange.GroupByName = "groupByRange";
+            groupByRange.FieldName = Long_type_col;
+            groupByRange.Ranges = new List<Range>()
+            {
+                new Range(0 , 5),
+                new Range(5,10),
+                new Range(10, double.MaxValue)
+            };
+
+            GroupByResults results = GroupByRunner(otsClient, groupByField, groupByFilter, groupByGeoDistance, groupByHistogram, groupByRange);
+
+            if (results != null)
+            {
+                Console.WriteLine("groupByField result: {0}", JsonConvert.SerializeObject(results.GetAsGroupByFieldResult("groupByField").GroupByFieldResultItems));
+                Console.WriteLine("groupByFilter result: {0}", JsonConvert.SerializeObject(results.GetAsGroupByFilterResult("groupByFilter").GroupByFilterResultItems));
+                Console.WriteLine("groupByGeoDistance result: {0}", JsonConvert.SerializeObject(results.GetAsGroupByGeoDistanceResult("groupByGeoDistance").GroupByGeoDistanceResultItems));
+                Console.WriteLine("groupByHistogram result: {0}", JsonConvert.SerializeObject(results.GetAsGroupByHistogramResult("groupByHistogram").GroupByHistogramResultItems));
+                Console.WriteLine("groupByRange result: {0}", JsonConvert.SerializeObject(results.GetAsGroupByRangeResult("groupByRange").GroupByRangeResultItems));
+            }
+
+            Console.WriteLine("\n GroupBy finish!");
+        }
+
+        public static void Aggregation(OTSClient otsClient)
+        {
+            Console.WriteLine("\n Aggregation start...");
+
+            MaxAggregation maxAggregation = new MaxAggregation();
+            maxAggregation.AggName = "maxAgg";
+            maxAggregation.FieldName = Long_type_col;
+            maxAggregation.Missing = new ColumnValue(10);
+
+            MinAggregation minAggregation = new MinAggregation();
+            minAggregation.AggName = "minAgg";
+            minAggregation.FieldName = Long_type_col;
+            minAggregation.Missing = new ColumnValue(10);
+
+            AvgAggregation avgAggregation = new AvgAggregation();
+            avgAggregation.AggName = "avgAgg";
+            avgAggregation.FieldName = Long_type_col;
+            avgAggregation.Missing = new ColumnValue(10);
+
+            CountAggregation countAggregation = new CountAggregation();
+            countAggregation.AggName = "countAgg";
+            countAggregation.FieldName = Pk1;
+
+            DistinctCountAggregation distinctCountAggregation = new DistinctCountAggregation();
+            distinctCountAggregation.AggName = "distinctCountAgg";
+            distinctCountAggregation.FieldName = Pk1;
+            distinctCountAggregation.Missing = new ColumnValue("pk1Value");
+
+            PercentilesAggregation percentilesAggregation = new PercentilesAggregation();
+            percentilesAggregation.AggName = "percentilesAgg";
+            percentilesAggregation.FieldName = Long_type_col;
+            percentilesAggregation.Missing = new ColumnValue(10);
+            percentilesAggregation.Percentiles = new List<double>()
+            {
+                60,
+                90,
+                99
+            };
+
+            SumAggregation sumAggregation = new SumAggregation();
+            sumAggregation.AggName = "sumAgg";
+            sumAggregation.FieldName = Long_type_col;
+            sumAggregation.Missing = new ColumnValue(10);
+
+            TopRowsAggregation topRowsAggregation = new TopRowsAggregation();
+            topRowsAggregation.AggName = "topRowsAgg";
+            topRowsAggregation.Limit = 5;
+            topRowsAggregation.Sort = new Sort(new List<ISorter>() { new FieldSort(Long_type_col, SortOrder.DESC) });
+
+            AggregationResults results = AggregationRunner(otsClient, maxAggregation, minAggregation, avgAggregation, countAggregation,
+                distinctCountAggregation, percentilesAggregation, sumAggregation, topRowsAggregation);
+
+            if (results != null)
+            {
+                Console.WriteLine("maxAgg result: {0}", results.GetAsMaxAggregationResult("maxAgg").Value);
+                Console.WriteLine("minAgg result: {0}", results.GetAsMinAggregationResult("minAgg").Value);
+                Console.WriteLine("avgAgg result: {0}", results.GetAsAvgAggregationResult("avgAgg").Value);
+                Console.WriteLine("countAgg result: {0}", results.GetAsCountAggregationResult("countAgg").Value);
+                Console.WriteLine("distinctCountAgg result: {0}", results.GetAsDistinctCountAggregationResult("distinctCountAgg").Value);
+                Console.WriteLine("percentilesAgg result: {0}", JsonConvert.SerializeObject(results.GetAsPercentilesAggregationResult("percentilesAgg").Value));
+                Console.WriteLine("sumAgg result: {0}", results.GetAsSumAggregationResult("sumAgg").Value);
+                Console.WriteLine("topRowsAgg result: {0}", JsonConvert.SerializeObject(results.GetAsTopRowsAggregationResult("topRowsAgg").Rows));
+            }
+
+            Console.WriteLine("\n Aggregation finished!");
+        }
+
+        public static AggregationResults AggregationRunner(OTSClient otsClient, params IAggregation[] aggregations)
+        {
+            if (aggregations.Length == 0)
+            {
+                return null;
+            }
+
+            MatchAllQuery query = new MatchAllQuery();
+
+            SearchQuery searchQuery = new SearchQuery
+            {
+                Query = query,
+                AggregationList = new List<IAggregation>()
+            };
+
+            foreach (IAggregation agg in aggregations)
+            {
+                searchQuery.AggregationList.Add(agg);
+            }
+
+            SearchRequest searchRequest = new SearchRequest(TableName, IndexName, searchQuery);
+            searchRequest.ColumnsToGet = new ColumnsToGet() { ReturnAll = true };
+
+            SearchResponse response = otsClient.Search(searchRequest);
+
+            return response.AggregationResults;
+        }
+
+        public static GroupByResults GroupByRunner(OTSClient otsClient, params IGroupBy[] groupBys)
+        {
+            if (groupBys.Length == 0)
+            {
+                return null;
+            }
+
+            MatchAllQuery query = new MatchAllQuery();
+
+            SearchQuery searchQuery = new SearchQuery
+            {
+                Query = query,
+                GroupByList = new List<IGroupBy>()
+            };
+
+            foreach (IGroupBy groupBy in groupBys)
+            {
+                searchQuery.GroupByList.Add(groupBy);
+            }
+
+            SearchRequest searchRequest = new SearchRequest(TableName, IndexName, searchQuery);
+            searchRequest.ColumnsToGet = new ColumnsToGet() { ReturnAll = true };
+
+            SearchResponse response = otsClient.Search(searchRequest);
+
+            return response.GroupByResults;
         }
     }
 }

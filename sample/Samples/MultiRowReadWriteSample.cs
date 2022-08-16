@@ -18,10 +18,10 @@ namespace Aliyun.OTS.Samples
             OTSClient otsClient = Config.GetClient();
 
             IList<string> tables = otsClient.ListTable(new ListTableRequest()).TableNames;
-            if (tables.Contains(TableName)) {
+            if (tables.Contains(TableName))
+            {
                 return;
             }
-
 
             PrimaryKeySchema primaryKeySchema = new PrimaryKeySchema
             {
@@ -132,13 +132,13 @@ namespace Aliyun.OTS.Samples
             var condition = new RelationalCondition("col2",
                                 CompareOperator.EQUAL,
                                 new ColumnValue(false));
-           
+
             var queryCriteria = new RangeRowQueryCriteria(TableName)
             {
                 Direction = GetRangeDirection.Forward,
                 InclusiveStartPrimaryKey = inclusiveStartPrimaryKey,
                 ExclusiveEndPrimaryKey = exclusiveEndPrimaryKey,
-                Filter =  condition.ToFilter()
+                Filter = condition.ToFilter()
             };
 
             GetRangeResponse response = otsClient.GetRange(new GetRangeRequest(queryCriteria));
@@ -192,7 +192,7 @@ namespace Aliyun.OTS.Samples
             };
 
             var cu = new CapacityUnit(0, 0);
-            var request = new GetIteratorRequest(TableName, GetRangeDirection.Forward, inclusiveStartPrimaryKey, 
+            var request = new GetIteratorRequest(TableName, GetRangeDirection.Forward, inclusiveStartPrimaryKey,
                                                 exclusiveEndPrimaryKey, cu);
 
             var iterator = otsClient.GetRangeIterator(request);
@@ -230,7 +230,7 @@ namespace Aliyun.OTS.Samples
             var tableRows = response.RowDataGroupByTable;
             var rows = tableRows[TableName];
 
-            foreach(var row in rows)
+            foreach (var row in rows)
             {
                 // 注意：batch操作可能部分成功部分失败，需要为每行检查状态
                 if (row.IsOK)
@@ -245,7 +245,8 @@ namespace Aliyun.OTS.Samples
                         Console.WriteLine(entry.Key + ":" + PrintColumnValue(entry.Value));
                     }
                     Console.WriteLine("-----------------");
-                } else
+                }
+                else
                 {
                     Console.WriteLine("Read row failed: " + row.ErrorMessage);
                 }

@@ -23,11 +23,11 @@
         /// <summary>
         /// 布尔类型
         /// </summary>
-        Boolean,
+        Boolean = 4,
 
         /// <summary>
         /// 浮点数类型
         /// </summary>
-        Double,
+        Double = 5,
     }
 }

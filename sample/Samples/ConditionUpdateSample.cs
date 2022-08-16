@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using Aliyun.OTS.DataModel;
 using Aliyun.OTS.Request;
-using Aliyun.OTS.Response;
 using Aliyun.OTS.DataModel.ConditionalUpdate;
 
 namespace Aliyun.OTS.Samples
 {
-    public static class ConditionUpdateSample 
+    public static class ConditionUpdateSample
     {
 
         private static string tableName = "condition_update_sample";
@@ -18,7 +17,8 @@ namespace Aliyun.OTS.Samples
             OTSClient otsClient = Config.GetClient();
 
             IList<string> tables = otsClient.ListTable(new ListTableRequest()).TableNames;
-            if (tables.Contains(tableName)) {
+            if (tables.Contains(tableName))
+            {
                 return;
             }
 
@@ -50,15 +50,16 @@ namespace Aliyun.OTS.Samples
             attribute.Add("col1", new ColumnValue("a"));
             attribute.Add("col2", new ColumnValue(true));
 
-            PutRowRequest request = new PutRowRequest(tableName, new Condition(RowExistenceExpectation.IGNORE), primaryKey, attribute);
-
             // 不带condition时put row，预期成功
             try
             {
+                PutRowRequest request = new PutRowRequest(tableName, new Condition(RowExistenceExpectation.IGNORE), primaryKey, attribute);
+
                 otsClient.PutRow(request);
 
                 Console.WriteLine("Put row succeeded.");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Put row failed. error:{0}", ex.Message);
             }
@@ -66,20 +67,30 @@ namespace Aliyun.OTS.Samples
             // 当col0列的值不等于5的时候，允许再次put row，覆盖掉原值，预期成功
             try
             {
+                // 当"col0"!=5时，新的属性列覆盖原属性列
+                AttributeColumns attribute1 = new AttributeColumns();
+                attribute1.Add("col0", new ColumnValue(5));
+                attribute1.Add("col1", new ColumnValue("a"));
+                attribute1.Add("col2", new ColumnValue(true));
+
+                PutRowRequest request = new PutRowRequest(tableName, new Condition(RowExistenceExpectation.EXPECT_EXIST), primaryKey, attribute1);
                 request.Condition.ColumnCondition = new RelationalCondition("col0",
                                                     CompareOperator.NOT_EQUAL,
                                                     new ColumnValue(5));
+
                 otsClient.PutRow(request);
 
                 Console.WriteLine("Put row succeeded.");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Put row failed. error:{0}", ex.Message);
             }
 
-            // 当col0列的值等于5的时候，允许再次put row，覆盖掉原值，预期失败
+            // 当col0列的值等于5的时候，允许再次put row，覆盖掉原值。由于此时"col0"已经被更新为5，因此预期成功
             try
             {
+                PutRowRequest request = new PutRowRequest(tableName, new Condition(RowExistenceExpectation.EXPECT_EXIST), primaryKey, attribute);
                 // 新增条件：col0列的值等于5
                 request.Condition.ColumnCondition = new RelationalCondition("col0",
                                                     CompareOperator.EQUAL,
@@ -90,7 +101,6 @@ namespace Aliyun.OTS.Samples
             }
             catch (OTSServerException)
             {
-                // 由于条件不满足，抛出OTSServerException
                 Console.WriteLine("Put row failed  because condition check failed. but expected");
             }
             catch (Exception ex)
@@ -165,7 +175,7 @@ namespace Aliyun.OTS.Samples
             }
         }
 
-        public static void ConditionDeleteRow() 
+        public static void ConditionDeleteRow()
         {
             Console.WriteLine("Start delete row...");
 
@@ -222,7 +232,7 @@ namespace Aliyun.OTS.Samples
             Console.WriteLine("Delete row succeeded.");
         }
 
-        public static void ConditionBatchWriteRow() 
+        public static void ConditionBatchWriteRow()
         {
             Console.WriteLine("Start batch write row...");
 

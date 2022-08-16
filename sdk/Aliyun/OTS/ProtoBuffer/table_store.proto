@@ -64,6 +64,7 @@ message TableOptions {
     optional BloomFilterType bloom_filter_type = 3; // 可以动态更改
     optional int32 block_size = 4; // 可以动态更改
     optional int64 deviation_cell_version_in_sec = 5; // 可以动态修改
+	optional bool allow_update = 6;
 }
 
 enum IndexUpdateMode {
@@ -122,6 +123,11 @@ message CapacityUnit {
     optional int32 write = 2;
 }
 
+message CapacityDataSize {
+    optional int64 read_size = 1;
+    optional int64 write_size = 2;
+}
+
 message ReservedThroughputDetails {
     required CapacityUnit capacity_unit = 1; // 表当前的预留吞吐量的值。
     required int64 last_increase_time = 2; // 最后一次上调预留吞吐量的时间。
@@ -134,6 +140,7 @@ message ReservedThroughput {
 
 message ConsumedCapacity {
     required CapacityUnit capacity_unit = 1;
+	optional CapacityDataSize capacity_data_size = 2;
 }
 
 message StreamSpecification {
@@ -597,6 +604,20 @@ message GetStreamRecordResponse {
     optional string next_shard_iterator = 2;
 }
 
+message SearchIndexSplitsOptions {
+	optional string index_name = 1;
+}
+
+message ComputeSplitsRequest {
+	optional string table_name = 1;
+	optional SearchIndexSplitsOptions search_index_splits_options = 2;
+}
+
+message ComputeSplitsResponse {
+	optional bytes session_id = 1;
+	optional int32 splits_size = 2;
+}
+
 /* +++++ ComputeSplitPointsBySize  +++++ */
 message ComputeSplitPointsBySizeRequest {
     required string table_name = 1;
@@ -632,6 +653,39 @@ message ComputeSplitPointsBySizeResponse {
          required sint64 repeat = 2;
      }
      repeated SplitLocation locations = 4;
+}
+
+/* SQLQuery */
+enum SQLPayloadVersion {
+    SQL_PLAIN_BUFFER = 1;
+    SQL_FLAT_BUFFERS = 2;
+}
+
+enum SQLStatementType {
+    SQL_SELECT = 1;
+    SQL_CREATE_TABLE = 2;
+    SQL_SHOW_TABLE = 3;
+    SQL_DESCRIBE_TABLE = 4;
+    SQL_DROP_TABLE = 5;
+    SQL_ALTER_TABLE = 6;
+}
+
+message SQLQueryRequest {
+    required string query = 1;
+    optional SQLPayloadVersion version = 2;
+}
+
+message TableConsumedCapacity {
+    optional string table_name = 1;
+    optional ConsumedCapacity consumed = 2;
+    optional ReservedThroughput reserved_throughput = 3;
+}
+
+message SQLQueryResponse {
+    repeated TableConsumedCapacity consumes = 1;
+    optional bytes rows = 2;
+    optional SQLPayloadVersion version = 3;
+    optional SQLStatementType type = 4;
 }
 /* -------------------------------------- */
 

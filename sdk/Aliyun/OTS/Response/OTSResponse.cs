@@ -12,7 +12,8 @@
 
 namespace Aliyun.OTS.Response
 {
-    public interface OTSResponse
+    public class OTSResponse
     {
+        public string RequestID { get; set; }
     }
 }

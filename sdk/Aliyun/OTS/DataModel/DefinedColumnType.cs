@@ -4,12 +4,12 @@
     {
         INTEGER,
 
-        DOUBLE,
+        STRING,
+
+        BINARY,
 
         BOOLEAN,
 
-        STRING,
-
-        BINARY
+        DOUBLE
     }
 }

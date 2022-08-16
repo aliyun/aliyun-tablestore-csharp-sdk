@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Threading;
 using Aliyun.OTS.DataModel;
 using Aliyun.OTS.Request;
 using Aliyun.OTS.Response;
-using System.Threading;
 
 namespace Aliyun.OTS.Samples
 {
@@ -22,7 +22,14 @@ namespace Aliyun.OTS.Samples
                     { "pk0", ColumnValueType.Integer },
                     { "pk1", ColumnValueType.String }
                 };
+                DefinedColumnSchema definedColumnSchema = new DefinedColumnSchema
+                {
+                    { "col1" , DefinedColumnType.STRING },
+                    { "col2" , DefinedColumnType.STRING},
+                    { "col3" , DefinedColumnType.INTEGER},
+                };
                 TableMeta tableMeta = new TableMeta(TableName, primaryKeySchema);
+                tableMeta.DefinedColumnSchema = definedColumnSchema;
 
                 CapacityUnit reservedThroughput = new CapacityUnit(0, 0);
                 CreateTableRequest request = new CreateTableRequest(tableMeta, reservedThroughput);
@@ -35,8 +42,13 @@ namespace Aliyun.OTS.Samples
             {
                 Thread.Sleep(60 * 1000); // 每次更新表需要至少间隔1分钟
                 Console.WriteLine("Start update table...");
-                CapacityUnit reservedThroughput = new CapacityUnit(0, 0); // 将预留CU调整为0，0
-                UpdateTableRequest request = new UpdateTableRequest(TableName, reservedThroughput);
+                TableOptions tableOptions = new TableOptions();
+                tableOptions.AllowUpdate = false;
+                tableOptions.TimeToLive = -1;
+                //CapacityUnit reservedThroughput = new CapacityUnit(0, 0); // 将预留CU调整为0，0
+                //UpdateTableRequest request = new UpdateTableRequest(TableName, reservedThroughput);
+                UpdateTableRequest request = new UpdateTableRequest(TableName);
+                request.TableOptions = tableOptions;
                 UpdateTableResponse response = otsClient.UpdateTable(request);
                 Console.WriteLine("LastIncreaseTime: " + response.ReservedThroughputDetails.LastIncreaseTime);
                 Console.WriteLine("LastDecreaseTime: " + response.ReservedThroughputDetails.LastDecreaseTime);

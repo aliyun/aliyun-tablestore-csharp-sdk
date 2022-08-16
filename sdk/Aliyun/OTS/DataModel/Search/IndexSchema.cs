@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Aliyun.OTS.DataModel.Search.Sort;
 
 namespace Aliyun.OTS.DataModel.Search
 {

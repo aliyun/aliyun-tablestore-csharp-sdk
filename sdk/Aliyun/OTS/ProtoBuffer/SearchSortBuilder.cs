@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using com.alicloud.openservices.tablestore.core.protocol;
+using Google.ProtocolBuffers;
 
 namespace Aliyun.OTS.ProtoBuffer
 {
@@ -45,6 +47,7 @@ namespace Aliyun.OTS.ProtoBuffer
         public static FieldSort BuildFieldSort(DataModel.Search.Sort.FieldSort fieldSort)
         {
             FieldSort.Builder builder = FieldSort.CreateBuilder();
+
             builder.SetFieldName(fieldSort.FieldName);
 
             builder.SetOrder(BuildSortOrder(fieldSort.Order));
@@ -55,6 +58,17 @@ namespace Aliyun.OTS.ProtoBuffer
             {
                 builder.SetNestedFilter(BuildNestedFilter(fieldSort.NestedFilter));
             }
+
+            if (fieldSort.MissingValue != null)
+            {
+                builder.MissingValue = ByteString.CopyFrom(SearchVariantType.ToVariant(fieldSort.MissingValue));
+            }
+
+            if (fieldSort.MissingField != null)
+            {
+                builder.MissingField = fieldSort.MissingField;
+            }
+
             return builder.Build();
         }
 
@@ -145,5 +159,58 @@ namespace Aliyun.OTS.ProtoBuffer
             return builder.Build();
         }
 
+        public static GroupBySort BuildGroupBySort(List<DataModel.Search.Sort.GroupBySorter> groupBySorters)
+        {
+            GroupBySort.Builder builder = GroupBySort.CreateBuilder();
+            foreach (DataModel.Search.Sort.GroupBySorter groupBySorter in groupBySorters)
+            {
+                builder.AddSorters(BuildGroupBySorter(groupBySorter));
+            }
+            return builder.Build();
+        }
+
+        private static GroupBySorter BuildGroupBySorter(DataModel.Search.Sort.GroupBySorter groupBySorter)
+        {
+            GroupBySorter.Builder builder = GroupBySorter.CreateBuilder();
+
+            if (groupBySorter.GroupKeySort != null)
+            {
+                builder.SetGroupKeySort(BuildGroupKeySort(groupBySorter.GroupKeySort));
+            }
+
+            if (groupBySorter.RowCountSort != null)
+            {
+                builder.SetRowCountSort(BuildRowCountSort(groupBySorter.RowCountSort));
+            }
+
+            if (groupBySorter.SubAggSort != null)
+            {
+                builder.SetSubAggSort(BuildSubAggSort(groupBySorter.SubAggSort));
+            }
+
+            return builder.Build();
+        }
+
+        private static GroupKeySort BuildGroupKeySort(DataModel.Search.Sort.GroupKeySort groupKeySort)
+        {
+            GroupKeySort.Builder builder = GroupKeySort.CreateBuilder();
+            builder.SetOrder(BuildSortOrder(groupKeySort.Order));
+            return builder.Build();
+        }
+
+        private static RowCountSort BuildRowCountSort(DataModel.Search.Sort.RowCountSort rowCountSort)
+        {
+            RowCountSort.Builder builder = RowCountSort.CreateBuilder();
+            builder.SetOrder(BuildSortOrder(rowCountSort.Order));
+            return builder.Build();
+        }
+
+        private static SubAggSort BuildSubAggSort(DataModel.Search.Sort.SubAggSort subAggSort)
+        {
+            SubAggSort.Builder builder = SubAggSort.CreateBuilder();
+            builder.SetOrder(BuildSortOrder(subAggSort.Order));
+            builder.SetSubAggName(subAggSort.SubAggName);
+            return builder.Build();
+        }
     }
 }

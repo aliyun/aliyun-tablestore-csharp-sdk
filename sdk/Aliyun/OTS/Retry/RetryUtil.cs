@@ -44,7 +44,9 @@ namespace Aliyun.OTS.Retry
                 apiName == "/DescribeTable" ||
                 apiName == "/GetRow" ||
                 apiName == "/BatchGetRow" ||
-                apiName == "/GetRange")
+                apiName == "/GetRange" ||
+                apiName == "/SQLQuery" ||
+                apiName == "/Search" )
             {
                 return true;
             }

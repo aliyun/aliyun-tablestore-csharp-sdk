@@ -29,11 +29,15 @@ namespace Aliyun.OTS.DataModel.Search.Query
         /// </summary>
         public bool IncludeUpper { get; set; }
 
+        public RangeQuery()
+        {
+        }
+
         public RangeQuery(string fieldName, ColumnValue from, ColumnValue to)
         {
-            this.FieldName = fieldName;
-            this.From = from;
-            this.To = to;
+            FieldName = fieldName;
+            From = from;
+            To = to;
         }
 
         public QueryType GetQueryType()

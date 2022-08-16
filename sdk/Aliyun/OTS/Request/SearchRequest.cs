@@ -6,13 +6,6 @@ namespace Aliyun.OTS.Request
 {
     public class SearchRequest : OTSRequest
     {
-        public SearchRequest(string tableName, string indexName, SearchQuery searchQuery)
-        {
-            this.TableName = tableName;
-            this.IndexName = indexName;
-            this.SearchQuery = searchQuery;
-        }
-
         /// <summary>
         ///  TableStore的表名
         /// </summary>
@@ -37,5 +30,18 @@ namespace Aliyun.OTS.Request
         /// </summary>
         public List<PrimaryKey> RoutingValues { get; set; }
 
+        /// <summary>
+        /// 超时字段
+        /// 请求级别的超时字段，单位ms。默认为-1。
+        /// </summary>
+        public int TimeoutInMillisecond { get; set; }
+
+        public SearchRequest(string tableName, string indexName, SearchQuery searchQuery)
+        {
+            TableName = tableName;
+            IndexName = indexName;
+            SearchQuery = searchQuery;
+            TimeoutInMillisecond = -1;
+        }
     }
 }

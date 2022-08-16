@@ -10,7 +10,7 @@
 
         public FieldValueFactor(string fieldName)
         {
-            this.FieldName = fieldName;
+            FieldName = fieldName;
         }
     }
-} 
+}

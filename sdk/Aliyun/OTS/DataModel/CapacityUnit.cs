@@ -24,12 +24,12 @@ namespace Aliyun.OTS.DataModel
         /// 读能力单元
         /// </summary>
         public int? Read { get; set; }
-        
+
         /// <summary>
         /// 写能力单元
         /// </summary>
         public int? Write { get; set; }
-        
+
         /// <summary>
         /// CapacityUnit的构造函数。
         /// <para>
@@ -41,8 +41,15 @@ namespace Aliyun.OTS.DataModel
         /// <param name="write">写能力单元</param>
         public CapacityUnit(int? read = null, int? write = null)
         {
-            Read = read;
-            Write = write;
+            if (read.HasValue)
+            {
+                Read = read;
+            }
+
+            if (write.HasValue)
+            {
+                Write = write;
+            }
         }
     }
 }

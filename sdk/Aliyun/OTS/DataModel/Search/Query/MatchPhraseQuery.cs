@@ -10,11 +10,13 @@ namespace Aliyun.OTS.DataModel.Search.Query
     {
         public string FieldName { get; set; }
         public string Text { get; set; }
+        public float Weight { get; set; }
 
         public MatchPhraseQuery(string fieldName, string text)
         {
-            this.FieldName = fieldName;
-            this.Text = text;
+            FieldName = fieldName;
+            Text = text;
+            Weight = 1.0f;
         }
 
         public QueryType GetQueryType()

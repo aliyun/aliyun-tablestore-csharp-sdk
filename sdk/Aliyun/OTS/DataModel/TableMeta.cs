@@ -45,5 +45,12 @@ namespace Aliyun.OTS.DataModel
             TableName = tableName;
             DefinedColumnSchema = definedColumnSchema;
         }
+
+        public TableMeta(string tableName, PrimaryKeySchema primaryKeySchema, DefinedColumnSchema definedColumnSchema)
+        {
+            TableName = tableName;
+            PrimaryKeySchema = primaryKeySchema;
+            DefinedColumnSchema = definedColumnSchema;
+        }
     }
 }

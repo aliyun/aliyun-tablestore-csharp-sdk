@@ -21,7 +21,12 @@ namespace Aliyun.OTS.DataModel.Search.Query
         /// 最小匹配个数
         /// </summary>
         public int? MinimumShouldMatch { get; set; }
-        
+
+        /// <summary>
+        /// 查询权重
+        /// </summary>
+        public float Weight { get; set; }
+
         /// <summary>
         /// 操作符
         /// </summary>
@@ -29,8 +34,9 @@ namespace Aliyun.OTS.DataModel.Search.Query
 
         public MatchQuery(string fieldName, string text)
         {
-            this.FieldName = fieldName;
-            this.Text = text;
+            FieldName = fieldName;
+            Text = text;
+            Weight = 1.0f;
         }
 
         public QueryType GetQueryType()

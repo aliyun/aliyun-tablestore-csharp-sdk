@@ -20,6 +20,7 @@
         QueryType_GeoBoundingBoxQuery,
         QueryType_GeoDistanceQuery,
         QueryType_GeoPolygonQuery,
-        QueryType_TermsQuery
+        QueryType_TermsQuery,
+        QueryType_ExistsQuery
     }
 }

@@ -14,8 +14,8 @@ namespace Aliyun.OTS.DataModel.Search.Query
 
         public FunctionScoreQuery(IQuery query, FieldValueFactor fieldValueFactor)
         {
-            this.Query = query;
-            this.FieldValueFactor = fieldValueFactor;
+            Query = query;
+            FieldValueFactor = fieldValueFactor;
         }
 
         public QueryType GetQueryType()

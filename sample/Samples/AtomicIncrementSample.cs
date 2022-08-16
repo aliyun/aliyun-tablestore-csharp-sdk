@@ -107,7 +107,7 @@ namespace Aliyun.OTS.Samples.Samples
             };
             RowUpdateChange rowUpdateChange = new RowUpdateChange(TableName, primaryKey);
             rowUpdateChange.ReturnType = ReturnType.RT_AFTER_MODIFY;
-            rowUpdateChange.ReturnColumnNames = new List<string>() { IncrementCol};
+            rowUpdateChange.ReturnColumnNames = new List<string>() { IncrementCol };
             //设置一个原子自增列，这一列从0开始自增，每次增增加1。
             rowUpdateChange.Increment(new Column(IncrementCol, new ColumnValue(incrementValue)));
 

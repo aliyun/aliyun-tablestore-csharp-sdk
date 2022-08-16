@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using Aliyun.OTS.DataModel;
 using Aliyun.OTS.Request;
 using Aliyun.OTS.Response;

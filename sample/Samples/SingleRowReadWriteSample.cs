@@ -19,7 +19,8 @@ namespace Aliyun.OTS.Samples
             OTSClient otsClient = Config.GetClient();
 
             IList<string> tables = otsClient.ListTable(new ListTableRequest()).TableNames;
-            if (tables.Contains(TableName)) {
+            if (tables.Contains(TableName))
+            {
                 return;
             }
 
@@ -136,7 +137,7 @@ namespace Aliyun.OTS.Samples
 
         private static string PrintColumnValue(ColumnValue value)
         {
-            switch(value.Type)
+            switch (value.Type)
             {
                 case ColumnValueType.String: return value.StringValue;
                 case ColumnValueType.Integer: return value.IntegerValue.ToString();
@@ -167,7 +168,7 @@ namespace Aliyun.OTS.Samples
             AttributeColumns attributesRead = response.Attribute;
 
             Console.WriteLine("Primary key read: ");
-            foreach(KeyValuePair<string, ColumnValue> entry in primaryKeyRead)
+            foreach (KeyValuePair<string, ColumnValue> entry in primaryKeyRead)
             {
                 Console.WriteLine(entry.Key + ":" + PrintColumnValue(entry.Value));
             }
@@ -180,7 +181,7 @@ namespace Aliyun.OTS.Samples
 
             Console.WriteLine("Get row succeed.");
         }
-         
+
         public static void GetRowWithFilter()
         {
             Console.WriteLine("Start get row with filter ...");
@@ -214,7 +215,7 @@ namespace Aliyun.OTS.Samples
             rowQueryCriteria.AddColumnsToGet("col0");
             rowQueryCriteria.AddColumnsToGet("col1");
 
-            GetRowRequest request = new GetRowRequest(rowQueryCriteria); 
+            GetRowRequest request = new GetRowRequest(rowQueryCriteria);
 
             // 查询
             GetRowResponse response = otsClient.GetRow(request);

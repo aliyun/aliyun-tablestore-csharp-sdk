@@ -6,5 +6,6 @@ namespace Aliyun.OTS.DataModel.Search
     {
         public List<string> Columns { get; set; }
         public bool ReturnAll { get; set; }
+        public bool ReturnAllFromIndex { get; set; }
     }
 }

@@ -11,11 +11,13 @@ namespace Aliyun.OTS.DataModel.Search.Query
     {
         public string FieldName { get; set; }
         public string Value { get; set; }
+        public float Weight { get; set; }
 
         public WildcardQuery(string fieldName, string value)
         {
-            this.FieldName = fieldName;
-            this.Value = value;
+            FieldName = fieldName;
+            Value = value;
+            Weight = 1.0f;
         }
 
         public QueryType GetQueryType()

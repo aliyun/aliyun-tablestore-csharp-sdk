@@ -14,7 +14,6 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             return size;
         }
 
-
         // Bytes Data: value_type + type
         public static int ComputePrimaryKeyValueWithoutLengthPrefix(ColumnValue value)
         {
@@ -22,6 +21,11 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             if (value.IsInfMin() || value.IsInfMax() || value.IsPlaceHolderForAutoIncr())
             {
                 return size; // inf value and AutoIncr only has a type.
+            }
+
+            if (!value.Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
             }
 
             switch (value.Type)
@@ -60,6 +64,11 @@ namespace com.alicloud.openservices.tablestore.core.protocol
         // Bytes Data: value_type + type
         public static int ComputeColumnValueWithoutLengthPrefix(ColumnValue value)
         {
+            if (!value.Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
             int size = 1; // length + type + value
 
             if (value.IsInfMin() || value.IsInfMax() || value.IsPlaceHolderForAutoIncr())
@@ -280,6 +289,11 @@ namespace com.alicloud.openservices.tablestore.core.protocol
 
         public static void WritePrimaryKeyValue(ColumnValue value, PlainBufferOutputStream output)
         {
+            if (!value.Type.HasValue)
+            {
+                throw new ArgumentNullException("The type of the column is not set");
+            }
+
             if (value.IsInfMin())
             {
                 output.WriteRawLittleEndian32(1);

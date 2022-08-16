@@ -10,11 +10,13 @@ namespace Aliyun.OTS.DataModel.Search.Query
     {
         public string FieldName { get; set; }
         public ColumnValue Term { get; set; }
+        public float Weight { get; set; }
 
         public TermQuery(string fieldName, ColumnValue term)
         {
-            this.FieldName = fieldName;
-            this.Term = term;
+            FieldName = fieldName;
+            Term = term;
+            Weight = 1.0f;
         }
 
         public QueryType GetQueryType()

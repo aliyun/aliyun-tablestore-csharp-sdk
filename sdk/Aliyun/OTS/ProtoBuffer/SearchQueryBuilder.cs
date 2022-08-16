@@ -41,6 +41,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol
                     return QueryType.GEO_DISTANCE_QUERY;
                 case Aliyun.OTS.DataModel.Search.Query.QueryType.QueryType_GeoPolygonQuery:
                     return QueryType.GEO_POLYGON_QUERY;
+                case Aliyun.OTS.DataModel.Search.Query.QueryType.QueryType_ExistsQuery:
+                    return QueryType.EXISTS_QUERY;
                 default:
                     throw new ArgumentException("unknown queryType: " + type.ToString());
             }
@@ -66,7 +68,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol
 
             builder.SetFieldName(query.FieldName);
             builder.SetText(query.Text);
-            if (query.MinimumShouldMatch != null)
+            builder.SetWeight(query.Weight);
+            if (query.MinimumShouldMatch.HasValue)
             {
                 builder.SetMinimumShouldMatch(query.MinimumShouldMatch.Value);
             }
@@ -91,6 +94,7 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             MatchPhraseQuery.Builder builder = MatchPhraseQuery.CreateBuilder();
             builder.SetFieldName(query.FieldName);
             builder.SetText(query.Text);
+            builder.SetWeight(query.Weight);
             return builder.Build();
         }
 
@@ -98,7 +102,8 @@ namespace com.alicloud.openservices.tablestore.core.protocol
         {
             TermQuery.Builder builder = TermQuery.CreateBuilder();
             builder.SetFieldName(query.FieldName);
-            builder.SetTerm(ByteString.CopyFrom(SearchVariantType.toVariant(query.Term)));
+            builder.SetTerm(ByteString.CopyFrom(SearchVariantType.ToVariant(query.Term)));
+            builder.SetWeight(query.Weight);
             return builder.Build();
         }
 
@@ -106,13 +111,14 @@ namespace com.alicloud.openservices.tablestore.core.protocol
         {
             TermsQuery.Builder builder = TermsQuery.CreateBuilder();
             builder.SetFieldName(query.FieldName);
+            builder.SetWeight(query.Weight);
             if (query.Terms == null)
             {
                 throw new ArgumentException("terms is null");
             }
             foreach (var item in query.Terms)
             {
-                builder.AddTerms(ByteString.CopyFrom(SearchVariantType.toVariant(item)));
+                builder.AddTerms(ByteString.CopyFrom(SearchVariantType.ToVariant(item)));
             }
             return builder.Build();
         }
@@ -123,12 +129,12 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             builder.SetFieldName(query.FieldName);
             if (query.From != null)
             {
-                builder.SetRangeFrom(ByteString.CopyFrom(SearchVariantType.toVariant(query.From)));
+                builder.SetRangeFrom(ByteString.CopyFrom(SearchVariantType.ToVariant(query.From)));
                 builder.SetIncludeLower(query.IncludeLower);
             }
             if (query.To != null)
             {
-                builder.SetRangeTo(ByteString.CopyFrom(SearchVariantType.toVariant(query.To)));
+                builder.SetRangeTo(ByteString.CopyFrom(SearchVariantType.ToVariant(query.To)));
                 builder.SetIncludeUpper(query.IncludeUpper);
             }
             return builder.Build();
@@ -139,6 +145,7 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             PrefixQuery.Builder builder = PrefixQuery.CreateBuilder();
             builder.SetFieldName(query.FieldName);
             builder.SetPrefix(query.Prefix);
+            builder.SetWeight(query.Weight);
             return builder.Build();
         }
 
@@ -147,13 +154,14 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             WildcardQuery.Builder builder = WildcardQuery.CreateBuilder();
             builder.SetFieldName(query.FieldName);
             builder.SetValue(query.Value);
+            builder.SetWeight(query.Weight);
             return builder.Build();
         }
 
         public static BoolQuery BuildBoolQuery(Aliyun.OTS.DataModel.Search.Query.BoolQuery query)
         {
             BoolQuery.Builder builder = BoolQuery.CreateBuilder();
-            if (query.MinimumShouldMatch != null)
+            if (query.MinimumShouldMatch.HasValue)
             {
                 builder.SetMinimumShouldMatch(query.MinimumShouldMatch.Value);
             }
@@ -236,6 +244,7 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             builder.SetQuery(SearchQueryBuilder.BuildQuery(query.Query));
             builder.SetPath(query.Path);
             builder.SetScoreMode(BuildScoreMode(query.ScoreMode));
+            builder.SetWeight(query.Weight);
             return builder.Build();
         }
 
@@ -262,6 +271,13 @@ namespace com.alicloud.openservices.tablestore.core.protocol
             GeoPolygonQuery.Builder builder = GeoPolygonQuery.CreateBuilder();
             builder.SetFieldName(query.FieldName);
             builder.AddRangePoints(query.Points);
+            return builder.Build();
+        }
+
+        public static ExistsQuery BuildExistQuery(Aliyun.OTS.DataModel.Search.Query.ExistsQuery query)
+        {
+            ExistsQuery.Builder builder = ExistsQuery.CreateBuilder();
+            builder.SetFieldName(query.FieldName);
             return builder.Build();
         }
     }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Trade secret of Alibaba Group R&D.
  *  Copyright (c) 2015 Alibaba Group R&D. 
  *
@@ -16,9 +16,10 @@ using Google.ProtocolBuffers;
 using Aliyun.OTS.DataModel.Filter;
 using Aliyun.OTS.DataModel.ConditionalUpdate;
 using com.alicloud.openservices.tablestore.core.protocol;
-using Aliyun.OTS.ProtoBuffer;
+using Aliyun.OTS.DataModel.Search;
+using Aliyun.OTS.Handler;
 
-namespace Aliyun.OTS.Handler
+namespace Aliyun.OTS.ProtoBuffer
 {
     public class ProtocolBufferEncoder : PipelineHandler
     {
@@ -29,29 +30,34 @@ namespace Aliyun.OTS.Handler
         public ProtocolBufferEncoder(PipelineHandler innerHandler) : base(innerHandler)
         {
             EncoderMap = new Dictionary<string, RequestEncoder> {
-                { "/CreateTable",          EncodeCreateTable },
-                { "/DeleteTable",          EncodeDeleteTable },
-                { "/UpdateTable",          EncodeUpdateTable },
-                { "/DescribeTable",        EncodeDescribeTable },
-                { "/ListTable",            EncodeListTable },
+                { "/CreateTable",            EncodeCreateTable },
+                { "/DeleteTable",            EncodeDeleteTable },
+                { "/UpdateTable",            EncodeUpdateTable },
+                { "/DescribeTable",          EncodeDescribeTable },
+                { "/ListTable",              EncodeListTable },
 
-                { "/PutRow",               EncodePutRow },
-                { "/GetRow",               EncodeGetRow },
-                { "/UpdateRow",            EncodeUpdateRow },
-                { "/DeleteRow",            EncodeDeleteRow },
+                { "/PutRow",                 EncodePutRow },
+                { "/GetRow",                 EncodeGetRow },
+                { "/UpdateRow",              EncodeUpdateRow },
+                { "/DeleteRow",              EncodeDeleteRow },
 
-                { "/BatchWriteRow",        EncodeBatchWriteRow },
-                { "/BatchGetRow",          EncodeBatchGetRow },
-                { "/GetRange",             EncodeGetRange },
+                { "/BatchWriteRow",          EncodeBatchWriteRow },
+                { "/BatchGetRow",            EncodeBatchGetRow },
+                { "/GetRange",               EncodeGetRange },
 
-                { "/ListSearchIndex",             EncodeListSearchIndex },
-                { "/CreateSearchIndex",             EncodeCreateSearchIndex },
-                { "/DescribeSearchIndex",             EncodeDescribeSearchIndex },
-                { "/DeleteSearchIndex",             EncodeDeleteSearchIndex },
-                { "/Search",             EncodeSearch },
+                { "/ListSearchIndex",        EncodeListSearchIndex },
+                { "/CreateSearchIndex",      EncodeCreateSearchIndex },
+                { "/ComputeSplits",          EncodeComputeSplits},
+                { "/DescribeSearchIndex",    EncodeDescribeSearchIndex },
+                { "/DeleteSearchIndex",      EncodeDeleteSearchIndex },
+                { "/ParallelScan",           EncodeParallelScan },
+                { "/UpdateSearchIndex",      EncodeUpdateSearchIndex },
+                { "/Search",                 EncodeSearch },
 
-                 { "/CreateIndex",             EncodeCreateGlobalIndex },
-                  { "/DropIndex",             EncodeDeleteGlobalIndex },
+                { "/CreateIndex",            EncodeCreateGlobalIndex },
+                { "/DropIndex",              EncodeDeleteGlobalIndex },
+
+                { "/SQLQuery",               EncodeSQLQuery },
             };
         }
 
@@ -317,9 +323,9 @@ namespace Aliyun.OTS.Handler
             }
 
             // optional int32 limit = 6;
-            if (queryCriteria.Limit != null && queryCriteria.Limit > 0)
+            if (queryCriteria.Limit.HasValue && queryCriteria.Limit > 0)
             {
-                builder.SetLimit((int)queryCriteria.Limit);
+                builder.SetLimit(queryCriteria.Limit.Value);
             }
 
             // required bytes inclusive_start_primary_key = 7;
@@ -375,7 +381,37 @@ namespace Aliyun.OTS.Handler
             var builder = PB.CreateSearchIndexRequest.CreateBuilder();
             builder.SetTableName(requestReal.TableName);
             builder.SetIndexName(requestReal.IndexName);
-            builder.SetSchema(EncodeIndexSchema(requestReal.IndexSchame));
+
+            if (requestReal.IndexSchame != null)
+            {
+                builder.SetSchema(EncodeIndexSchema(requestReal.IndexSchame));
+            }
+
+            if (requestReal.SourceIndexName != null)
+            {
+                builder.SetSourceIndexName(requestReal.SourceIndexName);
+            }
+
+            if (requestReal.TimeToLive.HasValue)
+            {
+                builder.SetTimeToLive(requestReal.TimeToLive.Value);
+            }
+
+            return builder.Build();
+        }
+
+        private IMessage EncodeComputeSplits(Request.OTSRequest request)
+        {
+            var requestReal = (Request.ComputeSplitsRequest)request;
+            var builder = PB.ComputeSplitsRequest.CreateBuilder();
+
+            builder.SetTableName(requestReal.TableName);
+
+            if (requestReal.SplitOptions != null)
+            {
+                builder.SetSearchIndexSplitsOptions(EncodeSearchIndexOptions(requestReal.SplitOptions));
+            }
+
             return builder.Build();
         }
 
@@ -386,11 +422,17 @@ namespace Aliyun.OTS.Handler
 
             builder.SetTableName(requestReal.TableName);
             builder.SetIndexName(requestReal.IndexName);
-            builder.SetSearchQuery(EncodeSearchQuery(requestReal.SearchQuery).ToByteString());
+
+            if (requestReal.SearchQuery != null)
+            {
+                builder.SetSearchQuery(EncodeSearchQuery(requestReal.SearchQuery).ToByteString());
+            }
+
             if (requestReal.ColumnsToGet != null)
             {
                 builder.SetColumnsToGet(EncodeColumsToGet(requestReal.ColumnsToGet));
             }
+
             if (requestReal.RoutingValues != null)
             {
                 List<ByteString> routingValues = new List<ByteString>();
@@ -408,6 +450,11 @@ namespace Aliyun.OTS.Handler
                 builder.AddRangeRoutingValues(routingValues);
             }
 
+            if (requestReal.TimeoutInMillisecond > 0)
+            {
+                builder.SetTimeoutMs(requestReal.TimeoutInMillisecond);
+            }
+
             return builder.Build();
         }
 
@@ -417,6 +464,10 @@ namespace Aliyun.OTS.Handler
             if (columnsToGet.ReturnAll)
             {
                 builder.SetReturnType(ColumnReturnType.RETURN_ALL);
+            }
+            else if (columnsToGet.ReturnAllFromIndex)
+            {
+                builder.SetReturnType(ColumnReturnType.RETURN_ALL_FROM_INDEX);
             }
             else if (columnsToGet.Columns.Count > 0)
             {
@@ -437,6 +488,7 @@ namespace Aliyun.OTS.Handler
             {
                 builder.SetLimit(searchQuery.Limit.Value);
             }
+
             if (searchQuery.Offset.HasValue)
             {
                 builder.SetOffset(searchQuery.Offset.Value);
@@ -458,9 +510,20 @@ namespace Aliyun.OTS.Handler
             }
 
             builder.SetGetTotalCount(searchQuery.GetTotalCount);
+
             if (searchQuery.Token != null)
             {
                 builder.SetToken(ByteString.CopyFrom(searchQuery.Token));
+            }
+
+            if (searchQuery.AggregationList != null && searchQuery.AggregationList.Count != 0)
+            {
+                builder.SetAggs(SearchAggregationBuilder.BuildAggregations(searchQuery.AggregationList));
+            }
+
+            if (searchQuery.GroupByList != null && searchQuery.GroupByList.Count != 0)
+            {
+                builder.SetGroupBys(SearchGroupByBuilder.BuildGroupBys(searchQuery.GroupByList));
             }
 
             return builder.Build();
@@ -507,6 +570,7 @@ namespace Aliyun.OTS.Handler
             var builder = PB.FieldSchema.CreateBuilder();
             builder.SetFieldName(fieldSchema.FieldName);
             builder.SetFieldType(EncodingFieldType(fieldSchema.FieldType));
+
             if (fieldSchema.FieldType != DataModel.Search.FieldType.NESTED)
             {
                 builder.Index = fieldSchema.index;
@@ -515,13 +579,25 @@ namespace Aliyun.OTS.Handler
                 builder.IsArray = fieldSchema.IsArray;
             }
 
-            if (fieldSchema.IndexOptions != DataModel.Search.IndexOptions.NULL)
+            builder.IndexOptions = EncodingIndexOptions(fieldSchema.IndexOptions);
+
+            if (fieldSchema.Analyzer.HasValue)
             {
-                builder.IndexOptions = EncodingIndexOptions(fieldSchema.IndexOptions);
+                builder.Analyzer = EncodingAnalyzer(fieldSchema.Analyzer.Value);
             }
-            if (fieldSchema.Analyzer != DataModel.Search.Analyzer.NotAnalyzed)
+
+            if (fieldSchema.Analyzer.HasValue && fieldSchema.AnalyzerParameter != null)
             {
-                builder.Analyzer = EncodingAnalyzer(fieldSchema.Analyzer);
+                switch (fieldSchema.Analyzer)
+                {
+                    case Analyzer.SingleWord:
+                    case Analyzer.Split:
+                    case Analyzer.Fuzzy:
+                        builder.SetAnalyzerParameter(fieldSchema.AnalyzerParameter.Serialize());
+                        break;
+                    default:
+                        break;
+                }
             }
 
             if (fieldSchema.SubFieldSchemas != null)
@@ -532,20 +608,47 @@ namespace Aliyun.OTS.Handler
                 }
             }
 
+            if (fieldSchema.IsVirtualField.HasValue)
+            {
+                builder.SetIsVirtualField(fieldSchema.IsVirtualField.Value);
+            }
+
+            if (fieldSchema.SourceFieldNames != null)
+            {
+                foreach (string sourceFieldName in fieldSchema.SourceFieldNames)
+                {
+                    builder.AddSourceFieldNames(sourceFieldName);
+                }
+            }
+
+            if (fieldSchema.DateFormats != null)
+            {
+                foreach (string dataFormat in fieldSchema.DateFormats)
+                {
+                    builder.AddDateFormates(dataFormat);
+                }
+            }
+
             return builder.Build();
         }
 
-        private string EncodingAnalyzer(DataModel.Search.Analyzer analyzer)
+        private string EncodingAnalyzer(Analyzer analyzer)
         {
             switch (analyzer)
             {
-                case DataModel.Search.Analyzer.MaxWord:
+                case Analyzer.MaxWord:
                     return "max_word";
-                case DataModel.Search.Analyzer.SingleWord:
+                case Analyzer.SingleWord:
                     return "single_word";
+                case Analyzer.Fuzzy:
+                    return "fuzzy";
+                case Analyzer.MinWord:
+                    return "min_word";
+                case Analyzer.Split:
+                    return "split";
                 default:
                     throw new OTSClientException(
-                        String.Format("Invalid Analyzer {0}", analyzer)
+                        String.Format("Invalid Analyzer {0}", analyzer.ToString())
                     );
             }
         }
@@ -564,7 +667,7 @@ namespace Aliyun.OTS.Handler
                     return PB.IndexOptions.POSITIONS;
                 default:
                     throw new OTSClientException(
-                        String.Format("Invalid IndexOptions {0}", indexOptions)
+                        String.Format("Invalid IndexOptions {0}", indexOptions.ToString())
                     );
             }
         }
@@ -587,11 +690,115 @@ namespace Aliyun.OTS.Handler
                     return PB.FieldType.NESTED;
                 case DataModel.Search.FieldType.TEXT:
                     return PB.FieldType.TEXT;
+                case DataModel.Search.FieldType.DATE:
+                    return PB.FieldType.DATE;
                 default:
                     throw new OTSClientException(
-                        String.Format("Invalid FieldType {0}", fieldType)
+                        String.Format("Invalid FieldType {0}", fieldType.ToString())
                     );
             }
+        }
+
+        private PB.Query EncodingIQuery(DataModel.Search.Query.IQuery query)
+        {
+            var builder = PB.Query.CreateBuilder();
+
+            if (query is DataModel.Search.Query.IQuery)
+            {
+                builder.SetQuery_(query.Serialize());
+            }
+
+            switch (query.GetQueryType())
+            {
+                case DataModel.Search.Query.QueryType.QueryType_MatchQuery:
+                    builder.SetType(PB.QueryType.MATCH_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_MatchPhraseQuery:
+                    builder.SetType(PB.QueryType.MATCH_PHRASE_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_TermQuery:
+                    builder.SetType(PB.QueryType.TERM_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_RangeQuery:
+                    builder.SetType(PB.QueryType.RANGE_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_PrefixQuery:
+                    builder.SetType(PB.QueryType.PREFIX_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_BoolQuery:
+                    builder.SetType(PB.QueryType.BOOL_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_ConstScoreQuery:
+                    builder.SetType(PB.QueryType.CONST_SCORE_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_FunctionScoreQuery:
+                    builder.SetType(PB.QueryType.FUNCTION_SCORE_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_NestedQuery:
+                    builder.SetType(PB.QueryType.NESTED_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_WildcardQuery:
+                    builder.SetType(PB.QueryType.WILDCARD_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_MatchAllQuery:
+                    builder.SetType(PB.QueryType.MATCH_ALL_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_GeoBoundingBoxQuery:
+                    builder.SetType(PB.QueryType.GEO_BOUNDING_BOX_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_GeoDistanceQuery:
+                    builder.SetType(PB.QueryType.GEO_DISTANCE_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_GeoPolygonQuery:
+                    builder.SetType(PB.QueryType.GEO_POLYGON_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_TermsQuery:
+                    builder.SetType(PB.QueryType.TERMS_QUERY);
+                    return builder.Build();
+                case DataModel.Search.Query.QueryType.QueryType_ExistsQuery:
+                    builder.SetType(PB.QueryType.EXISTS_QUERY);
+                    return builder.Build();
+                default:
+                    throw new OTSClientException(String.Format(
+                           "Invalid Query Type: {0}", query.GetQueryType().ToString()
+                       ));
+            }
+        }
+
+        private PB.ScanQuery EncodingScanQuery(DataModel.Search.ScanQuery scanQuery)
+        {
+            var builder = PB.ScanQuery.CreateBuilder();
+            if (scanQuery.Query != null)
+            {
+                builder.Query = EncodingIQuery(scanQuery.Query);
+            }
+            if (scanQuery.Limit.HasValue)
+            {
+                builder.SetLimit(scanQuery.Limit.Value);
+            }
+
+            if (scanQuery.MaxParallel.HasValue)
+            {
+                builder.SetMaxParalle(scanQuery.MaxParallel.Value);
+            }
+
+            if (scanQuery.CurrentParallelId.HasValue)
+            {
+                builder.SetCurrentParallelId(scanQuery.CurrentParallelId.Value);
+            }
+
+
+            if (scanQuery.AliveTime.HasValue)
+            {
+                builder.SetAliveTime(scanQuery.AliveTime.Value);
+            }
+
+            if (scanQuery.Token != null)
+            {
+                builder.SetToken(ByteString.CopyFrom(scanQuery.Token));
+            }
+
+            return builder.Build();
         }
 
         private PB.IndexSetting EncodeIndexSetting(DataModel.Search.IndexSetting indexSetting)
@@ -630,6 +837,49 @@ namespace Aliyun.OTS.Handler
             return builder.Build();
         }
 
+        private IMessage EncodeParallelScan(Request.OTSRequest request)
+        {
+            var requestReal = (Request.ParallelScanRequest)request;
+            var builder = PB.ParallelScanRequest.CreateBuilder();
+
+            builder.SetTableName(requestReal.TableName);
+            builder.SetIndexName(requestReal.IndexName);
+
+            if (requestReal.ScanQuery != null)
+            {
+                builder.SetScanQuery(EncodingScanQuery(requestReal.ScanQuery));
+            }
+
+            if (requestReal.ColumnToGet != null)
+            {
+                builder.SetColumnsToGet(EncodeColumsToGet(requestReal.ColumnToGet));
+            }
+
+            if (requestReal.SessionId != null)
+            {
+                builder.SetSessionId(ByteString.CopyFrom(requestReal.SessionId));
+            }
+
+            builder.SetTimeoutMs(requestReal.TimeoutInMillisecond);
+
+            return builder.Build();
+        }
+
+        private IMessage EncodeUpdateSearchIndex(Request.OTSRequest request)
+        {
+            var requestReal = (Request.UpdateSearchIndexRequest)request;
+            var builder = PB.UpdateSearchIndexRequest.CreateBuilder();
+            builder.SetTableName(requestReal.TableName);
+            builder.SetIndexName(requestReal.Indexname);
+
+            if (requestReal.TimeToLive.HasValue)
+            {
+                builder.SetTimeToLive(requestReal.TimeToLive.Value);
+            }
+
+            return builder.Build();
+        }
+
         private IMessage EncodeCreateGlobalIndex(Request.OTSRequest request)
         {
             var requestReal = (Request.CreateGlobalIndexRequest)request;
@@ -647,6 +897,24 @@ namespace Aliyun.OTS.Handler
             var builder = PB.DropIndexRequest.CreateBuilder();
             builder.SetMainTableName(requestReal.MainTableName);
             builder.SetIndexName(requestReal.IndexName);
+
+            return builder.Build();
+        }
+
+        public IMessage EncodeSQLQuery(Request.OTSRequest request)
+        {
+            var requsetReal = (Request.SQLQueryRequest)request;
+            var builder = PB.SQLQueryRequest.CreateBuilder();
+
+            if (requsetReal.Query != null)
+            {
+                builder.SetQuery(requsetReal.Query);
+            }
+
+            if (requsetReal.SQLPayloadVersion.HasValue)
+            {
+                builder.SetVersion(ToPBSQLPayloadVersion(requsetReal.SQLPayloadVersion.Value));
+            }
 
             return builder.Build();
         }
@@ -693,6 +961,10 @@ namespace Aliyun.OTS.Handler
                 builder.SetBloomFilterType(EncodeBloomFilterType(tableOptions.BloomFilterType.Value));
             }
 
+            if (tableOptions.AllowUpdate.HasValue)
+            {
+                builder.SetAllowUpdate(tableOptions.AllowUpdate.Value);
+            }
 
             return builder.Build();
         }
@@ -710,7 +982,7 @@ namespace Aliyun.OTS.Handler
                     return PB.BloomFilterType.ROW;
                 default:
                     throw new OTSClientException(
-                        String.Format("Invalid bloomFilterType {0}", bloomFilterType)
+                        String.Format("Invalid bloomFilterType {0}", bloomFilterType.ToString())
                     );
             }
         }
@@ -764,7 +1036,7 @@ namespace Aliyun.OTS.Handler
                     return PB.IndexType.IT_GLOBAL_INDEX;
                 default:
                     throw new OTSClientException(String.Format(
-                       "Invalid indexType {0}", indexType
+                       "Invalid indexType {0}", indexType.ToString()
                    ));
             }
         }
@@ -777,7 +1049,7 @@ namespace Aliyun.OTS.Handler
                     return PB.IndexUpdateMode.IUM_ASYNC_INDEX;
                 default:
                     throw new OTSClientException(String.Format(
-                       "Invalid indexUpdateModel {0}", indexUpdateModel
+                       "Invalid indexUpdateModel {0}", indexUpdateModel.ToString()
                    ));
             }
         }
@@ -822,13 +1094,13 @@ namespace Aliyun.OTS.Handler
                 case DataModel.DefinedColumnType.STRING:
                     return DefinedColumnType.DCT_STRING;
                 case DataModel.DefinedColumnType.DOUBLE:
-                    return DefinedColumnType.DCT_STRING;
+                    return DefinedColumnType.DCT_DOUBLE;
                 case DataModel.DefinedColumnType.BOOLEAN:
                     return DefinedColumnType.DCT_BOOLEAN;
 
                 default:
                     throw new OTSClientException(String.Format(
-                           "Invalid definedColumn value type: {0}", type
+                           "Invalid definedColumn value type: {0}", type.ToString()
                        ));
             }
         }
@@ -867,7 +1139,7 @@ namespace Aliyun.OTS.Handler
                     return PB.PrimaryKeyType.BINARY;
                 default:
                     throw new OTSClientException(String.Format(
-                        "Invalid column value type: {0}", type
+                        "Invalid column value type: {0}", type.ToString()
                     ));
             }
         }
@@ -880,7 +1152,7 @@ namespace Aliyun.OTS.Handler
                     return PB.PrimaryKeyOption.AUTO_INCREMENT;
                 default:
                     throw new OTSClientException(String.Format(
-                        "Invalid primary key option: {0}", option
+                        "Invalid primary key option: {0}", option.ToString()
                     ));
             }
         }
@@ -909,6 +1181,20 @@ namespace Aliyun.OTS.Handler
             return builder.Build();
         }
 
+        private PB.SearchIndexSplitsOptions EncodeSearchIndexOptions(DataModel.ISplitsOptions options)
+        {
+            var builder = PB.SearchIndexSplitsOptions.CreateBuilder();
+
+            var searchIndexOptions = (DataModel.Search.SearchIndexSplitsOptions)options;
+
+            if (searchIndexOptions.IndexName != null)
+            {
+                builder.SetIndexName(searchIndexOptions.IndexName);
+            }
+
+            return builder.Build();
+        }
+
         private PB.Condition EncodeCondition(DataModel.Condition condition)
         {
             PB.Condition.Builder builder = PB.Condition.CreateBuilder();
@@ -924,7 +1210,7 @@ namespace Aliyun.OTS.Handler
                     builder.SetRowExistence(PB.RowExistenceExpectation.IGNORE);
                     break;
                 default:
-                    throw new OTSClientException(String.Format("Invalid RowExistenceExpectation: {0}", condition.RowExistenceExpect));
+                    throw new OTSClientException(String.Format("Invalid RowExistenceExpectation: {0}", condition.RowExistenceExpect.ToString()));
             }
 
             if (condition.ColumnCondition != null)
@@ -1216,6 +1502,17 @@ namespace Aliyun.OTS.Handler
             }
 
             return true;
+        }
+
+        private PB.SQLPayloadVersion ToPBSQLPayloadVersion(DataModel.SQL.SQLPayloadVersion version)
+        {
+            switch (version)
+            {
+                case DataModel.SQL.SQLPayloadVersion.SQLFlatBuffers:
+                    return PB.SQLPayloadVersion.SQL_FLAT_BUFFERS;
+                default:
+                    throw new ArgumentException(string.Format("Unkown SQL payload version: {0}", version));
+            }
         }
     }
 }

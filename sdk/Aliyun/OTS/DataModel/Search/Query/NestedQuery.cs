@@ -22,6 +22,15 @@ namespace Aliyun.OTS.DataModel.Search.Query
         /// 多值字段获取文档得分的模式
         /// </summary>
         public ScoreMode ScoreMode { get; set; }
+        /// <summary>
+        /// 查询权重
+        /// </summary>
+        public float Weight { get; set; }
+
+        public NestedQuery()
+        {
+            Weight = 1.0f;
+        }
 
         public QueryType GetQueryType()
         {

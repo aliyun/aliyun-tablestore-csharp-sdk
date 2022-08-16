@@ -8,7 +8,21 @@ namespace Aliyun.OTS.DataModel.Search.Query
     {
         public string FieldName { get; set; }
 
-        public List<ColumnValue> Terms { get; set; } 
+        public List<ColumnValue> Terms { get; set; }
+
+        public float Weight { get; set; }
+
+        public TermsQuery()
+        {
+            Weight = 1.0f;
+        }
+
+        public TermsQuery(string fieldName, List<ColumnValue> terms)
+        {
+            Terms = terms;
+            FieldName = fieldName;
+            Weight = 1.0f;
+        }
 
         public QueryType GetQueryType()
         {

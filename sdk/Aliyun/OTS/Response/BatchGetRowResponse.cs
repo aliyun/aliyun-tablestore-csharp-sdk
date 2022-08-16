@@ -24,12 +24,12 @@ namespace Aliyun.OTS.Response
         /// 其中BatchGetRowResponseItem表示单行返回的结果。
         /// </summary>
         public IDictionary<string, IList<BatchGetRowResponseItem>> RowDataGroupByTable { get; private set; }
-        
+
         public BatchGetRowResponse()
         {
             RowDataGroupByTable = new Dictionary<string, IList<BatchGetRowResponseItem>>();
         }
-        
+
         public void Add(string tableName, IList<BatchGetRowResponseItem> rowDataInTable)
         {
             RowDataGroupByTable.Add(tableName, rowDataInTable);

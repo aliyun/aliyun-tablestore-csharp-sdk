@@ -1,4 +1,7 @@
-﻿using Aliyun.OTS.DataModel.Search.Query;
+﻿using Aliyun.OTS.DataModel.Search.Agg;
+using Aliyun.OTS.DataModel.Search.GroupBy;
+using Aliyun.OTS.DataModel.Search.Query;
+using System.Collections.Generic;
 
 namespace Aliyun.OTS.DataModel.Search
 {
@@ -37,14 +40,23 @@ namespace Aliyun.OTS.DataModel.Search
         {
             get
             {
-                return this.token;
+                return token;
             }
             set
             {
                 //Token中编码了Sort条件，所以设置Token时不需要设置Sort
-                this.token = value;
-                this.Sort = null;
+                token = value;
+                Sort = null;
             }
+        }
+
+        public List<IAggregation> AggregationList { get; set; }
+
+        public List<IGroupBy> GroupByList { get; set; }
+
+        public SearchQuery()
+        {
+            GetTotalCount = false;
         }
     }
 }
