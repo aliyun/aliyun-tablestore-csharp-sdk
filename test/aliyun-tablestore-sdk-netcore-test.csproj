@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Aliyun.TableStore.Test</RootNamespace>
+    <EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>False</EnableDefaultEmbeddedResourceItems>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>Aliyun.TableStore.NetCore.Test</AssemblyName>
+    <IsTestProject>true</IsTestProject>
+    <ApplicationIcon />
+
+    <OutputType>Library</OutputType>
+
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="packages.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bosima.Google.ProtocolBuffers" Version="1.0.1" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTest\AsyncOperationTest.cs" />
+    <Compile Include="UnitTest\BatchGetRowTest.cs" />
+    <Compile Include="UnitTest\ConditionUpdateTest.cs" />
+    <Compile Include="UnitTest\ConnectionPoolTest.cs" />
+    <Compile Include="UnitTest\DataModel\AttributeTest.cs" />
+    <Compile Include="UnitTest\DataModel\CapacityUnitTest.cs" />
+    <Compile Include="UnitTest\DataModel\ColumnNameTest.cs" />
+    <Compile Include="UnitTest\DataModel\ColumnValueTest.cs" />
+    <Compile Include="UnitTest\DataModel\ConditionTest.cs" />
+    <Compile Include="UnitTest\DataModel\ConditionUpdateTest.cs" />
+    <Compile Include="UnitTest\DataModel\PrimaryKeyTest.cs" />
+    <Compile Include="UnitTest\DataModel\TableMetaTest.cs" />
+    <Compile Include="UnitTest\DataModel\TableNameTest.cs" />
+    <Compile Include="UnitTest\InterfaceTest\ClientInitializeTest.cs" />
+    <Compile Include="UnitTest\InterfaceTest\MultiRowOperationTest.cs" />
+    <Compile Include="UnitTest\InterfaceTest\SingleRowOperationTest.cs" />
+    <Compile Include="UnitTest\InterfaceTest\TableOperationTest.cs" />
+    <Compile Include="UnitTest\OTSUnitTestBase.cs" />
+    <Compile Include="UnitTest\ProtocolImplementation\ErrorHandlingTest.cs" />
+    <Compile Include="UnitTest\ProtocolImplementation\NetworkTest.cs" />
+    <Compile Include="UnitTest\ProtocolImplementation\ResponseParseTest.cs" />
+    <Compile Include="UnitTest\RetryPolicyTest\RealRetryScenarioTest.cs" />
+    <Compile Include="UnitTest\RetryPolicyTest\RetryCostumizeTest.cs" />
+    <Compile Include="UnitTest\RetryPolicyTest\StandardRetryBackOffTest.cs" />
+    <Compile Include="UnitTest\RetryPolicyTest\StandardRetryConditionTest.cs" />
+    <Compile Include="UnitTest\RowOperationTest.cs" />
+    <Compile Include="UnitTest\SampleCodeTest.cs" />
+    <Compile Include="UnitTest\SearchTest.cs" />
+    <Compile Include="UnitTest\SearchUnitTestBase.cs" />
+    <Compile Include="UnitTest\SmokeTest.cs" />
+    <Compile Include="UnitTest\SQLTest.cs" />
+    <Compile Include="UnitTest\TableOperationTest.cs" />
+    <Compile Include="UnitTest\OtsUtilsTest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\sdk\aliyun-tablestore-sdk.csproj" />
+  </ItemGroup>
+  
+</Project>

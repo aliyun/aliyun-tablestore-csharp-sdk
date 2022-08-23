@@ -770,11 +770,11 @@ namespace Aliyun.OTS.Samples.Samples
             groupByGeoDistance.FieldName = Geo_type_col;
             groupByGeoDistance.GroupByName = "groupByGeoDistance";
             groupByGeoDistance.Origin = new GeoPoint(0, 0);
-            groupByGeoDistance.Ranges = new List<Range>()
+            groupByGeoDistance.Ranges = new List<DataModel.Search.GroupBy.Range>()
             {
-                new Range(double.MinValue, 100.0),
-                new Range(100.0, 1000.0),
-                new Range(1000.0, double.MaxValue)
+                new DataModel.Search.GroupBy.Range(double.MinValue, 100.0),
+                new DataModel.Search.GroupBy.Range(100.0, 1000.0),
+                new DataModel.Search.GroupBy.Range(1000.0, double.MaxValue)
             };
 
             GroupByHistogram groupByHistogram = new GroupByHistogram();
@@ -787,11 +787,11 @@ namespace Aliyun.OTS.Samples.Samples
             GroupByRange groupByRange = new GroupByRange();
             groupByRange.GroupByName = "groupByRange";
             groupByRange.FieldName = Long_type_col;
-            groupByRange.Ranges = new List<Range>()
+            groupByRange.Ranges = new List<DataModel.Search.GroupBy.Range>()
             {
-                new Range(0 , 5),
-                new Range(5,10),
-                new Range(10, double.MaxValue)
+                new DataModel.Search.GroupBy.Range(0 , 5),
+                new DataModel.Search.GroupBy.Range(5,10),
+                new DataModel.Search.GroupBy.Range(10, double.MaxValue)
             };
 
             GroupByResults results = GroupByRunner(otsClient, groupByField, groupByFilter, groupByGeoDistance, groupByHistogram, groupByRange);

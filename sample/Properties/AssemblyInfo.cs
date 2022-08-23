@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Aliyun.TableStore.Samples")]
-[assembly: AssemblyDescription("Aliyun TableStore SDK Samples for .NET.")]
+[assembly: AssemblyDescription("Aliyun TableStore SDK Samples for .NETSTANDARD2.0 and .NET40.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alibaba Cloud Computing")]
 [assembly: AssemblyProduct("Aliyun.TableStore")]
-[assembly: AssemblyCopyright("Copyright (c) 2009-2016 aliyun.com")]
+[assembly: AssemblyCopyright("Copyright (c) 2009-2022 aliyun.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.1.0")]
-[assembly: AssemblyFileVersion("3.1.0")]
+[assembly: AssemblyVersion("6.0.0")]
+[assembly: AssemblyFileVersion("6.0.0")]

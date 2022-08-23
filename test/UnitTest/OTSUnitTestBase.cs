@@ -11,7 +11,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Net;
 using System.IO;
 using System.Security.Cryptography;
@@ -22,6 +21,7 @@ using Aliyun.OTS.Request;
 using PB = com.alicloud.openservices.tablestore.core.protocol;
 using Aliyun.OTS.DataModel.ConditionalUpdate;
 using Aliyun.OTS.DataModel.Search;
+using System.Threading;
 
 namespace Aliyun.OTS.UnitTest
 {

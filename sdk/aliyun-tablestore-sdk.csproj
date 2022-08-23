@@ -1,349 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AB5EFCA2-53A9-42B5-861E-3FD6F865036B}</ProjectGuid>
+    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Aliyun.TableStore</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <PackageId>Aliyun.TableStore.SDK</PackageId>
+    <AssemblyName>Aliyun.TableStore.SDK</AssemblyName>
+    <authors>aliyun</authors>
+    <Version>6.0.0</Version>
+    <Description>Aliyun Table Store SDK for .NetCore and .NETFrameWork</Description>
+    <Copyright>Copyright (c) 2009-2022 aliyun.com</Copyright>
+    <ReleaseNotes>Support NetStandard2.0; Compatible NetFrameWork4.0.</ReleaseNotes>
+    <PackageProjectUrl>https://github.com/aliyun/aliyun-tablestore-csharp-sdk</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>7</LangVersion>
+    <RootNamespace>Aliyun.OTS</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>4</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>4</LangVersion>
-    <Prefer32Bit>false</Prefer32Bit>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>$(DefineConstants);UNSAFE_BYTEBUFFER;ENABLE_SPAN_T</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.FlatBuffers, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\KdSoft.FlatBuffers.1.12.0\lib\net35\Google.FlatBuffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="Google.ProtocolBuffers">
-      <HintPath>..\packages\Google.ProtocolBuffers.2.4.1.555\lib\net40\Google.ProtocolBuffers.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.ProtocolBuffers.Serialization">
-      <HintPath>..\packages\Google.ProtocolBuffers.2.4.1.555\lib\net40\Google.ProtocolBuffers.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Bosima.Google.ProtocolBuffers" Version="1.0.1" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.6.1" />
+    <PackageReference Include="KdSoft.FlatBuffers" Version="1.12.0" />
+    <PackageReference Include="System.Net.Http" Version="2.0.20710" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Aliyun\OTS\DataModel\AttributeColumns.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\CapacityDataSize.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\CapacityUnit.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ColumnValue.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Condition.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\IColumnCondition.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\ColumnConditionType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\CompositeCondition.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ConditionalUpdate\RelationalCondition.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ConsumedCapacity.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\DefinedColumnSchema.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\DefinedColumnType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\IndexMeta.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\IndexType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\IndexUpdateMode.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\MultiRowQueryCriteria.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RangeRowQueryCriteria.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ReservedThroughput.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RowQueryCriteria.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\AvgAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\AvgAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\CountAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\CountAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\DistinctCountAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\DistinctCountAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\IAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\AggregationResults.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\AggregationType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\IAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\MaxAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\MaxAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\MinAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\MinAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\PercentilesAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\PercentilesAggregationResultItem.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\PercentilesAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\SumAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\SumAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\TopRowsAggregation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Agg\TopRowsAggregationResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Analysis\IAnalyzerParameter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Analysis\FuzzyAnalyzerParameter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Analysis\SingleWordAnalyzerParameter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Analysis\SplitAnalyzerParameter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Collapse.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\ColumnsToGet.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\FieldSchema.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\FieldType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GeoPoint.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\FieldRange.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByField.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByFieldResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByFieldResultItem.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByFilter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByFilterResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByFilterResultItem.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByGeoDistance.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByGeoDistanceResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByGeoDistanceResultItem.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByHistogram.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByHistogramResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByHistogramResultItem.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByRange.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByRangeResultItem.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByRangeResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByResults.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\GroupByType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\IGroupBy.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\IGroupByResult.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\GroupBy\Range.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\IndexOptions.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\IndexSchema.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\IndexSetting.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\MeteringInfo.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\BoolQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\ConstScoreQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\ExistsQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\FieldValueFactor.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\FunctionScoreQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\GeoBoundingBoxQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\GeoDistanceQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\GeoPolygonQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\IQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\MatchAllQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\MatchPhraseQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\MatchQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\NestedQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\PrefixQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\QueryOperator.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\QueryType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\RangeQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\ScoreMode.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\TermQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\TermsQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Query\WildcardQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\ScanQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\SearchIndexInfo.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\SearchIndexSplitsOptions.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\SearchQuery.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\FieldSort.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\GeoDistanceSort.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\GeoDistanceType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\GroupBySorter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\GroupKeySort.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\ISorter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\NestedFilter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\PrimaryKeySort.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\RowCountSort.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\ScoreSort.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\Sort.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\SortMode.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\SortOrder.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\Sort\SubAggSort.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ISplitsOptions.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Search\SyncStat.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SingleRowQueryCriteria.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\PrimaryKey.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\PrimaryKeySchema.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ReservedThroughputDetails.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RowChanges.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RowExistenceExpectation.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLColumnSchema.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLFactory.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLPayloadVersion.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\ISQLResultSet.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\ISQLRow.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLResultSetImpl.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLRowImpl.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\ISQLRows.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLRowsFBsColumnBased.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLStatementType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLTableMeta.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\SQL\SQLUtils.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\TableMeta.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\UpdateOfAttribute.cs" />
-    <Compile Include="Aliyun\OTS\Handler\Context.cs" />
-    <Compile Include="Aliyun\OTS\Handler\ErrorHandler.cs" />
-    <Compile Include="Aliyun\OTS\Handler\HttpHandler.cs" />
-    <Compile Include="Aliyun\OTS\Handler\HttpHeaderHandler.cs" />
-    <Compile Include="Aliyun\OTS\Handler\OTSHandler.cs" />
-    <Compile Include="Aliyun\OTS\Handler\PipelineHandler.cs" />
-    <Compile Include="Aliyun\OTS\Handler\RetryHandler.cs" />
-    <Compile Include="Aliyun\OTS\OTSClient.cs" />
-    <Compile Include="Aliyun\OTS\OTSClientConfig.cs" />
-    <Compile Include="Aliyun\OTS\OTSClientException.cs" />
-    <Compile Include="Aliyun\OTS\OTSClientTestHelper.cs" />
-    <Compile Include="Aliyun\OTS\OTSDefaultLogHandler.cs" />
-    <Compile Include="Aliyun\OTS\OTSException.cs" />
-    <Compile Include="Aliyun\OTS\OTSServerException.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\ProtocolBufferDecoder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\ProtocolBufferEncoder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchAggregationBuilder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchAggregationResultBuilder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchAnalyzerParameterBuilder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchGroupByBuilder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchGroupByResultBuilder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchQueryBuilder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchSortBuilder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SearchVariantType.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SQL\flatbuffers\BytesValue.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SQL\flatbuffers\ColumnValues.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SQL\flatbuffers\DataType.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SQL\flatbuffers\RLEStringValues.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SQL\flatbuffers\SQLResponseColumn.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\SQL\flatbuffers\SQLResponseColumns.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\TablestoreSearch.cs" />
-    <Compile Include="Aliyun\OTS\Request\BatchGetRowRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\BatchWriteRowRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\ComputeSplitsRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\CreateGlobalIndexRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\CreateSearchIndexRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\CreateTableRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\DeleteGlobalIndexRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\DeleteRowRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\DeleteSearchIndexRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\DeleteTableRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\DescribeSearchIndexRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\DescribeTableRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\GetIteratorRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\GetRangeRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\GetRowRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\ListSearchIndexRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\ListTableRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\OTSRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\ParallelScanRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\PutRowRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\SearchRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\SQLQueryRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\UpdateRowRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\UpdateSearchIndexRequest.cs" />
-    <Compile Include="Aliyun\OTS\Request\UpdateTableRequest.cs" />
-    <Compile Include="Aliyun\OTS\Response\BatchGetRowErrorResponseItem.cs" />
-    <Compile Include="Aliyun\OTS\Response\BatchGetRowResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\BatchGetRowResponseItem.cs" />
-    <Compile Include="Aliyun\OTS\Response\BatchGetRowSuccessResponseItem.cs" />
-    <Compile Include="Aliyun\OTS\Response\BatchWriteRowErrorResponseItem.cs" />
-    <Compile Include="Aliyun\OTS\Response\BatchWriteRowResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\BatchWriteRowResponseItem.cs" />
-    <Compile Include="Aliyun\OTS\Response\BatchWriteRowSuccessResponseItem.cs" />
-    <Compile Include="Aliyun\OTS\Response\ComputeSplitsResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\CreateGlobalIndexResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\CreateSearchIndexResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\CreateTableResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\DeleteGlobalIndexResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\DeleteRowResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\DeleteSearchIndexResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\DeleteTableResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\DescribeSearchIndexResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\DescribeTableResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\GetRangeResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\GetRowResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\ListSearchIndexResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\ListTableResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\OTSResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\ParallelScanResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\PutRowResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\SearchResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\SQLQueryResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\UpdateRowResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\UpdateSearchIndexResponse.cs" />
-    <Compile Include="Aliyun\OTS\Response\UpdateTableResponse.cs" />
-    <Compile Include="Aliyun\OTS\Retry\PredefinedRetryPolicies.cs" />
-    <Compile Include="Aliyun\OTS\Retry\RetryPolicy.cs" />
-    <Compile Include="Aliyun\OTS\Retry\RetryUtil.cs" />
-    <Compile Include="Aliyun\OTS\Util\OtsUtils.cs" />
-    <Compile Include="Aliyun\OTS\Util\ValueUtil.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\TableOptions.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\StreamDetails.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\TableStoreFilter.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\TableStore.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\BloomFilterType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\StreamSpecification.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\PartitionRange.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferBuilder.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferOutputStream.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferExtension.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferSequenceInfo.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferCell.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferCrc8.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferRow.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferConsts.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Column.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferCodedOutputStream.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferConversion.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\IMeasurable.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\IRow.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RowChange.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ReturnType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RowDeleteChange.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RowPutChange.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RowUpdateChange.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\PrimaryKeyColumn.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Filter\IFilter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Filter\FilterType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Filter\SingleColumnValueFilter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\CompareOperator.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Filter\CompositeColumnValueFilter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\LogicOperator.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Filter\ColumnPaginationFilter.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\TimeRange.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\IResultParser.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\ProtocolBufferParser.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\Row.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\NameTimestampComparator.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferCodedInputStream.cs" />
-    <Compile Include="Aliyun\OTS\ProtoBuffer\PlainBufferInputStream.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\ColumnValueType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\RowChangeType.cs" />
-    <Compile Include="Aliyun\OTS\DataModel\PrimaryKeyOption.cs" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Aliyun\OTS\ProtoBuffer\SQL\sql.fbs" />
-    <None Include="Aliyun\OTS\ProtoBuffer\tablestore_search.proto" />
-    <None Include="packages.config" />
-    <None Include="Aliyun\OTS\ProtoBuffer\table_store_filter.proto" />
-    <None Include="Aliyun\OTS\ProtoBuffer\table_store.proto" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+    <PackageReference Include="System.Net.Http">
+      <Version>2.0.20710</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

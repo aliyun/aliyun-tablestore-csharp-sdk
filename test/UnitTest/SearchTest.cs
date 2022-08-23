@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Aliyun.OTS.DataModel;
 using Aliyun.OTS.DataModel.Search;
@@ -447,11 +447,11 @@ namespace Aliyun.OTS.UnitTest
                 GroupByName = groupByName,
                 FieldName = Geo_Column,
                 Origin = new GeoPoint(0, 0),
-                Ranges = new List<Range>
+                Ranges = new List<OTS.DataModel.Search.GroupBy.Range>
                 {
-                    new Range(double.MinValue , 1000.0),
-                    new Range(1000.0, 5000.0),
-                    new Range(5000.0, double.MaxValue)
+                    new OTS.DataModel.Search.GroupBy.Range(double.MinValue , 1000.0),
+                    new OTS.DataModel.Search.GroupBy.Range(1000.0, 5000.0),
+                    new OTS.DataModel.Search.GroupBy.Range(5000.0, double.MaxValue)
                 }
             };
 
@@ -501,12 +501,12 @@ namespace Aliyun.OTS.UnitTest
             GroupByRange groupByRange = new GroupByRange();
             groupByRange.FieldName = Col2_Double;
             groupByRange.GroupByName = groupByName;
-            groupByRange.Ranges = new List<Range>
+            groupByRange.Ranges = new List<OTS.DataModel.Search.GroupBy.Range>
             {
-                new Range(double.MinValue, 5.0),
-                new Range(5.0, 50.0),
-                new Range(50.0, 100.0),
-                new Range(100.0, double.MaxValue)
+                new OTS.DataModel.Search.GroupBy.Range(double.MinValue, 5.0),
+                new OTS.DataModel.Search.GroupBy.Range(5.0, 50.0),
+                new OTS.DataModel.Search.GroupBy.Range(50.0, 100.0),
+                new OTS.DataModel.Search.GroupBy.Range(100.0, double.MaxValue)
             };
 
             GroupByResults results = TestGroupByBase(groupByRange);

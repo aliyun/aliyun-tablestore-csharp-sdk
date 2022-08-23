@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Aliyun.TableStore")]
-[assembly: AssemblyDescription("Aliyun Table Store SDK for .NET")]
+[assembly: AssemblyDescription("Aliyun Table Store SDK for .NETSTANDARD2.0 and .NET40")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alibaba Cloud Computing")]
 [assembly: AssemblyProduct("Aliyun.TableStore")]
-[assembly: AssemblyCopyright("Copyright (c) 2009-2018 aliyun.com")]
+[assembly: AssemblyCopyright("Copyright (c) 2009-2022 aliyun.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
