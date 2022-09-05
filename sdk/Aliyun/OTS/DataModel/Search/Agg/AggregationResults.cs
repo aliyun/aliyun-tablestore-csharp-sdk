@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Aliyun.OTS.DataModel.Search.Agg
@@ -9,7 +9,7 @@ namespace Aliyun.OTS.DataModel.Search.Agg
 
         public int Size()
         {
-            if (ResultMap != null)
+            if (ResultMap == null)
             {
                 return 0;
             }
@@ -32,7 +32,7 @@ namespace Aliyun.OTS.DataModel.Search.Agg
         {
             if (ResultMap == null || !ResultMap.ContainsKey(aggregationName))
             {
-                throw new ArgumentException(string.Format("AggregationResults dont's contains: {0}", aggregationName));
+                throw new ArgumentException(string.Format("AggregationResults do not contains: {0}", aggregationName));
             }
 
             IAggregationResult result = ResultMap[aggregationName];
@@ -49,7 +49,7 @@ namespace Aliyun.OTS.DataModel.Search.Agg
         {
             if (ResultMap == null || !ResultMap.ContainsKey(aggregationName))
             {
-                throw new ArgumentException(string.Format("AggregationResults dont's contains: {0}", aggregationName));
+                throw new ArgumentException(string.Format("AggregationResults do not contains: {0}", aggregationName));
             }
 
             IAggregationResult result = ResultMap[aggregationName];
@@ -66,7 +66,7 @@ namespace Aliyun.OTS.DataModel.Search.Agg
         {
             if (ResultMap == null || !ResultMap.ContainsKey(aggregationName))
             {
-                throw new ArgumentException(string.Format("AggregationResults dont's contains: {0}", aggregationName));
+                throw new ArgumentException(string.Format("AggregationResults do not contains: {0}", aggregationName));
             }
 
             IAggregationResult result = ResultMap[aggregationName];
@@ -83,7 +83,7 @@ namespace Aliyun.OTS.DataModel.Search.Agg
         {
             if (ResultMap == null || !ResultMap.ContainsKey(aggregationName))
             {
-                throw new ArgumentException(string.Format("AggregationResults dont's contains: {0}", aggregationName));
+                throw new ArgumentException(string.Format("AggregationResults do not contains: {0}", aggregationName));
             }
 
             IAggregationResult result = ResultMap[aggregationName];
@@ -100,7 +100,7 @@ namespace Aliyun.OTS.DataModel.Search.Agg
         {
             if (ResultMap == null || !ResultMap.ContainsKey(aggregationName))
             {
-                throw new ArgumentException(string.Format("AggregationResults dont's contains: {0}", aggregationName));
+                throw new ArgumentException(string.Format("AggregationResults do not contains: {0}", aggregationName));
             }
 
             IAggregationResult result = ResultMap[aggregationName];
@@ -117,7 +117,7 @@ namespace Aliyun.OTS.DataModel.Search.Agg
         {
             if (ResultMap == null || !ResultMap.ContainsKey(aggregationName))
             {
-                throw new ArgumentException(string.Format("AggregationResults dont's contains: {0}", aggregationName));
+                throw new ArgumentException(string.Format("AggregationResults do not contains: {0}", aggregationName));
             }
 
             IAggregationResult result = ResultMap[aggregationName];
@@ -134,7 +134,7 @@ namespace Aliyun.OTS.DataModel.Search.Agg
         {
             if (ResultMap == null || !ResultMap.ContainsKey(aggregationName))
             {
-                throw new ArgumentException(string.Format("AggregationResults dont's contains: {0}", aggregationName));
+                throw new ArgumentException(string.Format("AggregationResults do not contains: {0}", aggregationName));
             }
 
             IAggregationResult result = ResultMap[aggregationName];
@@ -151,7 +151,8 @@ namespace Aliyun.OTS.DataModel.Search.Agg
         {
             if (ResultMap == null || !ResultMap.ContainsKey(aggregationName))
             {
-                throw new ArgumentException(string.Format("AggregationResults dont's contains: {0}", aggregationName));
+                throw new ArgumentException(string.Format("AggregationResults " +
+                                                          "do not contains: {0}", aggregationName));
             }
 
             IAggregationResult result = ResultMap[aggregationName];

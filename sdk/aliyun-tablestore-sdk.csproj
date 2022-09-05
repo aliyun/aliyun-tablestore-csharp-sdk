@@ -5,7 +5,7 @@
     <PackageId>Aliyun.TableStore.SDK</PackageId>
     <AssemblyName>Aliyun.TableStore.SDK</AssemblyName>
     <authors>aliyun</authors>
-    <Version>6.0.0</Version>
+    <Version>6.0.1</Version>
     <Description>Aliyun Table Store SDK for .NetCore and .NETFrameWork</Description>
     <Copyright>Copyright (c) 2009-2022 aliyun.com</Copyright>
     <ReleaseNotes>Support NetStandard2.0; Compatible NetFrameWork4.0.</ReleaseNotes>
