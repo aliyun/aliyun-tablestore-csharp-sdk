@@ -5,10 +5,10 @@
     <PackageId>Aliyun.TableStore.SDK</PackageId>
     <AssemblyName>Aliyun.TableStore.SDK</AssemblyName>
     <authors>aliyun</authors>
-    <Version>6.0.1</Version>
+    <Version>6.0.2</Version>
     <Description>Aliyun Table Store SDK for .NetCore and .NETFrameWork</Description>
     <Copyright>Copyright (c) 2009-2022 aliyun.com</Copyright>
-    <ReleaseNotes>Support NetStandard2.0; Compatible NetFrameWork4.0.</ReleaseNotes>
+    <ReleaseNotes>fix bug cause by nested fieldtype when create search index</ReleaseNotes>
     <PackageProjectUrl>https://github.com/aliyun/aliyun-tablestore-csharp-sdk</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

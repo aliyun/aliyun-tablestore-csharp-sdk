@@ -30,7 +30,7 @@ namespace Aliyun.OTS.DataModel.Search
         /// <summary>
         /// 倒排索引的配置选项
         /// </summary>
-        public IndexOptions IndexOptions { get; set; }
+        public IndexOptions? IndexOptions { get; set; }
         /// <summary>
         /// 分词器设置
         /// </summary>

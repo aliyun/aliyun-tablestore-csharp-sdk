@@ -579,7 +579,10 @@ namespace Aliyun.OTS.ProtoBuffer
                 builder.IsArray = fieldSchema.IsArray;
             }
 
-            builder.IndexOptions = EncodingIndexOptions(fieldSchema.IndexOptions);
+            if (fieldSchema.IndexOptions.HasValue)
+            {
+                builder.IndexOptions = EncodingIndexOptions(fieldSchema.IndexOptions.Value);
+            }
 
             if (fieldSchema.Analyzer.HasValue)
             {

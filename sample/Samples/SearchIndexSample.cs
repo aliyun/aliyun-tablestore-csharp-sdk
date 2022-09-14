@@ -28,6 +28,7 @@ namespace Aliyun.OTS.Samples.Samples
         private static readonly string Date_type_col = "Data_type_col";
         private static readonly string Geo_type_col = "Geo_type_col";
         private static readonly string Virtual_col_Text = "Virtual_col_Text";
+        private static readonly string Nested_type_col = "Nested_type_col";
 
         static void Main(string[] args)
         {
@@ -93,7 +94,7 @@ namespace Aliyun.OTS.Samples.Samples
             DeleteTable(otsClient);
 
             Console.WriteLine("SearchIndexSample Finish！");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void CreateTable(OTSClient otsClient)
@@ -188,6 +189,19 @@ namespace Aliyun.OTS.Samples.Samples
                     Analyzer = Analyzer.Split,
                     AnalyzerParameter = new SplitAnalyzerParameter(){
                         Delimiter=" "
+                    }
+                },
+                // 构建嵌套列
+                new FieldSchema(Nested_type_col, FieldType.NESTED) {
+                    SubFieldSchemas=new List<FieldSchema>{
+                        new FieldSchema("LastName", FieldType.TEXT) {
+                            index=true,
+                            Store=true
+                        },
+                        new FieldSchema("FirtName", FieldType.TEXT) {
+                            index=true,
+                            Store=true
+                        }
                     }
                 },
                 // 构建日期列

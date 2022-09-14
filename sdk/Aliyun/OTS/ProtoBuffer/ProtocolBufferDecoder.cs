@@ -615,11 +615,16 @@ namespace Aliyun.OTS.ProtoBuffer
             {
                 ret.Analyzer = ParseAnalyzer(fieldSchema.Analyzer);
             }
+
             ret.EnableSortAndAgg = fieldSchema.DocValues;
             ret.index = fieldSchema.Index;
             ret.Store = fieldSchema.Store;
             ret.IsArray = fieldSchema.IsArray;
-            ret.IndexOptions = ParseIndexOption(fieldSchema.IndexOptions);
+
+            if (fieldSchema.FieldType != PB.FieldType.NESTED)
+            {
+                ret.IndexOptions = ParseIndexOption(fieldSchema.IndexOptions);
+            }
 
             if (fieldSchema.HasAnalyzerParameter && fieldSchema.HasAnalyzer)
             {
